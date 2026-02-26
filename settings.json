@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(__NEW_LINE_c17930fc32d0e3d9__ echo \"\")",
+      "Read(//Users/bfr/dev/ai/building-dot.claude/.claude/commands/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/bfr/dev/ai/building-dot.claude/.claude/subagents"
+    ]
+  }
+}
