@@ -8,7 +8,7 @@ Bob is a set of slash commands for Claude Code that bring discipline to AI-assis
 
 Language-agnostic. Platform-agnostic. Works across any stack.
 
-👉 [Homepage](index.html) · [User Guide](docs/user-guide.md) · [Presentation](https://bofrese.github.io/bob/presentation/index.html)
+👉 [Homepage](https://bob.bofrese.dk/) · [User Guide](docs/user-guide.md) · [Presentation](https://bob.bofrese.dk/presentation/index.html)
 
 ---
 
@@ -43,9 +43,9 @@ This isn't a toolkit that runs commands for you. It's a toolkit that thinks *wit
 
 The full story — how commands connect, how memory works, how a feature travels from idea to shipped code — is all in one place:
 
-👉 [Read the User Guide](docs/user-guide.md)
-👉 [See the Homepage](index.html)
-👉 [See the Presentation](https://bofrese.github.io/bob/presentation/index.html)
+👉 [Read the User Guide](docs/user-guide.md)   
+👉 [See the Homepage](https://bob.bofrese.dk/)   
+👉 [See the Presentation](https://bob.bofrese.dk/presentation/)  
 
 ---
 
@@ -92,26 +92,16 @@ This is the memory layer. The reason `/bob:review` can check a feature against i
 
 ## Installation
 
-**User-level** — available across all your projects:
+**In claude code:** 
 
-```bash
-git clone https://github.com/bofrese/bob.git ~/.claude/plugins/bob
+```claude 
+/plugin marketplace add bofrese/claude-plugins
+/plugin install bob@bofrese-plugins
 ```
 
-**Project-level** — only in the current project:
+See more on [finding and installing claude plugins here](https://code.claude.com/docs/en/discover-plugins)
 
-```bash
-git clone https://github.com/bofrese/bob.git .claude/plugins/bob
-```
-
-To update later:
-
-```bash
-cd ~/.claude/plugins/bob   # or .claude/plugins/bob
-git pull
-```
-
-### Developing bob
+### Developing Bob
 
 To work on bob itself, clone the repo and pass the directory as a plugin when starting Claude:
 
@@ -128,17 +118,19 @@ An alias makes this faster:
 alias claude-bob='claude --plugin-dir ~/path/to/bob'
 ```
 
-With the alias, `claude-bob` anywhere opens Claude with your local bob loaded — changes take effect immediately without reinstalling.
+With the alias, `claude-bob` anywhere opens Claude with your local Bob loaded — changes take effect immediately without reinstalling.
 
 ---
 
 ## Quick Start — Your First Command
 
-After installation, start with `/bob:pm`:
+After installation, start with Bob, simply be mentioning him by name:
 
+```claude
+Hi Bob, what can you help with? How do we get started?
 ```
-/bob:pm
-```
+
+Bob can help you when in doubt on which bob command to run. Once you get familliar with the available commmands its faster to call them directly with a slash command (`/bob:...`)
 
 **`/bob:pm` is your project mentor** — it assesses where you are, identifies what's missing, and suggests exactly which commands to run next.
 
@@ -146,7 +138,7 @@ After installation, start with `/bob:pm`:
 - **Product strategy work?** `/bob:product-coach` for comprehensive discovery guidance
 - **New feature?** `/bob:brainstorm` → `/bob:plan` → `/bob:implement` → `/bob:review`
 - **Inherited codebase?** `/bob:document` to capture what exists
-- **Not sure?** `/bob:pm` to get oriented
+- **Not sure?** `/bob:pm` to get oriented - or simply ask "Bob"
 
 ---
 
@@ -154,7 +146,7 @@ After installation, start with `/bob:pm`:
 
 This is a living toolkit — continuously evolving. New commands, sharper existing ones, better patterns. Never finished, and that's by design.
 
-Pull requests are welcome. bob is opinionated, and the opinions are deliberate. A PR might land as-is, get adapted, or get a respectful decline — not because your idea is wrong, but because it doesn't fit the direction. You're welcome to have strong opinions too; that's what makes contributions worth having.
+Pull requests are welcome. Bob is opinionated, and the opinions are deliberate. A PR might land as-is, get adapted, or get a respectful decline — not because your idea is wrong, but because it doesn't fit the direction. You're welcome to have strong opinions too; that's what makes contributions worth having.
 
 Even if you're not sure a PR will land exactly as written: it's visible. Other people can see it, learn from it, build on it. That has value on its own.
 
