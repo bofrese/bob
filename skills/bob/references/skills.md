@@ -237,6 +237,30 @@ description: [one line, what and when]
 
 ---
 
+## `bob:linkedin-expert` — LinkedIn Marketing
+
+**File I/O:** None (reference framework).
+
+**Invoked by:** Any session involving LinkedIn marketing, content, growth, or B2B personal branding.
+
+**Covers:**
+- **Core mental model:** Trust accumulation engine; algorithm mechanics; personal brand vs company page
+- **Content formats:** Short/long posts, carousels, LinkedIn Articles, video, polls — with purpose, frequency, and mechanics for each
+- **Link strategy:** Why external links kill reach; when/how to link to your own site; LinkedIn Articles vs your blog
+- **Monthly architecture:** Content pillar system, week-by-week rhythm, 6-month compound strategy
+- **Comments strategy:** Anatomy of a great comment, targeting tiers, timing, dos/don'ts
+- **DM strategy:** Four valid reasons to DM, anatomy, worked examples, follow-up rules, pipeline system
+- **Profile optimisation:** Headline, About, Featured, Experience — as a conversion page
+- **Engagement system:** Daily comment cadence, strategic targets, metrics that actually matter
+
+**Reference files:**
+- `references/content-strategy.md` — formats, link strategy, monthly architecture, 6-month arc, dos/don'ts
+- `references/comments.md` — comment anatomy, targeting, timing, dos/don'ts
+- `references/dms.md` — DM anatomy, examples, follow-up rules, pipeline system
+- `references/profile-and-engagement.md` — profile structure, daily engagement system, tracking
+
+---
+
 ## `bob:domain-knowledge` — Project-Specific Terminology
 
 **File I/O:**
