@@ -26,7 +26,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | Command | Load at start |
 |---------|--------------|
 | `product-vision` | `docs/product/vision.md` |
-| `personas` | `docs/product/vision.md`, `docs/product/design-brief.md` |
+| `personas` | `docs/product/vision.md`, `docs/product/problem-space.md` |
 | `design-brief` | `docs/product/vision.md`, `docs/product/personas.md` |
 | `problem-space` | `docs/product/vision.md`, `docs/product/problem-space.md` |
 | `business-plan` | `docs/product/vision.md`, `docs/product/business-plan.md` |

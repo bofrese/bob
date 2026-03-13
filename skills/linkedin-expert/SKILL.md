@@ -1,12 +1,20 @@
 ---
-name: LinkedIn Expert
+name: linkedin-expert
 description: This skill should be used when the user asks about "LinkedIn marketing", "LinkedIn strategy", "LinkedIn posts", "LinkedIn content", "LinkedIn articles", "LinkedIn DMs", "LinkedIn comments", "LinkedIn profile", "how to grow on LinkedIn", "LinkedIn for consultants", "personal branding on LinkedIn", "LinkedIn algorithm", "B2B marketing on LinkedIn", "thought leadership on LinkedIn", or asks how to market a product, service, or consultancy via LinkedIn.
-version: 1.0.0
 ---
 
 # LinkedIn Expert
 
 World-class LinkedIn marketing for consultants, founders, and B2B service businesses.
+
+## Project Context
+
+Before proceeding, check for existing product docs:
+- If `docs/product/positioning.md` exists — read it. Derive LinkedIn content pillars directly from the positioning messaging pillars. Align the value proposition with what appears in posts, comments, and DMs.
+- If `docs/product/personas.md` exists — read it. Target these personas in commenting strategy, content topics, and DM outreach.
+- If only `docs/product/vision.md` exists — read it. Use it to anchor messaging and pillar selection.
+
+If none exist, proceed with generic guidance and suggest running `/bob:positioning` after to lock in the strategy.
 
 ---
 

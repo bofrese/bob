@@ -35,7 +35,8 @@ File exists. Reviewing and updating — maybe market shifted, learned something 
 Check for existing product vision and positioning:
 - Read `docs/product/vision.md` if exists — ground business model in vision
 - Read `docs/product/positioning.md` if exists — understand market position
-- If neither exists, ask: What problem does this solve? For whom? What alternatives exist?
+- Read `docs/product/personas.md` if exists — align target customer with defined personas
+- If none exist, ask: What problem does this solve? For whom? What alternatives exist?
 
 Clarify core value proposition before proceeding. One question at a time.
 

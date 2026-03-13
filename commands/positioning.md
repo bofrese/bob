@@ -34,6 +34,7 @@ Check for existing product documents:
 - Read `docs/product/vision.md` if exists — positioning must align with vision
 - Read `docs/product/problem-space.md` if exists — understand the problem we solve
 - Read `docs/product/business-plan.md` if exists — understand business model and target customer
+- Read `docs/product/personas.md` if exists — align target customer with defined personas
 
 If none exist, ask: What are we positioning? Who for? Against what alternatives?
 
