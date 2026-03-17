@@ -1,7 +1,7 @@
 ---
 name: Prompt Engineering Principles
 description: Invoke this skill when creating, reviewing, or improving bob commands. Provides principles for writing effective, token-efficient Claude commands.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Prompt Engineering Principles

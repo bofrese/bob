@@ -1,7 +1,7 @@
 ---
 name: Positioning Strategy Principles
 description: Invoke this skill when working on market positioning, competitive analysis, or differentiation strategy. Used by bob:positioning and bob:product-coach commands.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Positioning Strategy Principles

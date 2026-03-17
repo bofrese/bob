@@ -450,3 +450,22 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 - Output instruction conciseness
 
 **Skills:** `context-protocol`, `prompt-engineering` (via context-protocol), `done-criteria`
+
+---
+
+## `/bob:linkedin` — LinkedIn Strategy Advisor
+
+**Purpose:** LinkedIn growth strategy advisor for consultants, founders, and B2B service businesses. Grounds strategy in the product's actual positioning and personas — not generic tips. Operates as a persistent expert mode: opens with a mode signal and reminds users to return with `/bob:linkedin`.
+
+**Reads:** `docs/product/positioning.md`, `docs/product/personas.md`, `docs/product/vision.md` (all optional; falls back to generic guidance if missing).
+
+**Writes:** `docs/product/linkedin-strategy.md` (optional, only if substantive strategy emerged and user agrees).
+
+**Process:**
+1. Load context (invoke `bob:linkedin-expert` skill; read available product docs)
+2. Establish starting point (from scratch / early stage / optimising / specific problem)
+3. Ground strategy in product context: derive content pillars from positioning, map personas to targeting tiers
+4. Land concrete plan: 3 pillars, weekly cadence, first 4 posts, 5–10 comment targets, profile quick wins
+5. Offer to save strategy doc; remind user to return with `/bob:linkedin`
+
+**Skills:** `context-protocol`, `linkedin-expert` (phase 1), `done-criteria`

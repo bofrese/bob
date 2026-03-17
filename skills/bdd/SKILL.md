@@ -1,7 +1,7 @@
 ---
 name: BDD — Behaviour-Driven Development
 description: Invoke this skill when defining acceptance criteria, testing strategy, or evaluating whether something is done. Used by bob commands during implementation planning and before writing code.
-version: 1.0.0
+user-invocable: false
 ---
 
 # BDD — Behaviour-Driven Development

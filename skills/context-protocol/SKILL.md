@@ -1,7 +1,7 @@
 ---
 name: Context Loading Protocol
 description: Invoke this skill at the start of every bob command. Defines what project files each command should load before proceeding. Follow the protocol exactly.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Context Loading Protocol
@@ -48,6 +48,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `guidelines` | — |
 | `docker-setup` | — |
 | `bob` | — |
+| `linkedin` | `docs/product/positioning.md`, `docs/product/personas.md`, `docs/product/vision.md` |
 
 ---
 

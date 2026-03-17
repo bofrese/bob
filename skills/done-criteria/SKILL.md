@@ -1,7 +1,7 @@
 ---
 name: Done Criteria Protocol
 description: Invoke this skill at the end of every output-producing bob command. Defines how commands interact with the done system, bootstraps the project done-criteria file, and tracks discovered issues. Follow the protocol exactly.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Done Criteria — Protocol

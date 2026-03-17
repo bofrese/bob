@@ -1,7 +1,7 @@
 ---
 name: bob
 description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions.
-version: 0.1.0
+user-invocable: true
 ---
 
 # Bob — Plugin Reference
@@ -53,6 +53,7 @@ Bob reads and writes to predictable locations:
 | `/bob:validation-plan` | `docs/product/validation-plan.md` | Assumption stack, ranked experiments, kill criteria |
 | `/bob:design-brief` | `docs/product/design-brief.md` | Design principles and constraints (not a UI spec) |
 | `/bob:product-coach` | `docs/product/README.md` + above docs | Orchestrator: gaps, what to do next |
+| `/bob:linkedin` | `docs/product/linkedin-strategy.md` | LinkedIn growth strategy advisor |
 
 **Engineering layer**
 
@@ -99,6 +100,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:ui-design` | `ui-review`, `art-director` | 13-lens evaluation framework |
 | `bob:prompt-engineering` | `new-command`, `review-command`, `improve-command` | Principles for effective Claude commands |
 | `bob:domain-knowledge` | `brainstorm`, `plan` (on correction) | Capture project-specific domain nuance to `docs/domain/` |
+| `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
 
 ---
 

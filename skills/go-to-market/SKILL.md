@@ -1,7 +1,7 @@
 ---
 name: Go-to-Market Principles
 description: Invoke this skill when working on GTM strategy, channel selection, or growth planning. Used by bob:positioning and bob:business-plan commands for distribution and customer acquisition strategy.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Go-to-Market Principles

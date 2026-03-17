@@ -241,7 +241,7 @@ description: [one line, what and when]
 
 **File I/O:** None (reference framework).
 
-**Invoked by:** Any session involving LinkedIn marketing, content, growth, or B2B personal branding.
+**Invoked by:** `linkedin` command (hidden knowledge base — not user-facing).
 
 **Covers:**
 - **Core mental model:** Trust accumulation engine; algorithm mechanics; personal brand vs company page

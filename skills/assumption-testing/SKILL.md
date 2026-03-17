@@ -1,7 +1,7 @@
 ---
 name: Assumption Testing Principles
 description: Invoke this skill when identifying, ranking, and testing assumptions before building. Used by bob:validation-plan and bob:product-coach commands for validation planning and MVP definition.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Assumption Testing Principles

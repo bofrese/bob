@@ -55,7 +55,7 @@ Three layers, not three stages. Use any independently or connect them.
 
 ```mermaid
 graph TD
-    D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan"]
+    D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan · /bob:linkedin"]
     E["Engineering<br/>/bob:brainstorm → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review"]
     K["Knowledge<br/>/bob:document · /bob:guidelines"]
 

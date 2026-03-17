@@ -1,7 +1,7 @@
 ---
 name: DDD — Domain-Driven Design
 description: Invoke this skill when decomposing a problem, naming things, or deciding where code belongs. Used by bob commands during feature ideation and architectural planning.
-version: 1.0.0
+user-invocable: false
 ---
 
 # DDD — Domain-Driven Design

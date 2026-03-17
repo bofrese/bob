@@ -1,7 +1,7 @@
 ---
 name: Problem Validation Principles
 description: Invoke this skill when validating problems before building solutions, working on problem discovery, or making early-stage product decisions. Used by bob:problem-space and bob:product-coach commands.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Problem Validation Principles

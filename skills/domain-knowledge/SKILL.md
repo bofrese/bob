@@ -1,7 +1,7 @@
 ---
 name: domain-knowledge
 description: "Captures project-specific domain knowledge. Invoke when the user corrects a misunderstanding, clarifies what a term means in this project's context, or explains nuances an informed developer wouldn't assume. Do NOT invoke for general language/framework patterns, architecture decisions, or tooling — those belong in guidelines/subsystems."
-user-invokable: true
+user-invocable: false
 ---
 
 ## Process

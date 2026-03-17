@@ -1,7 +1,7 @@
 ---
 name: Business Model Principles
 description: Invoke this skill when working on monetization, pricing, or business strategy. Used by bob:business-plan and bob:product-coach commands for business model design and unit economics.
-version: 1.0.0
+user-invocable: false
 ---
 
 # Business Model Principles
