@@ -65,6 +65,7 @@ Bob reads and writes to predictable locations:
 | `/bob:implement` | Project files + `ai/implementations/{date}-{slug}.md` | Execute an approved plan with engineering discipline |
 | `/bob:review` | `ai/reviews/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
 | `/bob:investigate` | `ai/investigations/{date}-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
+| `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
 | `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
 | `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |

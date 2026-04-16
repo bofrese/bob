@@ -314,6 +314,21 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 ---
 
+## `/bob:dev` — Working Session
+
+**Purpose:** Quick working session for code discussion, fixes, and direct changes. Skips the brainstorm/plan/review pipeline. For ad-hoc work where the scope is clear and small.
+
+**Reads:** Project files as needed.
+
+**Writes:** Project files in place (direct code edits).
+
+**Process:**
+Unstructured — driven by the user. Claude acts as a peer developer: reads code, discusses, makes changes, pushes back on quality issues. Flags scope creep. Suggests switching to a formal bob command if the task grows too large.
+
+**Skills:** `context-protocol`, `done-criteria`
+
+---
+
 ## `/bob:document` — Developer Documentation
 
 **Purpose:** Generate or update developer documentation at L2 (system map) or L3 (subsystem) zoom. Has drift detection mode that compares existing docs against current codebase.

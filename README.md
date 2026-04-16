@@ -137,6 +137,7 @@ Bob can help you when in doubt on which bob command to run. Once you get familli
 **Common starting points:**
 - **Product strategy work?** `/bob:product-coach` for comprehensive discovery guidance
 - **New feature?** `/bob:brainstorm` → `/bob:plan` → `/bob:implement` → `/bob:review`
+- **Quick fix or code discussion?** `/bob:dev` — direct working session, no pipeline
 - **Inherited codebase?** `/bob:document` to capture what exists
 - **Not sure?** `/bob:pm` to get oriented - or simply ask "Bob"
 
