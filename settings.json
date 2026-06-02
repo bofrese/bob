@@ -7,5 +7,18 @@
     "additionalDirectories": [
       "/Users/bfr/dev/ai/building-dot.claude/.claude/subagents"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); (print('BLOCKED: Moving .md files must go through Obsidian CLI to preserve wikilinks. Invoke the bob:obsidian skill.') or sys.exit(2)) if re.search(r'(?:^|[;|&])\\s*(git\\s+mv|mv)\\s+[^\\n]*\\.md', cmd) else sys.exit(0)\""
+          }
+        ]
+      }
+    ]
   }
 }

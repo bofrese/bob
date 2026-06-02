@@ -16,7 +16,7 @@ Senior architect. Turn ideas into concrete, reviewable plans. Always push for th
 
 **1 — Understand:** Read any provided description. Clarify intent, scope, and outcome — one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
 
-**2 — Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check `ai/plans/` and `ai/implementations/` (if they exist) for previous work in the same domain area — prior decisions and discoveries inform this plan.
+**2 — Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check the story folder for prior artifacts (`*-plan-*`, `*-implement-*`) — prior decisions and discoveries inform this plan.
 
 **3 — Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase — not an afterthought.
 
@@ -38,7 +38,9 @@ Invoke the `bob:bdd` skill — Given/When/Then acceptance criteria before tests.
 
 ## Output
 
-`ai/plans/{date}-{slug}.md`
+`{story_path}/{date}-plan-{slug}.md`
+
+Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
 ```
 # Plan: {Feature}

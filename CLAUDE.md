@@ -202,20 +202,17 @@ Commands write to specific folders by convention:
 
 | Command Type | Output Folder |
 |--------------|---------------|
-| Ideation | `ai/ideas/` |
-| Planning | `ai/plans/` |
-| Reviews | `ai/reviews/` |
-| Implementation reports | `ai/implementations/` |
-| Investigations | `ai/investigations/` |
+| Brainstorm, Plan, Review-Plan, Implement, Review, Investigate, UI-Review | `{story_path}/` — resolved by `bob:story-context` at session start |
 | Docker/DevOps logs | `ai/docker/` |
+| Meta-commands (improve-command, review-command) | `ai/reviews/` |
 | Product artifacts | `docs/product/` |
 | Process contracts | `docs/process/` |
 | Documentation | `docs/` |
 | Guidelines | `docs/guidelines/` |
 
-File naming: `{YYYY-MM-DD}-{slug}.md` for dated reports.
+File naming for story artifacts: `{YYYY-MM-DD}-{command-type}-{slug}.md` (e.g. `2026-05-29-plan-auth-flow.md`).
 
-Commands should create their output folder if it doesn't exist.
+Story path is provided by the `bob:story-context` skill, which every engineering command invokes via the context-protocol. Do not hardcode `ai/` paths in new engineering commands.
 
 ## Report Templates
 

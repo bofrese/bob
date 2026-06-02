@@ -52,6 +52,16 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 
 ---
 
+## Story Context (Engineering commands)
+
+For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+
+After loading the files above, invoke the `bob:story-context` skill.
+Follow its protocol exactly. Do not proceed until story context is confirmed.
+Use the resolved `Path:` from the story-context output block for all artifact placement.
+
+---
+
 ## Guidelines (Engineering commands, after scope is clear)
 
 For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `ui-review`:

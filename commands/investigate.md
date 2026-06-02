@@ -106,7 +106,9 @@ Ask if I want to proceed with a fix or need more investigation.
 
 ## Output
 
-Write to: `ai/investigations/{date}-{slug}.md`
+Write to: `{story_path}/{date}-investigate-{slug}.md`
+
+Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
 Template:
 ```markdown
@@ -180,7 +182,6 @@ caller() → problemFunction() → dependency()
 {Observations, missing tests, architectural considerations, patterns to watch}
 ```
 
-Create `ai/investigations/` if needed.
 
 ## Done
 

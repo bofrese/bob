@@ -99,6 +99,22 @@ When the review is complete, save it immediately.
 
 If there are major concerns that might invalidate the plan entirely, flag them clearly before saving so we can discuss whether the review should recommend a full rethink.
 
+After saving, update the story history table in `{story_path}/_index.md`:
+```
+| {date} | [Plan Review]({filename}) | {one-line summary} | {verdict} |
+```
+
+### Step 6 — Recommend Next Action
+
+Based on the verdict, recommend the next step explicitly:
+
+- **Approve** → "The plan is ready. Proceed to `/bob:implement`."
+- **Approve with changes** → "Update the plan to address the findings above, then proceed to `/bob:implement`. I can make the edits now if you'd like."
+- **Needs rework** → "The plan needs significant revision before implementation. Work through the findings and rewrite the affected sections."
+- **Recommend rethink** → "Stop here. The plan has fundamental issues that aren't fixable with edits. Discuss the alternative approach before proceeding."
+
+**Default for findings:** Incorporate them into the plan. Only suggest filing a separate issue if the finding is clearly out of scope for this story or can be deferred without blocking implementation. Do not default to the issue tracker for ordinary plan gaps.
+
 ## Rules
 - One finding or topic at a time during discussion. Don't dump everything at once.
 - Be direct. If the plan is over-engineered, say so. If it's wrong about the codebase, say so. Be constructive, but don't soften critical findings.
@@ -108,9 +124,10 @@ If there are major concerns that might invalidate the plan entirely, flag them c
 
 ## Output
 
-Write to: `ai/reviews/{date}-review-{slug}.md`
+Write to: `{story_path}/{date}-review-plan-{slug}.md`
 where `{date}` is today's date and `{slug}` is a short kebab-case descriptor matching the plan being reviewed.
-Create the `ai/reviews/` directory if it doesn't exist.
+
+Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
 ### Template
 

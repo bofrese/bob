@@ -102,11 +102,11 @@ flowchart TD
     end
     Toolkit -->|"writes session artifacts"| Working
     Toolkit -->|"writes authoritative docs"| Permanent
-    subgraph Working["ai/ — Working Memory 🗒️ Disposable"]
-        W1["ideas/"]
-        W2["plans/"]
-        W3["reviews/"]
-        W4["implementations/"]
+    subgraph Working["projects/ — Working Memory 🗒️ Story-organized"]
+        W1["bob/_kanban.md (project board)"]
+        W2["bob/stories/APP-001/ (story folder)"]
+        W3["  plans, reviews, brainstorms"]
+        W4["  _index.md + _kanban.md"]
     end
     subgraph Permanent["docs/ — Project Memory 📖 Authoritative"]
         P1["product/"]
@@ -118,11 +118,11 @@ flowchart TD
 
 **`bob`** is the plugin. Install it in any project and it works. It knows nothing about your specific product. Generic. Reusable. Shared across projects.
 
-**`ai/`** is working memory. Session logs, thinking traces, the scratchpad. Useful while you're actively developing a feature. Disposable — you could delete this entire folder and your project would still function perfectly. These are not the important files.
+**`projects/`** is working memory — organized by story. Every feature, bug fix, or change lives in a story folder under the relevant subproject. Inside each story folder: the plans, brainstorms, reviews, and implementation reports produced while working on it. Also `_index.md` (the story's hub with context and history) and `_kanban.md` (tasks and discovered issues). These are the artifacts that explain *how* and *why* you built what you built — the decision log.
 
 **`docs/`** is the project's memory. Authoritative. Committed. This is what a new developer reads on day one. What matters whether or not you ever use AI tools. Product vision, design briefs, personas, architecture docs, guidelines — all of it lives here permanently.
 
-The distinction is deliberate. It means you always know what's important and what's temporary.
+The distinction is deliberate. It means you always know what's important and what's temporary. At the start of each session, bob asks which story you're working on — then writes everything to that story's folder automatically.
 
 Commands bridge these spaces automatically. At the start of each session, the `bob:context-protocol` skill tells them what to load — vision for Discovery and Engineering commands, relevant guidelines for Engineering commands once scope is clear. Nothing to configure. The files are the memory; the commands know where to look.
 
@@ -142,9 +142,9 @@ The idea is vague but feels important. You sit down with coffee.
 
 The AI reads your product vision to ground the conversation and loads DDD principles to decompose the problem space. Then it asks: *What's the actual problem here? Who's affected? What have users said?* You talk it through. It pushes back — *"Do users actually want granular controls, or do they just want it to stop annoying them? Those are very different features."* Good question. You hadn't thought about that. You explore options together. You pick a direction and commit.
 
-**What gets saved:** `ai/ideas/2026-02-04-brainstorm-notification-prefs.md`
+**What gets saved:** `projects/myapp/stories/APP-001/2026-02-04-brainstorm-notification-prefs.md`
 
-A complete record of what you discussed, what you considered, what you decided, and why. Close the laptop. The session is done.
+A complete record of what you discussed, what you considered, what you decided, and why. The story's `_index.md` history table is automatically updated with a link. Close the laptop. The session is done.
 
 ---
 
@@ -153,12 +153,12 @@ A complete record of what you discussed, what you considered, what you decided, 
 New session. Fresh context. You point it at yesterday's brainstorm.
 
 ```
-/bob:plan ai/ideas/2026-02-04-brainstorm-notification-prefs.md
+/bob:plan projects/myapp/stories/APP-001/2026-02-04-brainstorm-notification-prefs.md
 ```
 
-The AI reads the report. It examines the codebase — where does notification logic currently live? What patterns are in use? It loads BDD principles to think about how this should be tested *before* it thinks about how it should be built. It walks you through the approach, one question at a time. You push back on one thing, agree on the rest.
+Bob detects the story from the file path, confirms "Story Context: APP-001", then reads the report. It examines the codebase — where does notification logic currently live? What patterns are in use? It loads BDD principles to think about how this should be tested *before* it thinks about how it should be built. It walks you through the approach, one question at a time. You push back on one thing, agree on the rest.
 
-**What gets saved:** `ai/plans/2026-02-04-notification-prefs.md`
+**What gets saved:** `projects/myapp/stories/APP-001/2026-02-04-plan-notification-prefs.md`
 
 A self-contained plan. Someone who wasn't in either conversation could pick this up and implement it. Close the laptop.
 
@@ -167,7 +167,7 @@ A self-contained plan. Someone who wasn't in either conversation could pick this
 ### Wednesday morning — Stress-test the plan
 
 ```
-/bob:review-plan ai/plans/2026-02-04-notification-prefs.md
+/bob:review-plan projects/myapp/stories/APP-001/2026-02-04-plan-notification-prefs.md
 ```
 
 A different lens on the same plan. The AI re-reads the codebase *independently* — it doesn't trust the plan's assumptions. This is the session boundary doing its job: a fresh context has no investment in the plan being right. It checks for security issues, unnecessary complexity, gaps. It finds something: *"The plan assumes notification preferences are stored per-user, but the current schema stores them per-device. This needs addressing before implementation."*
@@ -179,12 +179,12 @@ Glad someone caught that. You update the plan accordingly. Close the laptop.
 ### Wednesday afternoon — Build it
 
 ```
-/bob:implement ai/plans/2026-02-04-notification-prefs.md
+/bob:implement projects/myapp/stories/APP-001/2026-02-04-plan-notification-prefs.md
 ```
 
 The AI reads the approved plan. Runs the test suite first — establishes a green baseline before touching anything. Then it implements step by step, running tests after each change. It loads BDD principles when writing tests — Given/When/Then, behaviour not implementation. If it hits something the plan didn't anticipate, it stops and asks you. If it spots a small improvement along the way, it makes it and notes it in the report.
 
-**What gets saved:** Modified code + `ai/implementations/2026-02-04-notification-prefs.md`
+**What gets saved:** Modified code + `projects/myapp/stories/APP-001/2026-02-04-implement-notification-prefs.md`
 
 Tests pass. Code is clean. Close the laptop.
 
@@ -198,7 +198,7 @@ Tests pass. Code is clean. Close the laptop.
 
 The AI detects what changed — git diff, branch comparison. It reads the plan to compare intent vs. reality. It loads the project's guidelines and checks the code against them. It walks you through findings one at a time. A couple of small things to tighten up. You fix them. The review report is a handoff document — anyone can read it and confidently own this code.
 
-**What gets saved:** `ai/reviews/2026-02-04-review-notification-prefs.md`
+**What gets saved:** `projects/myapp/stories/APP-001/2026-02-04-review-notification-prefs.md`
 
 ---
 
@@ -331,7 +331,7 @@ Structured ideation for a specific feature or problem. The AI guides you through
 | | |
 |---|---|
 | **Reads** | `docs/product/vision.md` (if present), DDD principles (via Skill) |
-| **Writes** | `ai/ideas/{date}-brainstorm-{slug}.md` |
+| **Writes** | `{story_path}/{date}-brainstorm-{slug}.md` |
 | **Start here when** | You have an idea and want to think it through properly |
 
 #### `/bob:plan`
@@ -340,7 +340,7 @@ Turn a brainstorm — or any idea — into a concrete, reviewable implementation
 | | |
 |---|---|
 | **Reads** | Brainstorm report, `docs/guidelines/`, BDD principles (via Skill) |
-| **Writes** | `ai/plans/{date}-{slug}.md` |
+| **Writes** | `{story_path}/{date}-plan-{slug}.md` |
 | **Start here when** | After brainstorm. Before any code is written. |
 
 #### `/bob:review-plan`
@@ -349,7 +349,7 @@ Independent critical review of a plan. This command doesn't trust the plan's ass
 | | |
 |---|---|
 | **Reads** | The plan file + the actual codebase |
-| **Writes** | `ai/reviews/{date}-review-{slug}.md` |
+| **Writes** | `{story_path}/{date}-review-plan-{slug}.md` |
 | **Start here when** | After plan is written. Before implementation begins. |
 
 #### `/bob:implement`
@@ -358,7 +358,7 @@ Execute an approved plan. Runs the full test suite before touching anything — 
 | | |
 |---|---|
 | **Reads** | The approved plan, BDD principles (via Skill) |
-| **Writes** | Modified code + `ai/implementations/{date}-{slug}.md` |
+| **Writes** | Modified code + `{story_path}/{date}-implement-{slug}.md` |
 | **Start here when** | Plan is reviewed and approved. |
 
 #### `/bob:review`
@@ -367,7 +367,7 @@ Code review of what was built. Auto-detects scope from git — uncommitted chang
 | | |
 |---|---|
 | **Reads** | Changed files, the plan (if one exists), applicable guidelines |
-| **Writes** | `ai/reviews/{date}-review-{slug}.md` |
+| **Writes** | `{story_path}/{date}-review-{slug}.md` |
 | **Start here when** | After implementation. Before merging. |
 
 #### `/bob:ui-review`
@@ -376,7 +376,7 @@ UI/UX review against expert design principles and product artifacts. Uses 13 des
 | | |
 |---|---|
 | **Reads** | `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md` (if present) |
-| **Writes** | `ai/reviews/{date}-ui-review-{slug}.md` |
+| **Writes** | `{story_path}/{date}-ui-review-{slug}.md` |
 | **Start here when** | Before shipping UI changes, or when something feels off visually or interactionally |
 
 #### `/bob:investigate`
@@ -385,7 +385,7 @@ Systematic investigation of bugs and issues. Root cause analysis, not quick fixe
 | | |
 |---|---|
 | **Reads** | Relevant codebase, error logs, related code |
-| **Writes** | `ai/investigations/{date}-{slug}.md` |
+| **Writes** | `{story_path}/{date}-investigate-{slug}.md` |
 | **Start here when** | You have a bug or issue that needs proper diagnosis before fixing |
 
 ---

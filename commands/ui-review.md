@@ -112,9 +112,9 @@ Stop and check in if an implementation reveals unexpected complexity or touches 
 
 ## Output
 
-**Review report** → `ai/reviews/{YYYY-MM-DD}-ui-review-{slug}.md`
+**Review report** → `{story_path}/{YYYY-MM-DD}-ui-review-{slug}.md`
 
-Create `ai/reviews/` if it doesn't exist.
+Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
 Template:
 ```markdown

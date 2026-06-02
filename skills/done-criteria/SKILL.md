@@ -10,7 +10,7 @@ This skill does two jobs: it defines **how commands interact with the done syste
 
 ---
 
-## The Protocol — Four Behaviours
+## The Protocol — Six Behaviours
 
 ### 1. Bootstrap if missing
 
@@ -61,14 +61,14 @@ If your command discovered code issues, technical debt, or improvement opportuni
 - List issues found with severity (🔴 Critical / 🟡 Important / 🟢 Nice to Have)
 - Keep it concise (one line per issue)
 
-**Step 2: Ask user**: "Should I add these to the issues backlog?"
+**Step 2: Ask user**: "Should I add these to the story's issue tracker?"
 
-**Step 3: If yes**:
-- Read `ai/issues/backlog.md` (create if missing, use bootstrap template below)
-- Add new issues to appropriate severity section
-- Include: brief description, link to details, date
-- Remove any issues that are now resolved
-- Update "Last updated" date
+**Step 3: If yes**, for each issue decide where it belongs:
+
+- **Clearly within this story's scope** → add to `{story_path}/_kanban.md` Issues column as `- [ ] {description}`
+- **General/cross-cutting concern** → add to `projects/{subproject}/_kanban.md` INBOX column
+- **Looks like it could be its own story** → ask the user: "This feels like a separate concern that might deserve its own story rather than a task in this one. Should I add it to the `projects/{subproject}/_kanban.md` INBOX as a story candidate?" Add to project INBOX if yes.
+- If subproject is unclear, derive from story context or ask
 
 **Step 4: If no**: Skip tracking, just report in your output
 
@@ -79,6 +79,22 @@ If your command discovered code issues, technical debt, or improvement opportuni
 **Commands that skip this**:
 - Discovery commands (`product-vision`, `personas`, `design-brief`)
 - Commands focused on product/business artifacts, not code
+
+### 6. Update story history
+
+After producing any output artifact, add one row to `{story_path}/_index.md` history table:
+
+```
+| {date} | [{type}]({filename}) | {one-line summary} | {outcome} |
+```
+
+Where:
+- `{type}` is the command type (Brainstorm, Plan, Plan Review, Implementation, Code Review, Investigation, UI Review)
+- `{filename}` is the artifact filename relative to the story folder
+- `{one-line summary}` is what was done
+- `{outcome}` is the result (e.g. Committed, Draft, Ready, Approve with changes, Completed, Root cause identified)
+
+If `story_path` was not resolved (e.g. a Discovery command with no story context), skip this step silently.
 
 ---
 
@@ -100,7 +116,7 @@ Everything below the `---` is the template. Copy it verbatim into `docs/process/
 
 These must be true before `implement` (or any execution command) begins:
 
-- [ ] A plan exists and has been reviewed (`ai/plans/` + `ai/reviews/`)
+- [ ] A plan exists and has been reviewed (in story folder)
 - [ ] Tests pass at baseline (green before any changes)
 - [ ] Applicable guidelines have been read (`docs/guidelines/`)
 
@@ -127,37 +143,6 @@ Every command checks applicable items before finishing.
 ### Reviews (`review`, `review-plan`)
 - [ ] Findings categorised by severity
 - [ ] Action items are actionable and prioritised
-
----
-
-## BACKLOG — Issues & Technical Debt Tracking
-
-Commands that discover code issues use `ai/issues/backlog.md` to track them.
-
-**Bootstrap template for** `ai/issues/backlog.md`:
-
----
-
-# Issues & Technical Debt Backlog
-
-> Discovered issues awaiting resolution. Auto-maintained by commands.
-> Brief index to ensure nothing is forgotten.
-
-## 🔴 Critical
-
-{High-priority issues that should be addressed soon}
-
-## 🟡 Important
-
-{Medium-priority issues worth tracking}
-
-## 🟢 Nice to Have
-
-{Low-priority improvements and optimizations}
-
----
-
-*Last updated: {date}*
 
 ---
 

@@ -84,7 +84,7 @@ Bob's value compounds over time because every session writes to a shared, persis
 | `docs/guidelines/` | Technology best practices — researched from authoritative sources, applied to your stack. Engineering commands load only the guidelines relevant to the work at hand. |
 | `docs/domain/` | Project-specific terminology. Corrections, non-obvious distinctions, context-specific meanings. Captured when AI misunderstands something that a domain expert would know. |
 | `docs/process/done-criteria.md` | The project's evolving definition of done. Auto-bootstrapped on first run; grows as more commands are used. |
-| `ai/` | Session artifacts — plans, reviews, implementations, investigations, brainstorms. The project's decision log. Disposable but valuable: they explain *why* things were built the way they were. |
+| `projects/{name}/stories/{ID}/` | Session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. The project's decision log: they explain *why* things were built the way they were. |
 
 This is the memory layer. The reason `/bob:review` can check a feature against its plan. The reason `/bob:implement` knows what patterns to follow. The reason a fresh session isn't starting from scratch.
 

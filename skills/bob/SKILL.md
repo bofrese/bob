@@ -28,12 +28,8 @@ Bob reads and writes to predictable locations:
 | `docs/guidelines/` | Technology best-practice guides |
 | `docs/domain/` | Project-specific domain knowledge |
 | `docs/process/done-criteria.md` | What "done" means per artifact type |
-| `ai/plans/` | Implementation plans |
-| `ai/reviews/` | Code reviews, plan reviews, command reviews, UI reviews |
-| `ai/implementations/` | Post-implementation reports |
-| `ai/investigations/` | Bug investigation reports |
-| `ai/ideas/` | Brainstorm outputs |
-| `ai/issues/backlog.md` | Discovered issues and backlog items |
+| `projects/{name}/stories/{ID}/` | Engineering session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. |
+| `projects/{name}/_kanban.md` | Project-level kanban (stories as cards) |
 | `bob/commands/` | Command definitions (slash commands) |
 | `bob/skills/` | Thinking frameworks invoked by commands |
 
@@ -59,17 +55,17 @@ Bob reads and writes to predictable locations:
 
 | Command | Writes | Purpose |
 |---|---|---|
-| `/bob:brainstorm` | `ai/ideas/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit |
-| `/bob:plan` | `ai/plans/{date}-{slug}.md` | Turn idea into reviewable implementation plan |
-| `/bob:review-plan` | `ai/reviews/{date}-review-{slug}.md` | Skeptical review of a plan against the codebase |
-| `/bob:implement` | Project files + `ai/implementations/{date}-{slug}.md` | Execute an approved plan with engineering discipline |
-| `/bob:review` | `ai/reviews/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
-| `/bob:investigate` | `ai/investigations/{date}-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
+| `/bob:brainstorm` | `{story_path}/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit |
+| `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Turn idea into reviewable implementation plan |
+| `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against the codebase |
+| `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` | Execute an approved plan with engineering discipline |
+| `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
+| `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
 | `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
 | `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |
-| `/bob:ui-review` | `ai/reviews/{date}-ui-review-{slug}.md` | 13-lens UI/UX expert review |
+| `/bob:ui-review` | `{story_path}/{date}-ui-review-{slug}.md` | 13-lens UI/UX expert review |
 | `/bob:art-director` | `docs/guidelines/visual-design.md` (opt.) | Brand tone, color, typography direction |
 
 **Knowledge / meta layer**
@@ -81,6 +77,8 @@ Bob reads and writes to predictable locations:
 | `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Extract session learnings to improve a command |
 | `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
 
+> Note: `{story_path}` is resolved by the `bob:story-context` skill at the start of each engineering command session.
+
 ---
 
 ## Skills — Quick Reference
@@ -89,8 +87,9 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 
 | Skill | Invoked by | Role |
 |---|---|---|
-| `bob:context-protocol` | Every command | Load current date + right project files |
-| `bob:done-criteria` | Every output command | Check done criteria; log issues |
+| `bob:context-protocol` | Every command | Load current date + right project files; wire story-context for engineering commands |
+| `bob:story-context` | Every engineering command (via context-protocol) | Resolve active story via 4-tier chain; establish `{story_path}` for artifact placement |
+| `bob:done-criteria` | Every output command | Check done criteria; route issues to kanban; update story history |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
 | `bob:ddd` | `brainstorm`, `plan` | Domain-driven naming and bounded contexts |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
@@ -102,6 +101,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:prompt-engineering` | `new-command`, `review-command`, `improve-command` | Principles for effective Claude commands |
 | `bob:domain-knowledge` | `brainstorm`, `plan` (on correction) | Capture project-specific domain nuance to `docs/domain/` |
 | `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
+| `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
 
 ---
 

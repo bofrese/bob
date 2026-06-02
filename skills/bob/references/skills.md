@@ -14,6 +14,7 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 1. Get current date via `python3 -c "import datetime; print(datetime.date.today())"`
 2. Load project familiarization (README, package.json/pyproject.toml, project structure)
 3. Load per-command files from the loading table
+4. For engineering commands: invoke `bob:story-context` to resolve the active story
 
 **Per-command loading table (selected):**
 
@@ -25,28 +26,51 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 | `business-plan` | vision + positioning + business-plan |
 | `plan` | `docs/product/vision.md` |
 | `review` | Changed files + associated plan + relevant guidelines |
-| `implement` | Plan + review + prior implementations |
-| `bob` | All product docs + plans + implementations + reviews |
+| `implement` | Plan + review + prior implements (all from story folder) |
+| `bob` | All product docs + project structure |
 
 **Engineering commands:** Load `docs/guidelines/` selectively after scope is clear.
+
+---
+
+## `bob:story-context` — Active Story Resolution
+
+**File I/O:**
+- **Reads:** `projects/*/stories/*/` (via scripts); Obsidian workspace state (tiers 3-4)
+- **Writes:** None (sets `story_path` in working memory only)
+
+**Invoked by:** Every engineering command (via context-protocol), after file loading.
+
+**Resolution chain (4 tiers + fallback):**
+1. **Tier 1 — Path-derived (certain):** File arg contains `projects/[sub]/stories/[ID]/` → extract via `detect-story-from-path.sh`
+2. **Tier 2 — Explicit mention (certain):** Args/conversation contain `[A-Z]+-[0-9]+` pattern → resolve path and verify directory exists
+3. **Tier 3 — Obsidian open tabs (probable):** Query open markdown tabs via `obsidian eval`; filter for story paths; ask if one match, list if multiple
+4. **Tier 4 — Obsidian recents (uncertain):** Query recents via `obsidian recents`; take most recent story path; ask for confirmation
+5. **Fallback:** Stop and ask user; offer to create new story or bootstrap `projects/` via project-tracking skill
+
+**Output contract:** Prints a `**Story Context**` block with Path, Story ID, Subproject (and optionally Task ID). Downstream commands use `story_path` from the Path line for all artifact placement.
+
+**Scripts:** `detect-story-from-path.sh`, `get-open-obsidian-files.sh`, `get-recent-obsidian-files.sh`, `filter-story-paths.sh` — located in `skills/story-context/scripts/`.
 
 ---
 
 ## `bob:done-criteria` — Completion Protocol
 
 **File I/O:**
-- **Reads:** `docs/process/done-criteria.md`, `ai/issues/backlog.md`
-- **Writes:** `docs/process/done-criteria.md` (bootstrap if missing), `ai/issues/backlog.md` (if user confirms)
+- **Reads:** `docs/process/done-criteria.md`
+- **Writes:** `docs/process/done-criteria.md` (bootstrap if missing), `{story_path}/_kanban.md` (issues, if user confirms), `projects/{subproject}/_kanban.md` INBOX (general issues), `{story_path}/_index.md` (history row)
 
 **Invoked by:** Every output-producing bob command, as the last action.
 
-**Four behaviors every command performs:**
+**Six behaviors every command performs:**
 1. **Bootstrap:** If `docs/process/done-criteria.md` doesn't exist, create it with the default template
 2. **Check:** Verify all applicable done criteria for the artifact type are met before finishing
 3. **Register:** If a new artifact type was produced, add it to `done-criteria.md`
-4. **Flag:** Identify decisions or issues worth persisting to `backlog.md`
+4. **Flag:** Identify terminology, architectural decisions, or patterns worth persisting
+5. **Track issues:** Route discovered issues to story kanban (Issues column) or project kanban (INBOX); ask user first
+6. **Update history:** Add one row to `{story_path}/_index.md` history table for the artifact just produced
 
-**Bootstrap template includes:** Artifact types, quality criteria per type, process requirements.
+**Bootstrap template includes:** Artifact types, quality criteria per type, process requirements (no `ai/` references).
 
 ---
 
@@ -282,3 +306,27 @@ description: [one line, what and when]
 - Tooling preferences (those go in guidelines)
 
 **Always verify with user before saving.**
+
+
+---
+
+## `bob:obsidian` — Obsidian Vault File Operations
+
+**File I/O:** No reads or writes directly. Executes `obsidian rename` / `obsidian move` via the Obsidian CLI, which modifies files inside the vault.
+
+**Invoked by:** Automatically via PreToolUse hook when `mv` or `git mv` is used on `.md` files. Also triggers when user asks to rename or move a markdown file.
+
+**Purpose:** Prevent wikilink breakage by routing all `.md` file moves and renames through the Obsidian CLI instead of the filesystem directly.
+
+**Workflow:**
+1. Detect vault: walk up from CWD for `.obsidian/` folder
+2. Detect CLI: `which obsidian`
+3. If either missing: stop, tell user what to set up (no fallback to `mv`)
+4. Show plan, wait for user approval
+5. Execute `obsidian rename` or `obsidian move`
+6. Verify file exists at new path
+
+**Requirements:**
+- Obsidian 1.12.7+ installed and CLI registered (Settings → General → Command line interface)
+- "Automatically update internal links" enabled (Settings → Files & Links)
+- Obsidian app running (auto-launches on first CLI call)

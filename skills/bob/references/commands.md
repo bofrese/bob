@@ -8,7 +8,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Assess where the project is, identify gaps in artifacts and process, and recommend concrete next steps. Also optimizes context loading for new sessions.
 
-**Reads:** `docs/product/` (all product docs), `docs/guidelines/`, `ai/plans/`, `ai/implementations/`, `ai/reviews/`, project structure, git history.
+**Reads:** `docs/product/` (all product docs), `docs/guidelines/`, `projects/` (story folders and kanbans), project structure, git history.
 
 **Writes:** Conversational guidance (primary). Optionally `ai/{date}-project-status.md`.
 
@@ -197,7 +197,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Reads:** `docs/product/vision.md` (optional), project codebase (Phase 5).
 
-**Writes:** `ai/ideas/{date}-brainstorm-{slug}.md`
+**Writes:** `{story_path}/{date}-brainstorm-{slug}.md`
 
 **Process:**
 1. Seed: problem statement and constraints
@@ -215,9 +215,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Turn a feature idea into a concrete, reviewable implementation plan with BDD acceptance criteria, AI difficulty ratings, and open questions. Planning only — no implementation.
 
-**Reads:** User-provided idea, project codebase, `ai/plans/` and `ai/implementations/` (prior work in same domain), `docs/product/vision.md`.
+**Reads:** User-provided idea, project codebase, `{story_path}/*-plan-*` and `{story_path}/*-implement-*` (prior work in same story), `docs/product/vision.md`.
 
-**Writes:** `ai/plans/{date}-{slug}.md`
+**Writes:** `{story_path}/{date}-plan-{slug}.md`
 
 **Plan structure:**
 1. Problem statement
@@ -236,9 +236,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Independent, skeptical review of an implementation plan. Verifies plan assumptions against actual code. Proposes simpler alternatives if warranted. Review only — no modifications.
 
-**Reads:** Specified plan from `ai/plans/`, project codebase (to verify plan assumptions).
+**Reads:** Specified plan from story folder, project codebase (to verify plan assumptions).
 
-**Writes:** `ai/reviews/{date}-review-{slug}.md`
+**Writes:** `{story_path}/{date}-review-plan-{slug}.md`
 
 **Review dimensions:**
 - Assumption verification (does the plan match what's actually in the code?)
@@ -258,17 +258,18 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Stops for human judgment at hard steps (AI difficulty 4–5) or unexpected complexity. Includes ownership transfer walkthrough.
 
-**Reads:** Specified plan from `ai/plans/`, review from `ai/reviews/`, prior implementations in same domain from `ai/implementations/`, project codebase, test suite, linter.
+**Reads:** Specified plan from `{story_path}/`, review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
 
-**Writes:** Project source files (primary), `ai/implementations/{date}-{slug}.md`, updates plan status to "Implemented".
+**Writes:** Project source files (primary), `{story_path}/{date}-implement-{slug}.md`, updates plan status to "Implemented", updates `{story_path}/_kanban.md`.
 
 **Process:**
 1. Read plan + review; note deviations required
 2. Confirm scope before starting
 3. Per step: implement → verify BDD criteria → commit
 4. Escalate to human at difficulty 4–5 or unexpected complexity
-5. Ownership transfer walkthrough (what changed, how to test, what to watch)
-6. Write implementation report
+5. Kanban update: mark resolved issues/tasks done; add new discoveries; ask about potential new stories → project INBOX
+6. Ownership transfer walkthrough (what changed, how to test, what to watch)
+7. Write implementation report
 
 **Skills:** `context-protocol`, `bdd` (step 3), `done-criteria`
 
@@ -278,9 +279,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Review code changes against guidelines, system health, simplicity, security, robustness, plan alignment, and done criteria. Auto-detects scope from git state. Never modifies code.
 
-**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `ai/plans/`, matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
+**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `{story_path}/`, matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
 
-**Writes:** `ai/reviews/{date}-review-{slug}.md`
+**Writes:** `{story_path}/{date}-review-{slug}.md`
 
 **Review dimensions:**
 - Critical (must fix before merge)
@@ -299,7 +300,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Reads:** Project codebase (relevant files, call chains, test coverage), user-provided problem description.
 
-**Writes:** `ai/investigations/{date}-{slug}.md`
+**Writes:** `{story_path}/{date}-investigate-{slug}.md`
 
 **Process:**
 1. Problem statement (observable symptoms, reproduction steps)
@@ -389,7 +390,7 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 **Reads:** Screenshot and/or UI source files (user-provided), `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md`.
 
-**Writes:** `ai/reviews/{date}-ui-review-{slug}.md`
+**Writes:** `{story_path}/{date}-ui-review-{slug}.md`
 
 **13 lenses:** Visual Hierarchy, Cognitive Load, States (empty/error/loading), Typography, Gestalt, Fitts's Law, Microinteractions, Signal/Noise, Consistency, Emotional Design, Platform Fluency, Context/Stress, Brand Voice.
 
