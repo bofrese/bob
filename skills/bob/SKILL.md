@@ -30,6 +30,8 @@ Bob reads and writes to predictable locations:
 | `docs/process/done-criteria.md` | What "done" means per artifact type |
 | `projects/{name}/stories/{ID}/` | Engineering session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. |
 | `projects/{name}/_kanban.md` | Project-level kanban (stories as cards) |
+| `knowledge/` | Project knowledge vault: decisions, concepts, research, patterns, MOCs, inbox |
+| `personal/` | Personal daily/weekly notes and scratchpad — gitignored, never committed |
 | `bob/commands/` | Command definitions (slash commands) |
 | `bob/skills/` | Thinking frameworks invoked by commands |
 
@@ -63,16 +65,25 @@ Bob reads and writes to predictable locations:
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
+| `/bob:user-guide` | `docs/user-guide.md` (configurable) + `{story_path}/{date}-user-guide-findings-{slug}.md` | Create/maintain end-user guide; surfaces UX gaps as findings report |
 | `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
 | `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |
 | `/bob:ui-review` | `{story_path}/{date}-ui-review-{slug}.md` | 13-lens UI/UX expert review |
 | `/bob:art-director` | `docs/guidelines/visual-design.md` (opt.) | Brand tone, color, typography direction |
 
-**Knowledge / meta layer**
+**Knowledge layer**
+
+| Command | Writes | Purpose |
+|---|---|---|
+| `/bob:library` | `knowledge/` notes, indexes, MOCs; `personal/daily/` | Librarian: process inbox, retrieve, organise vault, weekly digest, status |
+| `/bob:remember` | `knowledge/_INBOX/YYYY-MM-DD-*.md` | Quick mid-session capture to inbox |
+
+**Meta layer**
 
 | Command | Writes | Purpose |
 |---|---|---|
 | `/bob:pm` | Conversational (opt. status doc) | Project mentor: assess state, recommend next step |
+| `/bob:setup` | `projects/`, `knowledge/`, `personal/`, `.gitignore`, `docs/process/done-criteria.md` | Bootstrap and upgrade bob infrastructure; idempotent |
 | `/bob:new-command` | `bob/commands/{name}.md` + README | Create a new bob command |
 | `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Extract session learnings to improve a command |
 | `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
@@ -83,7 +94,7 @@ Bob reads and writes to predictable locations:
 
 ## Skills — Quick Reference
 
-Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria` and `domain-knowledge`).
+Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria`, `domain-knowledge`, and `knowledge` retrieval).
 
 | Skill | Invoked by | Role |
 |---|---|---|
@@ -102,6 +113,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:domain-knowledge` | `brainstorm`, `plan` (on correction) | Capture project-specific domain nuance to `docs/domain/` |
 | `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
 | `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
+| `bob:knowledge` | `context-protocol` (every engineering command) | Retrieval skill: load relevant vault notes into context silently; distinct from `/bob:library` command |
 
 ---
 

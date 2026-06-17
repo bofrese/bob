@@ -49,6 +49,10 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `docker-setup` | — |
 | `bob` | — |
 | `linkedin` | `docs/product/positioning.md`, `docs/product/personas.md`, `docs/product/vision.md` |
+| `knowledge` | — |
+| `remember`  | — |
+| `setup`     | — |
+| `user-guide` | `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md` |
 
 ---
 
@@ -72,3 +76,11 @@ For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `ui-review`:
    - Paths involved (e.g., `Frontend/` → angular.md)
    - Concepts being touched (e.g., auth changes → authentication.md)
 3. If `docs/guidelines/` doesn't exist, skip silently.
+
+---
+
+## Knowledge Retrieval (Engineering commands)
+
+For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+
+After resolving story context and loading applicable guidelines, invoke the `bob:knowledge` skill (read-only, automatic retrieval) and follow its protocol. This is the retrieval skill, distinct from the `/bob:library` command (interactive vault management).

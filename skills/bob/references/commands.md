@@ -4,6 +4,28 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 ---
 
+## `/bob:setup` — Infrastructure Bootstrap
+
+**Purpose:** Bootstrap and upgrade bob's working infrastructure on any project. Idempotent — safe to run on new projects, existing projects, and after bob version upgrades. Creates what's missing, patches done-criteria with new sections, never removes or overwrites existing content.
+
+**Reads:** `.gitignore`, `docs/process/done-criteria.md`, `bob/commands/knowledge.md` (if knowledge vault missing), `bob/skills/done-criteria/SKILL.md` (for template comparison), `package.json` / git remote (to derive subproject name).
+
+**Writes:** `projects/{name}/stories/` + `_kanban.md` (if missing); full knowledge vault structure (if missing); `personal/daily/`, `personal/weekly/`, `personal/scratchpad.md` (if missing); `.gitignore` entries; `docs/process/done-criteria.md` (create or patch).
+
+**Process:**
+1. Audit — check all infrastructure silently; scan for orphan markdown files
+2. Report — present status table; confirm before touching anything
+3. Bootstrap — create only what's missing (projects/, knowledge/, personal/, gitignore entries)
+4. Upgrade done-criteria — detect missing sections by comparing project file against current bootstrap template; append only absent sections; update date
+5. Orphan report — list markdown files outside managed locations; suggest migration path via `knowledge/_INBOX/`
+6. Summary — compact table of what was created, patched, or already present
+
+**Rules:** Never overwrites existing files. Never removes or reorders done-criteria sections. One confirmation for all changes.
+
+**Skills:** `context-protocol`, `done-criteria`
+
+---
+
 ## `/bob:pm` — Project Mentor
 
 **Purpose:** Assess where the project is, identify gaps in artifacts and process, and recommend concrete next steps. Also optimizes context loading for new sessions.
@@ -351,6 +373,24 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 ---
 
+## `/bob:user-guide` — End-User Guide
+
+**Purpose:** Create or maintain an end-user guide for the project. Reads the codebase to verify what actually exists before documenting it. Surfaces UX gaps, missing features, and friction points as a separate findings report.
+
+**Reads:** `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md`, project codebase (source files, UI, routes, CLI), existing guide (if updating), `git log` (maintenance mode), CLAUDE.md (for configured guide path).
+
+**Writes:** `docs/user-guide.md` (or CLAUDE.md-configured path), `{story_path}/{date}-user-guide-findings-{slug}.md` (findings report), CLAUDE.md root entry (user-guide path + maintenance reminder, first run only).
+
+**Modes:**
+- **New:** No guide exists — full discovery and write process
+- **Maintenance:** Guide exists — drift detection against codebase, then update
+
+**Key constraint:** Never documents a feature that cannot be verified in the codebase. Gaps go into findings, not the guide.
+
+**Skills:** `context-protocol`, `done-criteria`
+
+---
+
 ## `/bob:guidelines` — Best Practice Guides
 
 **Purpose:** Create and maintain technology-specific best practice guidelines. Research-first (official style guides, tools, OWASP, etc.) before touching the codebase.
@@ -466,6 +506,50 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 - Output instruction conciseness
 
 **Skills:** `context-protocol`, `prompt-engineering` (via context-protocol), `done-criteria`
+
+---
+
+## `/bob:library` — Knowledge Vault Librarian
+
+**Purpose:** Manage the project knowledge vault (`knowledge/`). Bootstraps the vault on first run. Five modes: status (no args), process (inbox to atomic notes), retrieve (search), organise (vault health), weekly (personal digest).
+
+**Reads:** `knowledge/README.md`, `knowledge/_suggestions.md`, `knowledge/_INBOX/` (process mode), subfolder `_index.md` files, individual notes (retrieve/organise), `personal/daily/` files (weekly mode).
+
+**Writes:** `knowledge/` notes, indexes, MOCs (process/organise modes); `knowledge/_suggestions.md` (process/organise); `knowledge/README.md` counts (process/organise); `personal/weekly/YYYY-WXX.md` (weekly mode).
+
+**Bootstrap:** Runs automatically if `knowledge/` doesn't exist. Creates folder structure, `_schema.md`, `README.md`, subfolder indexes, `_suggestions.md`, gitignore entries, and `personal/` structure.
+
+**Modes:**
+- **Status:** Count inbox items, notes per subfolder, MOCs, pending suggestions. Show last README modified date.
+- **Process:** For each `_INBOX/` file: identify atomic concepts, propose title/type/tags/filename, wait for approval, write note, update index and MOCs, move original to `_processed/` or `sources/`.
+- **Retrieve:** Search vault via Obsidian search (if running) or `grep -rl`. Present excerpts. Offer to open in full.
+- **Organise:** Work through `_suggestions.md` agenda; fix structural issues; confirm each change; rebuild README if needed.
+- **Weekly:** Compile week's daily notes into summary, run guided retrospective, write to `personal/weekly/`.
+
+**Rules:** Never deletes files (moves only); always uses `bob:obsidian` skill for moves if vault active, falls back to `mv`; never writes to indexes without user confirmation (process mode).
+
+**Skills:** `context-protocol`, `done-criteria`
+
+---
+
+## `/bob:remember` — Quick Knowledge Capture
+
+**Purpose:** Instant capture to `knowledge/_INBOX/`. No context loading, no phases — must be immediate. Takes content from args or asks once.
+
+**Reads:** `bob/commands/library.md` (only if bootstrap needed).
+
+**Writes:** `knowledge/_INBOX/YYYY-MM-DD-<slug>.md`
+
+**Process:**
+1. Use args as content, or ask "What should I remember?" (single question only)
+2. If vault missing: bootstrap it (reads bootstrap procedure from `bob/commands/library.md`), then continue
+3. Derive slug from content (first 4-5 significant words, kebab-case, skip stop words)
+4. Write inbox file with `title:`, `type: inbox`, `created:` frontmatter
+5. Confirm with filename and reminder to run `/bob:library process`
+
+**Rules:** No done-criteria. No context-protocol. No modification of existing notes or indexes.
+
+**Skills:** None
 
 ---
 

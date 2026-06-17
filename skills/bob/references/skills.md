@@ -62,7 +62,7 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 
 **Invoked by:** Every output-producing bob command, as the last action.
 
-**Six behaviors every command performs:**
+**Seven behaviors every command performs:**
 1. **Bootstrap:** If `docs/process/done-criteria.md` doesn't exist, create it with the default template
 2. **Check:** Verify all applicable done criteria for the artifact type are met before finishing
 3. **Register:** If a new artifact type was produced, add it to `done-criteria.md`
@@ -307,6 +307,23 @@ description: [one line, what and when]
 
 **Always verify with user before saving.**
 
+
+---
+
+## `bob:knowledge` — Knowledge Vault Retrieval
+
+**File I/O:** Reads `knowledge/README.md`, selected `_index.md` files, and at most 5 individual notes. Never writes.
+
+**Invoked by:** `bob:context-protocol` at the start of every engineering command.
+
+**What it does:**
+1. Check for vault (`knowledge/README.md`) — skip silently if missing
+2. Load root README in full (small, always relevant)
+3. Identify and load relevant notes (at most 5; progressive disclosure via Obsidian search or `_index.md` scanning)
+4. Output Knowledge Context block with full MOC list and pre-loaded notes
+5. Add standing retrieval instruction that stays active for the rest of the session
+
+**Skip conditions:** `knowledge/README.md` not found; file already loaded this session (no duplicate loads).
 
 ---
 

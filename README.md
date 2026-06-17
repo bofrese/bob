@@ -8,7 +8,7 @@ Bob is a set of slash commands for Claude Code that bring discipline to AI-assis
 
 Language-agnostic. Platform-agnostic. Works across any stack.
 
-👉 [Homepage](https://bob.bofrese.dk/) · [User Guide](docs/user-guide.md) · [Presentation](https://bob.bofrese.dk/presentation/index.html)
+👉 [Homepage](https://bob.bofrese.dk/) · [User Guide](docs/user-guide/index.md) · [Presentation](https://bob.bofrese.dk/presentation/index.html)
 
 ---
 
@@ -43,7 +43,7 @@ This isn't a toolkit that runs commands for you. It's a toolkit that thinks *wit
 
 The full story — how commands connect, how memory works, how a feature travels from idea to shipped code — is all in one place:
 
-👉 [Read the User Guide](docs/user-guide.md)   
+👉 [Read the User Guide](docs/user-guide/index.md)   
 👉 [See the Homepage](https://bob.bofrese.dk/)   
 👉 [See the Presentation](https://bob.bofrese.dk/presentation/)  
 
@@ -57,7 +57,7 @@ Three layers, not three stages. Use any independently or connect them.
 graph TD
     D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan · /bob:linkedin"]
     E["Engineering<br/>/bob:brainstorm → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review"]
-    K["Knowledge<br/>/bob:document · /bob:guidelines"]
+    K["Knowledge<br/>/bob:document · /bob:user-guide · /bob:guidelines · /bob:library · /bob:remember"]
 
     D -->|grounds| E
     E -->|produces| K
@@ -68,9 +68,9 @@ graph TD
 
 **Engineering** — Disciplined development pipeline: brainstorm → plan → review-plan → implement → review. Each command loads the right principles and follows the right process.
 
-**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better.
+**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for developer docs, `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns. Use `/bob:remember` to capture anything mid-session without breaking flow.
 
-For the full command reference — what each command does, what it reads and writes, how they connect — see the [User Guide](docs/user-guide.md).
+For the full command reference — what each command does, what it reads and writes, how they connect — see the [User Guide](docs/user-guide/index.md).
 
 ---
 
@@ -85,6 +85,8 @@ Bob's value compounds over time because every session writes to a shared, persis
 | `docs/domain/` | Project-specific terminology. Corrections, non-obvious distinctions, context-specific meanings. Captured when AI misunderstands something that a domain expert would know. |
 | `docs/process/done-criteria.md` | The project's evolving definition of done. Auto-bootstrapped on first run; grows as more commands are used. |
 | `projects/{name}/stories/{ID}/` | Session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. The project's decision log: they explain *why* things were built the way they were. |
+| `knowledge/` | Working knowledge vault: decisions, concepts, research, patterns. Automatically loaded into context by every engineering command. Managed by `/bob:library`; quick capture via `/bob:remember`. |
+| `personal/` | Personal daily notes, weekly digests, scratchpad. Gitignored — never committed. Written by `done-criteria` at the end of every session. |
 
 This is the memory layer. The reason `/bob:review` can check a feature against its plan. The reason `/bob:implement` knows what patterns to follow. The reason a fresh session isn't starting from scratch.
 
@@ -135,6 +137,7 @@ Bob can help you when in doubt on which bob command to run. Once you get familli
 **`/bob:pm` is your project mentor** — it assesses where you are, identifies what's missing, and suggests exactly which commands to run next.
 
 **Common starting points:**
+- **First time on a project?** `/bob:setup` to bootstrap all bob infrastructure (idempotent — safe to run again after updates)
 - **Product strategy work?** `/bob:product-coach` for comprehensive discovery guidance
 - **New feature?** `/bob:brainstorm` → `/bob:plan` → `/bob:implement` → `/bob:review`
 - **Quick fix or code discussion?** `/bob:dev` — direct working session, no pipeline

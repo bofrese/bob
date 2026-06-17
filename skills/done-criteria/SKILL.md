@@ -10,7 +10,7 @@ This skill does two jobs: it defines **how commands interact with the done syste
 
 ---
 
-## The Protocol — Six Behaviours
+## The Protocol — Seven Behaviours
 
 ### 1. Bootstrap if missing
 
@@ -51,9 +51,42 @@ Before finishing, explicitly list any of the following that emerged this session
 
 For each item found: name it, explain why it matters, and recommend the specific command to persist it (`/bob:document` for decisions/terminology, `/bob:guidelines` for reusable patterns).
 
-If none of the three categories apply: skip silently.
+Also check for:
 
-### 5. Track discovered issues (if applicable)
+4. **Decisions and insights** not yet captured in `knowledge/` → write candidates to `knowledge/_INBOX/YYYY-MM-DD-<slug>.md` (frontmatter: `title:`, `type: inbox`, `created: YYYY-MM-DD`; body: the decision or insight) and surface nudge: "N item(s) captured to `knowledge/_INBOX/` — run `/bob:library process` to file them." Skip if `knowledge/_INBOX/` does not exist. If `knowledge/` exists but `_INBOX/` does not (gitignored on fresh clone), create `knowledge/_INBOX/` before writing.
+
+If none of the categories apply: skip silently.
+
+### 5. Update daily note
+
+If `personal/daily/` directory exists: append a session entry to `personal/daily/YYYY-MM-DD.md`, creating the file if it doesn't exist. If the directory does not exist: skip silently.
+
+Append under `## Sessions`:
+```
+### /<command> (<STORY-ID>) HH:MM
+1-2 sentence summary of what was done.
+```
+If no story context: use `### /<command> HH:MM` (omit story ID).
+
+When creating a new daily file, use this template:
+```markdown
+---
+title: YYYY-MM-DD
+type: daily
+date: YYYY-MM-DD
+---
+
+# YYYY-MM-DD
+
+## Sessions
+
+## Wrap-up
+
+## Notes
+```
+No confirmation needed — personal content, gitignored entirely.
+
+### 6. Track discovered issues (if applicable)
 
 If your command discovered code issues, technical debt, or improvement opportunities:
 
@@ -80,7 +113,7 @@ If your command discovered code issues, technical debt, or improvement opportuni
 - Discovery commands (`product-vision`, `personas`, `design-brief`)
 - Commands focused on product/business artifacts, not code
 
-### 6. Update story history
+### 7. Update story history
 
 After producing any output artifact, add one row to `{story_path}/_index.md` history table:
 
