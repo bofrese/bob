@@ -207,5 +207,7 @@ What was tested and whether it passed.
 Anything the developer should be aware of.
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

@@ -74,7 +74,9 @@ The skill (`skills/context-protocol/SKILL.md`) defines what each command tier lo
 
 ## Done Criteria Protocol
 
-Every output-producing command participates in the done system. The integration is a single line at the end of the command:
+Every output-producing command participates in the done system. **This is a non-negotiable architectural rule** — done-criteria must be invoked before responding to any new request. If the user asks to move on or start another command, run done-criteria first, then proceed.
+
+The integration is a `## Done — Non-Deferrable` section at the end of every command:
 
 > *Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.*
 
@@ -83,6 +85,16 @@ The skill (`skills/done-criteria/SKILL.md`) contains everything: the bootstrap t
 The project's live instance (`docs/process/done-criteria.md`) is bootstrapped automatically the first time any command runs in a fresh project. It grows as the project adopts more commands.
 
 **When creating a new command:** include the done-criteria protocol line. `/bob:new-command` enforces this. `/bob:review-command` flags its absence.
+
+## Work Routing Protocol
+
+Engineering commands surface discovered work (issues, deferred ideas, out-of-scope findings) by invoking `bob:work-routing`. This is a non-negotiable architectural rule:
+
+**Never embed routing logic in a command file.** Commands are orchestrators — they identify that work needs routing, then invoke the `bob:work-routing` skill. The skill owns the decision tree (this story Issues vs project INBOX).
+
+**Where PM steps live:** Engineering commands (plan, review, review-plan, implement, brainstorm, investigate, ui-review) each include a PM step at the appropriate phase. The step invokes `bob:work-routing` for items that need routing. Done-criteria Behaviour 6 runs as a session-end safety net for any items that weren't routed mid-session.
+
+**When creating a new engineering command:** add a PM step that invokes `bob:work-routing`. Placement: after the command's main output phase, before the save/wrap-up phase.
 
 ## Command File Structure
 

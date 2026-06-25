@@ -8,7 +8,7 @@ user-invocable: false
 
 Read-only retrieval skill for the project knowledge vault. Invoked silently by context-protocol at the start of every engineering command. Returns a Knowledge Context block with pre-loaded notes relevant to the current work.
 
-**Note:** This skill is distinct from the `/bob:library` command. This skill loads knowledge into context; `/bob:library` manages the vault. **Sources folder:** `sources/` stores raw source materials, organised by topic when volume warrants it. This skill loads only atomic notes from `decisions/`, `patterns/`, `research/`, `concepts/`. Reference sources via the `source:` field in atomic notes, not by direct retrieval from sources/.
+**Note:** This skill is distinct from the `/bob:library` command. This skill loads knowledge into context; `/bob:library` manages the vault. **Sources folder:** `sources/` stores raw source materials, organised by topic when volume warrants it. This skill loads only atomic notes from `decisions/`, `patterns/`, `research/`, `concepts/`. Reference sources via the `resource:` field in atomic notes, not by direct retrieval from sources/.
 
 ## Protocol
 
@@ -20,15 +20,17 @@ Read `knowledge/README.md` in full. It provides the folder inventory, the Tags t
 
 ### Step 3 - Identify relevant notes
 
-Two complementary strategies — run both if vault is active, fall back to keyword-only if not:
+Two complementary strategies — run both if Obsidian is running, fall back to keyword-only if not.
 
-**Tag-based (primary when Obsidian active):**
+**Check whether Obsidian is running:** `pgrep -x "Obsidian" > /dev/null 2>&1` — exit 0 means running, non-zero means offline.
+
+**Tag-based (primary when Obsidian is running):**
 - Match current story/topic/command against the Tags table from README
 - For each matching tag, run `obsidian search "query=tag:<tag>"` — returns all notes with that tag
 - Prioritise: `decisions` > `concepts` > `research` within tag results
 
 **Keyword-based:**
-- If Obsidian active: `obsidian search query="<key terms from current story/topic/command>"`
+- If Obsidian is running: `obsidian search query="<key terms from current story/topic/command>"`
 - If vault offline: load relevant `_index.md` files and scan descriptions
 
 Combine results. Load at most 1-2 MOCs and 1-2 subfolder `_index.md` files, then at most 3 notes in full. Never exceed 5 notes total.

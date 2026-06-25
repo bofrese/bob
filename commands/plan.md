@@ -32,6 +32,8 @@ Invoke the `bob:bdd` skill — Given/When/Then acceptance criteria before tests.
 - Acceptance criteria + tests for new behavior
 - Full suite after implementation
 
+**5.5 — PM step:** Surface any work that emerged during planning but is out of scope for this story — deferred features, spin-off ideas, dependencies on other stories, discovered gaps. For each item: invoke the `bob:work-routing` skill and follow its protocol.
+
 **6 — Save:** Save immediately when ready. Open questions go in the Q&D table — don't block on them.
 
 **DO NOT IMPLEMENT. PLAN ONLY.**
@@ -84,5 +86,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ## Risks
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

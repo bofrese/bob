@@ -93,6 +93,10 @@ If you've identified a simpler or better way to achieve the same goal, present i
 
 Don't hold back here. If the entire plan should be rethought, say so.
 
+### PM step
+
+For findings that are clearly out of scope for this story (belong to another story or are unrelated to the plan under review): invoke the `bob:work-routing` skill and follow its protocol. Do not route ordinary plan gaps — those go into the report.
+
 ### Step 5 — Save
 
 When the review is complete, save it immediately.
@@ -195,5 +199,7 @@ Things the plan doesn't address that it should.
 Ordered list of what to do next — fix, rethink, or proceed.
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

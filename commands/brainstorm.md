@@ -65,6 +65,8 @@ If the idea doesn't fit cleanly, adapt it or identify required refactoring. Flag
 ### Phase 6 — Commit
 Summarize: feature, approach, fit assessment, open questions. Ask if I'm ready to commit.
 
+**PM step:** Route any rejected alternatives or deferred ideas from this brainstorm that might be worth pursuing separately. For each: invoke the `bob:work-routing` skill and follow its protocol (typically INBOX, possibly tagged as story candidate).
+
 ## Rules
 - If I say "save", write report regardless of current phase
 - Do not write code. Exploration only.
@@ -113,5 +115,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ## Next Steps
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

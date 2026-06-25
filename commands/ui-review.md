@@ -85,6 +85,8 @@ Effort guide: S = one component/view, M = multiple files or a pattern change, L 
 
 Then ask: "Want to implement any of these now, or does this review stand alone?"
 
+**PM step:** For findings that are clearly out of scope for this story (accessibility issues in shared components, design system inconsistencies affecting other areas): invoke the `bob:work-routing` skill and follow its protocol. In-scope findings stay in the action plan above.
+
 ### Phase 5 — Implement (Optional)
 
 Only proceed here with explicit confirmation. A review that stands alone is a valid outcome.
@@ -176,6 +178,7 @@ Template:
 {Anything that needs a product or design decision before it can be resolved}
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

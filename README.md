@@ -68,7 +68,7 @@ graph TD
 
 **Engineering** — Disciplined development pipeline: brainstorm → plan → review-plan → implement → review. Each command loads the right principles and follows the right process.
 
-**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for developer docs, `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns. Use `/bob:remember` to capture anything mid-session without breaking flow.
+**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for developer docs, `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns — process inbox items, ingest external sources, organise the vault, or search. Use `/bob:remember` to capture anything mid-session without breaking flow.
 
 For the full command reference — what each command does, what it reads and writes, how they connect — see the [User Guide](docs/user-guide/index.md).
 

@@ -122,5 +122,7 @@ This is a living document — updated in place.
 {Description of users we've deliberately chosen not to optimise for, and why. This is as important as who we are designing for.}
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

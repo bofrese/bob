@@ -1,5 +1,5 @@
 # Knowledge Management
-*Last updated: 2026-06-17*
+*Last updated: 2026-06-23*
 
 The system that makes every future session better: capture what you learn, codify how you work, so both you and the AI start each session informed.
 
@@ -78,9 +78,9 @@ With no arguments, it asks "What should I remember?" — one question, done. The
 |---------|-------------|
 | `/bob:library` | Show vault status: inbox count, note counts, pending suggestions |
 | `/bob:library process` | Work through inbox items — propose type, tags, filename for each; file on approval |
+| `/bob:library ingest <url-or-file>` | Ingest an external source (article, paper, URL) directly into a typed note |
 | `/bob:library retrieve <query>` | Search the vault for notes matching a query |
 | `/bob:library organise` | Vault health check: orphaned notes, tag consistency, MOC candidates |
-| `/bob:library weekly` | Weekly retrospective digest from daily notes |
 
 ### Note types
 

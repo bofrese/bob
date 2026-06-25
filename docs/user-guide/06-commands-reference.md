@@ -1,5 +1,5 @@
 # Commands Reference
-*Last updated: 2026-06-16*
+*Last updated: 2026-06-23*
 
 Quick lookup for all bob commands, organized by layer.
 
@@ -270,6 +270,46 @@ Research-first: official style guides and standards, *then* your code. Elevates 
 
 ---
 
+### `/bob:remember`
+**Quick capture to the knowledge vault inbox.**
+
+No phases, no overhead. Call it mid-session without breaking flow.
+
+```
+/bob:remember We should avoid X because of Y — discovered in AUTH-002
+```
+
+With no arguments: asks "What should I remember?" — one question, done. Writes to `knowledge/_INBOX/`. Bootstraps the vault on first use.
+
+| | |
+|---|---|
+| **Writes** | `knowledge/_INBOX/YYYY-MM-DD-{slug}.md` |
+| **Start here when** | You want to capture something now and file it properly later |
+| **Time** | Under 1min |
+
+---
+
+### `/bob:library`
+**Manage the project knowledge vault.**
+
+| | |
+|---|---|
+| **Reads** | `knowledge/` vault |
+| **Writes** | Typed vault notes, vault indexes |
+| **Start here when** | Processing inbox items, searching the vault, or running a vault health check |
+
+**Modes:**
+
+| Command | What it does |
+|---------|-------------|
+| `/bob:library` | Vault status: inbox count, note counts, pending suggestions |
+| `/bob:library process` | Work through inbox items interactively — propose type, tags, filename; file on approval |
+| `/bob:library ingest <url-or-file>` | Ingest an external source directly into a typed note |
+| `/bob:library retrieve <query>` | Search vault for notes matching a query |
+| `/bob:library organise` | Vault health check: orphaned notes, tag consistency, MOC candidates |
+
+---
+
 ## Meta Commands
 
 The toolkit maintains itself. Build, review, improve commands.
@@ -277,15 +317,20 @@ The toolkit maintains itself. Build, review, improve commands.
 ### `/bob:pm`
 **Project mentor and manager.**
 
-Assess project state, identify gaps, recommend next steps. Optimize session context. The starting point for "what should I do next?"
+Reads your kanban boards, assesses project state, recommends what to work on next. Also helps start sessions efficiently and recommends the right command for what you're trying to do.
 
 | | |
 |---|---|
-| **Reads** | Project structure, artifacts, recent work |
-| **Writes** | Optional status report |
+| **Reads** | `projects/_index.md`, sub-project and story kanban boards |
+| **Writes** | Optional summary to `personal/daily/YYYY-MM-DD.md`, or full report to `ai/{date}-project-status.md` |
 | **Start here when** | New session, unsure what to do, want project overview |
-| **Modes** | Workflow guidance (default), context optimization |
 | **Time** | 10 – 20min |
+
+**Modes:**
+- **Default:** Reads kanbans, tells you what's in flight, ready, and blocked. Recommends next step.
+- **Context optimization:** "Help me start a session on [feature]" — tells you exactly which files to load and which command to run.
+- **Command recommendation:** Describe what you want to do and pm identifies the right command.
+- **Status report:** Writes a structured report covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
 
 ---
 
@@ -330,6 +375,27 @@ Analyze what worked, what didn't. Propose improvements to command design/process
 
 ---
 
+### `/bob:setup`
+**Bootstrap or upgrade Bob infrastructure on any project.**
+
+Idempotent — safe to run on new or existing projects. Creates what's missing, upgrades stale infrastructure, leaves everything else untouched. The right starting point for a new project.
+
+What it creates/checks:
+- `projects/{name}/` with initial kanban board
+- `knowledge/` vault structure
+- `personal/daily/` and `personal/weekly/` folders
+- `.gitignore` entries for private/local folders
+- `docs/process/done-criteria.md`
+
+| | |
+|---|---|
+| **Checks** | `projects/`, `knowledge/`, `personal/`, `.gitignore`, done-criteria |
+| **Writes** | Missing infrastructure — one confirmation covers all changes |
+| **Start here when** | Setting up a new project, or after installing bob on an existing project |
+| **Time** | 5 – 10min |
+
+---
+
 ## DevOps Commands
 
 ### `/bob:docker-setup`
@@ -349,19 +415,18 @@ Creates Dockerfile, Makefile, install docs. Verifies it works.
 ## Other Commands
 
 ### `/bob:art-director`
-Art direction coaching for visual design, UI, brand.
+Art direction coaching for visual design, UI, brand. Works as a creative partner to develop visual identity and design language.
 
-### `/bob:remember`
-Save something to your persistent memory across sessions.
+| | |
+|---|---|
+| **Reads** | `docs/product/vision.md`, `docs/product/design-brief.md` (if exists) |
+| **Start here when** | You need visual design direction or creative feedback |
 
 ### `/bob:dev`
 Development environment setup and diagnostics.
 
-### `/bob:setup`
-One-time setup for this repository.
-
 ### `/bob:user-guide`
-This guide! Refactor and maintain user documentation.
+Create or maintain the user-facing documentation for this project.
 
 ---
 

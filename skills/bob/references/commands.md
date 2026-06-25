@@ -34,12 +34,13 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Writes:** Conversational guidance (primary). Optionally `ai/{date}-project-status.md`.
 
-**Process:**
+**Process (Mode 1 — Workflow Guidance, default):**
 1. Load context per `context-protocol`
-2. Scan what product docs, plans, and reviews exist
-3. Identify the most critical gap or next step
-4. Recommend one concrete action
-5. Answer follow-up questions about the workflow
+2. Read `projects/_index.md` to identify all sub-projects
+3. For each sub-project: read `projects/{sub}/_kanban.md`; for each story in `In Progress` or `Ready`: read `projects/{sub}/stories/{id}/_kanban.md`
+4. Synthesise: what's in-flight, what's ready to start, what's blocked, INBOX count
+5. Present one concrete recommendation; offer to save summary to `personal/daily/`
+6. Answer follow-up questions about priorities, story details, or next steps
 
 **Skills:** `context-protocol`, `done-criteria`
 
@@ -228,8 +229,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 4. Detail: flesh out top 1–2 ideas
 5. Validate: check fit against codebase (DDD lens)
 6. Commit: decision with rationale
+7. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately — invoke `bob:work-routing`
 
-**Skills:** `context-protocol`, `ddd` (phase 5), `domain-knowledge` (on correction), `done-criteria`
+**Skills:** `context-protocol`, `ddd` (phase 5), `domain-knowledge` (on correction), `work-routing` (step 7), `done-criteria`
 
 ---
 
@@ -247,10 +249,11 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 3. Preparatory refactoring (if any)
 4. Design and architecture (Mermaid diagram if non-trivial)
 5. Implementation steps with BDD acceptance criteria and AI difficulty rating (1–5)
+5.5. **PM step:** Route out-of-scope work that surfaced during planning — invoke `bob:work-routing`
 6. Testing strategy
 7. Open questions
 
-**Skills:** `context-protocol`, `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `done-criteria`
+**Skills:** `context-protocol`, `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
 
 ---
 
@@ -272,7 +275,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 - BDD acceptance criteria quality
 - Simpler alternative if warranted
 
-**Skills:** `context-protocol`, `done-criteria`
+**PM step:** Route findings clearly out of scope for this story — invoke `bob:work-routing`. Do not route ordinary plan gaps (those go in the report).
+
+**Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
 
 ---
 
@@ -289,11 +294,12 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 2. Confirm scope before starting
 3. Per step: implement → verify BDD criteria → commit
 4. Escalate to human at difficulty 4–5 or unexpected complexity
-5. Kanban update: mark resolved issues/tasks done; add new discoveries; ask about potential new stories → project INBOX
-6. Ownership transfer walkthrough (what changed, how to test, what to watch)
-7. Write implementation report
+5. Kanban update: mark resolved issues/tasks done
+6. **PM step (step 6.5):** For new issues or work discovered during implementation — invoke `bob:work-routing`
+7. Ownership transfer walkthrough (what changed, how to test, what to watch)
+8. Write implementation report
 
-**Skills:** `context-protocol`, `bdd` (step 3), `done-criteria`
+**Skills:** `context-protocol`, `bdd` (step 3), `work-routing` (step 6.5), `done-criteria`
 
 ---
 
@@ -312,7 +318,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Checks:** System health, simplicity/DRY, security (OWASP top 10), robustness, plan alignment, done criteria compliance.
 
-**Skills:** `context-protocol`, `done-criteria`
+**PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues/debt that are clearly out of scope for this story. In-scope findings go in the report.
+
+**Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
 
 ---
 
@@ -333,7 +341,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 6. Solution options (trade-offs, not recommendation)
 7. Recommendation with rationale
 
-**Skills:** `context-protocol`, `done-criteria`
+**PM step:** If the investigation uncovered related issues in adjacent code or other stories, invoke `bob:work-routing` to file them.
+
+**Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
 
 ---
 
@@ -434,7 +444,9 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 **13 lenses:** Visual Hierarchy, Cognitive Load, States (empty/error/loading), Typography, Gestalt, Fitts's Law, Microinteractions, Signal/Noise, Consistency, Emotional Design, Platform Fluency, Context/Stress, Brand Voice.
 
-**Skills:** `context-protocol`, `ui-design` (invoked at start), `done-criteria`
+**PM step:** For findings out of scope for this story (shared component issues, design system inconsistencies affecting other areas): invoke `bob:work-routing`. In-scope findings stay in the action plan.
+
+**Skills:** `context-protocol`, `ui-design` (invoked at start), `work-routing` (PM step), `done-criteria`
 
 ---
 
@@ -511,24 +523,26 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 ## `/bob:library` — Knowledge Vault Librarian
 
-**Purpose:** Manage the project knowledge vault (`knowledge/`). Bootstraps the vault on first run. Five modes: status (no args), process (inbox to atomic notes), retrieve (search), organise (vault health), weekly (personal digest).
+**Purpose:** Thin dispatcher over the `bob:vault` skill. Manages the project knowledge vault (`knowledge/`). Bootstraps the vault on first run. Five modes: status (no args), process (inbox to atomic notes), ingest (external source to notes), retrieve (search), organise (vault health).
 
-**Reads:** `knowledge/README.md`, `knowledge/_suggestions.md`, `knowledge/_INBOX/` (process mode), subfolder `_index.md` files, individual notes (retrieve/organise), `personal/daily/` files (weekly mode).
+**Reads:** `knowledge/README.md`, `knowledge/_suggestions.md`, `knowledge/_INBOX/` (process mode), subfolder `_index.md` files, individual notes (retrieve/organise), external URL or local file (ingest mode).
 
-**Writes:** `knowledge/` notes, indexes, MOCs (process/organise modes); `knowledge/_suggestions.md` (process/organise); `knowledge/README.md` counts (process/organise); `personal/weekly/YYYY-WXX.md` (weekly mode).
+**Writes:** `knowledge/` notes, indexes, MOCs (process/organise/ingest modes); `knowledge/_suggestions.md` (process/organise/ingest); `knowledge/log.md` (process/organise/ingest — appended via `log_append.py`); `sources/` raw materials (process/ingest).
 
-**Bootstrap:** Runs automatically if `knowledge/` doesn't exist. Creates folder structure, `_schema.md`, `README.md`, subfolder indexes, `_suggestions.md`, gitignore entries, and `personal/` structure.
+**Bootstrap:** Runs automatically if `knowledge/` doesn't exist. Delegates to `bob:vault` bootstrap mode: creates folder structure, `_schema.md`, `README.md`, subfolder indexes, `_suggestions.md`, gitignore entries, and `personal/` structure.
 
 **Modes:**
 - **Status:** Count inbox items, notes per subfolder, MOCs, pending suggestions. Show last README modified date.
-- **Process:** For each `_INBOX/` file: identify atomic concepts, propose title/type/tags/filename, wait for approval, write note, update index and MOCs, move original to `_processed/` or `sources/`.
+- **Process:** Run reconcile on each `_INBOX/` item before writing. Subagent batching for large inboxes (≥20K tokens). Appends to `knowledge/log.md` on completion.
+- **Ingest:** Fetch URL or read local file, extract atomic concepts, run reconcile on each, save raw source to `sources/`. Appends to `knowledge/log.md`.
 - **Retrieve:** Search vault via Obsidian search (if running) or `grep -rl`. Present excerpts. Offer to open in full.
-- **Organise:** Work through `_suggestions.md` agenda; fix structural issues; confirm each change; rebuild README if needed.
-- **Weekly:** Compile week's daily notes into summary, run guided retrospective, write to `personal/weekly/`.
+- **Organise:** Incremental (scoped to changed files via `git_scope.py`). Runs `lint.py` on changed files, surfaces field renames as batch proposals, runs integrity audit, active maintenance. Appends to `knowledge/log.md`.
 
-**Rules:** Never deletes files (moves only); always uses `bob:obsidian` skill for moves if vault active, falls back to `mv`; never writes to indexes without user confirmation (process mode).
+**Python scripts** (`bob/skills/vault/scripts/`): `lint.py` (frontmatter audit, broken links), `git_scope.py` (changed files since last organise), `log_append.py` (append to `knowledge/log.md`), `orphan.py` (notes with no inbound links).
 
-**Skills:** `context-protocol`, `done-criteria`
+**Rules:** Never deletes files (moves only); uses `obsidian move` if vault active, falls back to `mv`; never writes to indexes without user confirmation (process mode); reconcile runs before every note write.
+
+**Skills:** `context-protocol`, `bob:vault`, `done-criteria`
 
 ---
 
@@ -536,7 +550,7 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 **Purpose:** Instant capture to `knowledge/_INBOX/`. No context loading, no phases — must be immediate. Takes content from args or asks once.
 
-**Reads:** `bob/commands/library.md` (only if bootstrap needed).
+**Reads:** Nothing (invokes `bob:vault` bootstrap skill if vault missing).
 
 **Writes:** `knowledge/_INBOX/YYYY-MM-DD-<slug>.md`
 
@@ -544,7 +558,7 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 1. Use args as content, or ask "What should I remember?" (single question only)
 2. If vault missing: bootstrap it (reads bootstrap procedure from `bob/commands/library.md`), then continue
 3. Derive slug from content (first 4-5 significant words, kebab-case, skip stop words)
-4. Write inbox file with `title:`, `type: inbox`, `created:` frontmatter
+4. Write inbox file with `title:`, `type: inbox`, `timestamp:` frontmatter
 5. Confirm with filename and reminder to run `/bob:library process`
 
 **Rules:** No done-criteria. No context-protocol. No modification of existing notes or indexes.

@@ -66,16 +66,59 @@ Use the resolved `Path:` from the story-context output block for all artifact pl
 
 ---
 
+## Kanban Sync (Engineering commands, after story context confirmed)
+
+For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+
+After story context is confirmed (and before Guidelines and Knowledge Retrieval), check `{story_path}/_kanban.md`:
+
+- **Does not exist:** create it using the story-level kanban template from `bob:project-tracking` (frontmatter with `kanban-plugin: board`, story-level columns, and `new-note-folder` settings block pointing to the story's `tasks/` folder). Then read it.
+- **Exists:** read it and proceed with task matching below.
+
+**Task matching:**
+- Scan the `todo`, `Ready`, and `in progress` columns for task cards
+- Task cards use markdown link format: `- [ ] [Task title](tasks/file.md)` — match against the title portion only
+- Semantically match task titles against: (a) the current command being run, (b) any arguments the user provided, (c) what the user said they want to do. Exact match not required — semantic equivalence is sufficient.
+- **High-confidence match** (title clearly describes what we're doing): move the card from its current column to `## in progress` in the kanban file, and inform user: "Task marked in-progress: [title] on {STORY-ID} kanban."
+- **Uncertain match** (multiple candidates or none align clearly): ask user: "Which task does this session target? [list task titles] — or 'none' to skip."
+- **No kanban or no tasks:** proceed silently without comment.
+
+Do not block or delay if no match is found. This step is informational — it syncs state, it does not gate work.
+
+---
+
 ## Guidelines (Engineering commands, after scope is clear)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `ui-review`:
+For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
-1. Read `docs/guidelines/README.md` as navigation — do not load all guideline files.
-2. Load only guidelines matching the current scope:
-   - File extensions in play (e.g., `.ts` → typescript.md)
-   - Paths involved (e.g., `Frontend/` → angular.md)
+**If `docs/guidelines/` exists:**
+1. Read `docs/guidelines/README.md` as the navigation index — do not load all guideline files.
+2. Load guideline files matching the current scope. Match against the "Applies When" or "Triggers" column:
+   - File extensions in play (e.g., ext: `.ts` → typescript.md)
+   - Paths involved (e.g., path: `Frontend/` → angular.md)
    - Concepts being touched (e.g., auth changes → authentication.md)
-3. If `docs/guidelines/` doesn't exist, skip silently.
+   - Always load `markdown.md` if it exists — all engineering commands produce markdown output.
+   - Load `mermaid.md` if it exists and the command produces diagrams (`plan`, `review-plan`, `brainstorm`).
+3. If a loaded guideline recommends a tool that is not installed: offer to install it before proceeding (for `implement` and `review` only).
+
+**If `docs/guidelines/` does not exist:**
+Notify the user: "No project guidelines found — run `/bob:guidelines` to create them." Then apply these built-in fallback rules for the remainder of this session:
+
+**Markdown (all engineering commands produce markdown output):**
+- Always specify language on code blocks: ` ```typescript ` not ` ``` `
+- Blank lines required before/after code blocks, headings, and lists
+- No skipped heading levels — h1 → h2 → h3, never h1 → h3
+- Frontmatter YAML: quote strings containing colons or special characters
+- Tables require aligned pipes and a header separator row (`|---|`)
+
+**Mermaid (applies when producing diagrams — `plan`, `review-plan`, `brainstorm`):**
+- Node IDs: alphanumeric and underscores only — no spaces, colons, or parentheses in the ID
+- Labels with spaces or special chars: `A["my label: value"]` — double quotes inside square brackets
+- Arrow labels: `A -->|label| B` with no space before the pipe
+- Subgraph IDs: no spaces — use `subgraph myGroup["My Group"]`
+- Valid diagram types: `flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`, `gantt`, `pie`, `gitGraph`
+- Flowchart direction: `LR`, `TD`, `TB`, `BT`, `RL`
+- Validate Mermaid syntax before saving — it fails silently in many renderers
 
 ---
 

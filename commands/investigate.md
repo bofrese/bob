@@ -85,6 +85,8 @@ Present 2-3 approaches to fix the root cause (not just the symptom):
 
 For each: pros, cons, effort, risks.
 
+**PM step:** If the investigation uncovered related issues in other areas (bugs in adjacent code, patterns that may affect other stories): invoke the `bob:work-routing` skill and follow its protocol to file them where they belong.
+
 ### Phase 7 — Summary & Next Steps
 
 Concise summary:
@@ -183,6 +185,7 @@ caller() → problemFunction() → dependency()
 ```
 
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

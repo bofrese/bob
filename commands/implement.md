@@ -42,11 +42,9 @@ At **Hard** difficulty steps: pause before implementing. Explain the approach an
 
 **6 — Final verify:** Full test suite + linter + build. Unfixable → STOP.
 
-**6.5 — Kanban update:** Read `{story_path}/_kanban.md`. For each card:
-- Issues or tasks that were resolved by this implementation → move to `done` column (change `- [ ]` to `- [x]` and relocate to `## done`)
-- New issues discovered → add to `Issues` column as `- [ ] {description}`
-- New tasks within this story's scope → add to `todo` column
-- Items that feel like a separate concern or future story → ask: "This looks like it could be its own story rather than a task in this one. Should I add it to the `projects/{subproject}/_kanban.md` INBOX for you to consider later?" Add to project INBOX if yes.
+**6.5 — Kanban update:**
+- Read `{story_path}/_kanban.md`. Mark resolved tasks and issues done: change `- [ ]` to `- [x]` and move the card to `## done`.
+- For any new issues or work discovered during implementation: invoke the `bob:work-routing` skill and follow its protocol.
 
 **7 — Ownership Transfer:** Before writing the report, walk the developer through:
 - What was built and how it fits the existing system
@@ -96,5 +94,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ## Blockers / Next Steps
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

@@ -28,9 +28,10 @@ Bob reads and writes to predictable locations:
 | `docs/guidelines/` | Technology best-practice guides |
 | `docs/domain/` | Project-specific domain knowledge |
 | `docs/process/done-criteria.md` | What "done" means per artifact type |
-| `projects/{name}/stories/{ID}/` | Engineering session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. |
+| `projects/{name}/stories/{ID}/` | Engineering session artifacts (plans, reviews, implementations, investigations, brainstorms) and story-specific reference materials (specs, external docs, source inputs) while being worked on. |
 | `projects/{name}/_kanban.md` | Project-level kanban (stories as cards) |
-| `knowledge/` | Project knowledge vault: decisions, concepts, research, patterns, MOCs, inbox |
+| `knowledge/` | Validated project knowledge: decisions made, confirmed patterns, defined concepts, synthesised research. Not for in-flight specs, drafts, or rough ideas. |
+| `knowledge/_INBOX/` | Staging area for rough captures not yet classified — gitignored. Run `/bob:library process` to file. |
 | `personal/` | Personal daily/weekly notes and scratchpad — gitignored, never committed |
 | `bob/commands/` | Command definitions (slash commands) |
 | `bob/skills/` | Thinking frameworks invoked by commands |
@@ -75,7 +76,7 @@ Bob reads and writes to predictable locations:
 
 | Command | Writes | Purpose |
 |---|---|---|
-| `/bob:library` | `knowledge/` notes, indexes, MOCs; `personal/daily/` | Librarian: process inbox, retrieve, organise vault, weekly digest, status |
+| `/bob:library` | `knowledge/` notes, indexes, MOCs, `log.md`, `sources/` | Librarian: process inbox, ingest external sources, retrieve, organise vault, status |
 | `/bob:remember` | `knowledge/_INBOX/YYYY-MM-DD-*.md` | Quick mid-session capture to inbox |
 
 **Meta layer**
@@ -98,9 +99,10 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 
 | Skill | Invoked by | Role |
 |---|---|---|
-| `bob:context-protocol` | Every command | Load current date + right project files; wire story-context for engineering commands |
+| `bob:context-protocol` | Every command | Load current date + right project files; kanban sync for engineering commands; wire story-context |
 | `bob:story-context` | Every engineering command (via context-protocol) | Resolve active story via 4-tier chain; establish `{story_path}` for artifact placement |
-| `bob:done-criteria` | Every output command | Check done criteria; route issues to kanban; update story history |
+| `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
+| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Behaviour 6) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
 | `bob:ddd` | `brainstorm`, `plan` | Domain-driven naming and bounded contexts |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
@@ -114,6 +116,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
 | `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
 | `bob:knowledge` | `context-protocol` (every engineering command) | Retrieval skill: load relevant vault notes into context silently; distinct from `/bob:library` command |
+| `bob:vault` | `/bob:library` | Vault management controller: routes to process, ingest, organise, bootstrap sub-files; owns Python scripts |
 
 ---
 

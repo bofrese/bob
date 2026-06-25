@@ -20,6 +20,10 @@ Run all checks silently before presenting anything.
 ```bash
 # Infrastructure
 ls projects/ 2>/dev/null | head -10
+# Story kanbans missing Obsidian frontmatter
+find projects -name "_kanban.md" -path "*/stories/*" | xargs grep -rL "kanban-plugin: board" 2>/dev/null
+# Story _index.md files missing tasks/notes nav link
+find projects -path "*/stories/*/_index.md" | xargs grep -rL "_kanban.md" 2>/dev/null
 ls knowledge/README.md 2>/dev/null
 ls personal/daily/ 2>/dev/null
 grep -c "knowledge/_INBOX/" .gitignore 2>/dev/null || echo 0
@@ -63,6 +67,8 @@ Present a concise status table. No changes yet.
 | personal/ notes        | ✓ / ✗           | Create                       |
 | .gitignore entries     | ✓ / ⚠ Partial / ✗ | Add missing entries       |
 | docs/process/done-criteria.md | ✓ / ⚠ Upgrade / ✗ | Create / Patch        |
+| Story kanbans          | ✓ / ⚠ N missing Obsidian frontmatter | Repair          |
+| _index.md links        | ✓ / ⚠ N missing tasks/notes link     | Repair          |
 | Orphan .md files       | N found         | Review manually              |
 ```
 
@@ -100,6 +106,12 @@ title: {name}
 {"kanban-plugin":"board"}
 %%
 ```
+
+**Story kanbans missing Obsidian frontmatter:**
+For each story `_kanban.md` missing `kanban-plugin: board` frontmatter: prepend the frontmatter block (`kanban-plugin: board`, title) and append the `%% kanban:settings %%` block with `new-note-folder` pointing to the story's `tasks/` folder. Existing column content is preserved.
+
+**`_index.md` files missing tasks/notes link:**
+For each story `_index.md` missing the `##### 📋 [Tasks](_kanban.md)` line: insert it after the opening description paragraph.
 
 **knowledge/ missing:**
 
@@ -156,6 +168,8 @@ One compact table:
 | personal/ | Created / Already present |
 | .gitignore | Added N entries / Already complete |
 | done-criteria | Created / Added N sections: {list} / Already up to date |
+| Story kanbans | Repaired N / Already correct |
+| _index.md links | Repaired N / Already correct |
 | Orphan files | N found (see above) / None |
 | Unstructured docs | N found (see above) / None |
 
@@ -170,5 +184,7 @@ List any manual steps remaining (e.g., Obsidian wikilinks setting).
 - If `projects/` exists but has no subdirectories, still offer to create the first subproject.
 - Skip silently any step where the target already exists and is up to date.
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

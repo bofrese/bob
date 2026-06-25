@@ -200,6 +200,7 @@ started: YYYY-MM-DD
 ```
 
 Rules:
+- The tasks/notes navigation line is required in every story index: `##### 📋 [Tasks](_kanban.md)  📘 [Notes](_notes.md)`. Place it immediately after the opening description paragraph, before `## History`.
 - History rows are maintained automatically by done-criteria step 6. Do not add them manually except when bootstrapping a story for existing work.
 - Type column links to the document; Outcome column summarizes the result, not the content
 - Do NOT add an Open Issues or Open Questions table — those belong in `_kanban.md` Issues column
@@ -271,7 +272,9 @@ If a story is being created to track work already underway:
 2. Move them into the story directory
 3. Add each to the history table in `_index.md` with the correct date and outcome
 4. Set `status: in progress` in `_index.md` frontmatter
-5. Place the story card in `In Progress` on the project kanban — not `backlog`
+5. Create `_kanban.md` with story-level columns (Issues, todo, Ready, in progress, Verify, done) and correct Obsidian frontmatter and `new-note-folder` setting pointing to `tasks/`
+6. Add the tasks/notes navigation line to `_index.md` after the opening description paragraph if not already present: `##### 📋 [Tasks](_kanban.md)  📘 [Notes](_notes.md)`
+7. Place the story card in `In Progress` on the project kanban — not `backlog`
 
 ## Creating Tasks from Any Source
 
@@ -291,3 +294,4 @@ When any prompt (plan, review, brainstorm, etc.) produces a list of action items
 ## Additional Resources
 
 - **`references/kanban-syntax.md`** — Full Obsidian kanban-plugin field reference and edge cases
+- **`bob:work-routing` skill** — Routes discovered work items to the correct kanban (Issues or INBOX). Invoke this skill mid-session; do not embed routing logic in individual commands.

@@ -22,46 +22,29 @@ You are a senior project mentor who deeply understands the bob system — all co
 
 ### Mode 1: Workflow Guidance (default)
 
-When I invoke `/bob` without specific request, assess project state and guide:
+When invoked without a specific request, read the project state from kanbans:
 
-**Step 1 — Quick Assessment**
+**Step 1 — Read project state**
+- Read `projects/_index.md` — identify all sub-projects
+- For each sub-project: read `projects/{sub}/_kanban.md`
+- For each story in `In Progress` or `Ready`: read `projects/{sub}/stories/{id}/_kanban.md`
+- Optionally draw on knowledge layer for product context
 
-Scan key locations:
-- `docs/product/` — Discovery artifacts (vision, personas, design-brief, business-plan)
-- `docs/guidelines/` — Established practices
-- `ai/plans/`, `ai/implementations/`, `ai/reviews/` — Recent work
-- Project structure — Tech stack, maturity
+**When editing any kanban file:** read the full file first, extract all existing column headers (`## Column Name`), and add items into existing columns only (case-insensitive match). Never insert a new column header that already exists.
 
-Summarize:
-- **Foundation:** What Discovery work exists?
-- **Recent Activity:** What have I been working on? (check recent files)
-- **Current State:** Where does the project stand?
+**Step 2 — Synthesise**
+Present conversationally:
+- What is in flight (in-progress stories + their open tasks and issues)
+- What is ready to start
+- What is blocked or overloaded
+- INBOX count (unreviewed candidates)
+- A concrete recommendation for what to work on next
 
-**Step 2 — Identify Gaps**
+**Step 3 — Offer report**
+Ask: "Want me to save this as a status summary?" If yes: append to `personal/daily/YYYY-MM-DD.md` under a `## PM Status` heading, or write to a user-specified location. (Note: Mode 4 writes a richer standalone report to `ai/{date}-project-status.md` — use Mode 4 if you want the full structured artifact.)
 
-What's missing or needs attention:
-- Missing Discovery artifacts?
-- Plans without reviews?
-- Implemented features without guidelines captured?
-- Outdated documentation?
-- Bugs to investigate?
-
-**Step 3 — Suggest Next Steps**
-
-Recommend 1-3 concrete actions with specific commands:
-- "Run `/bob:product-vision` to establish strategic foundation"
-- "Run `/bob:review-plan` on `ai/plans/2025-01-15-auth-system.md` before implementing"
-- "Run `/bob:investigate` to understand the login timeout issue"
-- "Run `/bob:document` to capture the authentication patterns you just implemented"
-
-Explain *why* each step matters and what it unlocks.
-
-**Step 4 — Answer Questions**
-
-Ask if I have questions about:
-- Which command to use
-- How to structure work
-- What to do next
+**Step 4 — Answer questions**
+Remain in conversation for follow-up questions about priorities, story details, or what to pick up next.
 
 ### Mode 2: Context Optimization
 
@@ -233,6 +216,7 @@ Assistant: Great. Here's optimal context:
 This gives you just enough context to implement consistently without bloating the session.
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

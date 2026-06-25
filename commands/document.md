@@ -116,6 +116,8 @@ After writing or updating:
 - **L2 docs**: No code examples. Architecture describes structure. Exception: a compact struct/enum that IS the API surface (5–10 lines, genuinely architectural).
 - **L3 docs**: Code appropriate for API surfaces and non-obvious constraints. If it's a pattern (how to use something), it belongs in a guidelines doc — link there instead.
 - **Key Files tables**: File path and purpose only. No line numbers — they go stale immediately.
+- **Links must point to docs only**: Markdown links `[text](path)` must only target other `.md` documentation files. Source code paths, directory names, and script references must use backtick formatting — `path/to/file` — not markdown links. Linking to a directory or script file is confusing in Obsidian and breaks navigation intent.
+- **Index table first-column names are plain text**: In `docs/README.md` or any index table, the tool/concept name in the first column is plain text. Doc links belong in dedicated "Doc" or "Guide" columns. Never `[tool-name](../tool-dir/)` — that's a directory, not a doc.
 
 ## Output
 
@@ -218,9 +220,9 @@ Brief description of the system and documentation structure.
 | {name} | What it covers | [Link](subsystem/concept.md) |
 
 ## Concepts
-| Concept | Description | Last Verified |
-|---------|-------------|---------------|
-| [{name}]({name}.md) | One-line summary | {YYYY-MM-DD} |
+| Concept | Description | Doc | Last Verified |
+|---------|-------------|-----|---------------|
+| {name} | One-line summary | [{name}.md]({name}.md) | {YYYY-MM-DD} |
 ```
 
 After saving, provide:
@@ -229,5 +231,7 @@ After saving, provide:
 - Suggestions for related docs that might need updating
 - Recommended inline code comments for discoverability
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

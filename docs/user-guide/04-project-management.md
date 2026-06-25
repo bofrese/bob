@@ -1,5 +1,5 @@
 # Project Management
-*Last updated: 2026-06-17*
+*Last updated: 2026-06-23*
 
 How Bob tracks work across the full lifecycle of a feature — from idea to shipped code.
 
@@ -58,7 +58,19 @@ Session artifacts (brainstorm reports, plans, reviews) live directly in the stor
 
 ## Getting Started
 
-Bob creates the entire structure for you. Run any engineering command (`/bob:brainstorm`, `/bob:plan`, etc.) and Bob will:
+### Bootstrap infrastructure first
+
+Before your first story, run `/bob:setup` once:
+
+```
+/bob:setup
+```
+
+This creates the `projects/` folder with your first subproject and kanban board, plus the `knowledge/` vault and `personal/` notes. One command, one confirmation, everything in place. Safe to run on any project.
+
+### Starting your first story
+
+Run any engineering command (`/bob:brainstorm`, `/bob:plan`, etc.) and Bob will:
 
 1. Look for an open story (from Obsidian tabs, recent files, or explicit mention)
 2. If none found, offer to create a new story
@@ -166,6 +178,26 @@ Document dependencies in `_index.md`:
 ```
 
 Tracking: keep blocked stories in **ToDo** on the sub-project kanban until the dependency ships. Move them to **Ready** only when the plan is reviewed and dependencies are clear.
+
+---
+
+## Using `/bob:pm`
+
+The project mentor command is your overview of project state. It has four modes:
+
+**Default — project overview**
+Run `/bob:pm` with no arguments. It reads all sub-project kanbans and in-progress story kanbans, then tells you what's in flight, what's ready to start, what's blocked, and recommends what to work on next. Optionally appends a summary to `personal/daily/YYYY-MM-DD.md`.
+
+**Context optimization**
+Say "help me start a new session on [feature]" and pm recommends exactly which files to load and which command to use — keeps context tight.
+
+**Command recommendation**
+Describe what you want to do ("I want to fix a UI bug") and pm identifies which bob command fits and explains the sequence.
+
+**Status report**
+Ask for a status report and pm writes a structured artifact to `ai/{date}-project-status.md` covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
+
+For a new project with no kanbans yet, pm detects the absence and recommends starting with `/bob:product-vision` (if you want product strategy) or `/bob:brainstorm` (if you want to start building).
 
 ---
 

@@ -24,7 +24,7 @@ Work through the tiers in order. Stop at the first tier that yields a result.
 bash "$SKILL_BASE_DIR/scripts/detect-story-from-path.sh" "<file-arg-path>"
 ```
 
-If the script outputs `SUBPROJECT=` and `STORY_ID=`, the story is certain. Print the Story Context block and **ask for confirmation** before proceeding (even certain tiers confirm — the user may have passed the wrong file).
+If the script outputs `SUBPROJECT=` and `STORY_ID=`, the story is certain. Print the Story Context block and proceed — no confirmation needed.
 
 ---
 
@@ -38,7 +38,7 @@ Resolve the path: `projects/[subproject]/stories/[STORY-ID]/`. Run:
 bash "$SKILL_BASE_DIR/scripts/detect-story-from-path.sh" "projects/[subproject]/stories/[STORY-ID]/_index.md"
 ```
 
-If the directory exists, print the Story Context block and ask for confirmation.
+If the directory exists, print the Story Context block and proceed — no confirmation needed.
 
 ---
 
@@ -110,5 +110,5 @@ After printing the block, set `story_path = projects/[subproject]/stories/[STORY
 ## Notes
 
 - Tiers 3 and 4 require Obsidian to be running. If the CLI is unavailable, skip silently to fallback.
-- All tiers ask for confirmation — the goal is that the user always sees and approves the story before work begins.
+- Tiers 1 and 2 are certain — proceed without asking. Tiers 3 and 4 are inferred — always ask.
 - Do not cache story context across separate command invocations. Each command invocation resolves fresh.

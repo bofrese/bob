@@ -15,6 +15,9 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 2. Load project familiarization (README, package.json/pyproject.toml, project structure)
 3. Load per-command files from the loading table
 4. For engineering commands: invoke `bob:story-context` to resolve the active story
+5. **Kanban Sync** (engineering commands, after story context): read `{story_path}/_kanban.md`, semantically match a task card to the current session, and move it to `## in progress` if confident. Ask user if multiple candidates. Skip silently if no match or no kanban.
+6. For engineering commands: load `docs/guidelines/` selectively once scope is clear
+7. For engineering commands: invoke `bob:knowledge` for relevant vault retrieval
 
 **Per-command loading table (selected):**
 
@@ -66,9 +69,10 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 1. **Bootstrap:** If `docs/process/done-criteria.md` doesn't exist, create it with the default template
 2. **Check:** Verify all applicable done criteria for the artifact type are met before finishing
 3. **Register:** If a new artifact type was produced, add it to `done-criteria.md`
-4. **Flag:** Identify terminology, architectural decisions, or patterns worth persisting
-5. **Track issues:** Route discovered issues to story kanban (Issues column) or project kanban (INBOX); ask user first
-6. **Update history:** Add one row to `{story_path}/_index.md` history table for the artifact just produced
+4. **Flag:** Identify terminology, architectural decisions, or patterns worth persisting; write knowledge candidates to `knowledge/_INBOX/`
+5. **Update daily note:** Append session summary to `personal/daily/YYYY-MM-DD.md` if directory exists; skip silently if not
+6. **Track issues:** For each discovered issue/debt/improvement: invoke `bob:work-routing` to compile routing destinations, then ask user once whether to file. Skip if a mid-session PM step already ran and routed all items.
+7. **Update history:** Add one row to `{story_path}/_index.md` history table for the artifact just produced
 
 **Bootstrap template includes:** Artifact types, quality criteria per type, process requirements (no `ai/` references).
 
@@ -327,6 +331,30 @@ description: [one line, what and when]
 
 ---
 
+## `bob:vault` — Vault Management Controller
+
+**File I/O:** Reads and writes `knowledge/` notes, indexes, MOCs, `log.md`, `sources/`. Executes Python scripts in `bob/skills/vault/scripts/`.
+
+**Invoked by:** `/bob:library` command (for all modes except retrieve).
+
+**What it does:**
+Receives a mode from the library command and loads only the relevant sub-file:
+- `process` → `skills/vault/process.md` — reconcile-gated inbox processing, subagent batching for large inboxes
+- `ingest` → `skills/vault/ingest.md` — fetch/extract from URL or local file, reconcile, save source
+- `organise` → `skills/vault/organise.md` — incremental (git_scope.py), lint, integrity audit, active maintenance
+- `bootstrap` → `skills/vault/bootstrap.md` — vault initialisation
+- `status` → inline — counts and last-modified date
+
+**Python scripts** (`bob/skills/vault/scripts/`):
+- `lint.py` — frontmatter audit (required fields, old field names), broken links
+- `git_scope.py` — files changed since a timestamp; supplements with `git status --porcelain` for untracked
+- `log_append.py` — append operation entry to `knowledge/log.md`; creates file on first write
+- `orphan.py` — notes with no inbound links from other vault notes
+
+**Shared:** `reconcile.md` — discovery-classify-confirm procedure, read by process and ingest before any note write. Mirrors `bob:knowledge` discovery traversal.
+
+---
+
 ## `bob:obsidian` — Obsidian Vault File Operations
 
 **File I/O:** No reads or writes directly. Executes `obsidian rename` / `obsidian move` via the Obsidian CLI, which modifies files inside the vault.
@@ -347,3 +375,23 @@ description: [one line, what and when]
 - Obsidian 1.12.7+ installed and CLI registered (Settings → General → Command line interface)
 - "Automatically update internal links" enabled (Settings → Files & Links)
 - Obsidian app running (auto-launches on first CLI call)
+
+---
+
+## `bob:work-routing` — Discovered Work Item Routing
+
+**File I/O:**
+- **Reads:** `{story_path}/_kanban.md`, `projects/{subproject}/_kanban.md`
+- **Writes:** `{story_path}/_kanban.md` (Issues column), `projects/{subproject}/_kanban.md` (INBOX column) — only after user confirms
+
+**User-invokable:** No — invoked mid-session by engineering commands.
+
+**Invoked by:** All engineering commands (`implement`, `review`, `review-plan`, `plan`, `brainstorm`, `investigate`, `ui-review`) mid-session when they surface issues, deferred ideas, out-of-scope findings, or new dependencies. Also invoked by `bob:done-criteria` (Behaviour 6) for end-of-session routing.
+
+**What it does:**
+- Accepts a list of work items with description, severity (🔴/🟡/🟢), and discovery context
+- Classifies each item: in-scope for current story → story Issues column; otherwise → project INBOX
+- Asks user for confirmation before filing; names 🔴 Critical items explicitly
+- After filing, confirms counts: "Filed N items: {story-id} Issues (+N), INBOX (+N)."
+
+**Key rule:** Routing logic lives here — individual commands must not embed their own routing decisions.

@@ -1,5 +1,5 @@
 # Bob User Guide
-*Last updated: 2026-06-16*
+*Last updated: 2026-06-23*
 
 Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code—with human judgment at every decision point.
 
@@ -45,14 +45,20 @@ Everything Bob does rests on two ideas:
    git clone https://github.com/bofrese/bob.git ~/.claude/plugins/bob
    ```
 
-2. **Open Claude Code in your project directory** and pick your first command:
+2. **Bootstrap your project** (new projects only):
+   ```
+   /bob:setup
+   ```
+   Creates the folder structure, knowledge vault, and project infrastructure in one go.
+
+3. **Open Claude Code in your project directory** and pick your first command:
    - New product? Start with `/bob:product-coach` for comprehensive discovery.
    - Have an idea to build? Start with `/bob:brainstorm`.
-   - Want to improve your workflow? Start with `/bob:pm` for a project status check.
+   - Want a project overview? Start with `/bob:pm` for a status check and recommendations.
 
-3. **Read the output carefully.** It's your first draft, not gospel. Engage with it. Push back on assumptions. Edit the plans. When you're happy, move to the next phase.
+4. **Read the output carefully.** It's your first draft, not gospel. Engage with it. Push back on assumptions. Edit the plans. When you're happy, move to the next phase.
 
-4. **Come back to this guide** when you need context on how something works or when you hit friction.
+5. **Come back to this guide** when you need context on how something works or when you hit friction.
 
 ---
 

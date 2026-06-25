@@ -42,6 +42,7 @@ If the conversation grows to where a proper brainstorm, plan, or review cycle wo
 - Make code changes with Edit/Write tools — don't describe, do
 - Scope creep: call it out as it happens
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

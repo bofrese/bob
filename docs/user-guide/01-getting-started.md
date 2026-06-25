@@ -1,5 +1,5 @@
 # Getting Started with Bob
-*Last updated: 2026-06-16*
+*Last updated: 2026-06-23*
 
 This guide covers installation and your first session—from "what is this?" to "I just finished my first brainstorm."
 
@@ -43,18 +43,35 @@ cd /path/to/your/project
 claude
 ```
 
-### 2. Run `/bob:pm` to see where you are
-The project mentor command scans your project and tells you what to do next. If it's a brand-new project, it suggests you start with product strategy or your first feature brainstorm.
+### 2. Run `/bob:setup` on a new project
+If this is a brand-new project (or you've just installed bob on an existing one), run:
 
-Output goes to `ai/{date}-project-status.md`.
+```
+/bob:setup
+```
 
-### 3. Pick your starting point
+It audits what's present, shows you a summary, and with one confirmation creates everything missing:
+- `projects/` folder with your first subproject and kanban board
+- `knowledge/` vault for capturing learnings
+- `personal/daily/` for daily notes (where pm can append status summaries)
+- `.gitignore` entries to keep private folders local
+- `docs/process/done-criteria.md`
+
+Idempotent — safe to run on any project, new or existing. Skip this if you're returning to an established project.
+
+### 3. Run `/bob:pm` to see where you are
+The project mentor reads your kanban boards and tells you what's in flight, what's ready, and what to work on next.
+
+### 4. Pick your starting point
 
 **Brand new product?**
 Run `/bob:product-coach`. It guides you through vision, validation, business model, and positioning.
 
 **Have a feature idea?**
 Run `/bob:brainstorm`. The AI asks structured questions to help you think it through. You leave with a clear direction documented.
+
+**Not sure where to start?**
+Just say "Hi Bob, where should I begin?" — Bob reads what exists and tells you exactly what to do first.
 
 **Inherited a codebase with no docs?**
 Run `/bob:document`. It scans what you have and captures it.
@@ -78,15 +95,18 @@ Close Claude. Files are saved. You can come back tomorrow, or hand off to a coll
 
 ## File Locations
 
-Bob creates files in three places. Understanding this prevents confusion:
+Bob creates files in four places. Understanding this prevents confusion:
 
 | Folder | What lives here | Lifespan |
 |--------|-----------------|----------|
-| `docs/product/` | Vision, personas, design briefs, business model | Permanent—read and updated in place |
-| `docs/guidelines/` | Best-practice guides for your tech stack | Permanent—reference and maintain |
-| `projects/` | Stories, plans, brainstorms, implementation notes | Working memory—organized by story |
+| `docs/product/` | Vision, personas, design briefs, business model | Permanent — read and updated in place |
+| `docs/guidelines/` | Best-practice guides for your tech stack | Permanent — reference and maintain |
+| `projects/` | Stories, plans, brainstorms, implementation notes | Working memory — organized by story |
+| `personal/` | Daily notes, weekly notes, scratchpad | Local only (gitignored) |
 
-**Key insight:** `projects/` is where decisions live. `docs/` is what you ship and maintain. They work together—engineering commands read vision from `docs/`, write plans to `projects/`.
+**Key insight:** `projects/` is where decisions live. `docs/` is what you ship and maintain. They work together — engineering commands read vision from `docs/`, write plans to `projects/`.
+
+`personal/` and `knowledge/_INBOX/` are gitignored by default — they're for you, not the team.
 
 ## Your Second Session
 

@@ -1,6 +1,6 @@
 ---
 name: Done Criteria Protocol
-description: Invoke this skill at the end of every output-producing bob command. Defines how commands interact with the done system, bootstraps the project done-criteria file, and tracks discovered issues. Follow the protocol exactly.
+description: Non-deferrable. Invoke before responding to any new request at the end of every output-producing bob command. Defines how commands interact with the done system, bootstraps the project done-criteria file, and tracks discovered issues. Follow the protocol exactly.
 user-invocable: false
 ---
 
@@ -53,7 +53,7 @@ For each item found: name it, explain why it matters, and recommend the specific
 
 Also check for:
 
-4. **Decisions and insights** not yet captured in `knowledge/` → write candidates to `knowledge/_INBOX/YYYY-MM-DD-<slug>.md` (frontmatter: `title:`, `type: inbox`, `created: YYYY-MM-DD`; body: the decision or insight) and surface nudge: "N item(s) captured to `knowledge/_INBOX/` — run `/bob:library process` to file them." Skip if `knowledge/_INBOX/` does not exist. If `knowledge/` exists but `_INBOX/` does not (gitignored on fresh clone), create `knowledge/_INBOX/` before writing.
+4. **Decisions and insights** not yet captured in `knowledge/` → write candidates to `knowledge/_INBOX/YYYY-MM-DD-<slug>.md` (frontmatter: `title:`, `type: inbox`, `timestamp: YYYY-MM-DDThh:mm:ssZ`; body: the decision or insight) and surface nudge: "N item(s) captured to `knowledge/_INBOX/` — run `/bob:library process` to file them." Skip if `knowledge/` does not exist. If `knowledge/_INBOX/` does not exist, run `mkdir -p knowledge/_INBOX/` before writing.
 
 If none of the categories apply: skip silently.
 
@@ -88,30 +88,24 @@ No confirmation needed — personal content, gitignored entirely.
 
 ### 6. Track discovered issues (if applicable)
 
-If your command discovered code issues, technical debt, or improvement opportunities:
+If your command discovered issues, technical debt, or improvement opportunities during this session:
 
-**Step 1: Show brief summary** to user:
-- List issues found with severity (🔴 Critical / 🟡 Important / 🟢 Nice to Have)
-- Keep it concise (one line per issue)
+**Step 1:** List discovered items with severity (🔴 Critical / 🟡 Important / 🟢 Nice to Have). Keep to one line per item.
 
-**Step 2: Ask user**: "Should I add these to the story's issue tracker?"
+**Step 2:** Invoke the `bob:work-routing` skill to compile routing destinations for each item.
 
-**Step 3: If yes**, for each issue decide where it belongs:
+**Step 3:** Ask the user once: "Should I file these N items to the kanban? (yes / no / specify which ones)"
+- **yes** → file all items as routed
+- **no** → skip tracking; items remain in the command output only
+- **specify** → user can exclude or redirect individual items before filing
 
-- **Clearly within this story's scope** → add to `{story_path}/_kanban.md` Issues column as `- [ ] {description}`
-- **General/cross-cutting concern** → add to `projects/{subproject}/_kanban.md` INBOX column
-- **Looks like it could be its own story** → ask the user: "This feels like a separate concern that might deserve its own story rather than a task in this one. Should I add it to the `projects/{subproject}/_kanban.md` INBOX as a story candidate?" Add to project INBOX if yes.
-- If subproject is unclear, derive from story context or ask
+**Step 4:** After filing, confirm: "Filed to kanban: [summary — e.g., BOB-004 Issues +2, INBOX +1]." For 🔴 Critical items: name them explicitly in the summary.
 
-**Step 4: If no**: Skip tracking, just report in your output
+Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm` — engineering tier commands that touch or read code.
 
-**Commands this applies to**:
-- `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`
-- Engineering tier commands that touch or read code
+**Skip if already routed:** If a mid-session PM step already ran during this session and routed all discovered items, skip Behaviour 6 to avoid prompting the user twice for the same items.
 
-**Commands that skip this**:
-- Discovery commands (`product-vision`, `personas`, `design-brief`)
-- Commands focused on product/business artifacts, not code
+Commands that skip this: Discovery commands (`product-vision`, `personas`, `design-brief`).
 
 ### 7. Update story history
 

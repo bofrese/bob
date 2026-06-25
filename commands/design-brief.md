@@ -122,5 +122,7 @@ How the product speaks to users.
 A brief description of the experience when everything is working. Not a wireframe — a feeling. What does it feel like to use this product when the design is right?
 ```
 
-## Done
+## Done — Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.
