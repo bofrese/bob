@@ -40,7 +40,7 @@ Invoke the `bob:bdd` skill — Given/When/Then acceptance criteria before tests.
 
 ## Output
 
-`{story_path}/{date}-plan-{slug}.md`
+`{story_path}/sessions/{date}-plan-{slug}.md`
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 

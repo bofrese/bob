@@ -108,7 +108,7 @@ Ask if I want to proceed with a fix or need more investigation.
 
 ## Output
 
-Write to: `{story_path}/{date}-investigate-{slug}.md`
+Write to: `{story_path}/sessions/{date}-investigate-{slug}.md`
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 

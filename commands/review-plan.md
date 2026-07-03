@@ -105,7 +105,7 @@ If there are major concerns that might invalidate the plan entirely, flag them c
 
 After saving, update the story history table in `{story_path}/_index.md`:
 ```
-| {date} | [Plan Review]({filename}) | {one-line summary} | {verdict} |
+| {date} | [Plan Review](sessions/{filename}) | {one-line summary} | {verdict} |
 ```
 
 ### Step 6 — Recommend Next Action
@@ -128,7 +128,7 @@ Based on the verdict, recommend the next step explicitly:
 
 ## Output
 
-Write to: `{story_path}/{date}-review-plan-{slug}.md`
+Write to: `{story_path}/sessions/{date}-review-plan-{slug}.md`
 where `{date}` is today's date and `{slug}` is a short kebab-case descriptor matching the plan being reviewed.
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.

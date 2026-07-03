@@ -67,7 +67,7 @@ The settings block appears at the bottom of the file, inside a comment:
 ```markdown
 %% kanban:settings
 ```
-{"kanban-plugin":"board","new-note-folder":"tasks","list-collapse":[false,false,false,false]}
+{"kanban-plugin":"board","new-note-folder":"tasks","list-collapse":[false,false,false,false],"new-line-trigger":"shift-enter"}
 ```
 %%
 ```
@@ -77,8 +77,9 @@ Key settings:
 | Key | Type | Purpose |
 |-----|------|---------|
 | `kanban-plugin` | `"board"` | Required identifier |
-| `new-note-folder` | string | Where new note-linked cards are filed (relative to the kanban file) |
+| `new-note-folder` | string | Where new note-linked cards are filed (vault-root-relative path) |
 | `list-collapse` | bool[] | One entry per column; true = collapsed by default |
+| `new-line-trigger` | string | Set to `"shift-enter"` on every board — without it, Enter inside a card creates a new card instead of a new line |
 
 ## Minimal Valid Board
 
@@ -96,30 +97,34 @@ title: My Board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","new-note-folder":"tasks"}
+{"kanban-plugin":"board","new-note-folder":"tasks","new-line-trigger":"shift-enter"}
 ```
 %%
 ```
 
-## Story-Level `_tasks.md` Template
+## Story-Level `_kanban.md` Template
 
 ```markdown
 ---
 kanban-plugin: board
-title: Tasks - [Story Name] ([STORY-ID])
+title: [STORY-ID] Tasks
 ---
 
-## Review findings
+## Issues
 
 ## todo
 
+## Ready
+
 ## in progress
+
+## Verify
 
 ## done
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","new-note-folder":"tasks"}
+{"kanban-plugin":"board","new-note-folder":"projects/[PROJECT]/stories/[STORY-ID]/tasks","new-line-trigger":"shift-enter"}
 ```
 %%
 ```
@@ -130,26 +135,32 @@ title: Tasks - [Story Name] ([STORY-ID])
 ---
 kanban-plugin: board
 title: [Project Name]
+prefix: [PREFIX]
+last-id: "000"
 ---
 
-## inbox
+## INBOX
 
-## backlog
+## ToDo
 - [ ] [[stories/[STORY-ID]/_index|[STORY-ID] Story Title]]
 
-## in progress
+## Refining
 
-## done
+## Ready
 
-## archive
+## In Progress
 
-## dismissed
+## Verify
+
+## Done
+
+## ARCHIVE
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board"}
+{"kanban-plugin":"board","new-note-folder":"projects/[PROJECT]/stories","new-line-trigger":"shift-enter"}
 ```
 %%
 ```
 
-Note: Project-level boards use Obsidian wiki-link syntax `[[path|label]]` for story cards; story-level `_tasks.md` uses standard markdown links `[title](path)` for task cards since they point to files in the `tasks/` subfolder.
+Note: Project-level boards use Obsidian wiki-link syntax `[[path|label]]` for story cards; story-level `_kanban.md` uses standard markdown links `[title](path)` for task cards since they point to files in the `tasks/` subfolder.

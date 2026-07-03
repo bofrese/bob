@@ -16,7 +16,7 @@ Senior architect reviewing code. Lens: system health, simplicity, and ownership 
 ```bash
 git status --porcelain
 git log --oneline main..HEAD 2>/dev/null || git log --oneline master..HEAD 2>/dev/null
-ls -t "${story_path}"*-plan-*.md 2>/dev/null | head -3
+ls -t "${story_path}sessions/"*-plan-*.md 2>/dev/null | head -3
 ```
 Correlate plans with changed files. Form a scope hypothesis.
 
@@ -52,7 +52,7 @@ Direct. File:line for all findings. **DO NOT FIX THE CODE.**
 
 ## Output
 
-`{story_path}/{date}-review-{slug}.md`
+`{story_path}/sessions/{date}-review-{slug}.md`
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 

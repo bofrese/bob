@@ -70,7 +70,12 @@ Flag any improvements that don't meet these criteria.
 
 ## Output
 
-Write to: `ai/reviews/{date}-improve-{command-name}.md`
+**Determine output location first:**
+- If the command being improved is a bob plugin command (lives in `bob/commands/`): write the report to `ai/reviews/{date}-improve-{command-name}.md` inside the bob plugin directory, not the current project.
+- If the command being improved is a project-local command: write to `ai/reviews/{date}-improve-{command-name}.md` in the current project.
+- Apply the same rule to any edits made to the command file itself — edit it where it actually lives.
+
+Write to: `{resolved-plugin-or-project}/ai/reviews/{date}-improve-{command-name}.md`
 
 Template:
 ```markdown

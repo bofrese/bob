@@ -74,7 +74,7 @@ Summarize: feature, approach, fit assessment, open questions. Ask if I'm ready t
 
 ## Report
 
-Write to: `{story_path}/{date}-brainstorm-{slug}.md`
+Write to: `{story_path}/sessions/{date}-brainstorm-{slug}.md`
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 

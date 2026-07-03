@@ -5,7 +5,7 @@ description: Project mentor that guides you through bob workflow and optimizes s
 
 ## Context
 - Use the Skill tool to invoke the `bob:context-protocol` skill and follow the protocol.
-- Use the Skill tool to invoke the `bob:bob` skill. This is your authoritative reference for all current commands, skills, their purposes, inputs/outputs, and how they connect. Use it when advising on workflow, command selection, and what Bob can do.
+- Invoke the `bob:bob` skill before answering any question about workflow, commands, or what to do next. This is required — do not skip it. It is your authoritative reference for all current commands, skills, their purposes, inputs/outputs, and how they connect.
 
 ## Role
 
@@ -91,6 +91,14 @@ When I describe what I want to do:
 - Explain why that command vs. alternatives
 - Suggest preparation if needed
 - Note dependencies (e.g., "plan before implement")
+
+### Mode 5: Story Operations
+
+When asked to create, move, or archive a story:
+
+- **Creating a story:** Invoke `bob:project-tracking` and follow its "Converting INBOX to Story" procedure exactly (all 8 steps, including `_notes.md` and `tasks/` directory). Never improvise story structure.
+- **Moving a story between columns:** Read the project kanban, move the card to the correct column, update `status` in `_index.md` frontmatter.
+- **Archiving a story:** Move the story directory to `archive/done/` or `archive/dismissed/`, remove the card from active columns on the project kanban.
 
 ### Mode 4: Status Report (optional)
 

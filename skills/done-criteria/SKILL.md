@@ -117,7 +117,7 @@ After producing any output artifact, add one row to `{story_path}/_index.md` his
 
 Where:
 - `{type}` is the command type (Brainstorm, Plan, Plan Review, Implementation, Code Review, Investigation, UI Review)
-- `{filename}` is the artifact filename relative to the story folder
+- `{filename}` is `sessions/[artifact-filename]` — all session artifacts live in the story's `sessions/` subfolder, never at the story root
 - `{one-line summary}` is what was done
 - `{outcome}` is the result (e.g. Committed, Draft, Ready, Approve with changes, Completed, Root cause identified)
 

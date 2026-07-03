@@ -103,7 +103,7 @@ If a task ID was detected, add a fourth line:
 - Task ID: `[TASK-ID]`
 ```
 
-After printing the block, set `story_path = projects/[subproject]/stories/[STORY-ID]/` in your working memory. All artifact filenames for this session use this path.
+After printing the block, set `story_path = projects/[subproject]/stories/[STORY-ID]/` in your working memory. Session artifacts (brainstorm, plan, review, etc.) are written to `{story_path}sessions/` — see the command's own Output section for the exact filename pattern.
 
 ---
 
