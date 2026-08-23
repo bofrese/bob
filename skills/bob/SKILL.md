@@ -60,8 +60,8 @@ Bob reads and writes to predictable locations:
 |---|---|---|
 | `/bob:brainstorm` | `{story_path}/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit; routes to Design |
 | `/bob:design` | `{story_path}/{date}-design-{slug}.md` | Socratic conceptual design: concepts, boundaries, trade-offs, human-owned decisions |
-| `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Turn idea into reviewable implementation plan |
-| `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against the codebase |
+| `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Translate a Design Record into a reviewable implementation plan |
+| `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` | Execute an approved plan with engineering discipline |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |

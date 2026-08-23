@@ -257,9 +257,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:plan` — Implementation Planning
 
-**Purpose:** Turn a feature idea into a concrete, reviewable implementation plan with BDD acceptance criteria, AI difficulty ratings, and open questions. Planning only — no implementation.
+**Purpose:** Translate an accepted Design Record (or, for fast-path work, an inline design statement) into a concrete, reviewable implementation plan with BDD acceptance criteria and open questions. Does not invent concepts, boundaries, or vocabulary — that's Design's job. Planning only — no implementation.
 
-**Reads:** User-provided idea, project codebase, `{story_path}/*-plan-*` and `{story_path}/*-implement-*` (prior work in same story), `docs/product/vision.md`.
+**Reads:** Design Record reference (required for conceptually meaningful work) or inline design statement, user-provided idea, project codebase, `{story_path}/*-plan-*` and `{story_path}/*-implement-*` (prior work in same story), `docs/product/vision.md`.
 
 **Writes:** `{story_path}/{date}-plan-{slug}.md`
 
@@ -268,10 +268,13 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 2. Current system analysis (blast-radius via the code graph first when fresh - `graphify affected`; else manual exploration; relevant files and patterns)
 3. Preparatory refactoring (if any)
 4. Design and architecture (Mermaid diagram if non-trivial)
-5. Implementation steps with BDD acceptance criteria and AI difficulty rating (1–5)
+5. Implementation steps with BDD acceptance criteria, Complexity rating, and Conceptual risk rating
 5.5. **PM step:** Route out-of-scope work that surfaced during planning — invoke `bob:work-routing`
-6. Testing strategy
-7. Open questions
+6. Structural diff summary (files/modules/symbols touched, at a glance)
+7. Testing strategy
+8. Open questions
+
+**DESIGN FEEDBACK:** if repository inspection contradicts the Design Record, Plan emits a `DESIGN FEEDBACK` section and stops planning that area rather than improvising.
 
 **Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
 
@@ -279,21 +282,25 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:review-plan` — Plan Review
 
-**Purpose:** Independent, skeptical review of an implementation plan. Verifies plan assumptions against actual code. Proposes simpler alternatives if warranted. Review only — no modifications.
+**Purpose:** Independent, skeptical review of an implementation plan (and its Design Record, when one exists). Verifies plan assumptions against actual code and against Design. Recommended for high-risk work, optional for normal work — not mandatory just because a plan exists.
 
-**Reads:** Specified plan from story folder, project codebase (to verify plan assumptions).
+**Reads:** Specified plan from story folder, referenced Design Record (if any), project codebase (to verify plan assumptions).
 
 **Writes:** `{story_path}/{date}-review-plan-{slug}.md`
 
 **Review dimensions:**
-- Assumption verification (does the plan match what's actually in the code?)
-- Architecture and design fit
+- Assumption verification (does the plan match what's actually in the code and the Design Record?)
+- Architecture and design fit; unapproved concepts/boundaries/vocabulary introduced without Design sign-off
 - Complexity assessment
 - Gap detection (missing steps, edge cases)
 - Security implications
 - Maintainability
 - BDD acceptance criteria quality
 - Simpler alternative if warranted
+
+**Findings are classified:** plan defect / design concern / requirement gap / optional simplification.
+
+**Verdicts:** Approve / Approve with changes / Needs rework / Recommend rethink / Return to Design (design concerns only).
 
 **PM step:** Route findings clearly out of scope for this story — invoke `bob:work-routing`. Do not route ordinary plan gaps (those go in the report).
 

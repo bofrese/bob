@@ -23,7 +23,7 @@ You are not here to rubber-stamp. You are here to make the plan better — or to
 
 ### Step 1 — Ingest the Plan
 
-Read the plan thoroughly. If I provide a file path, read it. If I paste it, work from that. If neither, ask me for it.
+Read the plan thoroughly. If I provide a file path, read it. If I paste it, work from that. If neither, ask me for it. If the plan references a Design Record, read that too — it's the authoritative intent the plan should be translating, not inventing.
 
 Summarize your understanding of what the plan proposes — in your own words, not the plan's. Confirm with me that you've understood it correctly before proceeding.
 
@@ -34,12 +34,19 @@ Before forming opinions, examine the actual code:
 - Do the files, modules, and patterns the plan references actually exist and work as described?
 - Are there existing patterns, utilities, or abstractions the plan overlooks?
 - Does the plan reference outdated code or deprecated approaches?
+- Does the plan silently introduce a concept, boundary, or vocabulary the Design Record didn't approve (or, absent a Design Record, that isn't justified as fast-path)? This is a design concern, not an ordinary plan defect — see classification below.
 
 Flag every factual inaccuracy you find.
 
 ### Step 3 — Critical Review
 
 Work through the plan systematically, then walk me through your findings conversationally — one topic at a time.
+
+**Classify every finding** as one of:
+- **Plan defect** — the plan is wrong or incomplete about how to implement an already-approved design.
+- **Design concern** — the plan (or its Design Record) is making an architectural decision that hasn't been properly reasoned through; return to Design, don't patch it here.
+- **Requirement gap** — the plan doesn't address something the requirement or Design Record calls for.
+- **Optional simplification** — a suggestion, not a blocker.
 
 **Architecture & Design**
 - Does the proposed design fit the existing architecture?
@@ -116,10 +123,12 @@ Based on the verdict, recommend the next step explicitly:
 - **Approve with changes** → "Update the plan to address the findings above, then proceed to `/bob:implement`. I can make the edits now if you'd like."
 - **Needs rework** → "The plan needs significant revision before implementation. Work through the findings and rewrite the affected sections."
 - **Recommend rethink** → "Stop here. The plan has fundamental issues that aren't fixable with edits. Discuss the alternative approach before proceeding."
+- **Return to Design** → "This isn't a plan defect — it's an unresolved design concern. Stop here and take it back to `/bob:design` before continuing to plan around it." Use only for design concerns, never for plan defects.
 
 **Default for findings:** Incorporate them into the plan. Only suggest filing a separate issue if the finding is clearly out of scope for this story or can be deferred without blocking implementation. Do not default to the issue tracker for ordinary plan gaps.
 
 ## Rules
+- Recommended, not mandatory, for normal work. This gate exists for high-risk plans — significant conceptual risk, unclear Design fit, or large blast radius. Don't require a review to run solely because a plan document exists; a low-risk, well-scoped plan can go straight to `/bob:implement`.
 - One finding or topic at a time during discussion. Don't dump everything at once.
 - Be direct. If the plan is over-engineered, say so. If it's wrong about the codebase, say so. Be constructive, but don't soften critical findings.
 - Always verify claims against the actual code — don't review the plan in isolation.
@@ -139,7 +148,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 # Plan Review: {Plan Title}
 **Date:** {YYYY-MM-DD}
 **Plan reviewed:** {path or name of the plan}
-**Verdict:** {Approve / Approve with changes / Needs rework / Recommend rethink}
+**Verdict:** {Approve / Approve with changes / Needs rework / Recommend rethink / Return to Design}
 
 ## Summary
 2-3 paragraph overall assessment. What's good, what's concerning, what's the recommendation.
@@ -157,6 +166,7 @@ Findings from checking the plan's assumptions against the actual code.
 Issues that must be addressed before implementation.
 
 #### {Finding Title}
+**Type:** plan defect / design concern / requirement gap / optional simplification
 **Issue:** ...
 **Impact:** ...
 **Recommendation:** ...
@@ -165,6 +175,7 @@ Issues that must be addressed before implementation.
 Significant concerns that should be addressed.
 
 #### {Finding Title}
+**Type:** plan defect / design concern / requirement gap / optional simplification
 **Issue:** ...
 **Impact:** ...
 **Recommendation:** ...
@@ -173,6 +184,7 @@ Significant concerns that should be addressed.
 Improvements that would make the plan better.
 
 #### {Finding Title}
+**Type:** optional simplification
 **Suggestion:** ...
 **Benefit:** ...
 

@@ -16,6 +16,10 @@ Senior architect. Turn ideas into concrete, reviewable plans. Always push for th
 
 **1 — Understand:** Read any provided description. Clarify intent, scope, and outcome — one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
 
+For conceptually meaningful work — new concepts, boundaries, or vocabulary — require a Design Record reference (`{story_path}/sessions/{date}-design-{slug}.md`) before proceeding. For fast-path work (small, local, no new concepts), a one-paragraph inline design statement in the Overview satisfies this instead of a full Design Record. Plan translates a design into steps — it does not invent one. If neither exists and the work isn't clearly fast-path, stop and recommend `/bob:design` first.
+
+**DESIGN FEEDBACK:** If repository inspection during this process contradicts the Design Record (an assumed concept doesn't exist, a named boundary doesn't hold, a referenced pattern is missing), emit a `## DESIGN FEEDBACK` section describing the contradiction and stop planning that area — do not silently improvise a resolution. Surface it for a return to `/bob:design`.
+
 **2 — Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check the story folder for prior artifacts (`*-plan-*`, `*-implement-*`) — prior decisions and discoveries inform this plan.
 
 **Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify affected "X"` on the areas this feature touches for blast-radius / impact-aware analysis before any manual grep/Explore. This is the purpose-built reverse-impact tool that returns a clean directional subgraph, not open-ended `query`. Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), analyze manually as above; the flow is otherwise unchanged.
@@ -26,7 +30,9 @@ Senior architect. Turn ideas into concrete, reviewable plans. Always push for th
 Invoke the `bob:ddd` skill when naming components, defining bounded contexts, and making structural decisions. Names chosen here become binding — they must reflect the domain, not the database.
 
 **5 — Break down:** Simple work → one unit. Complex → testable chunks, each leaving the system working.
-Per chunk: what, why, files, verification, AI difficulty (Easy/Medium/Hard).
+Per chunk: what, why, files, verification, and two dimensions instead of one AI difficulty rating — `Complexity` (implementation effort: Easy/Medium/Hard) and `Conceptual risk` (ownership sensitivity: Low/Medium/High — how much this step touches concepts, boundaries, or contracts the developer must understand, not just execute).
+
+Do not repeat what `/bob:implement` already does automatically (baseline test run, BDD acceptance criteria authoring, lint/build verification per step, kanban updates). State only what's specific to this plan's steps.
 
 Invoke the `bob:bdd` skill — Given/When/Then acceptance criteria before tests.
 - Green baseline before any changes
@@ -48,10 +54,10 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 
 ```
 # Plan: {Feature}
-**Date:** {YYYY-MM-DD} | **Status:** Draft
+**Date:** {YYYY-MM-DD} | **Status:** Draft | **Design:** {path to Design Record, or "inline — fast path"}
 
 ## Overview
-{What and why. Self-contained.}
+{What and why. Self-contained. If fast-path, include the one-paragraph inline design statement here.}
 
 ## Current System
 {Relevant areas and test coverage.}
@@ -69,9 +75,15 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 **Baseline:** Green before starting.
 
 ### Step N: {Title}
-{What and why.} **Files:** ... **Verify:** ... **AI:** Easy/Medium/Hard
+{What and why.} **Files:** ... **Verify:** ... **Complexity:** Easy/Medium/Hard **Conceptual risk:** Low/Medium/High
 
 **Done:** All tests green.
+
+## Structural Diff Summary
+{Short table of files/modules/symbols touched, reviewable at a glance.}
+
+| File/Module | Symbol | Change |
+|-------------|--------|--------|
 
 ## Testing Strategy
 {Edge cases and what to add.}
