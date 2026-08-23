@@ -38,3 +38,15 @@ Within a bounded context, everyone — developers, product people, the code — 
 ## The golden check
 
 Before committing: does the code read like a conversation about the problem? If someone unfamiliar with the internals can follow the domain logic by reading the names alone, the design is working.
+
+## Pre-abstraction checklist
+
+DDD is a lens inside Design, not a mandate for tactical patterns. Before recommending a new entity, value object, service, aggregate, bounded context, or other abstraction, work through all five:
+
+1. Identify the domain distinction it represents.
+2. Show repository or requirement evidence for it.
+3. Explain what concept or special case it removes.
+4. Assess the navigation/reading-path cost of introducing it.
+5. State why existing concepts can't already express the capability.
+
+Allow duplication when the shared concept isn't understood yet — duplication is better evidence-gathering than premature commitment. Reject an abstraction based only on similar code shape (see the generalization policy: semantic reasons, not syntactic similarity).

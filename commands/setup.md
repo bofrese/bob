@@ -42,6 +42,8 @@ ls personal/daily/ 2>/dev/null
 grep -c "knowledge/_INBOX/" .gitignore 2>/dev/null || echo 0
 grep -c "^personal/" .gitignore 2>/dev/null || echo 0
 ls docs/process/done-criteria.md 2>/dev/null
+ls docs/process/learnings.md 2>/dev/null
+ls personal/interaction-profile.md 2>/dev/null
 # Recommended external tool: Ponytail plugin (used by /bob:review for a lean/over-engineering pass)
 grep -q '"ponytail@ponytail"' "$HOME/.claude/plugins/installed_plugins.json" 2>/dev/null && echo "ponytail: installed" || echo "ponytail: NOT installed"
 # Recommended external tool: Obsidian Skills plugin (authoring skills for Obsidian-flavored markdown/bases/canvas)
@@ -97,6 +99,8 @@ Present a concise status table. No changes yet.
 | personal/ notes        | ✓ / ✗           | Create                       |
 | .gitignore entries     | ✓ / ⚠ Partial / ✗ | Add missing entries       |
 | docs/process/done-criteria.md | ✓ / ⚠ Upgrade / ✗ | Create / Patch        |
+| docs/process/learnings.md | ✓ / ✗           | Create (Learn's cross-session staging log) |
+| personal/interaction-profile.md | ✓ / ✗ (optional) | Offer to create      |
 | Story kanbans          | ✓ / ⚠ N missing Obsidian frontmatter | Repair          |
 | _index.md links        | ✓ / ⚠ N missing tasks/notes link     | Repair          |
 | _index.md titles       | ✓ / ⚠ N missing title frontmatter    | Repair          |
@@ -199,6 +203,21 @@ Skip this entire item if `graphify` is not installed - the Step 2 recommendation
 
 3. **Idempotent re-run:** if the graph already exists, do not rebuild. If the hook is missing, offer `graphify hook install`. Always refresh the managed `.graphifyignore` block so the scope stays current as project folders change.
 
+### Step 3b — Bootstrap new skill artifacts (Design/Reflect/Learn rollout)
+
+**`docs/process/learnings.md` missing:** Locate `learn/references/persistence-map.md` in the plugin's `skills/` folder (same parent directory as this file's `commands/` folder). Read its Bootstrap section and create the file exactly as specified there.
+
+**`personal/interaction-profile.md` missing:** This is optional and personal (gitignored) — never auto-create silently. Offer once: "Want a personal interaction-profile file? It lets you set your preferred verbosity/experience-level defaults once instead of restating them per session." If yes, create `personal/` (if missing) and write a minimal starter:
+```markdown
+---
+title: Interaction Profile
+---
+# Interaction Profile
+
+<!-- Personal, gitignored. Notes on your preferred interaction style — verbosity, question pacing, experience level — read by bob:context-protocol at session start. -->
+```
+Ensure `personal/` is already covered by the `.gitignore` entries step above.
+
 ### Step 4 — Upgrade done-criteria
 
 **Missing:** Create `docs/process/` if needed. Locate `done-criteria/SKILL.md` in the plugin's `skills/` folder (same parent directory as this file's `commands/` folder). Read it and copy the Bootstrap Template (content after the final `---` separator) into `docs/process/done-criteria.md`. Replace `{date}` with today.
@@ -235,6 +254,8 @@ One compact table:
 | personal/ | Created / Already present |
 | .gitignore | Added N entries / Already complete |
 | done-criteria | Created / Added N sections: {list} / Already up to date |
+| learnings.md | Created / Already present |
+| interaction-profile.md | Created / Declined / Already present |
 | Story kanbans | Repaired N / Already correct |
 | _index.md links | Repaired N / Already correct |
 | _index.md titles | Repaired N / Already correct |

@@ -37,3 +37,15 @@ Before `/bob:implement` starts, the plan must contain testable acceptance criter
 ## The golden check
 
 Before shipping: does every acceptance criterion from the plan have a passing test or a verified manual check? If not, it's not done.
+
+## Semantic and operational lenses
+
+Behavior-first testing stays primary. When relevant, also check for these — they're where "it works" and "it's correct" diverge:
+
+- meaning-preserving data transformations (does a round-trip actually preserve meaning, not just bytes);
+- units, currency, rounding, nullability, and schema semantics;
+- idempotency, replay, partial failure, and recovery;
+- authorization and information exposure;
+- observable behavior rather than internal structure.
+
+BDD must not invent business semantics. A missing semantic expectation is a question for the human, or a `DESIGN FEEDBACK` item — not something to assume.

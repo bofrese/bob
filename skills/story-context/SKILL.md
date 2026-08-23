@@ -12,6 +12,16 @@ The skill invocation system provides an absolute base directory for this skill. 
 
 ---
 
+## `tracking_required` Decision
+
+Before resolving a story, decide whether this work needs tracking at all:
+
+- `true` — durable Brainstorm, Design, Plan, Review Plan, Implement, Review, Reflect, or Learn artifacts tied to a story. Proceed with the resolution chain below.
+- `false` — read-only analysis, a micro-reflection, or Dev fast-path work, unless the user explicitly asks for tracking. Skip story resolution entirely; do not create or require a story.
+- **Ambiguous** — ask the user directly, once, rather than defaulting either way.
+
+A missing story is a routing question, not proof that work cannot proceed. Never create a story merely to satisfy this protocol.
+
 ## Resolution Chain
 
 Work through the tiers in order. Stop at the first tier that yields a result.

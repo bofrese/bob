@@ -26,6 +26,20 @@ Apply prompt-engineering.md principles:
 
 **Consize Output:** Instrutions on keeping the output efficient and effective. It will frequently be used as context in a new session. So make sure it conserves tokens and context space, while efficiently and effectively communicate the important details, while still be well formatted and human readable. Avoid repetitions. Keep it as short and focused as at all possible. Aim at an experienced developer.
 
+**Human-owned-workflow fitness:** For each command, check it defines:
+- one fundamental cognitive purpose;
+- explicit human-owned decisions;
+- explicit autonomous actions;
+- an evidence policy;
+- escalation/stop conditions;
+- an interaction policy appropriate to experience level;
+- a completion/exit condition;
+- a concise output contract;
+- appropriate progressive-disclosure use;
+- at least one positive and one negative behavior fixture for material command changes;
+- no absolute design doctrine (e.g. "DRY, always");
+- no duplicated shared protocol logic (context-protocol, done-criteria, story-context, work-routing belong in their skills, not restated inline).
+
 ## Process
 
 1. **Ingest** — Read the command file (ask for path if not provided)

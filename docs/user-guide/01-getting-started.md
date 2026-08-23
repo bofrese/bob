@@ -7,7 +7,7 @@ This guide covers installation and your first session—from "what is this?" to 
 
 Bob is a Claude Code plugin that structures AI-assisted development into phases:
 - **Discovery:** Figure out what to build and why (optional, standalone)
-- **Engineering:** Build it disciplined (brainstorm → plan → implement → review)
+- **Engineering:** Build it disciplined (brainstorm → design → plan → implement → review → reflect → learn), proportional to risk — trivial work stays on the `/bob:dev` fast path
 - **Knowledge:** Capture guidelines and documentation so every future session is better
 
 Each phase is a separate session with a clear command. Each session writes its output to files. The next session reads those files. You decide at every step—the AI explores options and surfaces trade-offs.
@@ -153,7 +153,7 @@ See [Commands Reference](06-commands-reference.md) for the full list.
 ## Next Steps
 
 - Read [Project Management](04-project-management.md) to understand how stories and tasks work.
-- Read [Engineering Workflows](02-engineering-workflows.md) to see the full brainstorm → plan → implement → review cycle.
+- Read [Engineering Workflows](02-engineering-workflows.md) to see the full brainstorm → design → plan → implement → review → reflect → learn cycle, and the proportional fast/standard/full paths.
 - Read [Knowledge Management](05-knowledge-management.md) when you've shipped your first feature and need to document it.
 
 ## Troubleshooting

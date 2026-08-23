@@ -1,6 +1,6 @@
 ---
 name: bob
-description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions.
+description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection): if the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once — state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself — only names one.
 user-invocable: true
 ---
 
@@ -11,6 +11,8 @@ Bob is a Claude Code plugin covering the full product development lifecycle — 
 - **Discovery** — product strategy, market validation, personas, positioning
 - **Engineering** — planning, implementing, reviewing, documenting code
 - **Knowledge** — guidelines, domain capture, command quality improvement
+
+**Proactive nudge (bounded):** At most once per session, when the user describes engineering/product work conversationally with no bob command invoked yet, name the single most relevant command in one line (e.g. "This sounds like `/bob:design` territory — new concept, no existing boundary for it.") and continue answering normally. Do not repeat within the session even if the topic recurs. Do not run the command yourself — the human invokes it explicitly. This is discoverability, not ambient phase-selection.
 
 All commands share two mandatory protocols:
 - `bob:context-protocol` — loads current date and the right project files before starting

@@ -8,6 +8,16 @@ version: 0.3.0
 
 Provides the rules for how projects, stories, and tasks are tracked using Obsidian kanban boards and linked markdown files. All other bob skills (brainstorm, plan, review, implement) produce content — this skill governs where and how that content is recorded and linked.
 
+## `tracking_required` Decision
+
+Mirrors `bob:story-context`'s decision — consult it there first; this skill only acts once tracking is confirmed required:
+
+- `true` for durable Brainstorm, Design, Plan, Review Plan, Implement, Review, Reflect, or Learn artifacts tied to a story.
+- `false` for read-only analysis, a micro-reflection, or Dev fast-path work, unless the user requests tracking.
+- Ask only when the task is meaningful but no story can be inferred.
+
+Do not create a story merely to satisfy this protocol.
+
 ## File Structure
 
 ```
@@ -206,8 +216,11 @@ started: YYYY-MM-DD
 | YYYY-MM-DD | [Implementation](sessions/file.md) | What was built | Completed |
 | YYYY-MM-DD | [Investigation](sessions/file.md) | What was investigated | Root cause identified |
 | YYYY-MM-DD | [Code Review](sessions/file.md) | What was reviewed | Approved with concerns |
+| YYYY-MM-DD | [Design](sessions/file.md) | What conceptual model/boundaries were settled | Design Record accepted |
+| YYYY-MM-DD | [Reflection](sessions/file.md) | What ownership check was performed | Confirmed / gap identified |
+| YYYY-MM-DD | [Harness Learning](sessions/file.md) | What lesson was extracted | Persisted / logged only |
 
-All session artifacts (brainstorm, plan, review, review-plan, implementation, investigation, ui-review) are written to `{story_path}/sessions/` — never to the story root. History table links are always `sessions/[filename]`.
+All session artifacts (brainstorm, design, plan, review, review-plan, implementation, investigation, reflection, learn, ui-review) are written to `{story_path}/sessions/` — never to the story root. History table links are always `sessions/[filename]`.
 
 ---
 

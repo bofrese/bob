@@ -213,6 +213,16 @@ Colors, spacing, motion, copy — these express the brand without words. The emo
 
 ---
 
+## 14. Whole-System Alignment Lenses
+
+Beyond any single screen: does the product-wide interaction model still hold together?
+
+- Minimize the number of independent interaction concepts a user must learn across the whole product, not just per screen.
+- Distinguish consistency of *meaning* from mere visual similarity — two elements that look alike but mean different things is worse than two that look different but behave the same way.
+- Evaluate navigation and discoverability across the complete task flow, not just the current screen.
+- Don't let local component consistency make the product-wide experience worse (e.g. reusing a pattern where it doesn't fit just to "be consistent").
+- Treat every guideline and heuristic here as a lens for judgment, not an automatic verdict — a red flag is a prompt to look closer, not an automatic fail.
+
 ## The Expert's Final Check
 
 Before calling any UI done:

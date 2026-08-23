@@ -1,5 +1,5 @@
 # Engineering Workflows
-*Last updated: 2026-06-16*
+*Last updated: 2026-08-23*
 
 The core pipeline: turn ideas into shipped, tested, documented code. This is where you'll spend most of your time.
 
@@ -18,6 +18,24 @@ Brainstorm → Design → Plan → Review Plan → Implement → Review Code →
 Brainstorm decides whether the idea is worth building. Design decides the concept — boundaries, vocabulary, trade-offs — before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
 
 Each step is a separate session (usually separate days). Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
+
+## Proportional Paths — Small Work Stays Small
+
+Not every change earns the full pipeline. Bob classifies work qualitatively (new concept? contract change? boundary crossing? hard to reverse?) and scales accordingly:
+
+- **Fast** — `/bob:dev`. No brainstorm/design/plan/review cycle at all — a working session for local, reversible, conceptually settled changes. If a "quick fix" turns out to cross one of the four questions above, `/bob:dev` says so and recommends `/bob:design` instead of quietly proceeding.
+- **Standard** — Design → Plan → Implement → Review → a short Reflect. Brainstorm is skippable when intent is already clear.
+- **Full** — the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
+
+`/bob:pm` applies this classification when you're not sure which path fits — describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
+
+## Learn — Closing the Loop
+
+After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons — a repeated correction, a missing tool, a prompt gap — and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is now a thin wrapper over `/bob:learn` scoped to a single command.
+
+## Migration Note: Older Plan Artifacts Still Work
+
+Plans written before Design existed as a separate phase often embed their design reasoning directly in a `## Design` section rather than pointing at a separate Design Record. `/bob:implement` accepts that embedded section as a substitute — you do not need to retroactively split old plans into two documents. This applies to any plan predating this rollout, including this plugin's own planning history.
 
 ## Phase 1: Brainstorm
 

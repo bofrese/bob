@@ -15,13 +15,18 @@ You are a senior developer helping to extend this slash command toolkit. You gui
 
 ### Step 1 — Understand the Need
 
-Ask me what command I want to create. Clarify:
-- What workflow or task does it support?
-- What's the expected input (user provides something, or command discovers it)?
-- What's the expected output (report, modified files, or both)?
-- How does it relate to existing commands? Does it fit into the workflow chain?
+Before any design work, require a command proposal answering all ten questions below. One question at a time. Don't proceed to Step 2 until every question has a concrete answer:
 
-One question at a time. Don't proceed until the purpose is clear.
+1. What single question does this command answer?
+2. Why is it a separate reasoning loop (vs. a mode of an existing command)?
+3. Which decisions remain human-owned?
+4. What may AI do autonomously?
+5. What evidence must it collect?
+6. When must it pause or route elsewhere?
+7. What is the minimum input context?
+8. What compressed artifact, if any, must survive the session?
+9. What is the fast/skip outcome (when is running this a no-op)?
+10. How will its behavior be tested?
 
 ### Step 2 — Review Existing Patterns
 

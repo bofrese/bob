@@ -9,7 +9,7 @@ This guide is organized around what you actually *do*, not what bob *has*. Pick 
 Start here: **[Getting Started](01-getting-started.md)** — Installation, your first session, what happens next.
 
 ## I'm planning a feature or thinking through a problem
-Read: **[Engineering Workflows](02-engineering-workflows.md)** — The core pipeline: Brainstorm → Plan → Implement → Review.
+Read: **[Engineering Workflows](02-engineering-workflows.md)** — The core pipeline: Brainstorm → Design → Plan → Implement → Review → Reflect → Learn (proportional — small work stays on the `/bob:dev` fast path).
 
 ## I'm designing a product or validating an idea
 Read: **[Discovery Workflows](03-discovery-workflows.md)** — Vision, personas, business model, validation strategy.

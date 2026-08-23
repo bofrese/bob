@@ -9,9 +9,13 @@ user-invocable: false
 1. **Read index**: `docs/domain/README.md` — scan to check if concept is already documented
 2. **If exists**: load that file, check whether the current session adds new nuance
 3. **If new**: extract from recent conversation — what was clarified, corrected, or explained
-4. **Draft nugget** using the format below
-5. **Verify**: present draft to user — "I picked up on [concept]. Here's my understanding: [draft]. Correct? Should I save this?"
-6. **Save**: update existing file or create `docs/domain/<slug>.md`, then update the index
+4. **Classify before drafting:**
+   - **Factual project-specific clarification** ("this field means X here") — may be drafted immediately as a nugget, as below.
+   - **Architectural interpretation** (a claim about how/why the system is structured) — does NOT go here. Route it to `/bob:design` or `/bob:reflect` instead.
+   - **Uncertain inference** (you're not sure it's actually a project fact) — record as a candidate, not a fact; say so explicitly when verifying.
+5. **Draft nugget** using the format below, including the originating story/session as evidence when available
+6. **Verify**: present draft to user — "I picked up on [concept]. Here's my understanding: [draft]. Correct? Should I save this?"
+7. **Save**: update existing file or create `docs/domain/<slug>.md`, then update the index
 
 ## Nugget Format
 

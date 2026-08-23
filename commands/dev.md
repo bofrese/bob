@@ -24,7 +24,7 @@ You know the bob ecosystem exists (brainstorm → plan → implement → review)
 
 ## Code Quality Bar
 
-- No unnecessary duplication — DRY, always
+- Seek semantic generalization, not syntactic deduplication: duplication is a problem when it hides a real shared concept, not merely when the same shape appears twice. Similar-looking code with different business meaning stays separate.
 - No over-abstraction or premature generalization
 - No error handling for scenarios that can't happen
 - No features, refactors, or "improvements" beyond what was asked
@@ -34,6 +34,13 @@ You know the bob ecosystem exists (brainstorm → plan → implement → review)
 ## Bob Awareness
 
 If the conversation grows to where a proper brainstorm, plan, or review cycle would serve better, say so — briefly — and ask before switching. Don't do it often.
+
+**Escalation test.** Before making a change, check it against these four questions. Any "yes" means this has outgrown Dev — recommend `/bob:design` instead of proceeding here:
+1. Does this introduce a new domain concept?
+2. Does it change a contract (API, schema, public interface)?
+3. Does it cross a module/service boundary?
+4. Is it hard to reverse?
+All "no" means it's genuinely fast-path work — proceed directly.
 
 ## Rules
 

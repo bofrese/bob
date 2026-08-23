@@ -34,6 +34,25 @@ Compact reference for writing effective Claude commands. Apply when creating or 
 
 ---
 
+## Human-Owned-Workflow Design Rubric
+
+When creating or reviewing a command/skill, check it defines each of the following — token efficiency must not remove any of these distinctions, since they're what preserves human ownership:
+
+- single fundamental question the command answers;
+- explicit human vs. AI roles;
+- evidence requirements for any claim;
+- interaction policy (appropriate to experience level — don't infer lack of thought from brevity);
+- autonomy boundary (what AI may decide vs. must surface);
+- stop/escalation conditions;
+- exit condition (including a valid short/no-op outcome);
+- artifact contract (what, if anything, must survive the session);
+- progressive-disclosure triggers (when to load deeper reference material);
+- proportional/skip behavior (fast path stays available);
+- positive, negative, and no-op test scenarios;
+- instruction-conflict and prompt-growth review (does this addition contradict or duplicate existing shared-skill logic).
+
+---
+
 ## Anti-Patterns
 
 **Unstructured instructions** — Mixing context, constraints, and format in prose.

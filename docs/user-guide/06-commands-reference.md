@@ -1,5 +1,5 @@
 # Commands Reference
-*Last updated: 2026-06-23*
+*Last updated: 2026-08-23*
 
 Quick lookup for all bob commands, organized by layer.
 
@@ -238,6 +238,22 @@ Short, non-quizzy peer conversation. Assumes `/bob:review` already settled corre
 
 ---
 
+### `/bob:learn`
+**Extract durable harness lessons, or none.**
+
+Runs at the end of a session (typically after Reflect). Classifies evidence — corrections, interruptions, repeated Review findings, missing tools — into destinations: a durable bob prompt/skill improvement, a staged occurrence (not yet a pattern), or nothing. "No lesson this time" is a valid, common outcome.
+
+| | |
+|---|---|
+| **Reads** | Session evidence (corrections, interruptions, artifacts, accepted/rejected findings), `docs/process/learnings.md` |
+| **Writes** | `{story_path}/{date}-learn-{slug}.md` + updates `docs/process/learnings.md` |
+| **Start here when** | End of a session that exposed a reusable harness lesson |
+| **Time** | 5 – 15min |
+
+`/bob:improve-command` is now a thin, scoped wrapper over this — limited to a single command's improvement.
+
+---
+
 ### `/bob:ui-review`
 **UI/UX review against design principles.**
 
@@ -357,7 +373,7 @@ Reads your kanban boards, assesses project state, recommends what to work on nex
 | **Time** | 10 – 20min |
 
 **Modes:**
-- **Default:** Reads kanbans, tells you what's in flight, ready, and blocked. Recommends next step.
+- **Default:** First checks `bob:story-context` — if you're resuming a specific story, it summarizes that story's state and recommends the next command directly instead of a generic dashboard. Otherwise it treats this as new work, risk-classifies it, recommends fast/standard/full, and only creates a story if tracking is actually needed. Falls through to the kanban dashboard either way.
 - **Context optimization:** "Help me start a session on [feature]" — tells you exactly which files to load and which command to run.
 - **Command recommendation:** Describe what you want to do and pm identifies the right command.
 - **Status report:** Writes a structured report covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
@@ -392,9 +408,9 @@ Finds bloat, ambiguity, missing guardrails. Proposes leaner version.
 ---
 
 ### `/bob:improve-command`
-**Extract learnings from a completed session.**
+**Extract learnings from a completed session — scoped to one command.**
 
-Analyze what worked, what didn't. Propose improvements to command design/process/output.
+A thin wrapper over `/bob:learn`, scoped to a single command's design/process/output. Kept available during the transition; `/bob:learn` is now the primary, session-wide version of this.
 
 | | |
 |---|---|
@@ -453,7 +469,12 @@ Art direction coaching for visual design, UI, brand. Works as a creative partner
 | **Start here when** | You need visual design direction or creative feedback |
 
 ### `/bob:dev`
-Development environment setup and diagnostics.
+**Fast path — no pipeline.** Working session for code discussion, quick fixes, and direct changes: no brainstorm/design/plan/review cycle. Checks each change against a four-question escalation test (new concept? contract change? boundary crossing? hard to reverse?) — any "yes" means it recommends `/bob:design` instead of proceeding.
+
+| | |
+|---|---|
+| **Start here when** | Work is local, reversible, conceptually settled, and easily verified |
+| **Time** | Minutes |
 
 ### `/bob:user-guide`
 Create or maintain the user-facing documentation for this project.

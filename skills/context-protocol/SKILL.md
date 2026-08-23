@@ -17,6 +17,8 @@ Load the minimum context required for this phase's independent judgment. More co
 **Date:** Run `python3 -c "from datetime import date;print(date.today().isoformat(),end='')"`
 If that fails, determine today's date in YYYY-MM-DD via any available command. Use this date in all output filenames and document timestamps.
 
+**Personal interaction profile (optional):** If `personal/interaction-profile.md` exists, read it — a per-developer, gitignored file capturing this individual's interaction preferences (verbosity, question style, experience level). Not repository instructions; skip silently if absent.
+
 **Project familiarity:** Get oriented before starting. If `graphify-out/GRAPH_REPORT.md` exists, read only its `## Community Hubs (Navigation)` section (a few hundred tokens, not the whole report) for a cheap map of the project instead of blind exploration. Otherwise, silently explore the project structure. Commands with specific focus areas note them in their Context block.
 
 ---
