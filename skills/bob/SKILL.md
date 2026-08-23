@@ -63,7 +63,7 @@ Bob reads and writes to predictable locations:
 | `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Translate a Design Record into a reviewable implementation plan |
 | `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
-| `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
+| `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |

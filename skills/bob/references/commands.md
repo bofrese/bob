@@ -332,18 +332,20 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:review` — Code Review
 
-**Purpose:** Review code changes against guidelines, system health, simplicity, security, robustness, plan alignment, and done criteria. Auto-detects scope from git state. Never modifies code.
+**Purpose:** Is the change correct? Review code changes for bugs, design conformance, and system health. Auto-detects scope from git state. Never modifies code.
 
-**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `{story_path}/`, matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
+**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `{story_path}/`, referenced Design Record (or the plan's embedded `## Design` section, legacy fallback), matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
 
 **Writes:** `{story_path}/{date}-review-{slug}.md`
 
-**Review dimensions:**
-- Critical (must fix before merge)
-- Important (should fix)
-- Suggestion (optional improvement)
+**Findings are sorted into three categories, each rated Critical/Important/Suggestion:**
+- Bugs — the code doesn't do what it's supposed to
+- Design-conformance failures — implementation doesn't match the approved Design Record/plan
+- Design concerns — code is correct and conforms, but the design itself now looks wrong; routed to `/bob:design` or `/bob:reflect`, not fixed here
 
-**Checks:** System health, simplicity/DRY, security (OWASP top 10), robustness, plan alignment, done criteria compliance.
+A clean review with no manufactured findings is a valid outcome. Recommends `/bob:reflect` after significant agent-implemented changes.
+
+**Checks:** Bugs, design conformance, system health, simplicity/DRY, security (OWASP top 10), robustness, done criteria compliance.
 
 **System health via the code graph** (when fresh): cross-check changed files against the `GRAPH_REPORT.md` community-hub list for god-node coupling, and derive diff impact from **local git only** (`git diff` changed symbols -> `graphify affected`). No GitHub / `gh` dependency - `graphify prs` is deliberately unused.
 
