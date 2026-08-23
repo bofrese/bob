@@ -106,7 +106,7 @@ Then [observable outcome]
 
 **File I/O:** None (reference framework).
 
-**Invoked by:** `brainstorm` (phase 5), `plan` (step 4)
+**Invoked by:** `plan` (step 4)
 
 **Core discipline:**
 - Let domain drive design — not database schema, not UI structure
@@ -116,7 +116,21 @@ Then [observable outcome]
 
 **When applied in `plan`:** Verify that proposed names and structures reflect domain language, not technical convenience.
 
-**When applied in `brainstorm`:** Validate that the winning idea fits the domain model without requiring awkward workarounds.
+---
+
+## `bob:design` — Conceptual Design Framework
+
+**File I/O:** None (reference framework — the `/bob:design` command owns artifact I/O).
+
+**Invoked by:** `/bob:design`
+
+**Core discipline:** Socratic, evidence-based conceptual design for an experienced developer. The human is the architect; the skill's job is to investigate, expose pressure points, and make weak reasoning visible — not to hand over a finished architecture.
+
+- `references/interaction-policy.md` — pacing and when brevity is sufficient vs. when to push back (the six conditions that make a short answer insufficient)
+- `references/design-lenses.md` — whole-system comprehensibility lenses (SOLID/DRY/DDD etc. as diagnostics, never a scorecard) and the semantic-vs-syntactic generalization policy
+- `references/artifact-template.md` — the Design Record field list and filename convention
+
+**Human decision boundary:** Never silently decide domain meaning, boundaries, semantic contracts, generalization, irreversible migrations, or major trade-offs — record human decisions and AI assumptions separately.
 
 ---
 

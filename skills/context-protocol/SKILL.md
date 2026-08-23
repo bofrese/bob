@@ -8,6 +8,8 @@ user-invocable: false
 
 Follow this protocol at the start of every bob command.
 
+Load the minimum context required for this phase's independent judgment. More context is not automatically better. Preserve decisions and evidence; avoid importing the previous agent's entire reasoning path.
+
 ---
 
 ## Universal (All Commands)
@@ -35,6 +37,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `product-coach` | `docs/product/vision.md`, `docs/product/README.md` |
 | `art-director` | `docs/product/vision.md` |
 | `brainstorm` | `docs/product/vision.md` |
+| `design` | Brainstorm Brief or accepted requirement, relevant domain knowledge, repository structure and similar capabilities. Deliberately excludes full prior conversation. |
 | `plan` | `docs/product/vision.md` |
 | `review-plan` | `docs/product/vision.md` |
 | `implement` | `docs/product/vision.md` |
@@ -58,7 +61,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 
 ## Story Context (Engineering commands)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 After loading the files above, invoke the `bob:story-context` skill.
 Follow its protocol exactly. Do not proceed until story context is confirmed.
@@ -68,7 +71,7 @@ Use the resolved `Path:` from the story-context output block for all artifact pl
 
 ## Kanban Sync (Engineering commands, after story context confirmed)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 After story context is confirmed (and before Guidelines and Knowledge Retrieval), check `{story_path}/_kanban.md`:
 
@@ -89,7 +92,7 @@ Do not block or delay if no match is found. This step is informational — it sy
 
 ## Guidelines (Engineering commands, after scope is clear)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 **If `docs/guidelines/` exists:**
 1. Read `docs/guidelines/README.md` as the navigation index — do not load all guideline files.
@@ -124,7 +127,7 @@ Notify the user: "No project guidelines found — run `/bob:guidelines` to creat
 
 ## Knowledge Retrieval (Engineering commands)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:knowledge` skill (read-only, automatic retrieval) and follow its protocol. This is the retrieval skill, distinct from the `/bob:library` command (interactive vault management).
 
@@ -132,6 +135,6 @@ After resolving story context and loading applicable guidelines, invoke the `bob
 
 ## Code Graph (Engineering commands)
 
-For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:code-graph` skill (read-only, automatic retrieval) and follow its protocol. It skips silently if graphify or the graph is absent.

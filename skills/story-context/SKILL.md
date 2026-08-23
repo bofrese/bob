@@ -1,6 +1,6 @@
 ---
 name: story-context
-description: Invoke this skill at the start of every engineering command (brainstorm, plan, review-plan, implement, review, investigate, ui-review), after loading context files. Resolves which story is active via a 4-tier chain, confirms with the user, and establishes the story folder path for artifact placement. Follow the protocol exactly — do not proceed until story context is confirmed.
+description: Invoke this skill at the start of every engineering command (brainstorm, design, plan, review-plan, implement, review, investigate, ui-review), after loading context files. Resolves which story is active via a 4-tier chain, confirms with the user, and establishes the story folder path for artifact placement. Follow the protocol exactly — do not proceed until story context is confirmed.
 version: 1.0.0
 ---
 

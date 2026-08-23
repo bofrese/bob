@@ -6,14 +6,16 @@ The core pipeline: turn ideas into shipped, tested, documented code. This is whe
 ## The Pipeline at a Glance
 
 ```
-Brainstorm (idea) → Plan (how to build) → Implement (write code) → Review (quality check) → Done
+Brainstorm (idea) → Design (concept) → Plan (how to build) → Implement (write code) → Review (quality check) → Done
 ```
 
 But there's a critical step you might miss: **Review the plan before implementing.** A fresh set of eyes catches problems that the planning session missed.
 
 ```
-Brainstorm → Plan → Review Plan → Implement → Review Code → Done
+Brainstorm → Design → Plan → Review Plan → Implement → Review Code → Done
 ```
+
+Brainstorm decides whether the idea is worth building. Design decides the concept — boundaries, vocabulary, trade-offs — before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
 
 Each step is a separate session (usually separate days). Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
 
@@ -26,21 +28,45 @@ Each step is a separate session (usually separate days). Each session reads the 
 **The AI guides you through:**
 1. **Diverge** — What are different ways to solve this? What alternatives exist?
 2. **Converge** — Which approach is best given what matters (effort, impact, user value, technical fit)?
-3. **Detail** — Flesh out the chosen approach. What's the user experience? What are the components?
-4. **Validate** — Does this fit in the codebase cleanly? Any refactoring needed upfront?
-5. **Commit** — Summarize what we're doing, open questions, and confirm you're ready to move forward.
+3. **Detail** — Flesh out the chosen approach. What's the user experience? What are the limitations?
+4. **Commit** — Summarize what we're doing, open questions, and confirm you're ready to move forward.
 
-**Output:** `{story_path}/{date}-brainstorm-{slug}.md`
+Brainstorm challenges the idea for value. It does not decide architecture — that's Design's job next.
 
-A complete record of what you discussed, what you considered, what you decided, and why. This becomes input to planning.
+**Output:** `{story_path}/{date}-brainstorm-{slug}.md` (a Brainstorm Brief)
+
+A complete record of what you discussed, what you considered, what you decided, and why. This becomes input to Design (or straight to Plan, if the requirement is already stable and simple).
 
 **Time:** 30 minutes to 1.5 hours depending on complexity.
 
 ---
 
-## Phase 2: Plan
+## Phase 2: Design
 
-**When:** After brainstorm, before any code is written.
+**When:** After brainstorm, for conceptually meaningful work. Skip straight to Plan when the requirement is already stable and simple.
+
+**What you do:** Run `/bob:design`. The AI reads your Brainstorm Brief (or accepted requirement), inspects the repository for existing concepts and boundaries, and runs a Socratic conversation — one question or tightly-related batch at a time.
+
+**The AI works through:**
+- What existing concept in the codebase might already express this?
+- What genuine new concept, if any, is needed?
+- What complexity does this remove, introduce, or move?
+- Where would another developer start reading this?
+- What future change would put pressure on this design?
+
+You're treated as an experienced developer: concise, specific answers are accepted as-is. The AI only pushes back when a material term is ambiguous, a trade-off is left unowned, or the answer conflicts with what it found in the repository.
+
+**Output:** `{story_path}/{date}-design-{slug}.md` (a Design Record)
+
+The authoritative conceptual intent that Plan, Review Plan, Implement, Review, and Reflect all read from. A valid outcome can also be "return to Brainstorm," "investigate first," or "do not build" — Design isn't required to end in a green light.
+
+**Time:** 20 minutes to 1 hour depending on conceptual weight.
+
+---
+
+## Phase 3: Plan
+
+**When:** After Design (or after Brainstorm/a known requirement, for simple work), before any code is written.
 
 **What you do:** Run `/bob:plan` and point it at your brainstorm report (or just the story context if bob detects it):
 
@@ -67,7 +93,7 @@ The plan is self-contained: someone who wasn't in the brainstorm conversation co
 
 ---
 
-## Phase 3: Review the Plan (Don't Skip This)
+## Phase 4: Review the Plan (Don't Skip This)
 
 **When:** Plan is written but before implementation starts.
 
@@ -93,7 +119,7 @@ If the review flags problems: update the plan and re-review it if needed. If the
 
 ---
 
-## Phase 4: Implement
+## Phase 5: Implement
 
 **When:** Plan is reviewed and approved.
 
@@ -120,7 +146,7 @@ The implementation report documents what was built, any deviations from the plan
 
 ---
 
-## Phase 5: Code Review
+## Phase 6: Code Review
 
 **When:** Implementation is complete and tests pass.
 
@@ -149,7 +175,7 @@ A handoff document: anyone can read this and own the code confidently.
 
 ---
 
-## Phase 6: Document
+## Phase 7: Document
 
 **When:** Code is shipped (merged or in production).
 
@@ -196,19 +222,22 @@ Once you've done this a few times, it becomes a rhythm:
 **Day 1 — Brainstorm**
 Morning coffee, 1 session, 1 artifact, clear direction.
 
-**Day 2 — Plan**
+**Day 2 — Design**
+Concept locked down: boundaries, vocabulary, trade-offs. Skip this day for simple, stable work.
+
+**Day 3 — Plan**
 New session, fresh thinking, complete plan written.
 
-**Day 3 — Review Plan**
+**Day 4 — Review Plan**
 Catch problems the planning session missed.
 
-**Day 4 — Implement**
+**Day 5 — Implement**
 Follow the plan, write code, verify it works.
 
-**Day 5 — Review**
+**Day 6 — Review**
 Freshly reviewed code with guidelines applied.
 
-**Day 6 — Document**
+**Day 7 — Document**
 Capture what you built so the next person understands it.
 
 Do it again next week with a different feature. By the tenth feature, you'll notice the quality is consistent, decisions are recorded, and context doesn't disappear between sessions.

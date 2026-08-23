@@ -136,28 +136,43 @@ The core pipeline: idea → plan → code → review → shipped.
 ### `/bob:brainstorm`
 **Structured ideation for a feature.**
 
-Coaches you through diverge → converge → detail → validate. Loads DDD principles.
+Coaches you through diverge → converge → detail → commit. Challenges the idea for value — does not decide architecture.
 
 | | |
 |---|---|
-| **Reads** | `docs/product/vision.md` (if present), DDD principles |
-| **Writes** | `{story_path}/{date}-brainstorm-{slug}.md` |
+| **Reads** | `docs/product/vision.md` (if present) |
+| **Writes** | `{story_path}/{date}-brainstorm-{slug}.md` (a Brainstorm Brief) |
 | **Start here when** | You have an idea and want to think it through properly |
-| **Process** | Seed → Diverge → Converge → Detail → Validate → Commit |
+| **Process** | Seed → Diverge → Converge → Detail → Commit |
 | **Time** | 30min – 1.5hrs |
 
 ---
 
+### `/bob:design`
+**Form the simplest coherent conceptual design for a capability.**
+
+Socratic, evidence-based, and human-owned. Investigates the repository first, then runs a Socratic conversation about concepts, boundaries, and trade-offs — one question or tightly-related batch at a time.
+
+| | |
+|---|---|
+| **Reads** | Brainstorm Brief or accepted requirement, repository evidence (code graph when fresh, else manual exploration) |
+| **Writes** | `{story_path}/{date}-design-{slug}.md` (a Design Record) |
+| **Start here when** | After brainstorm, for conceptually meaningful work; skip for stable, simple requirements |
+| **Output includes** | Existing/new concepts, boundaries, trade-offs, alternatives rejected, human-owned decisions, AI assumptions, unresolved questions |
+| **Time** | 20min – 1hr |
+
+---
+
 ### `/bob:plan`
-**Turn a brainstorm into a concrete implementation plan.**
+**Turn a Design Record (or a simple accepted requirement) into a concrete implementation plan.**
 
 Self-contained so someone without the conversation context can execute it. Loads BDD principles for testing.
 
 | | |
 |---|---|
-| **Reads** | Brainstorm report, `docs/guidelines/`, BDD principles |
+| **Reads** | Design Record (or brainstorm/requirement for simple work), `docs/guidelines/`, BDD principles |
 | **Writes** | `{story_path}/{date}-plan-{slug}.md` |
-| **Start here when** | After brainstorm, before code |
+| **Start here when** | After design (or after brainstorm/a known requirement, for simple work), before code |
 | **Output includes** | Approach, test strategy, implementation steps, questions & decisions, risks |
 | **Time** | 30min – 1hr |
 

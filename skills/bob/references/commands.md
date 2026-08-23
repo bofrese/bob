@@ -218,22 +218,40 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:brainstorm` — Feature Ideation
 
-**Purpose:** Structured feature brainstorm using a 6-phase process. Pushes toward simpler and more generic solutions. Validates fit against the codebase before committing.
+**Purpose:** Structured feature brainstorm using a 5-phase process. Challenges the idea for value and explores outcome-level alternatives — does not decide architecture. Routes to `/bob:design` for conceptually meaningful work.
 
-**Reads:** `docs/product/vision.md` (optional), project codebase (Phase 5).
+**Reads:** `docs/product/vision.md` (optional).
 
-**Writes:** `{story_path}/{date}-brainstorm-{slug}.md`
+**Writes:** `{story_path}/{date}-brainstorm-{slug}.md` (a Brainstorm Brief)
 
 **Process:**
 1. Seed: problem statement and constraints
 2. Diverge: generate quantity without filtering (min 8 ideas)
 3. Converge: cluster and score (impact × effort × fit)
-4. Detail: flesh out top 1–2 ideas
-5. Validate: check fit against codebase (survey the code graph first when fresh - `graphify query`; else manual exploration; DDD lens)
-6. Commit: decision with rationale
-7. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately — invoke `bob:work-routing`
+4. Detail: flesh out top 1–2 ideas (concept level only)
+5. Commit: accepted capability statement, open questions; route to `/bob:design` or `/bob:plan`
+6. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately — invoke `bob:work-routing`
 
-**Skills:** `context-protocol`, `code-graph` (phase 5 survey), `ddd` (phase 5), `domain-knowledge` (on correction), `work-routing` (step 7), `done-criteria`
+**Skills:** `context-protocol`, `domain-knowledge` (on correction), `work-routing` (step 6), `done-criteria`
+
+---
+
+## `/bob:design` — Conceptual Design
+
+**Purpose:** Socratic, evidence-based session to form the simplest coherent conceptual design for a capability — concepts, boundaries, vocabulary, trade-offs — before any implementation planning starts. The human owns every material decision; the command investigates, challenges, and exposes pressure points rather than handing over a finished architecture.
+
+**Reads:** Brainstorm Brief or accepted requirement, repository evidence (code graph query when fresh, else manual exploration), relevant domain knowledge.
+
+**Writes:** `{story_path}/{date}-design-{slug}.md` (a Design Record) — the authoritative intent consumed by Plan, Review Plan, Implement, Review, and Reflect.
+
+**Process:**
+1. Start with evidence: load requirement, survey the repository (graph-first) before asking broad questions
+2. Socratic design conversation: one question/batch at a time, evidence-consistent brevity accepted, alternatives proposed only after the human has engaged
+3. Required challenges: existing concept reuse, new concepts, complexity removed/introduced/moved, reading path, future pressure, remaining awkwardness
+4. **PM step:** Route out-of-scope findings — invoke `bob:work-routing`
+5. Exit and record: may conclude "return to Brainstorm," "investigate first," "do not build," or a completed Design Record
+
+**Skills:** `context-protocol`, `design` (interaction policy, lenses, artifact template), `code-graph` (phase 1 evidence), `domain-knowledge` (on correction), `work-routing` (step 4), `done-criteria`
 
 ---
 

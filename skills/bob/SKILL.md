@@ -58,7 +58,8 @@ Bob reads and writes to predictable locations:
 
 | Command | Writes | Purpose |
 |---|---|---|
-| `/bob:brainstorm` | `{story_path}/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit |
+| `/bob:brainstorm` | `{story_path}/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit; routes to Design |
+| `/bob:design` | `{story_path}/{date}-design-{slug}.md` | Socratic conceptual design: concepts, boundaries, trade-offs, human-owned decisions |
 | `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Turn idea into reviewable implementation plan |
 | `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against the codebase |
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` | Execute an approved plan with engineering discipline |
@@ -104,7 +105,8 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
 | `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Behaviour 6) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
-| `bob:ddd` | `brainstorm`, `plan` | Domain-driven naming and bounded contexts |
+| `bob:ddd` | `plan` | Domain-driven naming and bounded contexts |
+| `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, comprehensibility lenses, Design Record template |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
 | `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
 | `bob:positioning-strategy` | `positioning`, `product-coach` | Five-component positioning, differentiation |
@@ -127,7 +129,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 `product-vision` → `problem-space` → `personas` → `validation-plan` → `business-plan` → `positioning` → `design-brief`
 
 **New feature:**
-`brainstorm` → `plan` → `review-plan` → `implement` → `review`
+`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review`
 
 **Bug:**
 `investigate` → `plan` → `implement` → `review`

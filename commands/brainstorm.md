@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Guided brainstorm for new features. Coaches through diverge → converge → detail → validate → commit.
+description: Guided brainstorm for new features. Coaches through diverge → converge → detail → commit.
 ---
 
 ## Context
@@ -8,12 +8,12 @@ description: Guided brainstorm for new features. Coaches through diverge → con
 
 ## Role
 
-Senior product/software design coach. Guide through structured brainstorm—one question at a time, constructively critical, curious. Push toward generic solutions over special cases.
+Senior product coach. Guide through structured brainstorm—one question at a time, constructively critical, curious. Challenge the idea for value; leave conceptual architecture to `/bob:design`.
 
 ## Core Principles
 
-- **Simplicity first.** Push toward simpler, more generic solutions. If an idea needs many special cases, we haven't found the right abstraction. Challenge requirements to unlock cleaner approaches.
-- **Architectural coherence.** The system must remain clean after this feature is added. If the idea doesn't fit cleanly, adapt the idea or plan refactoring upfront—never bolt things on.
+- **Outcome-level exploration.** Challenge the idea by exploring alternative outcomes and approaches — what else would serve this user need, more simply or more ambitiously? Push for value, not for genericity of implementation.
+- **No architecture agreement required.** Do not decompose into components, assess codebase fit, or require architectural consensus before completing. That's `/bob:design`'s job, working from this brainstorm's output.
 
 ## Process
 
@@ -26,7 +26,7 @@ Confirm the user is ready before moving to the next phase.
 
 ### Phase 1 — Seed
 Before asking your first question, orient the user:
-- Name the 6 phases: Seed → Diverge → Converge → Detail → Validate → Commit
+- Name the 5 phases: Seed → Diverge → Converge → Detail → Commit
 - Tell them they can say **"save"** at any time to write the report and exit
 
 Then ask what we're brainstorming. Clarify until you understand the intent, user need, and problem.
@@ -51,27 +51,18 @@ For chosen direction:
 
 Concept level only. Do not write code.
 
-### Phase 5 — Validate Against Codebase
-Invoke the `bob:ddd` skill when decomposing into components.
+### Phase 5 — Commit
+Summarize: feature, approach, accepted capability, open questions. Ask if I'm ready to commit.
 
-**Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify query "<question>"` to survey what already exists before decomposing into components or generating options (the open-ended survey shape fits this "how do the relevant parts work today" question). Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), examine the architecture manually as below; the flow is otherwise unchanged.
-
-Examine project architecture:
-- **Current state:** How relevant parts work now
-- **Fit:** Does this slot in cleanly or require refactoring?
-- **Patterns:** Aligns with existing or introduces new?
-- **UI consistency:** Fits current conventions?
-
-If the idea doesn't fit cleanly, adapt it or identify required refactoring. Flag poor fit directly.
-
-### Phase 6 — Commit
-Summarize: feature, approach, fit assessment, open questions. Ask if I'm ready to commit.
+Tell the user their next step: `/bob:design` for conceptually meaningful work, or straight to `/bob:plan` if the requirement is already stable and simple (see Rules).
 
 **PM step:** Route any rejected alternatives or deferred ideas from this brainstorm that might be worth pursuing separately. For each: invoke the `bob:work-routing` skill and follow its protocol (typically INBOX, possibly tagged as story candidate).
 
 ## Rules
 - If I say "save", write report regardless of current phase
 - Do not write code. Exploration only.
+- Do not decompose into components, assess codebase fit, or invoke `bob:ddd` — that responsibility moved to `/bob:design`.
+- Route explicitly to `/bob:design` for conceptually meaningful work; permit skipping Brainstorm entirely when a stable accepted requirement already exists.
 - When the user corrects a domain misunderstanding or explains project-specific terminology, invoke the `bob:domain-knowledge` skill immediately — do not ask the user to trigger it.
 
 ## Report
@@ -85,34 +76,26 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 **Date:** {YYYY-MM-DD}
 **Status:** {Committed / Exploratory / Parked}
 
-## Problem Statement
+## Problem / Opportunity
 
-## Options Considered
+## Stakeholders
+
+## Desired Outcome & Value
+
+## Strategic Fit
+
+## Directions Considered
 | Option | Summary | Pros | Cons |
 |--------|---------|------|------|
 | ... | ... | ... | ... |
 
-## Chosen Direction
+## Accepted Capability Statement
 
-## Feature Concept
+## Assumptions
 
-### User Perspective
+## Constraints & Non-Goals
 
-### Limitations & Scope
-
-### Key Design Decisions
-
-## Codebase Fit Assessment
-
-### Current State
-
-### Architecture Alignment
-
-### Affected Areas
-
-### Suggested Refactoring
-
-## Open Questions
+## Unresolved Product Questions
 
 ## Next Steps
 ```

@@ -32,6 +32,7 @@ Which items apply:
 - `implement` → Code changes section
 - `plan` → Plans section
 - `review`, `review-plan` → Reviews section
+- `design` → Design section. Completion is not "all sections filled" — unresolved uncertainty explicitly marked as safe to defer is a valid result.
 - `document` → Documentation section
 - Product-tier commands (`product-vision`, `design-brief`, `personas`) → check that output is self-contained and readable without prior context
 
@@ -101,7 +102,7 @@ If your command discovered issues, technical debt, or improvement opportunities 
 
 **Step 4:** After filing, confirm: "Filed to kanban: [summary — e.g., BOB-004 Issues +2, INBOX +1]." For 🔴 Critical items: name them explicitly in the summary.
 
-Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm` — engineering tier commands that touch or read code.
+Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm`, `design` — engineering tier commands that touch or read code.
 
 **Skip if already routed:** If a mid-session PM step already ran during this session and routed all discovered items, skip Behaviour 6 to avoid prompting the user twice for the same items.
 
@@ -116,7 +117,7 @@ After producing any output artifact, add one row to `{story_path}/_index.md` his
 ```
 
 Where:
-- `{type}` is the command type (Brainstorm, Plan, Plan Review, Implementation, Code Review, Investigation, UI Review)
+- `{type}` is the command type (Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Investigation, UI Review)
 - `{filename}` is `sessions/[artifact-filename]` — all session artifacts live in the story's `sessions/` subfolder, never at the story root
 - `{one-line summary}` is what was done
 - `{outcome}` is the result (e.g. Committed, Draft, Ready, Approve with changes, Completed, Root cause identified)
@@ -170,6 +171,12 @@ Every command checks applicable items before finishing.
 ### Reviews (`review`, `review-plan`)
 - [ ] Findings categorised by severity
 - [ ] Action items are actionable and prioritised
+
+### Design (`design`)
+- [ ] Material concepts and human-owned decisions are explicit
+- [ ] Repository claims have evidence
+- [ ] Complexity removed, introduced, or moved is addressed
+- [ ] Blocking uncertainty is resolved or clearly marked
 
 ---
 
