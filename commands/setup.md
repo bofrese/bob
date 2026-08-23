@@ -42,6 +42,23 @@ ls personal/daily/ 2>/dev/null
 grep -c "knowledge/_INBOX/" .gitignore 2>/dev/null || echo 0
 grep -c "^personal/" .gitignore 2>/dev/null || echo 0
 ls docs/process/done-criteria.md 2>/dev/null
+# Recommended external tool: Ponytail plugin (used by /bob:review for a lean/over-engineering pass)
+grep -q '"ponytail@ponytail"' "$HOME/.claude/plugins/installed_plugins.json" 2>/dev/null && echo "ponytail: installed" || echo "ponytail: NOT installed"
+# Recommended external tool: Obsidian Skills plugin (authoring skills for Obsidian-flavored markdown/bases/canvas)
+grep -q '"obsidian@obsidian-skills"' "$HOME/.claude/plugins/installed_plugins.json" 2>/dev/null && echo "obsidian-skills: installed" || echo "obsidian-skills: NOT installed"
+
+# Recommended external tool: graphify (code knowledge graph - powers bob:code-graph; min version 0.9.11)
+if command -v graphify >/dev/null 2>&1; then
+  gv=$(graphify --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+  echo "graphify: installed ${gv:-unknown}"
+  [ -f graphify-out/graph.json ] && echo "graphify graph: built" || echo "graphify graph: NOT built"
+  # `graphify hook status` always exits 0, so parse its text, not the exit code
+  graphify hook status 2>/dev/null | grep -q 'post-commit: installed' && echo "graphify hook: installed" || echo "graphify hook: not installed"
+else
+  echo "graphify: NOT installed"
+fi
+[ -f .graphifyignore ] && echo ".graphifyignore: present" || echo ".graphifyignore: absent"
+[ -d website/src ] && echo "b2 website: present" || echo "b2 website: absent"
 
 # Orphan markdown: .md files outside all managed locations (including docs/)
 find . -name "*.md" \
@@ -87,7 +104,20 @@ Present a concise status table. No changes yet.
 | Kanban new-line-trigger | ✓ / ⚠ N missing                     | Repair          |
 | Session files at story root | ✓ / ⚠ N found                   | Move to sessions/ |
 | Orphan .md files       | N found         | Review manually              |
+| Ponytail plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
+| Obsidian Skills plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
+| graphify (recommended) | ✓ installed vX.Y.Z / ⚠ below 0.9.11 / ✗ not installed | Recommend install/upgrade |
+| graphify graph + hook | ✓ built + hook / ⚠ built, no hook / ✗ not built | Offer build + hook |
+| .graphifyignore corpus scope | ✓ current / ⚠ stale / ✗ absent | Write/refresh scope |
 ```
+
+Recommendations only - never install anything automatically.
+
+**If Ponytail is not installed:** a "lazy senior developer" reviewer that `/bob:review` uses for an over-engineering pass. Install with `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail` — more at https://ponytail.dev.
+
+**If Obsidian Skills is not installed:** authoring skills for Obsidian-flavored markdown, Bases, and Canvas — bob is optimized for Obsidian and produces better-formatted notes when it is present. Install with `/plugin marketplace add kepano/obsidian-skills` then `/plugin install obsidian@obsidian-skills`. Note: bob's own `bob:obsidian` skill remains authoritative for vault mutations (rename/move) — its approval-gated workflow takes precedence over the plugin's generic `obsidian-cli` skill.
+
+**If graphify is not installed (or older than 0.9.11):** graphify builds a persistent code knowledge graph that `bob:code-graph` queries so engineering commands orient from real structure instead of blind exploration. It is a separate third-party tool - recommend, never silent-install. Install with `uv tool install graphifyy` (the PyPI package is `graphifyy`, double-y, not a typo); upgrade a too-old copy with `uv tool upgrade graphifyy`. bob requires **>= 0.9.11**. Everything degrades gracefully when it is absent - bob behaves exactly as today.
 
 If everything is ✓: say "All bob infrastructure is present and up to date. Nothing to do." and stop.
 
@@ -140,6 +170,35 @@ title: Scratchpad
 
 For each of `knowledge/_INBOX/` and `personal/` not already present in `.gitignore`: append to `.gitignore`.
 
+**graphify corpus scope and provisioning (only when graphify is installed):**
+
+Skip this entire item if `graphify` is not installed - the Step 2 recommendation already covers that case, and there is nothing to consume a scope file yet. If the installed version is below `0.9.11`, print the upgrade recommendation (`uv tool upgrade graphifyy`) and skip the build/hook offers, but still write the scope file below.
+
+1. **Write / refresh `.graphifyignore`** at the project root. This is bob-managed and idempotent: regenerate the block between the managed markers on every run so the scope tracks folders as they come and go; preserve anything the user added outside the markers. `.graphifyignore` uses gitignore semantics (merged with `.gitignore`, `!` negation, last-match-wins), so excluding the historical tiers leaves everything else (code + authoritative content) in the corpus. Add the `website/dist/` line **only when `website/src/` exists** (the b2 website signal) so the generated site does not duplicate its source; never add website lines otherwise (no bob-to-b2 coupling). Content:
+
+   ```gitignore
+   # >>> bob:graphify corpus scope (managed by /bob:setup - regenerated on each run) >>>
+   # gitignore semantics: merged with .gitignore, ! negates, last-match-wins.
+   # A .graphifyinclude allowlist can opt hidden paths back in if ever needed.
+   #
+   # Corpus tiers:
+   #   Code                  - application/source files (kept)
+   #   Authoritative content - docs/, knowledge/, website/src/ (kept)
+   #   Historical (excluded) - projects/, ai/ (~74% of observed semantic cost, low authority)
+
+   # Historical: excluded
+   projects/
+   ai/
+
+   # Website: keep src/ as authoritative content, drop the generated build (b2 only)
+   website/dist/
+   # <<< bob:graphify corpus scope <<<
+   ```
+
+2. **Offer to build the graph** - only if `graphify-out/graph.json` does not yet exist. Surface the first-build cost for large corpora ("large repos can be expensive: hundreds of files / millions of words on the first pass"), and note the scope file above already trims the historical tiers. Offer to run `/graphify .` (initial build) and `graphify hook install` (post-commit auto-rebuild so the graph stays fresh). Never run either without confirmation.
+
+3. **Idempotent re-run:** if the graph already exists, do not rebuild. If the hook is missing, offer `graphify hook install`. Always refresh the managed `.graphifyignore` block so the scope stays current as project folders change.
+
 ### Step 4 — Upgrade done-criteria
 
 **Missing:** Create `docs/process/` if needed. Locate `done-criteria/SKILL.md` in the plugin's `skills/` folder (same parent directory as this file's `commands/` folder). Read it and copy the Bootstrap Template (content after the final `---` separator) into `docs/process/done-criteria.md`. Replace `{date}` with today.
@@ -184,6 +243,11 @@ One compact table:
 | Session files at story root | Moved N / None found |
 | Orphan files | N found (see above) / None |
 | Unstructured docs | N found (see above) / None |
+| Ponytail plugin | Installed / Recommended (not installed) |
+| Obsidian Skills plugin | Installed / Recommended (not installed) |
+| graphify | Installed vX.Y.Z / Recommended (install or upgrade to >= 0.9.11) |
+| graphify graph + hook | Offered build/hook / Already built / N/A (not installed) |
+| .graphifyignore corpus scope | Written / Refreshed / Unchanged / N/A (not installed) |
 
 List any manual steps remaining (e.g., Obsidian wikilinks setting).
 
@@ -191,7 +255,8 @@ List any manual steps remaining (e.g., Obsidian wikilinks setting).
 
 - Audit before acting. Never modify without showing the plan first.
 - One confirmation covers all changes — don't prompt per item.
-- Never overwrite or truncate existing files — only create missing files or append to existing ones.
+- Never overwrite or truncate existing files - only create missing files or append to existing ones. The one exception is the `.graphifyignore` managed block, which is regenerated between its markers each run; content outside the markers is always preserved.
+- Never silent-install third-party tools (graphify, plugins). Recommend and, for graphify, offer to run the build/hook only with explicit confirmation.
 - Never remove or reorder existing done-criteria sections.
 - If `projects/` exists but has no subdirectories, still offer to create the first subproject.
 - Skip silently any step where the target already exists and is up to date.

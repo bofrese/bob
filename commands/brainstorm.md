@@ -54,6 +54,8 @@ Concept level only. Do not write code.
 ### Phase 5 — Validate Against Codebase
 Invoke the `bob:ddd` skill when decomposing into components.
 
+**Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify query "<question>"` to survey what already exists before decomposing into components or generating options (the open-ended survey shape fits this "how do the relevant parts work today" question). Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), examine the architecture manually as below; the flow is otherwise unchanged.
+
 Examine project architecture:
 - **Current state:** How relevant parts work now
 - **Fit:** Does this slot in cleanly or require refactoring?

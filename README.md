@@ -103,6 +103,28 @@ This is the memory layer. The reason `/bob:review` can check a feature against i
 
 See more on [finding and installing claude plugins here](https://code.claude.com/docs/en/discover-plugins)
 
+**Recommended companions** (`/bob:setup` recommends both if missing):
+
+**[Ponytail](https://ponytail.dev)** — a "lazy senior developer" reviewer that keeps code lean. `/bob:review` runs `/ponytail-review` as an over-engineering pass when it is installed.
+
+```claude
+/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail
+```
+
+**[Obsidian Skills](https://github.com/kepano/obsidian-skills)** — authoring skills for Obsidian-flavored markdown, Bases, and Canvas. Bob is optimized for Obsidian and produces better-formatted notes when it is present. (Bob's own `bob:obsidian` skill stays authoritative for vault mutations like rename/move.)
+
+```claude
+/plugin marketplace add kepano/obsidian-skills
+/plugin install obsidian@obsidian-skills
+```
+
+**graphify** - builds a persistent code knowledge graph that bob's engineering commands query (via `bob:code-graph`) to orient from real structure instead of blind exploration. `/bob:setup` recommends it, offers to build the graph and install the post-commit auto-rebuild hook, and writes a scoped `.graphifyignore`. bob requires **>= 0.9.11**; everything degrades gracefully when graphify is absent.
+
+```bash
+uv tool install graphifyy   # package is "graphifyy" (double-y), not a typo
+```
+
 ### Developing Bob
 
 To work on bob itself, clone the repo and pass the directory as a plugin when starting Claude:
@@ -182,4 +204,4 @@ Created by **[Bo Frese](https://bofrese.dk)** — [bofrese.dk](https://bofrese.d
 
 Bo works at the intersection of software development and agile process design — with a particular focus on how teams can integrate AI tools effectively into their workflows without losing the things that make good development good: human judgment, architectural discipline, and the ability to actually understand what you're shipping.
 
-If you're looking for hands-on development help, or if your team wants to think more carefully about how AI fits into your process, Bo is available for both. More at [bofrese.dk](https://bofrese.dk) and [agilecoach.dk](https://agilecoach.dk).
+If you're looking for hands-on development help, or if your team wants to think more carefully about how AI fits into your process, Bo is available for both. More at [bofrese.dk/ai](https://bofrese.dk/ai) 

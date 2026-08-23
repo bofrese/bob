@@ -95,7 +95,7 @@ Bob reads and writes to predictable locations:
 
 ## Skills — Quick Reference
 
-Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria`, `domain-knowledge`, and `knowledge` retrieval).
+Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria`, `domain-knowledge`, `knowledge` retrieval, and `code-graph` detection).
 
 | Skill | Invoked by | Role |
 |---|---|---|
@@ -116,6 +116,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
 | `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
 | `bob:knowledge` | `context-protocol` (every engineering command) | Retrieval skill: load relevant vault notes into context silently; distinct from `/bob:library` command |
+| `bob:code-graph` | `context-protocol` (every engineering command) | Detect a graphify code graph, gate freshness, emit query policy silently; delegates all traversal to graphify. Degrades silently if graphify absent |
 | `bob:vault` | `/bob:library` | Vault management controller: routes to process, ingest, organise, bootstrap sub-files; owns Python scripts |
 
 ---

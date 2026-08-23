@@ -12,12 +12,13 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 
 **What it does:**
 1. Get current date via `python3 -c "import datetime; print(datetime.date.today())"`
-2. Load project familiarization (README, package.json/pyproject.toml, project structure)
+2. Load project familiarization (README, package.json/pyproject.toml, project structure); if `graphify-out/GRAPH_REPORT.md` exists, read only its `## Community Hubs (Navigation)` section for a cheap project map instead of blind exploration
 3. Load per-command files from the loading table
 4. For engineering commands: invoke `bob:story-context` to resolve the active story
 5. **Kanban Sync** (engineering commands, after story context): read `{story_path}/_kanban.md`, semantically match a task card to the current session, and move it to `## in progress` if confident. Ask user if multiple candidates. Skip silently if no match or no kanban.
 6. For engineering commands: load `docs/guidelines/` selectively once scope is clear
 7. For engineering commands: invoke `bob:knowledge` for relevant vault retrieval
+8. For engineering commands: invoke `bob:code-graph` for graph freshness + query capability (skips silently if graphify/graph absent)
 
 **Per-command loading table (selected):**
 
@@ -328,6 +329,23 @@ description: [one line, what and when]
 5. Add standing retrieval instruction that stays active for the rest of the session
 
 **Skip conditions:** `knowledge/README.md` not found; file already loaded this session (no duplicate loads).
+
+---
+
+## `bob:code-graph` - Code Graph Query Capability
+
+**File I/O:** Read-only capability detection. Never loads or traverses `graph.json`; all dynamic queries delegate to graphify's CLI/skill. Never writes; never rebuilds.
+
+**Invoked by:** `bob:context-protocol` at the start of every engineering command (symmetrical with `bob:knowledge`).
+
+**What it does:**
+1. Detect capability via two self-describing signals (`command -v graphify` for installed, `graphify-out/graph.json` for built) and assert version >= 0.9.11. Skip silently if any is missing/older or a call fails.
+2. Freshness gate (hook-aware layered): if `graphify hook status` shows the hook installed, trust it for committed code and only `git status --porcelain` for uncommitted edits; if no hook, run graphify's deterministic `detect_incremental` (no LLM) and warn if stale. Never auto-rebuilds.
+3. Output a Code Graph Context block: freshness line + standing query instruction with scoping defaults. Does not include the hub list (context-protocol's familiarity step owns orientation).
+
+**Query policy (standing instruction to the command):** prefer narrow tools such as `graphify affected "X"` (depends-on / blast radius), `graphify path A B`, and `graphify explain X`; reserve `graphify query` for open-ended questions. Always pass `--budget` and scope via `--context`; exclude test nodes for architecture questions. All tools are pure `graph.json` traversal, with no network and no GitHub; `graphify prs` is never used.
+
+**Skip conditions:** graphify absent; no graph built; version older than 0.9.11; any graphify call fails. Degrades to today's grep/Explore behaviour with nothing emitted.
 
 ---
 

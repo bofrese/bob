@@ -36,6 +36,15 @@ Correlate plans with changed files. Form a scope hypothesis.
 - **Plan alignment:** Intent matched? Deviations justified? All steps done?
 - **Done criteria:** Read `docs/process/done-criteria.md`. Verify each applicable item.
 
+**Graph-assisted system health** (if a fresh Code Graph Context was emitted by `bob:code-graph` via the context protocol):
+- **God-nodes / hubs:** cross-check the community-hub list from `GRAPH_REPORT.md` (read during familiarity). Do the changed files touch, grow, or worsen an architectural hub? Flag coupling that concentrates on a god-node.
+- **Diff impact (LOCAL GIT ONLY):** derive changed symbols from `git diff` (working tree, or `main..HEAD`), never from a hosted PR, then run `graphify affected "X"` per changed symbol to see the blast radius the change actually touches. Cite the `source_location` graphify returns as the file:line reference.
+- **Hard constraint - no GitHub:** stay on local git throughout. Do NOT use `graphify prs` (it reads GitHub PRs via the `gh` CLI). `graphify affected` is pure `graph.json` traversal (no network, no GitHub) and is the correct impact tool here. Nothing in this flow may call `gh`.
+
+If no Code Graph Context is present (graphify absent, no graph, or stale), skip this and assess system health as above; the flow is otherwise unchanged.
+
+**Over-engineering pass:** If the Ponytail plugin is installed (its `/ponytail-review` command is available), run it on the same diff and fold its findings into the Simplicity assessment — deduplicate, don't double-report. If not installed, skip silently.
+
 **PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues, technical debt, or improvement opportunities that are clearly out of scope for this story. In-scope findings go into the report — only route items that belong elsewhere.
 
 **6 — Discuss:** One topic at a time. 🔴 Critical (must fix) · 🟡 Important (should fix) · 🟢 Suggestion. Briefly acknowledge good work.

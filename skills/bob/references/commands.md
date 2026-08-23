@@ -8,9 +8,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Purpose:** Bootstrap and upgrade bob's working infrastructure on any project. Idempotent — safe to run on new projects, existing projects, and after bob version upgrades. Creates what's missing, patches done-criteria with new sections, never removes or overwrites existing content.
 
-**Reads:** `.gitignore`, `docs/process/done-criteria.md`, `bob/commands/knowledge.md` (if knowledge vault missing), `bob/skills/done-criteria/SKILL.md` (for template comparison), `package.json` / git remote (to derive subproject name).
+**Reads:** `.gitignore`, `docs/process/done-criteria.md`, `bob/commands/knowledge.md` (if knowledge vault missing), `bob/skills/done-criteria/SKILL.md` (for template comparison), `package.json` / git remote (to derive subproject name); graphify presence/version, `graphify-out/graph.json`, `graphify hook status`, `website/src/` (b2 signal).
 
-**Writes:** `projects/{name}/stories/` + `_kanban.md` (if missing); full knowledge vault structure (if missing); `personal/daily/`, `personal/weekly/`, `personal/scratchpad.md` (if missing); `.gitignore` entries; `docs/process/done-criteria.md` (create or patch).
+**Writes:** `projects/{name}/stories/` + `_kanban.md` (if missing); full knowledge vault structure (if missing); `personal/daily/`, `personal/weekly/`, `personal/scratchpad.md` (if missing); `.gitignore` entries; `docs/process/done-criteria.md` (create or patch); `.graphifyignore` (managed corpus-scope block, when graphify installed).
 
 **Process:**
 1. Audit — check all infrastructure silently; scan for orphan markdown files
@@ -20,7 +20,9 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 5. Orphan report — list markdown files outside managed locations; suggest migration path via `knowledge/_INBOX/`
 6. Summary — compact table of what was created, patched, or already present
 
-**Rules:** Never overwrites existing files. Never removes or reorders done-criteria sections. One confirmation for all changes.
+Bootstrap (step 3) also handles **graphify provisioning** when graphify is installed: recommends install/upgrade to `>= 0.9.11` if absent or old (`uv tool install graphifyy`, double-y, never silent-installed), offers to build the graph (`/graphify .`) and install the post-commit hook (`graphify hook install`) with a first-build cost warning, and writes/refreshes the plugin-aware `.graphifyignore` corpus scope. Scope tiers: Code + authoritative content (`docs/`, `knowledge/`, `website/src/`) kept; Historical (`projects/`, `ai/`) excluded (~74% of observed semantic cost). `website/dist/` excluded only when the b2 `website/src/` structure is present.
+
+**Rules:** Never overwrites existing files (the `.graphifyignore` managed block is the one regenerated-in-place exception). Never removes or reorders done-criteria sections. Never silent-installs third-party tools. One confirmation for all changes.
 
 **Skills:** `context-protocol`, `done-criteria`
 
@@ -227,11 +229,11 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 2. Diverge: generate quantity without filtering (min 8 ideas)
 3. Converge: cluster and score (impact × effort × fit)
 4. Detail: flesh out top 1–2 ideas
-5. Validate: check fit against codebase (DDD lens)
+5. Validate: check fit against codebase (survey the code graph first when fresh - `graphify query`; else manual exploration; DDD lens)
 6. Commit: decision with rationale
 7. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately — invoke `bob:work-routing`
 
-**Skills:** `context-protocol`, `ddd` (phase 5), `domain-knowledge` (on correction), `work-routing` (step 7), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (phase 5 survey), `ddd` (phase 5), `domain-knowledge` (on correction), `work-routing` (step 7), `done-criteria`
 
 ---
 
@@ -245,7 +247,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Plan structure:**
 1. Problem statement
-2. Current system analysis (relevant files and patterns)
+2. Current system analysis (blast-radius via the code graph first when fresh - `graphify affected`; else manual exploration; relevant files and patterns)
 3. Preparatory refactoring (if any)
 4. Design and architecture (Mermaid diagram if non-trivial)
 5. Implementation steps with BDD acceptance criteria and AI difficulty rating (1–5)
@@ -253,7 +255,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 6. Testing strategy
 7. Open questions
 
-**Skills:** `context-protocol`, `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
 
 ---
 
@@ -318,9 +320,11 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **Checks:** System health, simplicity/DRY, security (OWASP top 10), robustness, plan alignment, done criteria compliance.
 
+**System health via the code graph** (when fresh): cross-check changed files against the `GRAPH_REPORT.md` community-hub list for god-node coupling, and derive diff impact from **local git only** (`git diff` changed symbols -> `graphify affected`). No GitHub / `gh` dependency - `graphify prs` is deliberately unused.
+
 **PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues/debt that are clearly out of scope for this story. In-scope findings go in the report.
 
-**Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (system-health hubs + diff impact), `work-routing` (PM step), `done-criteria`
 
 ---
 
@@ -335,7 +339,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 **Process:**
 1. Problem statement (observable symptoms, reproduction steps)
 2. Hypothesis formation (3–5 candidates, ordered by likelihood)
-3. Code exploration (trace call chains, read tests)
+3. Code exploration (query the code graph first when fresh - `path`/`explain`/`affected`; else trace call chains, read tests)
 4. 5-Whys root cause analysis
 5. Impact analysis (what else is affected?)
 6. Solution options (trade-offs, not recommendation)
@@ -343,7 +347,7 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 **PM step:** If the investigation uncovered related issues in adjacent code or other stories, invoke `bob:work-routing` to file them.
 
-**Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (graph-first exploration), `work-routing` (PM step), `done-criteria`
 
 ---
 

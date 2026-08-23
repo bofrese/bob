@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Manage the project knowledge vault. Modes: process (inbox to notes), ingest (external source to notes), retrieve (search), organise (vault health), status (no args). Bootstraps knowledge/ if it doesn't exist.
+description: “Manage the project knowledge vault. Modes: process (inbox to notes), ingest (external source to notes), retrieve (search), organise (vault health), status (no args). Bootstraps knowledge/ if it doesn't exist.”
 ---
 
 ## Context

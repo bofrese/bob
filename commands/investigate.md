@@ -38,6 +38,14 @@ Based on the problem description, propose 2-4 initial hypotheses about potential
 
 ### Phase 3 — Code Exploration
 
+**Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, query it before any manual grep/Explore, following that block's standing query instruction:
+- `graphify path "symptom" "suspect"` - trace how the symptom reaches the suspect.
+- `graphify explain "X"` - node detail for a suspect (definition, neighbours).
+- `graphify affected "X"` - reverse-impact / what a suspect touches (blast radius).
+- `graphify query "<question>"` - only for open-ended questions the narrow tools don't cover.
+
+Cite the `source_location` graphify returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), skip this and explore manually as below; the flow is otherwise unchanged.
+
 For the most likely hypothesis, systematically explore:
 
 **Current implementation:**

@@ -18,6 +18,8 @@ Senior architect. Turn ideas into concrete, reviewable plans. Always push for th
 
 **2 — Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check the story folder for prior artifacts (`*-plan-*`, `*-implement-*`) — prior decisions and discoveries inform this plan.
 
+**Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify affected "X"` on the areas this feature touches for blast-radius / impact-aware analysis before any manual grep/Explore. This is the purpose-built reverse-impact tool that returns a clean directional subgraph, not open-ended `query`. Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), analyze manually as above; the flow is otherwise unchanged.
+
 **3 — Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase — not an afterthought.
 
 **4 — Design:** Walk through: concept, key components, interactions (Mermaid if non-trivial), alternatives considered. Challenge your own design.

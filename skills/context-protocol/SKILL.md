@@ -15,7 +15,7 @@ Follow this protocol at the start of every bob command.
 **Date:** Run `python3 -c "from datetime import date;print(date.today().isoformat(),end='')"`
 If that fails, determine today's date in YYYY-MM-DD via any available command. Use this date in all output filenames and document timestamps.
 
-**Project familiarity:** Silently explore the project structure before starting. Commands with specific focus areas note them in their Context block.
+**Project familiarity:** Get oriented before starting. If `graphify-out/GRAPH_REPORT.md` exists, read only its `## Community Hubs (Navigation)` section (a few hundred tokens, not the whole report) for a cheap map of the project instead of blind exploration. Otherwise, silently explore the project structure. Commands with specific focus areas note them in their Context block.
 
 ---
 
@@ -127,3 +127,11 @@ Notify the user: "No project guidelines found — run `/bob:guidelines` to creat
 For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:knowledge` skill (read-only, automatic retrieval) and follow its protocol. This is the retrieval skill, distinct from the `/bob:library` command (interactive vault management).
+
+---
+
+## Code Graph (Engineering commands)
+
+For `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+
+After resolving story context and loading applicable guidelines, invoke the `bob:code-graph` skill (read-only, automatic retrieval) and follow its protocol. It skips silently if graphify or the graph is absent.
