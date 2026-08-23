@@ -310,23 +310,23 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:implement` — Plan Execution
 
-**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Stops for human judgment at hard steps (AI difficulty 4–5) or unexpected complexity. Includes ownership transfer walkthrough.
+**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:reflect` rather than delivering an AI-led ownership-transfer walkthrough.
 
-**Reads:** Specified plan from `{story_path}/`, review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
+**Reads:** Specified plan from `{story_path}/`, referenced Design Record — or, if none is referenced, the plan's own embedded `## Design` section (legacy combined Plan) — review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
 
-**Writes:** Project source files (primary), `{story_path}/{date}-implement-{slug}.md`, updates plan status to "Implemented", updates `{story_path}/_kanban.md`.
+**Writes:** Project source files (primary), `{story_path}/{date}-implement-{slug}.md` (an Implementation Note), updates plan status to "Implemented", updates `{story_path}/_kanban.md`.
 
 **Process:**
-1. Read plan + review; note deviations required
+1. Load plan, Design Record (or embedded `## Design` fallback), and review; note deviations required
 2. Confirm scope before starting
 3. Per step: implement → verify BDD criteria → commit
-4. Escalate to human at difficulty 4–5 or unexpected complexity
+4. Invoke `bob:design-signals` continuously; escalate to human at "pause for human decision" or stop at "stop and return to Design"
 5. Kanban update: mark resolved issues/tasks done
 6. **PM step (step 6.5):** For new issues or work discovered during implementation — invoke `bob:work-routing`
-7. Ownership transfer walkthrough (what changed, how to test, what to watch)
-8. Write implementation report
+7. Prepare concise input for `/bob:reflect`: critical code paths, signals raised and their resolution, notable surprises — not a full walkthrough
+8. Write Implementation Note
 
-**Skills:** `context-protocol`, `bdd` (step 3), `work-routing` (step 6.5), `done-criteria`
+**Skills:** `context-protocol`, `bdd` (step 3), `design-signals` (step 4, continuous), `work-routing` (step 6.5), `done-criteria`
 
 ---
 

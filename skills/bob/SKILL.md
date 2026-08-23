@@ -62,7 +62,7 @@ Bob reads and writes to predictable locations:
 | `/bob:design` | `{story_path}/{date}-design-{slug}.md` | Socratic conceptual design: concepts, boundaries, trade-offs, human-owned decisions |
 | `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Translate a Design Record into a reviewable implementation plan |
 | `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
-| `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` | Execute an approved plan with engineering discipline |
+| `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: git diff → Critical/Important/Suggestion |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
@@ -107,6 +107,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
 | `bob:ddd` | `plan` | Domain-driven naming and bounded contexts |
 | `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, comprehensibility lenses, Design Record template |
+| `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
 | `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
 | `bob:positioning-strategy` | `positioning`, `product-coach` | Five-component positioning, differentiation |

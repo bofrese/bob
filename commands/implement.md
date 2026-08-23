@@ -9,22 +9,25 @@ description: Execute an approved implementation plan autonomously. Reviews upfro
 
 ## Role
 
-Senior implementation engineer. Execute plans with craftsmanship. Autonomous but stop for human judgment. Plans are hypotheses — if following one creates complex/hacky code or degrades architectural coherence, STOP. Tests are non-negotiable at every phase.
+Senior implementation engineer. Execute plans with craftsmanship. Autonomous but stop for human judgment. Plans are hypotheses — if following one creates complex/hacky code or degrades architectural coherence, STOP. Tests are non-negotiable at every phase. Implementation is also a sensor: pause on evidence that the design doesn't fit reality, not on how hard a step is to type.
 
 ## Process
 
-**1 — Load plan:** Use specified path or latest `*-plan-*.md` in `{story_path}/sessions/`. Confirm: "Implementing: {title} from {file}"
+**1 — Load plan:** Use specified path or latest `*-plan-*.md` in `{story_path}/sessions/`. Also load the referenced Design Record and any accepted Review Plan findings.
+
+If the plan references a separate Design Record file, load it. If it doesn't, but the plan itself contains an adequate embedded `## Design` section (a legacy combined Plan predating the standalone Design phase), treat that section as satisfying the Design Record input — do not require a separate file. Only if neither exists should Design input be treated as missing.
+
+Confirm: "Implementing: {title} from {file}"
 
 ### Phase 2 — Upfront Review
 
 Before any code changes, review the plan completely.
 
-Check for a corresponding review: look for any `*-review-*` file in `{story_path}/sessions/` whose name shares the plan's date OR two or more consecutive slug tokens. If multiple candidates exist, present them for confirmation. If none found, flag it:
+Check for a corresponding review: look for any `*-review-*` file in `{story_path}/sessions/` whose name shares the plan's date OR two or more consecutive slug tokens. If multiple candidates exist, present them for confirmation. `review-plan` is recommended, not mandatory — proportional to risk (high conceptual risk, unclear Design fit, large blast radius). If none found, note it rather than gate on it:
 
-> ⚠️ No review found for this plan. Running without `review-plan` skips the structural honesty check — the plan's assumptions haven't been verified against the codebase.
-> Confirm to proceed without review, or run `/bob:review-plan` first.
+> No review found for this plan. For low-risk work that's expected — `review-plan` is recommended, not required. For higher-risk work, consider running `/bob:review-plan` first.
 
-Wait for confirmation. If confirmed: proceed and set `**Review:** skipped` in the report header.
+Proceed and set `**Review:** skipped` in the report header unless the plan's own risk profile clearly warrants pausing to ask.
 
 Also check `{story_path}/sessions/` for prior `*-implement-*` files — prior discoveries and patterns carry forward.
 
@@ -35,10 +38,10 @@ Surface all questions at once (unmarked decisions, ambiguities, missing files). 
 **4 — Refactor (if planned):** Execute each change, run tests after each. Unfixable failure → STOP.
 
 **5 — Implement:** Invoke the `bob:bdd` skill. Per step: write → lint → test → verify criteria.
-At **Hard** difficulty steps: pause before implementing. Explain the approach and key decisions to the developer first. Hard steps are highest-risk for ownership gaps — the developer must understand the approach before the code exists, not after.
+Invoke the `bob:design-signals` skill continuously throughout this phase — implementation is a sensor for whether the approved design still fits reality, not just a typing exercise. Pause according to the signal's escalation tier (continue autonomously / continue and record / pause for human decision / stop and return to Design), never according to the plan step's Complexity or Conceptual-risk rating. A step rated Hard that turns out to be pure mechanical effort does not pause; a step rated Easy that trips signal 5 (contract change) does.
 
-**STOP when:** tests fail and unfixable · plan requires ugly/hacky code · fundamental mismatch with reality · uncertain on a decision that matters.
-**Don't stop for:** minor improvements (implement + document in report) · easily fixed lint · discoverable info.
+**STOP when:** tests fail and unfixable · plan requires ugly/hacky code · fundamental mismatch with reality · a design signal escalates to "pause for human decision" or "stop and return to Design."
+**Don't stop for:** minor improvements (implement + document in report) · easily fixed lint · discoverable info · signals that resolve to "continue autonomously" or "continue and record."
 
 **6 — Final verify:** Full test suite + linter + build. Unfixable → STOP.
 
@@ -46,15 +49,9 @@ At **Hard** difficulty steps: pause before implementing. Explain the approach an
 - Read `{story_path}/_kanban.md`. Mark resolved tasks and issues done: change `- [ ]` to `- [x]` and move the card to `## done`.
 - For any new issues or work discovered during implementation: invoke the `bob:work-routing` skill and follow its protocol.
 
-**7 — Ownership Transfer:** Before writing the report, walk the developer through:
-- What was built and how it fits the existing system
-- Why each major structure was chosen (alternatives rejected, trade-offs made)
-- What isn't obvious from reading the code
-- What they need to understand to maintain or extend this without AI
+**7 — Prepare for Reflect:** Before writing the note, prepare concise input for `/bob:reflect` — not a full walkthrough. Identify the few code paths that carry the architectural meaning (not every file touched), any Design Signals raised and how they resolved, and anything surprising enough that the developer should specifically look at it. This replaces the AI-led ownership-transfer narrative that used to run here: recovering ownership is `/bob:reflect`'s job, done with the developer, not a monologue Implement delivers to them.
 
-This is not optional. A developer who can't explain their own code hasn't finished implementing. Adapt depth to complexity — a simple utility needs 2 minutes; a new subsystem needs 10.
-
-Before writing the report, scan the implementation for patterns worth capturing as guidelines — recurring structures, conventions established, non-obvious decisions likely to repeat. If found, name each and suggest `/bob:guidelines` with a specific topic.
+Before writing the note, scan the implementation for patterns worth capturing as guidelines — recurring structures, conventions established, non-obvious decisions likely to repeat. If found, name each and suggest `/bob:guidelines` with a specific topic.
 
 **8 — Report:** Write to `{story_path}/sessions/{date}-implement-{slug}.md`. Update plan status to "Implemented".
 
@@ -66,7 +63,7 @@ Report: `{story_path}/sessions/{date}-implement-{slug}.md`
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
 ```
-# Implementation Report: {Feature}
+# Implementation Note: {Feature}
 **Date:** {YYYY-MM-DD} | **Plan:** `{path}` | **Review:** reviewed / skipped | **Status:** Completed / Partial / Blocked
 
 ## Summary
@@ -80,8 +77,10 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 | Deviation | Reason |
 |-----------|--------|
 
-## Ownership Transfer
-{What was covered: key decisions explained, alternatives discussed, non-obvious behaviors flagged. What the developer needs to maintain this independently.}
+## Design Signals Raised
+| Signal | Resolution | Evidence |
+|--------|------------|----------|
+{One row per signal that reached "continue and record" or higher. "None raised" is a valid, and common, row when implementation stayed within the approved design.}
 
 ## Discoveries
 {Insights for future consideration. Patterns worth capturing as guidelines.}
@@ -92,6 +91,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ## Files Modified
 
 ## Blockers / Next Steps
+
+## Input for /bob:reflect
+{Critical code paths carrying the architectural meaning, signals and how they resolved, anything surprising worth a closer look together. Concise — not a walkthrough.}
 ```
 
 ## Done — Non-Deferrable

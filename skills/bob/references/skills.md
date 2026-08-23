@@ -134,6 +134,21 @@ Then [observable outcome]
 
 ---
 
+## `bob:design-signals` — Implementation as Sensor
+
+**File I/O:** None (reference framework — `/bob:implement` owns artifact I/O).
+
+**Invoked by:** `/bob:implement` (step 5, continuously through the implement phase).
+
+**Core discipline:** Distinguish mechanical implementation friction (imports, syntax, routine fixtures — resolve autonomously) from evidence that the approved conceptual design may not fit reality. Pausing is driven by the evidence's escalation tier, never by a plan step's Complexity or Conceptual-risk rating.
+
+- `references/signal-taxonomy.md` — the 12 conceptual signals (new concept, special case, contract change, boundary reversal, ownership ambiguity, duplicate concept, naming resistance, disproportionate test complexity, abstraction/data mismatch, unplanned indirection, disproven assumption, etc.) and the six-field evidence template (observation/location, affected Design assumption, why it matters, plausible interpretations, safe-continuation status, required human decision).
+- `references/escalation-policy.md` — the four tiers (continue autonomously / continue and record / pause for human decision / stop and return to Design) and the decision procedure for picking one.
+
+**Rules:** Never raise a signal merely because implementation is difficult. Never hide a signal behind an adapter, helper, flag, or branch. No signal without an observation and a source location.
+
+---
+
 ## `bob:assumption-testing` — Risk-Based Validation
 
 **File I/O:** None (reference framework).
