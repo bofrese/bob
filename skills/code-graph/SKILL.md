@@ -30,6 +30,15 @@ Check `graphify hook status`:
 
 **No hook** - run graphify's deterministic incremental detection (`detect_incremental`, no LLM; delegate to the graphify skill, do not reimplement). If it reports changed / new / deleted files, warn *stale* with the count and suggest `/graphify . --update`. Do not run the update.
 
+### Step 2.5 - Health gate
+Before emitting a usable graph context, verify:
+- the graph has at least one node and appropriate edges for relationship queries;
+- `GRAPH_REPORT.md` and `graph.json` agree on node count;
+- graphify's health diagnostics do not report material corruption;
+- the graph is fresh enough for the question (per Step 2).
+
+If the graph has zero nodes, the report and graph disagree, or health diagnostics report corruption: treat it as **present but empty/unusable** - skip silently, same as absence (Step 1), but note internally not to retry within this command.
+
 ### Step 3 - Output Code Graph Context block
 Emit the block below: a freshness line plus the standing query instruction with scoping defaults. Do **not** include the hub list; the familiarity step owns orientation.
 
@@ -39,6 +48,10 @@ Emit the block below: a freshness line plus the standing query instruction with 
 **Graph:** fresh - reflects current code.
 (or: fresh, but excludes uncommitted edits - commit or note them when querying)
 (or: STALE - N files changed since last build; run `/graphify . --update` before relying on graph answers)
+(or: present but empty/unusable - graph has zero nodes or fails health checks; bob degrades to grep/Explore)
+(or: silent absence - graphify not installed or no graph built; output nothing)
+
+Graph results are structural sensors. They may establish references and paths, but architectural meaning remains a human judgment supported by code inspection.
 
 **Querying (standing instruction - prefer the graph over grep/Explore for code-relationship questions):**
 - "What depends on X / blast radius / reverse impact" -> `graphify affected "X"` (the standing tool; returns a clean directional subgraph).
@@ -56,3 +69,4 @@ Emit the block below: a freshness line plus the standing query instruction with 
 - All query tools used (`path`, `explain`, `affected`, `query`) are pure `graph.json` traversal: no network, no GitHub. (`detect_incremental` is a freshness probe, not a traversal - see the freshness gate above.) `graphify prs` is never used (it is GitHub-coupled).
 - `graphify affected "X"` is the standing tool for depends-on / blast-radius; reserve open-ended `query` for genuinely open questions.
 - Fully silent when graphify is absent, no graph is built, the version is older than 0.9.11, or any call fails. bob must behave exactly as today, with no graphify mentions leaking.
+- Reject a graph with zero nodes or failed health diagnostics (Step 2.5) - never treat it as usable. Silent, same as absence.
