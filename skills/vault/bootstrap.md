@@ -20,6 +20,25 @@ Run when `knowledge/` does not exist. Steps:
    | `research` | `research/` | External findings, benchmarks, tool evaluations |
    | `pattern` | `patterns/` | A reusable solution pattern or anti-pattern |
 
+   ## Evidence and Validation Frontmatter
+
+   Notes recording a decision, pattern, or claim likely to go stale should carry:
+
+   ```yaml
+   evidence:
+     - path or experiment reference
+   status: proposed | validated | superseded
+   last_validated: YYYY-MM-DD
+   supersedes: optional-note-link
+   ```
+
+   - `evidence` — path(s) or experiment references backing the claim. Distinguishes observed evidence from inferred lesson; a note with no `evidence` entries is an inference, not an observation, and should be treated as `proposed`.
+   - `status` — `proposed` (not yet confirmed by use), `validated` (confirmed by real use or review), `superseded` (replaced — keep `supersedes` pointing at what replaced it, or note what replaces this one).
+   - `last_validated` — the date this note's claim was last confirmed still true. Retrieval prefers notes with a recent `last_validated` over stale ones when several conflict.
+   - `supersedes` — relative link to the note this one replaces, when applicable.
+
+   These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `pattern` notes that make a durable claim.
+
    ## Tag Taxonomy
 
    Tags are free-form but should be drawn from this list first. Add new tags here as they emerge.

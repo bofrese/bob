@@ -37,6 +37,14 @@ Combine results. Load at most 1-2 MOCs and 1-2 subfolder `_index.md` files, then
 
 If no notes are clearly relevant: output only the root README summary. Do not load indexes or individual notes.
 
+Retrieve only notes relevant to the current phase's question — do not load a note just because it shares a tag with the story if it doesn't bear on what this command is actually deciding right now.
+
+**Status-aware selection:** when a note has `status:` frontmatter (see `bob:vault`'s `process.md`/`bootstrap.md` for the schema):
+- Prefer `validated` notes over `proposed` or `superseded` ones when choosing which to load.
+- If two candidate notes on the same topic both carry `status: validated` but disagree, load both and flag the conflict in the output block below rather than silently picking one.
+- A `superseded` note is only worth loading if its `supersedes`/successor chain is itself relevant — otherwise skip it in favor of what replaced it.
+- When a `last_validated` date exists and is more than a rough guess old for the domain, note it — retrieval should not present a stale claim as current without saying so.
+
 ### Step 4 - Output Knowledge Context block
 
 Always output the Tags table and MOC list — these are the session's discovery surfaces.
@@ -55,7 +63,10 @@ When notes were pre-loaded:
 (list all MOCs from README, or "(none yet)" if empty)
 
 **Pre-loaded for this session:**
-- [Note Title](knowledge/decisions/file.md) - one-line summary
+- [Note Title](knowledge/decisions/file.md) - one-line summary {[proposed] if status: proposed, or blank for validated}
+
+**Conflicts (if any):**
+- [Note A](path) vs [Note B](path) — both validated, disagree on {topic}. Neither auto-resolved.
 ```
 
 When vault exists but no notes matched:
@@ -84,3 +95,5 @@ After the Knowledge Context block, append:
 - Skip files already loaded in this session (no duplicate loads)
 - Always output the Tags table and MOC list — never omit them from the context block
 - Tag-based search is preferred over keyword search when tags clearly match the topic
+- Label `proposed` knowledge as proposed in the output — never present an unconfirmed note as settled fact
+- Surface conflicts between validated notes instead of silently choosing one — this skill retrieves, it does not adjudicate

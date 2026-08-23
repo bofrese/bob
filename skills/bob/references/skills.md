@@ -165,6 +165,22 @@ Then [observable outcome]
 
 ---
 
+## `bob:learn` — Harness Learning Framework
+
+**File I/O:** Reads `docs/process/learnings.md` (cross-session staging log); the `/bob:learn` command owns Learning Record artifact I/O.
+
+**Invoked by:** `/bob:learn`; `/bob:improve-command` (delegated, scoped to one command)
+
+**Core discipline:** Evidence-first classification of session lessons into durable harness improvements or none. One occurrence is usually evidence, not a rule — persistence requires a second credible occurrence (or high severity) plus a stated downside.
+
+- `references/classification-policy.md` — the 10 lesson-type/destination table and the full persistence policy (when one occurrence is enough, when it isn't, human-approval gate for generic BOB changes).
+- `references/persistence-map.md` — how `docs/process/learnings.md` works as cross-session memory: bootstrap format, entry format, when an entry graduates from staged to harness candidate.
+- `references/artifact-template.md` — the Learning Record field list and filename convention.
+
+**Rules:** Never persist from a single low-severity occurrence. Never redesign product architecture here — durable architecture insight routes through Design/Reflect first. Never silently modify a generic BOB command/skill — always confirm. Prefer executable enforcement over prose for deterministic invariants. "No persistent lesson" is a valid, common exit.
+
+---
+
 ## `bob:assumption-testing` — Risk-Based Validation
 
 **File I/O:** None (reference framework).
@@ -449,7 +465,7 @@ Receives a mode from the library command and loads only the relevant sub-file:
 
 **User-invokable:** No — invoked mid-session by engineering commands.
 
-**Invoked by:** All engineering commands (`implement`, `review`, `review-plan`, `plan`, `brainstorm`, `investigate`, `ui-review`) mid-session when they surface issues, deferred ideas, out-of-scope findings, or new dependencies. Also invoked by `bob:done-criteria` (Behaviour 6) for end-of-session routing.
+**Invoked by:** All engineering commands (`implement`, `review`, `review-plan`, `plan`, `brainstorm`, `investigate`, `ui-review`) mid-session when they surface issues, deferred ideas, out-of-scope findings, or new dependencies. Also invoked by `bob:done-criteria` (Responsibility 3 — Work routing) for end-of-session routing.
 
 **What it does:**
 - Accepts a list of work items with description, severity (🔴/🟡/🟢), and discovery context

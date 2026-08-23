@@ -55,6 +55,11 @@ type: <decision|concept|research|pattern>
 tags: [tag1, tag2]
 timestamp: YYYY-MM-DDThh:mm:ssZ
 story: <STORY-ID>  # if captured in story context
+evidence:          # required for decision/pattern; optional for concept/research
+  - path or experiment reference
+status: proposed | validated | superseded
+last_validated: YYYY-MM-DD
+supersedes: optional-note-link
 ---
 
 # <title>
@@ -64,6 +69,19 @@ story: <STORY-ID>  # if captured in story context
 **Why it matters:** [one sentence]
 ```
 
+`decision` and `pattern` notes require `evidence` and `status`. A claim with no `evidence` entries is an inference, not an observation — set `status: proposed`, never `validated`, until it has one. `last_validated` should be set to the processing date on creation and bumped whenever the claim is re-confirmed. See `bob/skills/vault/bootstrap.md`'s "Evidence and Validation Frontmatter" section for the full field definitions.
+
+## Conflict surfacing
+
+Before creating a new `decision` or `pattern` note, check whether an existing note in the same subfolder makes a conflicting claim (reconcile's job already covers exact/near-duplicate detection — this is about a *contradicting*, not duplicate, claim). If a conflict is found:
+
+- Do not silently pick a side or overwrite the existing note.
+- Surface both claims to the user: the existing note's claim + `status`/`last_validated`, and the incoming claim + its evidence.
+- Ask which one is current. If the incoming claim wins, set the old note's `status: superseded` and add `supersedes` on the new note pointing back to it — do not delete the old note.
+- If genuinely uncertain which is current, leave both as `status: proposed` and note the open conflict in `_suggestions.md` for a human to resolve later — this is the one case where an unresolved conflict is an acceptable outcome for this run.
+
+Retrieval (`bob:knowledge`) prefers `validated` notes over `proposed`/`superseded` ones and prefers a more recent `last_validated` when two `validated` notes still disagree; if retrieval itself surfaces a live conflict it should not silently choose either — see `bob:knowledge`'s protocol.
+
 ## Rules
 
 - Run reconcile before creating any new note — no exceptions
@@ -72,3 +90,5 @@ story: <STORY-ID>  # if captured in story context
 - For all moves: use `obsidian move` if vault active, fall back to `mv` (warn user: backlinks will not be updated)
 - Never add a note to any index without user confirmation
 - Filenames: kebab-case, no date prefix for processed notes; `YYYY-MM-DD-slug.md` for inbox only
+- Never mark a `decision`/`pattern` note `status: validated` without at least one `evidence` entry
+- `/bob:learn` may recommend consolidation, supersession, or deletion of stale notes, but must never perform destructive vault cleanup without confirmation — process mode always asks before merging, enriching, splitting, or changing `status` on an existing note

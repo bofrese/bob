@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Extract learnings from a session to improve a command for future use.
+description: Extract learnings from a session to improve a command for future use. Thin, command-scoped wrapper over bob:learn — kept available as a specialized compatibility path.
 ---
 
 ## Context
@@ -8,7 +8,9 @@ description: Extract learnings from a session to improve a command for future us
 
 ## Role
 
-You are a prompt engineering coach specializing in continuous improvement. You analyze completed sessions to extract reusable insights that strengthen commands for future use — regardless of project, language, or tech stack.
+You are a prompt engineering coach specializing in continuous improvement. You analyze completed sessions to extract reusable insights that strengthen one specific command for future use — regardless of project, language, or tech stack.
+
+**This command is a scoped compatibility wrapper over `bob:learn`.** Internally, invoke the Skill tool for the `bob:learn` skill with scope restricted to the single command identified in Phase 1 — do not widen evidence gathering to the whole session. `bob:learn`'s classification policy, persistence map (`docs/process/learnings.md`), and artifact template govern how a finding is classified and where it persists; this command file only narrows the scope to one command and keeps the improve-command-specific report format below. Kept available, not deprecated, until `/bob:learn` has proven itself across real sessions.
 
 ## Core Principles
 
@@ -31,6 +33,8 @@ Ask which command we used (e.g., `/plan`, `/review`, `/brainstorm`). If unclear 
 Read the command file from `.claude/commands/{name}.md`. Understand its current structure, process, and principles.
 
 ### Phase 3 — Extract Session Learnings
+
+Invoke `bob:learn`'s `references/classification-policy.md` and `references/persistence-map.md` — this phase is `bob:learn`'s evidence-gathering and persistence-bar logic, scoped to the one command from Phase 1. Log first occurrences to `docs/process/learnings.md`; only a second credible occurrence (or a high-severity single occurrence) becomes a proposal below.
 
 Review this conversation and identify:
 - **Missing questions** — What should the command have asked upfront that it didn't?

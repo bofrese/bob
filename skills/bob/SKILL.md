@@ -65,6 +65,7 @@ Bob reads and writes to predictable locations:
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
 | `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation to recover ownership after correctness is established; identifies candidates for Learn |
+| `/bob:learn` | `{story_path}/{date}-learn-{slug}.md` + `docs/process/learnings.md` | Classify session evidence (corrections, interruptions, repeated findings) into durable harness improvements or none; stages unresolved occurrences for future runs |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
@@ -88,7 +89,7 @@ Bob reads and writes to predictable locations:
 | `/bob:pm` | Conversational (opt. status doc) | Project mentor: assess state, recommend next step |
 | `/bob:setup` | `projects/`, `knowledge/`, `personal/`, `.gitignore`, `docs/process/done-criteria.md` | Bootstrap and upgrade bob infrastructure; idempotent |
 | `/bob:new-command` | `bob/commands/{name}.md` + README | Create a new bob command |
-| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Extract session learnings to improve a command |
+| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped compatibility wrapper over `bob:learn` — extract learnings limited to one command |
 | `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
 
 > Note: `{story_path}` is resolved by the `bob:story-context` skill at the start of each engineering command session.
@@ -104,12 +105,13 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:context-protocol` | Every command | Load current date + right project files; kanban sync for engineering commands; wire story-context |
 | `bob:story-context` | Every engineering command (via context-protocol) | Resolve active story via 4-tier chain; establish `{story_path}` for artifact placement |
 | `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
-| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Behaviour 6) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
+| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 — Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
 | `bob:ddd` | `plan` | Domain-driven naming and bounded contexts |
 | `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, comprehensibility lenses, Design Record template |
 | `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
 | `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for post-review ownership recovery |
+| `bob:learn` | `/bob:learn`, `/bob:improve-command` (scoped) | Classification policy, `docs/process/learnings.md` cross-session persistence map, and Learning Record template |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
 | `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
 | `bob:positioning-strategy` | `positioning`, `product-coach` | Five-component positioning, differentiation |
@@ -132,7 +134,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 `product-vision` → `problem-space` → `personas` → `validation-plan` → `business-plan` → `positioning` → `design-brief`
 
 **New feature:**
-`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review` → `reflect`
+`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review` → `reflect` → `learn`
 
 **Bug:**
 `investigate` → `plan` → `implement` → `review`

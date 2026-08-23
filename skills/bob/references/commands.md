@@ -374,6 +374,27 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
+## `/bob:learn` — Harness Learning
+
+**Purpose:** Close the loop on the engineering pipeline — decide, evidence-first, whether anything from this session (or session chain) deserves to become a durable change to BOB, repository instructions, or the knowledge vault. Most sessions produce nothing durable; that is success, not a gap.
+
+**Reads:** Corrections, interruptions, artifacts, accepted/rejected findings from this session, `docs/process/learnings.md` (prior staged occurrences across sessions), existing harness rules a candidate might conflict with. Deliberately excludes unrelated product context.
+
+**Writes:** `{story_path}/{date}-learn-{slug}.md` (a Learning Record); updates `docs/process/learnings.md` every run (Learn's only cross-session memory).
+
+**Process:**
+1. Gather evidence: corrections, missing/unnecessary questions, misunderstood facts, interruptions, repeated Review findings, tool/context gaps, artifact handoff failures
+2. Check `docs/process/learnings.md` for a matching prior occurrence — first occurrence logs and stops (unless high-severity); second credible occurrence becomes a harness candidate
+3. Classify each candidate against the 10-row lesson-type table; report evidence, root cause, proposed change, destination, downside, recurrence basis, behavior test, recommendation
+4. Confirm with the human before editing any generic BOB skill or repository-wide instruction; project-local destinations can apply on confirmation without that bar
+5. Produce the Learning Record; "no persistent lesson" is a valid, common outcome
+
+**Scoped invocation:** `/bob:improve-command` delegates here with evidence gathering restricted to one command.
+
+**Skills:** `context-protocol`, `learn`, `work-routing` (for harness lesson candidates that also imply scheduled tooling work), `done-criteria`
+
+---
+
 ## `/bob:investigate` — Root Cause Analysis
 
 **Purpose:** Systematic root-cause investigation using a 7-phase process. Investigation only — no fixes proposed (that's for `/bob:plan`).
@@ -535,9 +556,9 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 ## `/bob:improve-command` — Command Improvement
 
-**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic).
+**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic). **Scoped compatibility wrapper over `bob:learn`** — internally delegates evidence gathering and persistence-bar logic to `bob:learn` restricted to the one command identified in Phase 1. Kept available, not deprecated, until `/bob:learn` proves itself.
 
-**Reads:** Current session conversation, `bob/commands/{name}.md`.
+**Reads:** Current session conversation, `bob/commands/{name}.md`, `docs/process/learnings.md` (via delegated `bob:learn` evidence gathering).
 
 **Writes:** `ai/reviews/{date}-improve-{command-name}.md`
 
@@ -547,7 +568,7 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 - Process improvements (wrong order, missing phases)
 - Edge cases not handled
 
-**Skills:** `context-protocol`, `done-criteria`
+**Skills:** `context-protocol`, `learn` (delegated, scoped), `done-criteria`
 
 ---
 

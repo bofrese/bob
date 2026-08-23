@@ -43,6 +43,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `implement` | `docs/product/vision.md` |
 | `review` | `docs/product/vision.md` |
 | `reflect` | Design Record, Implementation Note, Review verdict, selected critical code. Deliberately excludes a generic guideline dump. |
+| `learn` | Corrections, interruptions, artifacts, accepted/rejected findings from this session, plus `docs/process/learnings.md` (prior staged occurrences) and existing harness rules the candidate might conflict with. Deliberately excludes unrelated product context. |
 | `ui-review` | `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md`, then invoke the `bob:ui-design` skill |
 | `new-command` | invoke the `bob:prompt-engineering` skill |
 | `review-command` | invoke the `bob:prompt-engineering` skill |
@@ -62,7 +63,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 
 ## Story Context (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After loading the files above, invoke the `bob:story-context` skill.
 Follow its protocol exactly. Do not proceed until story context is confirmed.
@@ -72,7 +73,7 @@ Use the resolved `Path:` from the story-context output block for all artifact pl
 
 ## Kanban Sync (Engineering commands, after story context confirmed)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After story context is confirmed (and before Guidelines and Knowledge Retrieval), check `{story_path}/_kanban.md`:
 
@@ -130,7 +131,7 @@ Notify the user: "No project guidelines found — run `/bob:guidelines` to creat
 
 ## Knowledge Retrieval (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:knowledge` skill (read-only, automatic retrieval) and follow its protocol. This is the retrieval skill, distinct from the `/bob:library` command (interactive vault management).
 
@@ -138,6 +139,6 @@ After resolving story context and loading applicable guidelines, invoke the `bob
 
 ## Code Graph (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:code-graph` skill (read-only, automatic retrieval) and follow its protocol. It skips silently if graphify or the graph is absent.

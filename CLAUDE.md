@@ -92,7 +92,7 @@ Engineering commands surface discovered work (issues, deferred ideas, out-of-sco
 
 **Never embed routing logic in a command file.** Commands are orchestrators — they identify that work needs routing, then invoke the `bob:work-routing` skill. The skill owns the decision tree (this story Issues vs project INBOX).
 
-**Where PM steps live:** Engineering commands (plan, review, review-plan, implement, brainstorm, investigate, ui-review) each include a PM step at the appropriate phase. The step invokes `bob:work-routing` for items that need routing. Done-criteria Behaviour 6 runs as a session-end safety net for any items that weren't routed mid-session.
+**Where PM steps live:** Engineering commands (plan, review, review-plan, implement, brainstorm, investigate, ui-review) each include a PM step at the appropriate phase. The step invokes `bob:work-routing` for items that need routing. Done-criteria's Work Routing responsibility runs as a session-end safety net for any items that weren't routed mid-session.
 
 **When creating a new engineering command:** add a PM step that invokes `bob:work-routing`. Placement: after the command's main output phase, before the save/wrap-up phase.
 
