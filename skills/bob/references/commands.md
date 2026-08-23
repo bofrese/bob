@@ -355,6 +355,25 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
+## `/bob:reflect` — Engineering Reflection
+
+**Purpose:** Recover human ownership of AI-implemented work after correctness is established. Short, non-quizzy, peer-to-peer — not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
+
+**Reads:** Design Record (or embedded `## Design` fallback), Implementation Note's "Input for /bob:reflect" section, Review verdict, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
+
+**Writes:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
+
+**Process:**
+1. Load Design Record, Implementation Note, and Review verdict; identify the few code paths that carry architectural meaning
+2. Select two to five high-value questions from actual diff evidence (a Design Signal, a deviation, a surprise) — never a generic checklist
+3. Let the human answer first; inspect vague areas together rather than supplying the explanation
+4. Surface insights worth carrying forward: backlog ideas, design revisits, documentation/guideline gaps — invoke `bob:work-routing` for anything that should become backlog work
+5. Produce the Reflection Record; a very short "no meaningful insight, ownership clear" record is a valid, common outcome
+
+**Skills:** `context-protocol`, `reflect`, `work-routing` (step 4), `done-criteria`
+
+---
+
 ## `/bob:investigate` — Root Cause Analysis
 
 **Purpose:** Systematic root-cause investigation using a 7-phase process. Investigation only — no fixes proposed (that's for `/bob:plan`).

@@ -56,7 +56,7 @@ Three layers, not three stages. Use any independently or connect them.
 ```mermaid
 graph TD
     D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan · /bob:linkedin"]
-    E["Engineering<br/>/bob:brainstorm → /bob:design → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review"]
+    E["Engineering<br/>/bob:brainstorm → /bob:design → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review → /bob:reflect"]
     K["Knowledge<br/>/bob:document · /bob:user-guide · /bob:guidelines · /bob:library · /bob:remember"]
 
     D -->|grounds| E
@@ -66,7 +66,7 @@ graph TD
 
 **Discovery** — Product strategy and validation: vision, problem space, personas, business model, positioning, validation planning. Start with `/bob:product-coach` for guided discovery, or jump to individual commands for targeted work.
 
-**Engineering** — Disciplined development pipeline: brainstorm → design → plan → review-plan → implement → review. Each command loads the right principles and follows the right process.
+**Engineering** — Disciplined development pipeline: brainstorm → design → plan → review-plan → implement → review → reflect. Each command loads the right principles and follows the right process.
 
 **Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for developer docs, `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns — process inbox items, ingest external sources, organise the vault, or search. Use `/bob:remember` to capture anything mid-session without breaking flow.
 

@@ -149,6 +149,22 @@ Then [observable outcome]
 
 ---
 
+## `bob:reflect` — Engineering Reflection Framework
+
+**File I/O:** None (reference framework — the `/bob:reflect` command owns artifact I/O).
+
+**Invoked by:** `/bob:reflect`
+
+**Core discipline:** Post-correctness ownership recovery for an experienced developer, run as a peer conversation, not a review or a quiz. Assumes `/bob:review` already settled correctness; selects a small number of questions from actual diff evidence rather than a generic checklist.
+
+- `references/reflection-policy.md` — assume correctness is done; select two to five questions from actual Design/Implement/Review evidence; let the human answer first; keep it short.
+- `references/ownership-signals.md` — the six-bullet ownership standard (domain intent, critical paths, trade-offs/fragile assumptions, failure modes, debugging entry point, future-change impact, ability to disagree) — reproduction of code is never the bar.
+- `references/artifact-template.md` — the Reflection Record field list and filename convention.
+
+**Rules:** Never re-review correctness. Never quiz line-by-line recall. Never shame incomplete understanding. Promote nothing to durable knowledge automatically — identify candidates for `/bob:learn` instead.
+
+---
+
 ## `bob:assumption-testing` — Risk-Based Validation
 
 **File I/O:** None (reference framework).

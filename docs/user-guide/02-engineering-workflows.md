@@ -6,13 +6,13 @@ The core pipeline: turn ideas into shipped, tested, documented code. This is whe
 ## The Pipeline at a Glance
 
 ```
-Brainstorm (idea) → Design (concept) → Plan (how to build) → Implement (write code) → Review (quality check) → Done
+Brainstorm (idea) → Design (concept) → Plan (how to build) → Implement (write code) → Review (quality check) → Reflect (recover ownership) → Done
 ```
 
 But there's a critical step you might miss: **Review the plan before implementing.** A fresh set of eyes catches problems that the planning session missed.
 
 ```
-Brainstorm → Design → Plan → Review Plan → Implement → Review Code → Done
+Brainstorm → Design → Plan → Review Plan → Implement → Review Code → Reflect → Done
 ```
 
 Brainstorm decides whether the idea is worth building. Design decides the concept — boundaries, vocabulary, trade-offs — before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
@@ -167,7 +167,7 @@ The AI auto-detects what changed (git diff), reads the plan to compare intent vs
 
 **Output:** `{story_path}/{date}-review-{slug}.md`
 
-A handoff document: anyone can read this and own the code confidently.
+A handoff document: anyone can read this and own the code confidently. For significant agent-implemented changes, Review recommends running `/bob:reflect` next.
 
 **Your role:** Fix things the review flags. If you disagree with a finding, say so (you're not obligated to fix everything). When the review is approved, you can merge.
 
@@ -175,7 +175,28 @@ A handoff document: anyone can read this and own the code confidently.
 
 ---
 
-## Phase 7: Document
+## Phase 7: Reflect
+
+**When:** After Review, for significant agent-implemented changes. Optional for small, mechanical work.
+
+**What you do:** Run `/bob:reflect`. Correctness is already settled — this is a short, peer-to-peer conversation to make sure you, not just the AI session, understand what got built and why.
+
+**The AI works through:**
+- Two to five questions drawn from actual evidence — a Design Signal that fired, a deviation Review noted, a surprising decision Implement flagged. Never a generic checklist.
+- You answer first; it only digs in together with you where the answer is vague.
+- What future pressure or fragile assumption this design now carries.
+
+You're never asked to recall code line-by-line or reproduce what was written. A short "no gap, ownership is clear" record is a valid and common outcome — this is not an exam.
+
+**Output:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
+
+Also surfaces candidates for `/bob:learn` (durable lessons) and the backlog (new stories, design revisits, documentation gaps) — without committing to any of them itself.
+
+**Time:** 5-20 minutes; often much shorter when ownership is already clear.
+
+---
+
+## Phase 8: Document
 
 **When:** Code is shipped (merged or in production).
 
@@ -237,7 +258,10 @@ Follow the plan, write code, verify it works.
 **Day 6 — Review**
 Freshly reviewed code with guidelines applied.
 
-**Day 7 — Document**
+**Day 7 — Reflect**
+Short peer conversation to make sure you own the mental model, not just the AI session. Often 10 minutes.
+
+**Day 8 — Document**
 Capture what you built so the next person understands it.
 
 Do it again next week with a different feature. By the tenth feature, you'll notice the quality is consistent, decisions are recorded, and context doesn't disappear between sessions.

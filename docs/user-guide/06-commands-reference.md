@@ -223,6 +223,21 @@ Auto-detects scope from git (uncommitted changes, branch commits, range). Loads 
 
 ---
 
+### `/bob:reflect`
+**Recover ownership after correctness is established.**
+
+Short, non-quizzy peer conversation. Assumes `/bob:review` already settled correctness — picks two to five questions from actual Design/Implement/Review evidence, lets you answer first, and inspects vague areas together. A brief "no gap" record is a valid outcome.
+
+| | |
+|---|---|
+| **Reads** | Design Record, Implementation Note, Review verdict, selected critical code |
+| **Writes** | `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record) |
+| **Start here when** | After review, for significant agent-implemented changes |
+| **Output includes** | Expectation vs. reality, ownership gaps (if any), candidates for `/bob:learn` and the backlog |
+| **Time** | 5 – 20min |
+
+---
+
 ### `/bob:ui-review`
 **UI/UX review against design principles.**
 

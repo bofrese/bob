@@ -64,6 +64,7 @@ Bob reads and writes to predictable locations:
 | `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
+| `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation to recover ownership after correctness is established; identifies candidates for Learn |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
 | `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
@@ -108,6 +109,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:ddd` | `plan` | Domain-driven naming and bounded contexts |
 | `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, comprehensibility lenses, Design Record template |
 | `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
+| `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for post-review ownership recovery |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
 | `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
 | `bob:positioning-strategy` | `positioning`, `product-coach` | Five-component positioning, differentiation |
@@ -130,7 +132,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 `product-vision` → `problem-space` → `personas` → `validation-plan` → `business-plan` → `positioning` → `design-brief`
 
 **New feature:**
-`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review`
+`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review` → `reflect`
 
 **Bug:**
 `investigate` → `plan` → `implement` → `review`
