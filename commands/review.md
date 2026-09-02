@@ -49,7 +49,7 @@ Recommend `/bob:reflect` after significant agent-implemented changes.
 
 Before writing the report: identify any patterns in the findings that should become guidelines — especially if the same type of issue appeared more than once or reflects a convention worth codifying. If found, name the pattern and suggest `/bob:guidelines` with a specific topic.
 
-Ask before writing report.
+Ask before writing report - preview the verdict, the action items grouped 🔴 / 🟡 / 🟢, and the recommendation.
 
 **7 — Save.**
 
@@ -57,28 +57,74 @@ Ask before writing report.
 
 Direct. File:line for all findings. **DO NOT FIX THE CODE.** Every finding is tagged bug / design-conformance failure / design concern. A clean review with no manufactured findings is a valid outcome.
 
+**Report formatting:**
+- Lead with the decision. The reader must be able to act on the report from the top half alone (Summary + What's good + Action items + Recommendation), without reading Details.
+- Severity emoji are fixed: findings use 🔴 / 🟡 / 🟢; table status cells use ✅ / ⚠️ / ❌ (or `n/a`). Never bare ✓ or ⚠.
+- No em dashes anywhere in the report (global rule). Use `-`.
+- Obsidian-safe cross-references: name a section in bold ("see **Details** below"), never a `[text](#anchor)` link. Never wrap a plain label in `[brackets]` - it reads as a broken link; use emoji + bold (`🔴 **Bug**`, not `[Bug]`).
+- A mermaid diagram is fine inside a finding when it shows a real mechanism or blast radius. Never decorative.
+
 ## Output
 
 `{story_path}/sessions/{date}-review-{slug}.md`
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.
 
+The report has two halves: a **decision-first top** the reader can act on alone, then a `---` divider, then **Details** for reference. Collapse any section with nothing to report to a single `None` line - do not pad.
+
 ```markdown
 # Review: {Feature/Change}
-**Date:** {YYYY-MM-DD} | **Scope:** {what reviewed} | **Plan:** {path or N/A}
-**Verdict:** ✓ Approve | ⚠ Approve with concerns | ✗ Needs work | 🛑 Significant issues
+**Date:** {YYYY-MM-DD} | **Verdict:** ✅ Approve | ⚠️ Approve with concerns | ❌ Needs work | 🛑 Significant issues
+**Scope:** {what reviewed} | **Plan:** {path or N/A} | **Design:** {path or N/A}
 
-## What Was Done
-**Approach:** {How implemented — patterns and key design decisions.}
-**Key points:**
-- `{file}:{lines}` — {what the core logic does}
-- {Non-obvious behavior, dependencies, gotchas}
+## 🚦 Summary
+{2-4 sentences: the overall judgement, then the count of 🔴 must-fix / 🟡 your-call / 🟢 optional items. Close with: "You should be able to decide from this section alone; Details below is reference only."}
 
-## Plan Alignment
+## ✅ What's good
+- {thing - brief, supports the verdict. "Nothing notable" is valid.}
+
+## 📌 Action items
+{Each item plain-English and self-contained, with a "see {section} below" pointer when a Details block expands it. "No action items" is valid.}
+
+### 🔴 Must fix
+1. {action}
+
+### 🟡 Your call
+2. {a judgement the developer owns, not a defect - state the options}
+
+### 🟢 Optional
+3. {action}
+
+## 🧭 Recommendation
+{Run `/bob:reflect`? Yes/No + one line why. Name any other next command.}
+
+---
+
+## 📋 Details
+_Reference only. The sections above hold everything needed to decide what to do._
+
+### Findings
+{"No findings" is valid in any category - do not manufacture issues to fill sections. A mermaid diagram belongs here only when it shows a real mechanism or blast radius.}
+
+#### Bugs
+🔴/🟡/🟢 **{Title}** · `{file}:{line}`
+{Issue and why it matters.} **Fix:** {action}
+
+#### Design-Conformance Failures
+🔴/🟡/🟢 **{Title}** · `{file}:{line}`
+{How this deviates from the Design Record / plan.} **Fix:** {action}
+
+#### Design Concerns
+**{Title}** · `{file}:{line}`
+{Code is correct and matches the design, but the design itself looks wrong given the implementation.} **Route to:** `/bob:design` (revise Design Record) | `/bob:reflect` (surface for developer)
+
+### Plan Alignment
 {Omit if no plan.}
-| Aspect | Planned | Implemented | ✓/⚠/✗ |
+| Aspect | Planned | Implemented | Status |
+|--------|---------|-------------|--------|
+| {aspect} | {planned} | {implemented} | ✅ / ⚠️ / ❌ |
 
-## System Health
+### System Health
 | Dimension | Assessment |
 |-----------|------------|
 | Architecture | |
@@ -86,34 +132,19 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 | Consistency | |
 | Technical Debt | |
 
-## Findings
-{"No findings" is a valid, and acceptable, outcome in each category — do not manufacture issues to fill sections.}
+### Guideline Compliance
+| Guideline | Status | Notes |
+|-----------|--------|-------|
+| {guideline} | ✅ / ⚠️ / ❌ / n/a | {notes} |
 
-### Bugs
-🔴/🟡/🟢 **{Title}** · `{file}:{line}`
-{Issue and why it matters.} **Fix:** {action}
+### Done Criteria
+- ✅ / ⚠️ / ❌ {item} - {evidence}
 
-### Design-Conformance Failures
-🔴/🟡/🟢 **{Title}** · `{file}:{line}`
-{How this deviates from the Design Record / plan.} **Fix:** {action}
-
-### Design Concerns
-**{Title}** · `{file}:{line}`
-{Code is correct and matches the design, but the design itself looks wrong given the implementation.} **Route to:** `/bob:design` (revise Design Record) | `/bob:reflect` (surface for developer)
-
-## What Was Done Well
-- {thing}
-
-## Guideline Compliance
-| Guideline | ✓/⚠/✗ | Notes |
-
-## Action Items
-1. [Bug] {action}
-2. [Design-Conformance] {action}
-3. [Design Concern → routed to Design/Reflect] {action}
-
-## Recommendation
-Recommend `/bob:reflect` after significant agent-implemented changes. {Yes/No + why.}
+### What Was Done
+**Approach:** {How implemented - patterns and key design decisions.}
+**Key points:**
+- `{file}:{lines}` - {what the core logic does}
+- {Non-obvious behavior, dependencies, gotchas}
 ```
 
 ## Done — Non-Deferrable
