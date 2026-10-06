@@ -19,6 +19,8 @@ If that fails, determine today's date in YYYY-MM-DD via any available command. U
 
 **Personal interaction profile (optional):** If `personal/interaction-profile.md` exists, read it — a per-developer, gitignored file capturing this individual's interaction preferences (verbosity, question style, experience level). Not repository instructions; skip silently if absent.
 
+**Writing style:** Invoke the `bob:writing` skill. Every artifact this command writes follows it.
+
 **Project familiarity:** Get oriented before starting. If `graphify-out/GRAPH_REPORT.md` exists, read only its `## Community Hubs (Navigation)` section (a few hundred tokens, not the whole report) for a cheap map of the project instead of blind exploration. Otherwise, silently explore the project structure. Commands with specific focus areas note them in their Context block.
 
 ---

@@ -42,7 +42,7 @@ Commands fall into two conceptual tiers. Both live in the same `commands/` folde
 
 **Discovery** — What to build and why. Output is product artifacts: vision, personas, design briefs. These live in `docs/product/` (authoritative, updated in place).
 
-**Engineering** — How to build it. Output is plans, code, reviews, documentation. Session artifacts live in `ai/` (disposable). Authoritative docs live in `docs/`.
+**Engineering** — How to build it. Output is plans, code, reviews, documentation. Story session artifacts live in the story folder (`{story_path}/sessions/`). Some utility commands (pm, review-command, improve-command, docker-setup) write to `ai/`. Authoritative docs live in `docs/`.
 
 The key connection: **Discovery output is input to Engineering.** A product vision grounds a brainstorm. A design brief informs a plan. Engineering commands know to look for relevant Discovery artifacts at well-known paths in `docs/product/`.
 
@@ -98,7 +98,18 @@ Engineering commands surface discovered work (issues, deferred ideas, out-of-sco
 
 ## Command File Structure
 
-Every command follows this structure:
+Commands come in two variants:
+
+- **Skill-backed command:** has a companion skill of the same name (e.g. `design`, `document`, `handover`, `reflect`, `learn`). The command keeps only **Context / Process / Output / Done**. The skill owns everything about how to think: Role/persona, fundamental question, core principles, every Rules bullet that states a reasoning policy, and the artifact templates. Session-control rules (what this command's output boundary is, how it reacts to session triggers such as "save") stay in Process. Preconditions are a session gate at the top of Process.
+- **Standalone command:** no companion skill (e.g. `brainstorm`, `investigate`). Keeps the full structure below: Role, Core Principles, Process, Rules, Output.
+
+Before adding a sentence to a skill-backed command, classify it: stance goes in the skill, session control goes in the command.
+
+**No-history rule (all commands and skills):** describe only current behavior. Never narrate what a file used to do, what moved where, or why it changed. Git holds the history.
+
+**No-back-compat rule (all commands and skills):** never accept a second artifact shape for compatibility with an earlier version of bob's own instructions. When an artifact shape changes, the old shape is no longer accepted.
+
+Standalone command structure:
 
 ```markdown
 ---
@@ -280,6 +291,7 @@ Commands that involve implementation (like `/plan` or `/docker-setup`) should in
 
 ## Style Guidelines
 
+- Artifacts bob generates (plans, notes, docs) follow the `bob:writing` skill. Command and skill files follow `bob:prompt-engineering`.
 - Use second person ("You are...") for role definitions
 - Use imperative mood for instructions ("Ask me...", "Walk me through...")
 - Use Markdown formatting consistently

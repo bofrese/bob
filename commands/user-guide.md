@@ -87,7 +87,6 @@ Write the user guide to the resolved path (see User Guide Path above).
 - Use headers that answer "How do I...?" or describe the task ("Creating a project", not "Projects").
 - Use numbered steps for sequential flows. Use bullets for options or lists.
 - Include concrete examples — copy-paste ready, not illustrative.
-- Keep it scannable: short paragraphs, no walls of text.
 - Link between sections where relevant.
 
 **What to omit:**
