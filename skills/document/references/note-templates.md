@@ -22,6 +22,8 @@ All notes follow `bob:writing`. Headings that do not apply to a concept are left
 |---|---|
 | `path/to/entry` | Start here |
 
+To change it: {where to look first, and what else must change with it.}
+
 ## Depends on / used by
 - Depends on: [Other concept](other-concept.md)
 - Used by: [Other concept](other-concept.md)

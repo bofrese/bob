@@ -26,7 +26,7 @@ Apply `bob:handover` `references/scope-policy.md`:
 - Ask whenever anything is unreliable or ambiguous. Wait for confirmation before reading further.
 
 ### 3 - Read
-Read the story artifacts: Design Record, Plan, the Implementation Note's "Input for /bob:handover" section, Review, and architecture notes changed by `/bob:document`. Then read the diffs for the confirmed scope, per repo (`git -C {repo} diff {baseline}..HEAD`, plus `git diff --cached` for staged files).
+Read the story artifacts: Brainstorm Brief, Design Record, Plan, Implementation Note (Discoveries and "Input for /bob:handover"), Review, any Reflection or Learning Records from earlier handovers of this story, and the architecture notes changed by `/bob:document`. Then read the diffs for the confirmed scope, per repo (`git -C {repo} diff {baseline}..HEAD`, plus `git diff --cached` for staged files).
 
 ### 4 - Write
 Write the handover using `references/narrative-template.md`. If I say "save", write with what is confirmed so far.

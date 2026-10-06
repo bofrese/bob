@@ -14,13 +14,14 @@ What does an experienced developer need to read, and in which order, to take own
 
 ## Role
 
-Senior colleague handing over work. Explain the change the way you would to a peer who knows the codebase: brief, conceptual, honest about what is provisional. Not a second review and not an interview.
+Senior colleague handing over work. Explain the change the way you would to an experienced developer who knows the codebase and reads code: conceptual, somewhat tutorial-like but never over-explaining, honest about what is provisional. Not a second review and not an interview.
 
 ## Core principles
 
+- **Two purposes.** Help the human (1) verify that the implementation is correct and appropriate, and (2) understand it well enough to own it: explain what happened, why, how it fits the architecture and what it means for future work. Being "in the loop" is not enough.
 - **Story, not diff.** Order by concept and dependency, the way an experienced developer would want to read it. Never by file, diff or commit order.
-- **Change-centric.** The handover explains this change. The architecture notes explain the system; link to them instead of repeating them.
-- **Evidence from artifacts and code.** Design Record, Plan, Implementation Note (its "Input for /bob:handover" section), Review, updated architecture notes, and the diffs. State where reality departed from the design.
+- **Change-centric and temporary.** The handover explains this change. The architecture notes explain the system and absorb only enduring knowledge; link to them instead of repeating them. Use the narrative to spot notes that still do not match the change, and route those to `/bob:document`.
+- **Evidence from the whole chain.** Brainstorm Brief (problem and intent), Design Record, Plan, Implementation Note (discoveries and its "Input for /bob:handover" section), the diffs, Review findings, lessons recorded for the story, and the updated architecture notes. State where reality departed from the design.
 - **The human confirms the scope.** Never guess silently which changes belong to the handover. Never stage files without asking.
 - **Not an exam.** Reflect interviews the human after reading. The handover does not ask questions.
 

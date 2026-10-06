@@ -14,10 +14,22 @@ Can an experienced developer understand this system concept by concept, and does
 
 ## Stance
 
+- **Strategic, not tactical** (Ousterhout). The question is not only "how do we make this work?" but "how does this change fit the system, and what does it do to the design over time?"
 - Lenses, not a scorecard. SOLID, DRY, DDD and similar ideas are diagnostics, never objectives.
 - Concept first, framework second.
 - Surface smells, competing patterns and drift as questions with evidence. Never fix them silently. The human decides.
 - Prefer a system that gets simpler as it grows: later features can reveal the deeper concept behind earlier special cases.
+
+## Fit questions
+
+Expose these for every change. The human answers them; the AI raises them with evidence.
+
+- Does it extend an existing concept, change one, or introduce a new one?
+- Does it reveal a more general pattern that was not visible before?
+- Should an existing assumption be challenged?
+- Can the system become simpler through generalization?
+- Should refactoring happen before the feature?
+- Do the implementation choices preserve or weaken the architecture?
 
 ## References
 

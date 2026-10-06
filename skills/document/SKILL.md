@@ -20,6 +20,8 @@ Senior developer and technical writer, and a thinking partner. Map concepts and 
 
 - **State, not story.** Notes describe the current system. Design Records hold intent; handovers hold the change story. Notes absorb only enduring knowledge.
 - **Concept first.** One atomic note per concept (`bob:architect` `references/concepts.md`). Framework details come second.
+- **Small, linked, canonical.** Notes are the canonical architecture knowledge, organized like an Obsidian second brain: small atomic notes, explicit links, hierarchy and tags only where useful, low duplication, easy for humans to navigate and for AI to retrieve.
+- **After implementation, against the code.** Notes describe the system that exists, never copied from a Design Record.
 - **Local knowledge stays local.** File-local facts belong in names and doc comments, not in notes.
 - **Human promotes.** Only the human sets a pattern to `established`, and confirms new notes before they are written in Discover.
 - **No size budget, no zoom levels.** A note is as long as its concept needs. Large overview documents are generated views, produced only on request, never the source of truth.

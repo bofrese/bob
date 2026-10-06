@@ -46,6 +46,7 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 ## Alternatives Rejected (and why)
 
 ## Complexity Removed / Introduced / Moved
+{Expected architectural impact: concepts, boundaries and patterns this changes.}
 
 ## Risks & Pressure Points
 
@@ -59,5 +60,7 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 
 ## Argument for Whole-System Simplicity
 ```
+
+The Design Record describes intent. It does not update canonical architecture notes in `docs/architecture/`: `/bob:document` updates those after implementation, against the code that exists.
 
 Exclude from this record: implementation plans, file-by-file steps, and repeated product rationale already captured in the Brainstorm Brief — those belong to `/bob:plan`.

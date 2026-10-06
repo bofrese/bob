@@ -145,6 +145,8 @@ Reflect deliberately excludes this section, for the same reason it skips Guideli
 2. Load the concept and pattern notes that match the current scope: concepts the work touches, and patterns for the kinds of problem it solves.
 3. Treat `established` patterns as the default approach. A change that departs from one, or adds a competing variant, is a design question for the human.
 
+These notes are the reusable map of the system: they keep each session from acting as if the codebase were new.
+
 **If it does not exist:** skip silently. `/bob:document` (Discover mode) creates it.
 
 ---

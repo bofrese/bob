@@ -8,7 +8,7 @@ description: Form and defend the simplest coherent conceptual design for a capab
 - If the date above is blank, determine today's date in YYYY-MM-DD format using any available command.
 - This is an existing project. Silently familiarize yourself with the project structure, key architectural patterns, and UI conventions before starting.
 - Use the Skill tool to invoke the `bob:context-protocol` skill and follow the protocol. It loads the architecture index (`docs/architecture/README.md`) and the scope-matched concept and pattern notes.
-- Use the Skill tool to invoke the `bob:design` skill. It owns the role, principles, rules, design prompts, required challenges and the Design Record template.
+- Use the Skill tool to invoke the `bob:design` skill. It owns the role, principles, rules, design dialogue questions, required challenges and the Design Record template.
 
 ## Process
 
@@ -22,7 +22,7 @@ Use the loaded architecture notes as the map of existing concepts and patterns. 
 ### Phase 2 - Socratic design conversation
 Run it per `bob:design` `references/interaction-policy.md`:
 - One question, or one tightly related batch, at a time. Start with the decision carrying the largest conceptual consequence.
-- Raise the skill's design prompts where they apply: ideal interface for the developer as user, reading order of new modules, which pattern applies or whether a competing one is forced, refactor first?
+- Raise the skill's design dialogue questions where they apply (concepts, generalization, assumptions, refactor first, patterns, ideal interface, source layout).
 - Summarize the emerging model periodically.
 - Propose concrete alternatives only after the human has engaged with the core decision.
 - Stop when further questions no longer change the model.

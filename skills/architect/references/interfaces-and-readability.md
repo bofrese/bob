@@ -12,6 +12,8 @@ A good interface:
 - makes misuse difficult;
 - does not leak framework mechanics.
 
+Design the interface before narrowing into the implementation plan.
+
 **Smell:** a shallow module, where the interface is almost as complex as the implementation (pass-through methods, configuration the caller must understand, many small classes each doing one step).
 
 ## Public surface first
@@ -26,9 +28,11 @@ A developer who only needs to use the module can stop reading after the public p
 
 ## Comments explain the abstraction
 
-Comments at the public surface state intent, guarantees, assumptions, lifecycle, important edge cases and semantic constraints. They do not narrate syntax.
+Comments at the public surface state intent, guarantees, assumptions, lifecycle, important edge cases, semantic constraints and how the abstraction is meant to be used. They do not narrate syntax.
 
 ## Reading-order smells
+
+If a reader must jump around the file to find what is public, what is private, what the module does, what they may call and which assumptions apply, the source does not support the architecture.
 
 - Public interface buried among helper functions.
 - Private implementation mixed with exported behavior.
@@ -41,4 +45,5 @@ Comments at the public surface state intent, guarantees, assumptions, lifecycle,
 - What should another developer see first?
 - What is the public surface, and what sits below the abstraction boundary?
 - Can someone use it without reading the internals?
+- Will the source ordering make the abstraction obvious?
 - In which order should a reader open the new files?

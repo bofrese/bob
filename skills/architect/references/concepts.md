@@ -6,9 +6,9 @@ Use when mapping what a system does, deciding what deserves an architecture note
 
 Classes, modules, packages, services and framework constructs are implementation structure. A concept is something the system does or enforces that an experienced developer would name when explaining the system to a peer.
 
-Typical kinds: business concept, business rule, workflow, state transition, authorization or security boundary, validation, persistence boundary, external integration, retry policy, event handling, configuration, scheduling, caching, cross-cutting policy.
+Typical kinds: business concept, business rule, workflow, state transition, authorization or security boundary, validation, logging, persistence boundary, external integration, retry policy, event handling, configuration, scheduling, caching, cross-cutting policy.
 
-**Test:** could this concept have a behavioral requirement that says how it is supposed to work? If yes, it is a concept. If it only answers "which framework class is this", it is structure.
+**Test:** could this concept have a behavioral requirement that says how it is supposed to work? If yes, it is a concept. Sometimes that behavior can even be an executable requirement. If it only answers "which framework class is this", it is structure.
 
 ## Concept first, framework second
 
@@ -16,12 +16,13 @@ Explain a concept in its own terms first ("the authorization policy for these ac
 
 ## Navigation questions
 
-For each meaningful concept, the architecture knowledge answers only the applicable questions:
+The goal is orientation for humans and AI, not documentation for its own sake. For each meaningful concept, the architecture knowledge answers only the applicable questions:
 
 - What is it, and why does it exist?
 - What behavior does it provide?
 - Where is it implemented?
 - What does it depend on, and what depends on it?
+- Where should I look if I need to change it?
 - Which patterns does it take part in?
 - Which tests or executable requirements verify it?
 
@@ -45,4 +46,4 @@ Raise a design question when a concept is:
 - mixed heavily with framework or infrastructure details;
 - hidden behind incidental structure instead of an intentional abstraction.
 
-Name the possible reading: architectural smell, refactoring candidate, missing abstraction, competing pattern, accidental complexity. Never fix it silently. The human decides whether the situation is acceptable.
+Name the possible reading: architectural smell, refactoring candidate, missing abstraction, competing pattern, accidental complexity, design inconsistency. Never fix it silently. The human decides whether the situation is acceptable.

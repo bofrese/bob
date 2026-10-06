@@ -14,13 +14,13 @@ Give a pattern a short, local name. Do not force it into a textbook label.
 
 | Status | Evidence | Who sets it |
 |---|---|---|
-| `established` | The same problem is solved the same way across the system | Human only. AI proposes, never promotes |
-| `emerging` | Several places converge on one approach, not yet explicit | AI may record it; surface it to the human |
+| `established` | The same problem is solved the same way across the system. Probably intentional: document it and reuse it | Human only. AI proposes, never promotes |
+| `emerging` | Several places converge on one approach, not yet explicit. May be a chance to generalize | AI may record it; surface it to the human |
 | `competing` | Similar problems solved differently in different places | AI records both variants in one note, ending with an open design question |
 
 Never choose a winner between competing variants. Differences can be intentional (different context), historical, accidental or debt. The human decides.
 
-An AI finding a pattern does not make it a universal rule.
+An AI finding a pattern does not make it a universal rule. A pattern is a preferred solution in context: it always states its context and its boundaries (when not to apply it).
 
 ## Checking a change against patterns
 
@@ -30,7 +30,7 @@ An AI finding a pattern does not make it a universal rule.
 
 ## Drift signals
 
-Drift appears across many locally reasonable changes. Look for:
+Drift appears across many locally reasonable changes, each made from incomplete context: different ways to solve the same problem, hidden coupling, framework leakage, scattered business rules, incompatible local conventions. Look for:
 
 - **Pattern drift:** a new way to solve a problem that already has a pattern.
 - **Architecture drift:** a concept note no longer matches the code (moved, split, merged, no longer exists).
@@ -39,4 +39,4 @@ Drift appears across many locally reasonable changes. Look for:
 - **Source-organization drift:** new files that break the established layout or reading order.
 - **Duplicated concepts:** two notes, modules or rules that describe the same thing.
 
-Report drift with evidence (paths, notes). Do not fix it silently.
+Report drift with evidence (paths, notes). Do not fix it silently. Architecture and pattern notes are the context that keeps each new session from acting as if the codebase were new.

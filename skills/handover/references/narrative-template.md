@@ -4,7 +4,7 @@
 
 ## Reading-order policy
 
-Order the reading guide so each step only needs what came before it:
+Order the reading guide in conceptual, dependency or learning order, the order an experienced developer would want. Never file, diff or commit order. Each step only needs what came before it:
 1. Start at the concept or interface that explains the change (often the new public surface, or the rule that changed).
 2. Then what depends on it, in dependency order.
 3. Then wiring and integration.
@@ -39,12 +39,15 @@ Each step names the file or symbol in backticks, says what to look for, and why 
 Mechanical changes, no need to read: {one line}
 
 ## Future impact
-- New abstractions or interfaces:
+- New abstractions:
+- Altered interfaces:
 - Changed assumptions:
 - New or changed patterns (with status):
+- Where future work should follow the same approach:
 - Provisional parts:
 - Follow-ups:
 
 ## Architecture notes updated
 - [{note}]({path}) - {what changed}
+- Notes that still look stale after this change: {list, or "none"; route to `/bob:document`}
 ```
