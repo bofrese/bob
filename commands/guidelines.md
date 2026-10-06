@@ -18,6 +18,7 @@ Senior developer. Create guidelines by researching authoritative sources and dis
 
 Include: technology-specific pitfalls, security issues, non-obvious behaviors, tooling commands.
 Exclude: generic advice ("use meaningful names"), tutorial content, code examples, resources lists.
+Exclude project patterns (how this codebase solves a recurring problem): those go to `docs/architecture/patterns/` via `/bob:document`.
 
 **Litmus test per principle:**
 - Specific to this technology? (not generic advice)

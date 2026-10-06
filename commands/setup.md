@@ -74,15 +74,6 @@ find . -name "*.md" \
   -not -path "./docs/*" \
   ! -name "README.md" ! -name "CLAUDE.md" ! -name "LICENSE.md" ! -name "CHANGELOG.md" \
   2>/dev/null
-
-# Unstructured docs: .md files in docs/ but outside bob's known subfolders
-find ./docs -name "*.md" \
-  -not -path "./docs/product/*" \
-  -not -path "./docs/guidelines/*" \
-  -not -path "./docs/domain/*" \
-  -not -path "./docs/process/*" \
-  ! -name "README.md" \
-  2>/dev/null
 ```
 
 ### Step 2 — Report and Confirm
@@ -235,12 +226,10 @@ Never remove, reorder, or modify existing sections.
 
 ### Step 5 — Unmanaged file report
 
+Setup does not judge or rearrange `docs/` content. `/bob:document` (Audit mode) owns that.
+
 **Orphan files** (outside all managed locations):
 If found: list them. Say: "These files are outside bob's managed locations. To migrate: move them to `knowledge/_INBOX/` manually, then run `/bob:library process` to classify and file them."
-If none: skip silently.
-
-**Unstructured docs** (in `docs/` but outside bob's known subfolders):
-If found: list them. Say: "These files are in `docs/` but outside bob's structured subfolders. They may be candidates to migrate to `knowledge/` if they contain decisions, concepts, or research. Review manually — no action required."
 If none: skip silently.
 
 ### Step 6 — Summary
@@ -263,7 +252,6 @@ One compact table:
 | Kanban new-line-trigger | Repaired N / Already correct |
 | Session files at story root | Moved N / None found |
 | Orphan files | N found (see above) / None |
-| Unstructured docs | N found (see above) / None |
 | Ponytail plugin | Installed / Recommended (not installed) |
 | Obsidian Skills plugin | Installed / Recommended (not installed) |
 | graphify | Installed vX.Y.Z / Recommended (install or upgrade to >= 0.9.11) |
