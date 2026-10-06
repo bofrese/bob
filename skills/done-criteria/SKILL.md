@@ -69,9 +69,9 @@ Before finishing, explicitly list any of the following that emerged this session
 
 1. **Terminology or naming conventions** established or clarified
 2. **Architectural decisions** made that aren't captured in the plan
-3. **Patterns discovered** that should become guidelines
+3. **Codebase patterns** discovered, changed or contradicted
 
-For each item found: name it, explain why it matters, and recommend the specific command to persist it (`/bob:document` for decisions/terminology, `/bob:guidelines` for reusable patterns).
+For each item found: name it, explain why it matters, and recommend the specific command to persist it (`/bob:document` for decisions, terminology and codebase patterns, `/bob:guidelines` for technology pitfalls).
 
 Also check for:
 

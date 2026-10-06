@@ -7,8 +7,9 @@
 | One-off correction | Do not persist |
 | Repository-wide operating fact | `CLAUDE.md`/repository instructions |
 | Domain term or distinction | `docs/domain/` |
-| Architectural decision | architecture docs, ADR, or knowledge decision |
-| Reusable project pattern | `docs/guidelines/` or knowledge pattern |
+| Architectural decision | `docs/architecture/` note via `/bob:document`, or knowledge decision |
+| Reusable project pattern | `docs/architecture/patterns/` via `/bob:document` |
+| Technology pitfall | `docs/guidelines/` via `/bob:guidelines` |
 | Skill interaction failure | command/skill change plus behavior test |
 | Missing task context | artifact contract or context protocol |
 | Deterministic invariant | test, linter, architecture rule, hook |

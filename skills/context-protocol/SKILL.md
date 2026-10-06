@@ -54,6 +54,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `improve-command` | invoke the `bob:prompt-engineering` skill |
 | `investigate` | — |
 | `document` | — |
+| `handover` | — |
 | `guidelines` | — |
 | `docker-setup` | — |
 | `bob` | — |
@@ -67,7 +68,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 
 ## Story Context (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After loading the files above, invoke the `bob:story-context` skill.
 Follow its protocol exactly. Do not proceed until story context is confirmed.
@@ -77,7 +78,7 @@ Use the resolved `Path:` from the story-context output block for all artifact pl
 
 ## Kanban Sync (Engineering commands, after story context confirmed)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After story context is confirmed (and before Guidelines and Knowledge Retrieval), check `{story_path}/_kanban.md`:
 
@@ -98,7 +99,7 @@ Do not block or delay if no match is found. This step is informational — it sy
 
 ## Guidelines (Engineering commands, after scope is clear)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `investigate`, `ui-review`:
 
 Reflect deliberately excludes this section — it does not load a generic guideline dump; see its per-command row above.
 
@@ -133,9 +134,24 @@ Notify the user: "No project guidelines found — run `/bob:guidelines` to creat
 
 ---
 
+## Architecture Notes (Engineering commands, after scope is clear)
+
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `investigate`:
+
+Reflect deliberately excludes this section, for the same reason it skips Guidelines: it works from this change's evidence.
+
+**If `docs/architecture/README.md` exists:**
+1. Read it as the navigation index. Do not load all notes.
+2. Load the concept and pattern notes that match the current scope: concepts the work touches, and patterns for the kinds of problem it solves.
+3. Treat `established` patterns as the default approach. A change that departs from one, or adds a competing variant, is a design question for the human.
+
+**If it does not exist:** skip silently. `/bob:document` (Discover mode) creates it.
+
+---
+
 ## Knowledge Retrieval (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:knowledge` skill (read-only, automatic retrieval) and follow its protocol. This is the retrieval skill, distinct from the `/bob:library` command (interactive vault management).
 
@@ -143,6 +159,6 @@ After resolving story context and loading applicable guidelines, invoke the `bob
 
 ## Code Graph (Engineering commands)
 
-For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`, `investigate`, `ui-review`:
+For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `reflect`, `learn`, `investigate`, `ui-review`:
 
 After resolving story context and loading applicable guidelines, invoke the `bob:code-graph` skill (read-only, automatic retrieval) and follow its protocol. It skips silently if graphify or the graph is absent.

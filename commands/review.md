@@ -29,7 +29,7 @@ Correlate plans with changed files. Form a scope hypothesis.
 **5 — Review:** Sort every finding into exactly one of three categories — never leave a finding untyped:
 - **Bugs:** Does the code do what it's supposed to? Edge cases, error handling, silent failures, security (input validation, auth, injection risks, sensitive data, hardcoded secrets), readability defects that hide a bug.
 - **Design-conformance failures:** Does the implementation match the approved Design Record / plan? Deviations not justified, steps skipped, contracts violated. Check against Plan alignment and against Design (when loaded in step 3).
-- **Design concerns:** The code is correct and matches the design, but the design itself now looks wrong in light of the implementation (system health, simplicity, architecture coherence, duplicated logic, unjustified abstractions, guideline anti-patterns). These are not fixed as ordinary findings — route them toward `/bob:design` (revise the Design Record) or `/bob:reflect` (surface for the developer), not into an action item to patch here.
+- **Design concerns:** The code is correct and matches the design, but the design itself now looks wrong in light of the implementation (system health, simplicity, architecture coherence, duplicated logic, unjustified abstractions, guideline anti-patterns, a change that contradicts an `established` pattern note or introduces a competing one, source-readability issues in new or significantly changed files such as a buried public surface). Invoke the `bob:architect` skill for this category (`references/design-lenses.md`, `references/patterns.md`, `references/interfaces-and-readability.md` as needed). These are not fixed as ordinary findings — route them toward `/bob:design` (revise the Design Record) or `/bob:reflect` (surface for the developer), not into an action item to patch here.
 - **Done criteria:** Read `docs/process/done-criteria.md`. Verify each applicable item (file as bug or design-conformance failure depending on what failed).
 
 **Graph-assisted system health** (if a fresh Code Graph Context was emitted by `bob:code-graph` via the context protocol):
@@ -47,7 +47,7 @@ If no Code Graph Context is present (graphify absent, no graph, or stale), skip 
 
 Recommend `/bob:reflect` after significant agent-implemented changes.
 
-Before writing the report: identify any patterns in the findings that should become guidelines — especially if the same type of issue appeared more than once or reflects a convention worth codifying. If found, name the pattern and suggest `/bob:guidelines` with a specific topic.
+Before writing the report: identify codebase patterns the change introduced, changed or contradicted. Name each and recommend `/bob:document` (Update mode) to record it as a pattern note. Repeated technology pitfalls go to `/bob:guidelines`.
 
 Ask before writing report - preview the verdict, the action items grouped 🔴 / 🟡 / 🟢, and the recommendation.
 

@@ -51,7 +51,7 @@ Invoke the `bob:design-signals` skill continuously throughout this phase — imp
 
 **7 — Prepare for Reflect:** Before writing the note, prepare concise input for `/bob:reflect` — not a full walkthrough. Identify the few code paths that carry the architectural meaning (not every file touched), any Design Signals raised and how they resolved, and anything surprising enough that the developer should specifically look at it. This replaces the AI-led ownership-transfer narrative that used to run here: recovering ownership is `/bob:reflect`'s job, done with the developer, not a monologue Implement delivers to them.
 
-Before writing the note, scan the implementation for patterns worth capturing as guidelines — recurring structures, conventions established, non-obvious decisions likely to repeat. If found, name each and suggest `/bob:guidelines` with a specific topic.
+Before writing the note, scan the implementation for codebase patterns: a new recurring structure, a departure from an `established` pattern note, or a competing variant. Name each in the note's Discoveries. `/bob:document` (Update mode) records them as pattern notes after Review. Technology pitfalls go to `/bob:guidelines`.
 
 **8 — Report:** Write to `{story_path}/sessions/{date}-implement-{slug}.md`. Update plan status to "Implemented".
 
@@ -86,7 +86,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 {One row per signal that reached "continue and record" or higher. "None raised" is a valid, and common, row when implementation stayed within the approved design.}
 
 ## Discoveries
-{Insights for future consideration. Patterns worth capturing as guidelines.}
+{Insights for future consideration. New, changed or competing codebase patterns for `/bob:document`.}
 
 ## Test Results
 {Summary. New tests added.}
