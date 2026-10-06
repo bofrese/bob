@@ -9,6 +9,9 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 **Date:** {YYYY-MM-DD}
 **Status:** {Ready for Plan / Return to Brainstorm / Investigate First / Do Not Build}
 
+## TL;DR
+{3-6 bullets: the model in short, key decisions, open questions. Rewrite on every edit.}
+
 ## Accepted Capability
 
 ## Repository Evidence Inspected
@@ -16,6 +19,9 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 |------|---------|--------|
 
 ## Existing Concepts Reused
+
+## Relevant Patterns
+{Pattern notes that apply, and any competing pattern this design is forced into.}
 
 ## New Concepts Introduced
 
@@ -27,9 +33,15 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 
 ## Boundaries & Responsibility Ownership
 
+## Important Interfaces
+{The interface each new capability offers its developer-user: what callers see, what stays hidden.}
+
 ## Important Data/Control Flow
 
 ## Expected Reading/Navigation Path
+
+## Refactoring Needs
+{Refactoring that should happen first, and why. "None" is valid.}
 
 ## Alternatives Rejected (and why)
 
