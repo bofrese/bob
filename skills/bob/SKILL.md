@@ -66,11 +66,12 @@ Bob reads and writes to predictable locations:
 | `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
-| `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation to recover ownership after correctness is established; identifies candidates for Learn |
+| `/bob:document` | `docs/architecture/{concepts,patterns}/` + `docs/architecture/README.md` | Canonical, concept-first architecture notes; modes Discover / Update / Audit |
+| `/bob:handover` | `{story_path}/{date}-handover-{slug}.md` | The delivered change as a logical story: problem, design ideas, what changed and why, reading order, future impact |
+| `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation after reading the Handover; closes ownership gaps, identifies candidates for Learn |
 | `/bob:learn` | `{story_path}/{date}-learn-{slug}.md` + `docs/process/learnings.md` | Classify session evidence (corrections, interruptions, repeated findings) into durable harness improvements or none; stages unresolved occurrences for future runs |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
-| `/bob:document` | `docs/{concept}.md` + `docs/README.md` | Generate/update dev docs; detect doc drift |
 | `/bob:user-guide` | `docs/user-guide.md` (configurable) + `{story_path}/{date}-user-guide-findings-{slug}.md` | Create/maintain end-user guide; surfaces UX gaps as findings report |
 | `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
 | `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |
@@ -109,10 +110,13 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
 | `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 — Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
-| `bob:ddd` | `plan` | Domain-driven naming and bounded contexts |
-| `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, comprehensibility lenses, Design Record template |
+| `bob:architect` | `/bob:design`, `/bob:plan`, `/bob:review`, `bob:document`, `bob:reflect` | What good design means: design lenses, domain placement, deep modules and readability, concepts and smells, patterns and drift |
+| `bob:writing` | `context-protocol` (every command) | How bob writes artifacts: TL;DR first, scannable, fixed icons, plain English, no AI tells |
+| `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, dialogue questions, Design Record template |
+| `bob:document` | `/bob:document` | Docs layout, Discover / Update / Audit modes, concept and pattern note templates |
+| `bob:handover` | `/bob:handover` | Scope policy, narrative template, `scripts/gather.py` multi-repo change-set gathering |
 | `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
-| `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for post-review ownership recovery |
+| `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for ownership recovery after the Handover |
 | `bob:learn` | `/bob:learn`, `/bob:improve-command` (scoped) | Classification policy, `docs/process/learnings.md` cross-session persistence map, and Learning Record template |
 | `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
 | `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
@@ -126,6 +130,8 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
 | `bob:knowledge` | `context-protocol` (every engineering command) | Retrieval skill: load relevant vault notes into context silently; distinct from `/bob:library` command |
 | `bob:code-graph` | `context-protocol` (every engineering command) | Detect a graphify code graph, gate freshness, emit query policy silently; delegates all traversal to graphify. Degrades silently if graphify absent |
+| `bob:project-tracking` | Engineering commands, `pm`, `done-criteria` | Story folders, kanban boards, task files, `_index.md` History |
+| `bob:bob` | User questions about bob | This catalog |
 | `bob:vault` | `/bob:library` | Vault management controller: routes to process, ingest, organise, bootstrap sub-files; owns Python scripts |
 
 ---
@@ -136,7 +142,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 `product-vision` → `problem-space` → `personas` → `validation-plan` → `business-plan` → `positioning` → `design-brief`
 
 **New feature:**
-`brainstorm` → `design` → `plan` → `review-plan` → `implement` → `review` → `reflect` → `learn`
+`brainstorm` → `design` → `plan` → [`review-plan`] → `implement` → `review` → `document` → `handover` → `reflect` → `learn`
 
 **Bug:**
 `investigate` → `plan` → `implement` → `review`

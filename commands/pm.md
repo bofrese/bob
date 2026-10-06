@@ -110,7 +110,9 @@ When I describe what I want to do:
 - Review Plan when factual assumptions or risk justify an independent gate.
 - Implement when intent and execution path are sufficiently explicit.
 - Review when correctness must be independently established.
-- Reflect when meaningful implementation was delegated or implementation produced surprise.
+- Document when canonical architecture notes must reflect the change.
+- Handover when meaningful work was delegated and the human must take ownership.
+- Reflect, after reading the Handover, when meaningful implementation was delegated or implementation produced surprise.
 - Learn when the session exposed a reusable harness lesson.
 - Dev when work is local, reversible, conceptually settled, and easily verified.
 
@@ -217,7 +219,7 @@ User: /bob
 Assistant: **Current State:**
 - Foundation: Vision, personas, and design-brief established
 - Recent Activity: Implemented authentication system (2025-01-20)
-- 2 open plans in `ai/plans/` not yet implemented
+- 2 open plans in `projects/APP/stories/APP-012/sessions/` not yet implemented
 
 **Gap:** You implemented auth but haven't documented the patterns. This means the next feature (or AI in the next session) won't know your conventions.
 

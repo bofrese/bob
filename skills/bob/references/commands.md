@@ -240,7 +240,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **Purpose:** Socratic, evidence-based session to form the simplest coherent conceptual design for a capability — concepts, boundaries, vocabulary, trade-offs — before any implementation planning starts. The human owns every material decision; the command investigates, challenges, and exposes pressure points rather than handing over a finished architecture.
 
-**Reads:** Brainstorm Brief or accepted requirement, repository evidence (code graph query when fresh, else manual exploration), relevant domain knowledge.
+**Reads:** Brainstorm Brief or accepted requirement, architecture index and scope-matched notes, repository evidence (code graph query when fresh, else manual exploration), relevant domain knowledge.
 
 **Writes:** `{story_path}/{date}-design-{slug}.md` (a Design Record) — the authoritative intent consumed by Plan, Review Plan, Implement, Review, and Reflect.
 
@@ -251,7 +251,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 4. **PM step:** Route out-of-scope findings — invoke `bob:work-routing`
 5. Exit and record: may conclude "return to Brainstorm," "investigate first," "do not build," or a completed Design Record
 
-**Skills:** `context-protocol`, `design` (interaction policy, lenses, artifact template), `code-graph` (phase 1 evidence), `domain-knowledge` (on correction), `work-routing` (step 4), `done-criteria`
+**Skills:** `context-protocol`, `design` (interaction policy, dialogue questions, artifact template), `architect` (phase 1, lenses, interfaces, patterns), `code-graph` (phase 1 evidence), `domain-knowledge` (on correction), `work-routing` (step 4), `done-criteria`
 
 ---
 
@@ -276,7 +276,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **DESIGN FEEDBACK:** if repository inspection contradicts the Design Record, Plan emits a `DESIGN FEEDBACK` section and stops planning that area rather than improvising.
 
-**Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `ddd` (step 4), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `architect` (step 4: placement, lenses), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
 
 ---
 
@@ -310,7 +310,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ## `/bob:implement` — Plan Execution
 
-**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:reflect` rather than delivering an AI-led ownership-transfer walkthrough.
+**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:handover`.
 
 **Reads:** Specified plan from `{story_path}/`, referenced Design Record, review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
 
@@ -323,7 +323,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 4. Invoke `bob:design-signals` continuously; escalate to human at "pause for human decision" or stop at "stop and return to Design"
 5. Kanban update: mark resolved issues/tasks done
 6. **PM step (step 6.5):** For new issues or work discovered during implementation — invoke `bob:work-routing`
-7. Prepare concise input for `/bob:reflect`: critical code paths, signals raised and their resolution, notable surprises — not a full walkthrough
+7. Prepare concise input for `/bob:handover`: critical code paths, signals raised and their resolution, notable surprises — not a full walkthrough
 8. Write Implementation Note
 
 **Skills:** `context-protocol`, `bdd` (step 3), `design-signals` (step 4, continuous), `work-routing` (step 6.5), `done-criteria`
@@ -341,9 +341,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 **Findings are sorted into three categories, each rated Critical/Important/Suggestion:**
 - Bugs — the code doesn't do what it's supposed to
 - Design-conformance failures — implementation doesn't match the approved Design Record/plan
-- Design concerns — code is correct and conforms, but the design itself now looks wrong; routed to `/bob:design` or `/bob:reflect`, not fixed here
+- Design concerns — code is correct and conforms, but the design itself now looks wrong; routed to `/bob:design` or `/bob:reflect`, not fixed here; includes contradicting an `established` pattern note and source-readability issues in new or significantly changed files
 
-A clean review with no manufactured findings is a valid outcome. Recommends `/bob:reflect` after significant agent-implemented changes.
+A clean review with no manufactured findings is a valid outcome. Recommends `/bob:document` and `/bob:handover` after significant agent-implemented changes.
 
 **Checks:** Bugs, design conformance, system health, simplicity/DRY, security (OWASP top 10), robustness, done criteria compliance.
 
@@ -351,23 +351,24 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 **PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues/debt that are clearly out of scope for this story. In-scope findings go in the report.
 
-**Skills:** `context-protocol`, `code-graph` (system-health hubs + diff impact), `work-routing` (PM step), `done-criteria`
+**Skills:** `context-protocol`, `architect` (design-concern lens), `code-graph` (system-health hubs + diff impact), `work-routing` (PM step), `done-criteria`
 
 ---
 
 ## `/bob:reflect` — Engineering Reflection
 
-**Purpose:** Recover human ownership of AI-implemented work after correctness is established. Short, non-quizzy, peer-to-peer — not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
+**Purpose:** Recover human ownership of AI-implemented work after the human has read the Handover. Short, non-quizzy, peer-to-peer, not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
 
 **Reads:** Handover, Design Record, Review verdict, the architecture notes the Handover links to, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
 
 **Writes:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
 
 **Process:**
-1. Load Design Record, Implementation Note, and Review verdict; identify the few code paths that carry architectural meaning
-2. Select two to five high-value questions from actual diff evidence (a Design Signal, a deviation, a surprise) — never a generic checklist
+0. Gate: Review established correctness; the human has read the Handover
+1. Load the Handover, Design Record, Review verdict and the notes the Handover links to; open the code paths its reading order marks
+2. Select two to five questions from evidence (Handover gaps, Review deviations, smells, drift, missed simplifications), never a generic checklist
 3. Let the human answer first; inspect vague areas together rather than supplying the explanation
-4. Surface insights worth carrying forward: backlog ideas, design revisits, documentation/guideline gaps — invoke `bob:work-routing` for anything that should become backlog work
+4. Route: backlog via `bob:work-routing`; name candidates for `/bob:learn`, `/bob:document`, `/bob:design`
 5. Produce the Reflection Record; a very short "no meaningful insight, ownership clear" record is a valid, common outcome
 
 **Skills:** `context-protocol`, `reflect`, `work-routing` (step 4), `done-criteria`
@@ -433,24 +434,41 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 ---
 
-## `/bob:document` — Developer Documentation
+## `/bob:document` - Canonical Architecture Notes
 
-**Purpose:** Generate or update developer documentation at L2 (system map) or L3 (subsystem) zoom. Has drift detection mode that compares existing docs against current codebase.
+**Purpose:** Write and maintain the project's canonical architecture knowledge as concept-first, atomic, linked notes. State, not story: notes describe the implemented system.
 
-**Reads:** Project codebase (source files, existing docs), `docs/README.md`, `git log` (drift detection).
+**Reads:** Project codebase, `docs/architecture/` (index and notes), older `docs/*.md`, the story's Design Record, Implementation Note and Review (Update mode), `git log`.
 
-**Writes:** `docs/{concept}.md` (new or updated), `docs/README.md` (index update).
+**Writes:** `docs/architecture/concepts/{concept}.md`, `docs/architecture/patterns/{pattern}.md`, `docs/architecture/README.md`; doc comments in source where a fact is file-local. Update mode adds a Documentation row to the story's `_index.md` History.
 
 **Modes:**
-- **Generate:** New documentation for a concept or subsystem
-- **Update:** Bring an existing doc current
-- **Drift:** Scan existing docs and flag stale/missing/accurate claims
+- **Discover:** no `docs/architecture/` yet; propose concept and pattern lists, human confirms; offer per-file migration of older `docs/*.md`
+- **Update:** after Review, story-scoped: notes changed, patterns followed / competing / emerging, drift
+- **Audit:** drift check of notes against code, plus `docs/` placement proposals
 
-**Zoom levels:**
-- L2: System map (components, relationships, boundaries)
-- L3: Subsystem deep-dive (flows, APIs, data shapes)
+Only the human promotes a pattern to `established`. Large documents are generated views on request.
 
-**Skills:** `context-protocol`, `done-criteria`
+**Skills:** `context-protocol`, `document`, `architect` (concepts, patterns), `work-routing`, `done-criteria`
+
+---
+
+## `/bob:handover` - Change Narrative
+
+**Purpose:** Turn a delivered change into a logical story the accountable developer reads before Reflect: problem, main design ideas, what changed and why, a conceptual reading order, future impact.
+
+**Reads:** `scripts/gather.py` output (change set per repo: story repo, submodules, nested repos), Brainstorm Brief, Design Record, Plan, Implementation Note, Review, updated architecture notes, the diffs.
+
+**Writes:** `{story_path}/{date}-handover-{slug}.md`. Its commit is the baseline for the next handover.
+
+**Process:**
+1. Gather the change set (`gather.py`)
+2. Confirm scope: "since last handover" when reliable, else ask whole story or range; offer to stage candidates
+3. Read artifacts and diffs
+4. Write the narrative
+5. Route gaps via `bob:work-routing`; recommend `/bob:reflect`
+
+**Skills:** `context-protocol`, `handover`, `work-routing`, `done-criteria`
 
 ---
 

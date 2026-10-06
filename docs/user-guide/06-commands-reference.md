@@ -223,17 +223,31 @@ Auto-detects scope from git (uncommitted changes, branch commits, range). Loads 
 
 ---
 
-### `/bob:reflect`
-**Recover ownership after correctness is established.**
+### `/bob:handover`
+**Explain a delivered change as a logical story.**
 
-Short, non-quizzy peer conversation. Assumes `/bob:review` already settled correctness — picks two to five questions from actual Design/Implement/Review evidence, lets you answer first, and inspects vague areas together. A brief "no gap" record is a valid outcome.
+Gathers the change set since the last handover (story repo plus submodules), confirms the scope with you, and writes the problem, main design ideas, what changed and why, a conceptual reading order and future impact.
 
 | | |
 |---|---|
-| **Reads** | Design Record, Implementation Note, Review verdict, selected critical code |
-| **Writes** | `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record) |
-| **Start here when** | After review, for significant agent-implemented changes |
-| **Output includes** | Expectation vs. reality, ownership gaps (if any), candidates for `/bob:learn` and the backlog |
+| **Reads** | Story artifacts (Brainstorm to Review), updated architecture notes, the diffs |
+| **Writes** | `{story_path}/sessions/{date}-handover-{slug}.md` |
+| **Start here when** | After Document, when delegated work must become yours |
+| **Time** | 5 – 15min |
+
+---
+
+### `/bob:reflect`
+**Recover ownership after reading the Handover.**
+
+Short, non-quizzy peer conversation. Assumes `/bob:review` settled correctness and you read the Handover. Picks two to five questions from actual evidence (Handover gaps, Review deviations, smells, drift, missed simplifications), lets you answer first, and inspects vague areas together. A brief "no gap" record is a valid outcome.
+
+| | |
+|---|---|
+| **Reads** | Handover, Design Record, Review verdict, notes the Handover links to, selected critical code |
+| **Writes** | `{story_path}/sessions/{date}-reflect-{slug}.md` (a Reflection Record) |
+| **Start here when** | After the Handover, for significant agent-implemented changes |
+| **Output includes** | Expectation vs. reality, ownership gaps (if any), candidates for `/bob:learn`, `/bob:document` and the backlog |
 | **Time** | 5 – 20min |
 
 ---
@@ -250,7 +264,7 @@ Runs at the end of a session (typically after Reflect). Classifies evidence — 
 | **Start here when** | End of a session that exposed a reusable harness lesson |
 | **Time** | 5 – 15min |
 
-`/bob:improve-command` is now a thin, scoped wrapper over this — limited to a single command's improvement.
+`/bob:improve-command` is a thin, scoped wrapper over this — limited to a single command's improvement.
 
 ---
 
@@ -288,17 +302,17 @@ Root cause analysis, not quick fixes. Explores thoroughly. Identifies contributi
 Build and maintain the knowledge base that makes every future session better.
 
 ### `/bob:document`
-**Generate or update developer documentation.**
+**Write and maintain canonical architecture notes.**
 
-Two modes: **new** (docs for undocumented features) or **maintenance** (detect drift).
+Concept-first, atomic notes for every important system concept and codebase pattern. Three modes: **Discover** (first map, you confirm the concept and pattern lists), **Update** (after Review, notes match what was built), **Audit** (drift check of notes and `docs/`).
 
 | | |
 |---|---|
-| **Reads** | The codebase, existing docs |
-| **Writes** | `docs/{concept}.md`, updates `docs/README.md` |
-| **Start here when** | After new features ship, or quarterly for maintenance |
-| **Modes** | new (document something), maintenance (find drift) |
-| **Time** | 20 – 45min |
+| **Reads** | The codebase, the story's Design Record, Implementation Note and Review, existing notes and `docs/` |
+| **Writes** | `docs/architecture/concepts/`, `docs/architecture/patterns/`, `docs/architecture/README.md` |
+| **Start here when** | After Review, or on a project with no architecture notes yet |
+| **Modes** | Discover, Update, Audit |
+| **Time** | 10 – 45min |
 
 ---
 

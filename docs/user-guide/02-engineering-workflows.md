@@ -6,13 +6,13 @@ The core pipeline: turn ideas into shipped, tested, documented code. This is whe
 ## The Pipeline at a Glance
 
 ```
-Brainstorm (idea) → Design (concept) → Plan (how to build) → Implement (write code) → Review (quality check) → Reflect (recover ownership) → Done
+Brainstorm (idea) → Design (concept) → Plan (how to build) → [Review Plan] → Implement (write code) → Review (quality check) → Document (update architecture notes) → Handover (the change as a story) → Reflect (recover ownership) → Learn
 ```
 
 But there's a critical step you might miss: **Review the plan before implementing.** A fresh set of eyes catches problems that the planning session missed.
 
 ```
-Brainstorm → Design → Plan → Review Plan → Implement → Review Code → Reflect → Done
+Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn
 ```
 
 Brainstorm decides whether the idea is worth building. Design decides the concept — boundaries, vocabulary, trade-offs — before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
@@ -24,18 +24,14 @@ Each step is a separate session (usually separate days). Each session reads the 
 Not every change earns the full pipeline. Bob classifies work qualitatively (new concept? contract change? boundary crossing? hard to reverse?) and scales accordingly:
 
 - **Fast** — `/bob:dev`. No brainstorm/design/plan/review cycle at all — a working session for local, reversible, conceptually settled changes. If a "quick fix" turns out to cross one of the four questions above, `/bob:dev` says so and recommends `/bob:design` instead of quietly proceeding.
-- **Standard** — Design → Plan → Implement → Review → a short Reflect. Brainstorm is skippable when intent is already clear.
+- **Standard** — Design → Plan → Implement → Review → Document → Handover → a short Reflect. Brainstorm is skippable when intent is already clear.
 - **Full** — the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
 
 `/bob:pm` applies this classification when you're not sure which path fits — describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
 
 ## Learn — Closing the Loop
 
-After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons — a repeated correction, a missing tool, a prompt gap — and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is now a thin wrapper over `/bob:learn` scoped to a single command.
-
-## Migration Note: Older Plan Artifacts Still Work
-
-Plans written before Design existed as a separate phase often embed their design reasoning directly in a `## Design` section rather than pointing at a separate Design Record. `/bob:implement` accepts that embedded section as a substitute — you do not need to retroactively split old plans into two documents. This applies to any plan predating this rollout, including this plugin's own planning history.
+After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons — a repeated correction, a missing tool, a prompt gap — and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is a thin wrapper over `/bob:learn` scoped to a single command.
 
 ## Phase 1: Brainstorm
 
@@ -193,44 +189,53 @@ A handoff document: anyone can read this and own the code confidently. For signi
 
 ---
 
-## Phase 7: Reflect
+## Phase 7: Document
 
-**When:** After Review, for significant agent-implemented changes. Optional for small, mechanical work.
+**When:** After Review, when the change touched concepts or patterns the architecture notes describe. Skipped on the fast path.
 
-**What you do:** Run `/bob:reflect`. Correctness is already settled — this is a short, peer-to-peer conversation to make sure you, not just the AI session, understand what got built and why.
+**What you do:** Run `/bob:document`. It updates the canonical architecture notes in `docs/architecture/` to match the code that was actually built, not the Design Record.
 
 **The AI works through:**
-- Two to five questions drawn from actual evidence — a Design Signal that fired, a deviation Review noted, a surprising decision Implement flagged. Never a generic checklist.
-- You answer first; it only digs in together with you where the answer is vague.
-- What future pressure or fragile assumption this design now carries.
+- Which concept notes change, and which new concepts appeared.
+- Patterns: did the change follow an `established` pattern, introduce a competing one, or strengthen an `emerging` one? Only you promote a pattern to `established`.
+- Drift in the touched area (naming, interfaces, source organization), reported as questions, never silently fixed.
 
-You're never asked to recall code line-by-line or reproduce what was written. A short "no gap, ownership is clear" record is a valid and common outcome — this is not an exam.
+On a project without `docs/architecture/`, the first run is **Discover**: it proposes a list of concepts and patterns for you to confirm before writing anything. **Audit** checks existing notes against the code on request.
 
-**Output:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
+**Output:** small, linked notes in `docs/architecture/concepts/` and `docs/architecture/patterns/`, indexed by `docs/architecture/README.md`.
 
-Also surfaces candidates for `/bob:learn` (durable lessons) and the backlog (new stories, design revisits, documentation gaps) — without committing to any of them itself.
-
-**Time:** 5-20 minutes; often much shorter when ownership is already clear.
+**Time:** 10-40 minutes.
 
 ---
 
-## Phase 8: Document
+## Phase 8: Handover
 
-**When:** Code is shipped (merged or in production).
+**When:** After Document, when meaningful work was delegated to AI and you must own the result. Skipped on the fast path.
 
-**What you do:** Run `/bob:document`:
+**What you do:** Run `/bob:handover`. It gathers the change set (since the last handover, across the story repo and its submodules), asks you to confirm the scope, offers to stage stray files, and writes the change as a logical story: the problem, the main design ideas, what changed and why, a reading order by concept rather than by file, and the future impact.
 
-```
-/bob:document
-```
+**Output:** `{story_path}/sessions/{date}-handover-{slug}.md`. Commit it: its commit is the baseline for the next handover.
 
-The AI looks at what changed and identifies what's not documented. It writes clear documentation for the *why* and *what*, not a line-by-line walkthrough.
+**Time:** 5-15 minutes to generate; read it before Reflect.
 
-**Output:** Updated or new files in `docs/`, with updates to `docs/README.md` (the navigation index).
+---
 
-**Your role:** Review what was written. Correct any misunderstandings. Approve or revise before committing.
+## Phase 9: Reflect
 
-**Time:** 20-40 minutes depending on scope.
+**When:** After you have read the Handover, for significant agent-implemented changes. Optional for small, mechanical work.
+
+**What you do:** Run `/bob:reflect`. Correctness is settled and the Handover gave you the map. This is a short, peer-to-peer conversation that probes the territory beyond it.
+
+**The AI works through:**
+- Two to five questions from actual evidence: parts of the Handover you cannot yet explain, deviations Review noted, design smells, drift or missed simplifications visible in the change.
+- You answer first; it only digs in together with you where the answer is vague.
+- What future pressure or fragile assumption this design now carries.
+
+You're never asked to recall code line by line. A short "no gap, ownership is clear" record is a valid and common outcome.
+
+**Output:** `{story_path}/sessions/{date}-reflect-{slug}.md` (a Reflection Record), with candidates for `/bob:learn`, `/bob:document` and the backlog.
+
+**Time:** 5-20 minutes; often much shorter when ownership is already clear.
 
 ---
 
@@ -276,11 +281,11 @@ Follow the plan, write code, verify it works.
 **Day 6 — Review**
 Freshly reviewed code with guidelines applied.
 
-**Day 7 — Reflect**
-Short peer conversation to make sure you own the mental model, not just the AI session. Often 10 minutes.
+**Day 7 — Document and Handover**
+`/bob:document` updates the architecture notes to match what was built; `/bob:handover` tells the change as a story you read before Reflect.
 
-**Day 8 — Document**
-Capture what you built so the next person understands it.
+**Day 8 — Reflect**
+Short peer conversation, after reading the Handover, to make sure you own the mental model, not just the AI session. Often 10 minutes.
 
 Do it again next week with a different feature. By the tenth feature, you'll notice the quality is consistent, decisions are recorded, and context doesn't disappear between sessions.
 
@@ -290,12 +295,10 @@ Do it again next week with a different feature. By the tenth feature, you'll not
 
 As you build more features, you'll notice patterns. Good things to capture:
 
-- Architectural patterns that work (dependency injection, service layer structure, etc.)
-- Testing patterns that make sense for your stack
-- UI patterns and conventions
-- Naming conventions and terminology
+- How this codebase solves recurring problems (validation, integrations, errors): `/bob:document` records them as pattern notes in `docs/architecture/patterns/`, with status `emerging`, `competing` or (on your word) `established`.
+- Technology pitfalls for your stack: `/bob:guidelines` captures them in `docs/guidelines/`.
 
-When you notice a pattern that's stable and worth codifying, run `/bob:guidelines` to capture it. These guidelines load automatically in future brainstorms and reviews. They elevate code quality over time without you having to repeat yourself.
+Both These guidelines load automatically in future brainstorms and reviews. They elevate code quality over time without you having to repeat yourself.
 
 See [Knowledge Management](05-knowledge-management.md) for details.
 

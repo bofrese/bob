@@ -9,7 +9,7 @@ This guide is organized around what you actually *do*, not what bob *has*. Pick 
 Start here: **[Getting Started](01-getting-started.md)** — Installation, your first session, what happens next.
 
 ## I'm planning a feature or thinking through a problem
-Read: **[Engineering Workflows](02-engineering-workflows.md)** — The core pipeline: Brainstorm → Design → Plan → Implement → Review → Reflect → Learn (proportional — small work stays on the `/bob:dev` fast path).
+Read: **[Engineering Workflows](02-engineering-workflows.md)** — The core pipeline: Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn (proportional — small work stays on the `/bob:dev` fast path).
 
 ## I'm designing a product or validating an idea
 Read: **[Discovery Workflows](03-discovery-workflows.md)** — Vision, personas, business model, validation strategy.
@@ -18,7 +18,7 @@ Read: **[Discovery Workflows](03-discovery-workflows.md)** — Vision, personas,
 Read: **[Project Management](04-project-management.md)** — How stories work, the kanban system, tracking progress across sessions.
 
 ## I'm trying to keep documentation in sync with my code
-Read: **[Knowledge Management](05-knowledge-management.md)** — Guidelines, documentation, what to capture and when.
+Read: **[Knowledge Management](05-knowledge-management.md)** — Architecture notes, guidelines, the knowledge vault, and what goes where.
 
 ## I need to look something up quickly
 Use: **[Commands Reference](06-commands-reference.md)** — Tables organized by layer, what each command does.

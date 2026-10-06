@@ -7,7 +7,7 @@ This guide covers installation and your first session—from "what is this?" to 
 
 Bob is a Claude Code plugin that structures AI-assisted development into phases:
 - **Discovery:** Figure out what to build and why (optional, standalone)
-- **Engineering:** Build it disciplined (brainstorm → design → plan → implement → review → reflect → learn), proportional to risk — trivial work stays on the `/bob:dev` fast path
+- **Engineering:** Build it disciplined (brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn), proportional to risk — trivial work stays on the `/bob:dev` fast path
 - **Knowledge:** Capture guidelines and documentation so every future session is better
 
 Each phase is a separate session with a clear command. Each session writes its output to files. The next session reads those files. You decide at every step—the AI explores options and surfaces trade-offs.
@@ -74,7 +74,7 @@ Run `/bob:brainstorm`. The AI asks structured questions to help you think it thr
 Just say "Hi Bob, where should I begin?" — Bob reads what exists and tells you exactly what to do first.
 
 **Inherited a codebase with no docs?**
-Run `/bob:document`. It scans what you have and captures it.
+Run `/bob:document`. On a project without architecture notes it proposes a map of concepts and patterns for you to confirm, then writes the notes.
 
 **Want better development workflows but not product stuff?**
 Skip Discovery. Start with `/bob:brainstorm` for your next feature.
@@ -153,7 +153,7 @@ See [Commands Reference](06-commands-reference.md) for the full list.
 ## Next Steps
 
 - Read [Project Management](04-project-management.md) to understand how stories and tasks work.
-- Read [Engineering Workflows](02-engineering-workflows.md) to see the full brainstorm → design → plan → implement → review → reflect → learn cycle, and the proportional fast/standard/full paths.
+- Read [Engineering Workflows](02-engineering-workflows.md) to see the full brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn cycle, and the proportional fast/standard/full paths.
 - Read [Knowledge Management](05-knowledge-management.md) when you've shipped your first feature and need to document it.
 
 ## Troubleshooting

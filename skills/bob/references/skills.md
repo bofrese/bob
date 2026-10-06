@@ -102,19 +102,58 @@ Then [observable outcome]
 
 ---
 
-## `bob:ddd` — Domain-Driven Design
+## `bob:architect` - What Good Design Means
 
 **File I/O:** None (reference framework).
 
-**Invoked by:** `plan` (step 4)
+**Invoked by:** `/bob:design`, `/bob:plan` (placement, lenses), `/bob:review` (design-concern lens), `bob:document` (concepts, patterns), `bob:reflect` (smells, drift).
 
-**Core discipline:**
-- Let domain drive design — not database schema, not UI structure
-- Identify bounded contexts before naming anything
-- Use ubiquitous language: code reads like a domain conversation
-- Golden check: can a domain expert read the code without translation?
+**Core discipline:** Strategic over tactical: how does this change fit the system over time? Concept first, framework second. Smells, competing patterns and drift are surfaced as questions with evidence, never fixed silently; the human decides.
 
-**When applied in `plan`:** Verify that proposed names and structures reflect domain language, not technical convenience.
+- `references/design-lenses.md` - whole-system comprehensibility lenses (SOLID/DRY/DDD as diagnostics, never a scorecard) and semantic generalization
+- `references/placement.md` - domain-driven naming, bounded contexts, where code belongs
+- `references/interfaces-and-readability.md` - deep modules, the interface as a UI for developers, public surface first, reading-order smells
+- `references/concepts.md` - concept identification, navigation questions, atomic-note test, design smells
+- `references/patterns.md` - codebase patterns (Coplien sense), `established` / `emerging` / `competing`, drift signals
+
+---
+
+## `bob:writing` - Artifact Writing Style
+
+**File I/O:** None.
+
+**Invoked by:** `context-protocol` (Universal, every command).
+
+**Core discipline:** Every artifact bob writes in the project folder and `docs/` serves the next command's AI context and a human reviewer: TL;DR at the top (rewritten on every edit), short and specific, scannable, fixed icon vocabulary, plain international English, no AI tells, no em dash (U+2014). Excludes publish-facing copy and bob's own prompt files (`bob:prompt-engineering`).
+
+---
+
+## `bob:document` - Canonical Architecture Notes
+
+**File I/O:** None (the `/bob:document` command writes the notes).
+
+**Invoked by:** `/bob:document`
+
+**Core discipline:** State, not story: notes describe the implemented system, concept by concept, as small linked notes in `docs/architecture/{concepts,patterns}/` with a `README.md` index. Only the human promotes a pattern to `established`. Large documents are generated views on request.
+
+- `references/discover.md` - first map: propose concepts and patterns, human confirms; migrate older `docs/*.md`
+- `references/update.md` - after Review: story-scoped note changes, pattern checks, drift
+- `references/audit.md` - drift check of notes and `docs/` placement
+- `references/note-templates.md` - concept note, pattern note, index
+
+---
+
+## `bob:handover` - The Change as a Logical Story
+
+**File I/O:** `scripts/gather.py` reads git state (read-only); the `/bob:handover` command writes the artifact.
+
+**Invoked by:** `/bob:handover`
+
+**Core discipline:** Help the human verify and own a delivered change: problem, main design ideas, what changed and why, a reading order by concept and dependency (never file or diff order), future impact. The human confirms the change set; files are never staged unasked.
+
+- `references/scope-policy.md` - baseline (commit that added the previous handover), staged files as intent, candidates, when to ask
+- `references/narrative-template.md` - reading-order policy and artifact template
+- `scripts/gather.py` - multi-repo change-set gathering (story repo, submodules, nested repos); `--selftest`
 
 ---
 
@@ -127,7 +166,7 @@ Then [observable outcome]
 **Core discipline:** Socratic, evidence-based conceptual design for an experienced developer. The human is the architect; the skill's job is to investigate, expose pressure points, and make weak reasoning visible — not to hand over a finished architecture.
 
 - `references/interaction-policy.md` — pacing and when brevity is sufficient vs. when to push back (the six conditions that make a short answer insufficient)
-- `references/design-lenses.md` — whole-system comprehensibility lenses (SOLID/DRY/DDD etc. as diagnostics, never a scorecard) and the semantic-vs-syntactic generalization policy
+- Design lenses, placement, interfaces, concepts and patterns: `bob:architect`
 - `references/artifact-template.md` — the Design Record field list and filename convention
 
 **Human decision boundary:** Never silently decide domain meaning, boundaries, semantic contracts, generalization, irreversible migrations, or major trade-offs — record human decisions and AI assumptions separately.
@@ -155,9 +194,9 @@ Then [observable outcome]
 
 **Invoked by:** `/bob:reflect`
 
-**Core discipline:** Post-correctness ownership recovery for an experienced developer, run as a peer conversation, not a review or a quiz. Assumes `/bob:review` already settled correctness; selects a small number of questions from actual diff evidence rather than a generic checklist.
+**Core discipline:** Ownership recovery after the human has read the Handover, run as a peer conversation, not a review or a quiz. Assumes `/bob:review` already settled correctness; selects a small number of questions from actual diff evidence rather than a generic checklist.
 
-- `references/reflection-policy.md` — assume correctness is done; select two to five questions from actual Design/Implement/Review evidence; let the human answer first; keep it short.
+- `references/reflection-policy.md` — assume correctness is done; the human has the map (the Handover), probe the territory; two to five questions from Handover gaps, Review deviations, smells, drift and missed simplifications; keep it short.
 - `references/ownership-signals.md` — the six-bullet ownership standard (domain intent, critical paths, trade-offs/fragile assumptions, failure modes, debugging entry point, future-change impact, ability to disagree) — reproduction of code is never the bar.
 - `references/artifact-template.md` — the Reflection Record field list and filename convention.
 

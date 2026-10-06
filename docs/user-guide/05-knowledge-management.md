@@ -29,26 +29,26 @@ Run `/bob:guidelines` to create or refresh guidelines for a technology. The AI s
 
 ---
 
-## Documentation: What We Built and Why
+## Documentation: How the System Works Now
 
-After shipping a feature, run `/bob:document`. The AI looks at what changed and identifies what needs documenting: architecture updates, new features, changed APIs, unexplained concepts.
+After Review, run `/bob:document`. It keeps the canonical architecture notes in step with the code that was actually built.
 
-**Output:** new or updated files in `docs/`, with updates to the index.
+**Output:** small, linked notes, one per concept or codebase pattern, plus an index.
 
 ### Structure
 
 ```
 docs/
-├── README.md              # Navigation index
+├── architecture/
+│   ├── README.md          # Index: one line per note
+│   ├── concepts/          # What the system does, concept by concept
+│   └── patterns/          # How this codebase solves recurring problems
 ├── product/               # Vision, personas, design briefs
-├── guidelines/            # Technology-specific practices
-├── process/               # How work happens
-├── architecture/          # System design
-├── api/                   # API reference
-└── features/              # Feature documentation
+├── guidelines/            # Technology pitfalls
+└── process/               # How work happens
 ```
 
-Keep `docs/README.md` as a table of contents. Every document should be linked from the index.
+Engineering sessions load the index and the notes that match their scope. Large documents (onboarding, overviews) are generated from the notes on request, never maintained by hand. `/bob:document` Audit proposes a home for any other file in `docs/`.
 
 ---
 
@@ -125,10 +125,10 @@ If `knowledge/` doesn't exist, `/bob:library` or `/bob:remember` bootstraps it a
 
 | | Guidelines | Documentation | Knowledge Vault |
 |---|-----------|---------------|-----------------|
-| **Answers** | How we do [tech] here | What we built and why | What we've learned |
-| **Lives in** | `docs/guidelines/` | `docs/` | `knowledge/` |
+| **Answers** | Technology pitfalls here | How the system works now: concepts and patterns | What we've learned that fits nowhere more specific |
+| **Lives in** | `docs/guidelines/` | `docs/architecture/` | `knowledge/` |
 | **Created by** | `/bob:guidelines` | `/bob:document` | `/bob:remember`, `/bob:library` |
-| **Loaded in sessions** | Automatically, by scope | Referenced manually | Automatically, by relevance |
+| **Loaded in sessions** | Automatically, by scope | Automatically, index then notes by scope | Automatically, by relevance |
 | **Updates** | Quarterly or on drift | After every major change | Continuously |
 
 ---

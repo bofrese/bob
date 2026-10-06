@@ -56,7 +56,7 @@ Three layers, not three stages. Use any independently or connect them.
 ```mermaid
 graph TD
     D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan · /bob:linkedin"]
-    E["Engineering<br/>/bob:brainstorm → /bob:design → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review → /bob:reflect → /bob:learn"]
+    E["Engineering<br/>/bob:brainstorm → /bob:design → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review → /bob:document → /bob:handover<br/>/bob:reflect → /bob:learn"]
     K["Knowledge<br/>/bob:document · /bob:user-guide · /bob:guidelines · /bob:library · /bob:remember"]
 
     D -->|grounds| E
@@ -66,9 +66,9 @@ graph TD
 
 **Discovery** — Product strategy and validation: vision, problem space, personas, business model, positioning, validation planning. Start with `/bob:product-coach` for guided discovery, or jump to individual commands for targeted work.
 
-**Engineering** — Disciplined development pipeline: brainstorm → design → plan → review-plan → implement → review → reflect → learn. Each command loads the right principles and follows the right process.
+**Engineering** — Disciplined development pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. Each command loads the right principles and follows the right process.
 
-**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for developer docs, `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns — process inbox items, ingest external sources, organise the vault, or search. Use `/bob:remember` to capture anything mid-session without breaking flow.
+**Knowledge** — Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for canonical architecture notes (concepts and codebase patterns), `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns — process inbox items, ingest external sources, organise the vault, or search. Use `/bob:remember` to capture anything mid-session without breaking flow.
 
 For the full command reference — what each command does, what it reads and writes, how they connect — see the [User Guide](docs/user-guide/index.md).
 
@@ -81,12 +81,13 @@ Bob's value compounds over time because every session writes to a shared, persis
 | Location | What lives here |
 |---|---|
 | `docs/product/` | Strategy artifacts: vision, problem space, personas, business plan, positioning, validation plan, design brief. Maintained by Discovery commands; used by Engineering commands to ground their work. |
+| `docs/architecture/` | Canonical architecture knowledge: one small note per system concept (`concepts/`) and codebase pattern (`patterns/`), indexed by `README.md`. Written by `/bob:document`; loaded by scope in engineering sessions. |
 | `docs/guidelines/` | Technology best practices — researched from authoritative sources, applied to your stack. Engineering commands load only the guidelines relevant to the work at hand. |
 | `docs/domain/` | Project-specific terminology. Corrections, non-obvious distinctions, context-specific meanings. Captured when AI misunderstands something that a domain expert would know. |
 | `docs/process/done-criteria.md` | The project's evolving definition of done. Auto-bootstrapped on first run; grows as more commands are used. |
 | `docs/process/learnings.md` | `/bob:learn`'s cross-session staging log — occurrences seen once, not yet confirmed as a pattern. A second credible occurrence becomes a harness candidate. |
-| `projects/{name}/stories/{ID}/` | Session artifacts — plans, reviews, implementations, investigations, brainstorms. Organized by story. The project's decision log: they explain *why* things were built the way they were. |
-| `knowledge/` | Working knowledge vault: decisions, concepts, research, patterns. Automatically loaded into context by every engineering command. Managed by `/bob:library`; quick capture via `/bob:remember`. |
+| `projects/{name}/stories/{ID}/` | Session artifacts — designs, plans, reviews, implementations, handovers, investigations, brainstorms. Organized by story. The project's decision log: they explain *why* things were built the way they were. |
+| `knowledge/` | Working knowledge vault: decisions, research and anything that fits nowhere more specific. Automatically loaded into context by every engineering command. Managed by `/bob:library`; quick capture via `/bob:remember`. |
 | `personal/` | Personal daily notes, weekly digests, scratchpad. Gitignored — never committed. Written by `done-criteria` at the end of every session. |
 
 This is the memory layer. The reason `/bob:review` can check a feature against its plan. The reason `/bob:implement` knows what patterns to follow. The reason a fresh session isn't starting from scratch.
@@ -164,7 +165,7 @@ Bob can help you when in doubt on which bob command to run. Once you get familli
 - **Product strategy work?** `/bob:product-coach` for comprehensive discovery guidance
 - **New feature?** `/bob:brainstorm` → `/bob:plan` → `/bob:implement` → `/bob:review`
 - **Quick fix or code discussion?** `/bob:dev` — direct working session, no pipeline
-- **Inherited codebase?** `/bob:document` to capture what exists
+- **Inherited codebase?** `/bob:document` (Discover) to map its concepts and patterns
 - **Not sure?** `/bob:pm` to get oriented - or simply ask "Bob"
 
 ---
