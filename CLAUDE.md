@@ -50,9 +50,9 @@ The key connection: **Discovery output is input to Engineering.** A product visi
 
 Skills in `skills/` encode core thinking frameworks and interaction protocols. Not tutorials — just enough that when a command invokes one, it applies the framework consistently.
 
-**How commands use them:** A command invokes a skill at the specific point in its process where the framework applies using the Skill tool. Example: `/bob:plan` invokes `bob:bdd` when defining the testing strategy. `/bob:brainstorm` invokes `bob:ddd` when decomposing a problem.
+**How commands use them:** A command invokes a skill at the specific point in its process where the framework applies using the Skill tool. Example: `/bob:plan` invokes `bob:bdd` when defining the testing strategy. `/bob:design` invokes `bob:architect` when judging a design.
 
-**Framework skills** (bdd, ddd, prompt-engineering, business-model, etc.) — generic thinking frameworks. Work for any project.
+**Framework skills** (bdd, architect, writing, prompt-engineering, business-model, etc.) — generic thinking frameworks. Work for any project.
 
 **Protocol skills** (context-protocol, done-criteria) — define how commands interact with the project context and done system.
 

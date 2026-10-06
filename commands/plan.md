@@ -27,7 +27,7 @@ For conceptually meaningful work — new concepts, boundaries, or vocabulary —
 **3 — Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase — not an afterthought.
 
 **4 — Design:** Walk through: concept, key components, interactions (Mermaid if non-trivial), alternatives considered. Challenge your own design.
-Invoke the `bob:ddd` skill when naming components, defining bounded contexts, and making structural decisions. Names chosen here become binding — they must reflect the domain, not the database.
+Invoke the `bob:architect` skill (`references/placement.md` and `references/design-lenses.md`) when naming components, defining bounded contexts, and making structural decisions. Names chosen here become binding: they must reflect the domain, not the database.
 
 **5 — Break down:** Simple work → one unit. Complex → testable chunks, each leaving the system working.
 Per chunk: what, why, files, verification, and two dimensions instead of one AI difficulty rating — `Complexity` (implementation effort: Easy/Medium/Hard) and `Conceptual risk` (ownership sensitivity: Low/Medium/High — how much this step touches concepts, boundaries, or contracts the developer must understand, not just execute).

@@ -1,6 +1,6 @@
 ---
 name: design
-description: Help an experienced developer form and defend the simplest coherent conceptual design for a capability in the existing system. Repository-informed, Socratic, evidence-based, and human-owned. Invoked by /bob:design; distinct from bob:ddd (a generic naming/decomposition lens this skill uses, not replaces).
+description: Help an experienced developer form and defend the simplest coherent conceptual design for a capability in the existing system. Repository-informed, Socratic, evidence-based, and human-owned. Invoked by /bob:design; uses bob:architect for what good design means.
 user-invocable: false
 ---
 

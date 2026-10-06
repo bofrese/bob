@@ -61,7 +61,7 @@ Tell the user their next step: `/bob:design` for conceptually meaningful work, o
 ## Rules
 - If I say "save", write report regardless of current phase
 - Do not write code. Exploration only.
-- Do not decompose into components, assess codebase fit, or invoke `bob:ddd` — that responsibility moved to `/bob:design`.
+- Do not decompose into components or assess codebase fit. That is `/bob:design`'s job.
 - Route explicitly to `/bob:design` for conceptually meaningful work; permit skipping Brainstorm entirely when a stable accepted requirement already exists.
 - When the user corrects a domain misunderstanding or explains project-specific terminology, invoke the `bob:domain-knowledge` skill immediately — do not ask the user to trigger it.
 
