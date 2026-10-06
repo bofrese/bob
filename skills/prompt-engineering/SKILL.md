@@ -67,6 +67,8 @@ When creating or reviewing a command/skill, check it defines each of the followi
 
 **Multi-question barrages** - Asking 5 things at once instead of one at a time.
 
+**Typography** - Never use the em dash (U+2014) in command or skill files. Use "-", a comma or a full stop.
+
 **Verbose outputs** - Generated files become future context. Their style is owned by `bob:writing`; a command's Output section points there instead of restating style rules.
 
 ---
