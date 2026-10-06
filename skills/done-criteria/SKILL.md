@@ -53,6 +53,7 @@ Which items apply:
 - `reflect` → Reflection section. Completion means the important ownership question was explored, not that the human passed a quiz — a short "no gap" record is a valid result.
 - `learn` → Harness learning section. "No persistent lesson" is a valid, complete result.
 - `document` → Documentation section
+- `handover` → Handover section
 - Product-tier commands (`product-vision`, `design-brief`, `personas`) → check that output is self-contained and readable without prior context
 
 **Register new artifact types:** If your command introduces an artifact type that isn't already tracked in `docs/process/done-criteria.md`, add a new subsection under DONE with the appropriate criteria. This is how the list grows as a project adopts more commands.
@@ -99,7 +100,7 @@ If your command discovered issues, technical debt, or improvement opportunities 
 
 **Step 4:** After filing, confirm: "Filed to kanban: [summary — e.g., BOB-004 Issues +2, INBOX +1]." For 🔴 Critical items: name them explicitly in the summary.
 
-Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm`, `design`, `reflect`, `learn` — engineering tier commands that touch or read code, or that classify harness lessons.
+Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm`, `design`, `handover`, `reflect`, `learn` — engineering tier commands that touch or read code, or that classify harness lessons.
 
 **Skip if already routed:** If a mid-session PM step already ran during this session and routed all discovered items, skip this responsibility to avoid prompting the user twice for the same items — this is the "work routing asks once per distinct item set" rule above.
 
@@ -149,7 +150,7 @@ No confirmation needed — personal content, gitignored entirely.
 ```
 
 Where:
-- `{type}` is the command type (Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Reflection, Harness Learning, Investigation, UI Review)
+- `{type}` is the command type (Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Documentation, Handover, Reflection, Harness Learning, Investigation, UI Review)
 - `{filename}` is `sessions/[artifact-filename]` — all session artifacts live in the story's `sessions/` subfolder, never at the story root
 - `{one-line summary}` is what was done
 - `{outcome}` is the result (e.g. Committed, Draft, Ready, Approve with changes, Completed, Root cause identified)
@@ -192,8 +193,14 @@ Every command checks applicable items before finishing.
 - [ ] No hardcoded secrets or debug code
 
 ### Documentation (`document`)
-- [ ] `docs/README.md` index is up to date
-- [ ] Related docs cross-referenced
+- [ ] `docs/architecture/README.md` index lists every concept and pattern note
+- [ ] Each touched note is atomic (one concept) and has a current `Last verified` date
+- [ ] Pattern status `established` was set by the human, never by the AI
+
+### Handover (`handover`)
+- [ ] Change set confirmed by the human (scope per repo, staged files)
+- [ ] TL;DR, problem, design ideas, what changed and why, reading order, future impact present
+- [ ] Reading order is conceptual, not file or diff order
 
 ### Plans (`plan`)
 - [ ] Plan is self-contained (readable without prior context)

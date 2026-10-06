@@ -31,7 +31,7 @@ Review has established sufficient correctness. If a correctness defect surfaces 
 ## Process
 
 ### Phase 1 — Load evidence
-Read the Design Record (or embedded `## Design` fallback), the Implementation Note's "Input for /bob:reflect" section, and the Review verdict. Identify the few code paths that carry architectural meaning — not every changed file.
+Read the Design Record (or embedded `## Design` fallback), the Implementation Note's "Input for /bob:handover" section, and the Review verdict. Identify the few code paths that carry architectural meaning — not every changed file.
 
 ### Phase 2 — Select questions
 Invoke the `bob:reflect` skill's `references/reflection-policy.md`. Pick two to five questions grounded in actual evidence: a Design Signal that fired, a deviation Review noted, a surprising code path Implement flagged, or a gap between what was planned and what shipped. Do not manufacture questions when the diff gives none.

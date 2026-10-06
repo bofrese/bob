@@ -95,7 +95,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 
 ## Blockers / Next Steps
 
-## Input for /bob:reflect
+## Input for /bob:handover
 {Critical code paths carrying the architectural meaning, signals and how they resolved, anything surprising worth a closer look together. Concise — not a walkthrough.}
 ```
 

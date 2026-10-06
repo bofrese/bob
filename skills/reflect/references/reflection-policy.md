@@ -12,7 +12,7 @@ Do not ask generic retrospective questions ("what did you learn?", "how do you f
 
 - a Design Signal that fired during Implement, and how it resolved;
 - a deviation Review flagged between plan/design and what shipped;
-- a code path Implement's "Input for /bob:reflect" section called out as carrying architectural meaning;
+- a code path Implement's "Input for /bob:handover" section called out as carrying architectural meaning;
 - a place where the Design Record and the final code disagree, even if Review accepted the disagreement;
 - a surprising or non-obvious decision made mid-implementation with no human present.
 

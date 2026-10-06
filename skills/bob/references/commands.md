@@ -359,7 +359,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 **Purpose:** Recover human ownership of AI-implemented work after correctness is established. Short, non-quizzy, peer-to-peer — not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
 
-**Reads:** Design Record (or embedded `## Design` fallback), Implementation Note's "Input for /bob:reflect" section, Review verdict, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
+**Reads:** Design Record (or embedded `## Design` fallback), Implementation Note's "Input for /bob:handover" section, Review verdict, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
 
 **Writes:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
 
