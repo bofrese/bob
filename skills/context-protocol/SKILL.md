@@ -17,7 +17,7 @@ Load the minimum context required for this phase's independent judgment. More co
 **Date:** Run `python3 -c "from datetime import date;print(date.today().isoformat(),end='')"`
 If that fails, determine today's date in YYYY-MM-DD via any available command. Use this date in all output filenames and document timestamps.
 
-**Personal interaction profile (optional):** If `personal/interaction-profile.md` exists, read it — a per-developer, gitignored file capturing this individual's interaction preferences (verbosity, question style, experience level). Not repository instructions; skip silently if absent.
+**Personal interaction profile (optional):** If `personal/interaction-profile.md` exists, read it - a per-developer, gitignored file capturing this individual's interaction preferences (verbosity, question style, experience level). Not repository instructions; skip silently if absent.
 
 **Writing style:** Invoke the `bob:writing` skill. Every artifact this command writes follows it.
 
@@ -52,16 +52,16 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `new-command` | invoke the `bob:prompt-engineering` skill |
 | `review-command` | invoke the `bob:prompt-engineering` skill |
 | `improve-command` | invoke the `bob:prompt-engineering` skill |
-| `investigate` | — |
-| `document` | — |
-| `handover` | — |
-| `guidelines` | — |
-| `docker-setup` | — |
-| `bob` | — |
+| `investigate` | - |
+| `document` | - |
+| `handover` | - |
+| `guidelines` | - |
+| `docker-setup` | - |
+| `bob` | - |
 | `linkedin` | `docs/product/positioning.md`, `docs/product/personas.md`, `docs/product/vision.md` |
-| `knowledge` | — |
-| `remember`  | — |
-| `setup`     | — |
+| `knowledge` | - |
+| `remember`  | - |
+| `setup`     | - |
 | `user-guide` | `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md` |
 
 ---
@@ -87,13 +87,13 @@ After story context is confirmed (and before Guidelines and Knowledge Retrieval)
 
 **Task matching:**
 - Scan the `todo`, `Ready`, and `in progress` columns for task cards
-- Task cards use markdown link format: `- [ ] [Task title](tasks/file.md)` — match against the title portion only
-- Semantically match task titles against: (a) the current command being run, (b) any arguments the user provided, (c) what the user said they want to do. Exact match not required — semantic equivalence is sufficient.
+- Task cards use markdown link format: `- [ ] [Task title](tasks/file.md)` - match against the title portion only
+- Semantically match task titles against: (a) the current command being run, (b) any arguments the user provided, (c) what the user said they want to do. Exact match not required - semantic equivalence is sufficient.
 - **High-confidence match** (title clearly describes what we're doing): move the card from its current column to `## in progress` in the kanban file, and inform user: "Task marked in-progress: [title] on {STORY-ID} kanban."
-- **Uncertain match** (multiple candidates or none align clearly): ask user: "Which task does this session target? [list task titles] — or 'none' to skip."
+- **Uncertain match** (multiple candidates or none align clearly): ask user: "Which task does this session target? [list task titles] - or 'none' to skip."
 - **No kanban or no tasks:** proceed silently without comment.
 
-Do not block or delay if no match is found. This step is informational — it syncs state, it does not gate work.
+Do not block or delay if no match is found. This step is informational - it syncs state, it does not gate work.
 
 ---
 
@@ -101,36 +101,36 @@ Do not block or delay if no match is found. This step is informational — it sy
 
 For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `investigate`, `ui-review`:
 
-Reflect deliberately excludes this section — it does not load a generic guideline dump; see its per-command row above.
+Reflect deliberately excludes this section - it does not load a generic guideline dump; see its per-command row above.
 
 **If `docs/guidelines/` exists:**
-1. Read `docs/guidelines/README.md` as the navigation index — do not load all guideline files.
+1. Read `docs/guidelines/README.md` as the navigation index - do not load all guideline files.
 2. Load guideline files matching the current scope. Match against the "Applies When" or "Triggers" column:
    - File extensions in play (e.g., ext: `.ts` → typescript.md)
    - Paths involved (e.g., path: `Frontend/` → angular.md)
    - Concepts being touched (e.g., auth changes → authentication.md)
-   - Always load `markdown.md` if it exists — all engineering commands produce markdown output.
+   - Always load `markdown.md` if it exists - all engineering commands produce markdown output.
    - Load `mermaid.md` if it exists and the command produces diagrams (`plan`, `review-plan`, `brainstorm`).
 3. If a loaded guideline recommends a tool that is not installed: offer to install it before proceeding (for `implement` and `review` only).
 
 **If `docs/guidelines/` does not exist:**
-Notify the user: "No project guidelines found — run `/bob:guidelines` to create them." Then apply these built-in fallback rules for the remainder of this session:
+Notify the user: "No project guidelines found - run `/bob:guidelines` to create them." Then apply these built-in fallback rules for the remainder of this session:
 
 **Markdown (all engineering commands produce markdown output):**
 - Always specify language on code blocks: ` ```typescript ` not ` ``` `
 - Blank lines required before/after code blocks, headings, and lists
-- No skipped heading levels — h1 → h2 → h3, never h1 → h3
+- No skipped heading levels - h1 → h2 → h3, never h1 → h3
 - Frontmatter YAML: quote strings containing colons or special characters
 - Tables require aligned pipes and a header separator row (`|---|`)
 
-**Mermaid (applies when producing diagrams — `plan`, `review-plan`, `brainstorm`):**
-- Node IDs: alphanumeric and underscores only — no spaces, colons, or parentheses in the ID
-- Labels with spaces or special chars: `A["my label: value"]` — double quotes inside square brackets
+**Mermaid (applies when producing diagrams - `plan`, `review-plan`, `brainstorm`):**
+- Node IDs: alphanumeric and underscores only - no spaces, colons, or parentheses in the ID
+- Labels with spaces or special chars: `A["my label: value"]` - double quotes inside square brackets
 - Arrow labels: `A -->|label| B` with no space before the pipe
-- Subgraph IDs: no spaces — use `subgraph myGroup["My Group"]`
+- Subgraph IDs: no spaces - use `subgraph myGroup["My Group"]`
 - Valid diagram types: `flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`, `gantt`, `pie`, `gitGraph`
 - Flowchart direction: `LR`, `TD`, `TB`, `BT`, `RL`
-- Validate Mermaid syntax before saving — it fails silently in many renderers
+- Validate Mermaid syntax before saving - it fails silently in many renderers
 
 ---
 

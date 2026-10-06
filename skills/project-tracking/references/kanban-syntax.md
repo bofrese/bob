@@ -21,7 +21,7 @@ Each column is an H2 heading. Cards are checkbox list items beneath it.
 - [x] Checked (done) card
 ```
 
-Column names are free-form text. The plugin does not enforce column semantics — conventions are:
+Column names are free-form text. The plugin does not enforce column semantics - conventions are:
 - `inbox`, `backlog`, `todo`, `in progress`, `done`, `archive`, `dismissed`
 - Story-level boards add `Review findings` as the first column
 
@@ -79,7 +79,7 @@ Key settings:
 | `kanban-plugin` | `"board"` | Required identifier |
 | `new-note-folder` | string | Where new note-linked cards are filed (vault-root-relative path) |
 | `list-collapse` | bool[] | One entry per column; true = collapsed by default |
-| `new-line-trigger` | string | Set to `"shift-enter"` on every board — without it, Enter inside a card creates a new card instead of a new line |
+| `new-line-trigger` | string | Set to `"shift-enter"` on every board - without it, Enter inside a card creates a new card instead of a new line |
 
 ## Minimal Valid Board
 

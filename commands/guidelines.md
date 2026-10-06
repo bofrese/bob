@@ -25,16 +25,16 @@ Exclude project patterns (how this codebase solves a recurring problem): those g
 - Would a 1-2 year developer miss this? (not obvious)
 - Prevents bugs, security issues, or maintenance pain?
 
-**Good:** `"Use === not == in PHP"` — technology-specific pitfall.
-**Bad:** `"Use meaningful variable names"` — generic, cut it.
+**Good:** `"Use === not == in PHP"` - technology-specific pitfall.
+**Bad:** `"Use meaningful variable names"` - generic, cut it.
 
 ---
 
 ## Modes
 
-**Bootstrap** — `docs/guidelines/` doesn't exist → follow Bootstrap Process.
-**Single** — User requests a specific guideline → skip to Writing a Guideline.
-**Maintenance** — Guidelines exist → read README.md, ask what to do (write / update / add / audit).
+**Bootstrap** - `docs/guidelines/` doesn't exist → follow Bootstrap Process.
+**Single** - User requests a specific guideline → skip to Writing a Guideline.
+**Maintenance** - Guidelines exist → read README.md, ask what to do (write / update / add / audit).
 
 ---
 
@@ -49,7 +49,7 @@ Exclude project patterns (how this codebase solves a recurring problem): those g
 
 ## Writing a Guideline
 
-### Phase 1 — Research (authoritative sources first, codebase second)
+### Phase 1 - Research (authoritative sources first, codebase second)
 
 Research in order:
 1. Official style guide / security standard (OWASP, PEP 8, PSR-12, Angular Style Guide, etc.)
@@ -58,7 +58,7 @@ Research in order:
 
 Do not start with the codebase.
 
-### Phase 2 — Distill
+### Phase 2 - Distill
 
 Identify:
 - What do experts do instinctively that average developers miss?
@@ -67,16 +67,16 @@ Identify:
 - Over-engineering traps specific to this tech
 - What makes AI-generated code mediocre in this technology?
 
-### Phase 3 — Codebase check (brief)
+### Phase 3 - Codebase check (brief)
 
 - Tools already in use?
 - Any intentional deviations from best practice worth noting?
 
-### Phase 4 — Confirm before writing
+### Phase 4 - Confirm before writing
 
 Present: key principles + tooling recommendation. One question at a time. Wait for confirmation.
 
-### Phase 5 — Write
+### Phase 5 - Write
 
 **Target: 40-60 lines.** No code examples. No resources section.
 
@@ -87,7 +87,7 @@ Present: key principles + tooling recommendation. One question at a time. Wait f
 
 ## Principles
 
-- **{Name}** — {why it matters; what breaks if ignored; technology-specific}
+- **{Name}** - {why it matters; what breaks if ignored; technology-specific}
 - ...
 
 ## Tooling
@@ -98,7 +98,7 @@ Present: key principles + tooling recommendation. One question at a time. Wait f
 **Run:** `{run command}`
 **Config ({filename}):**
 ```{format}
-{minimal config — only settings that matter most}
+{minimal config - only settings that matter most}
 ```
 **Key rules:** {2-4 most important rules and what they catch}
 
@@ -107,7 +107,7 @@ Present: key principles + tooling recommendation. One question at a time. Wait f
 
 **If multiple tools:** add a `### {Tool}` subsection per tool.
 
-### Phase 6 — Update index
+### Phase 6 - Update index
 
 Update `docs/guidelines/README.md`: status → `✓ {date}`. Verify "Applies When" trigger is precise and machine-matchable (e.g., `ext: .ts` or `cmd: plan, review-plan` or `path: docs/`).
 
@@ -124,9 +124,9 @@ When the guideline is later loaded during an engineering session:
 ## Rules
 
 - Research first, codebase second.
-- Tools over rules — if a tool enforces it, list the tool rather than writing a principle.
-- Specific over generic — every principle must name the technology.
-- **Max 60 lines** — these are AI context tokens, not developer tutorials.
+- Tools over rules - if a tool enforces it, list the tool rather than writing a principle.
+- Specific over generic - every principle must name the technology.
+- **Max 60 lines** - these are AI context tokens, not developer tutorials.
 - Do not modify application code.
 
 ---
@@ -137,7 +137,7 @@ When the guideline is later loaded during an engineering session:
 
 After writing: confirm what was created, list remaining NOT WRITTEN guidelines, suggest next.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

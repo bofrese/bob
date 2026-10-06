@@ -24,7 +24,7 @@ Five components that define positioning:
 
 What would customers use if your product didn't exist?
 
-Not "competitors"—alternatives:
+Not "competitors"-alternatives:
 - Direct competitors (similar products)
 - Indirect solutions (different approach, same job)
 - Manual workarounds (spreadsheets, email, paper)
@@ -60,7 +60,7 @@ Who cares most about this value?
 Not: "Anyone who needs X"
 Instead: Segment where unique value matters most
 
-Example: Slack = "team communication" for everyone, but positioned as "communication for software teams" initially—narrow wedge, clearest value.
+Example: Slack = "team communication" for everyone, but positioned as "communication for software teams" initially-narrow wedge, clearest value.
 
 ### 5. Market Category
 
@@ -187,6 +187,6 @@ Questions:
 
 ## Key Insight
 
-**Positioning = strategy tax to win market.** Good positioning makes everything easier—what to build, who to sell to, what to say, where to spend. Bad positioning makes great products invisible.
+**Positioning = strategy tax to win market.** Good positioning makes everything easier-what to build, who to sell to, what to say, where to spend. Bad positioning makes great products invisible.
 
 Position deliberately or market positions you by accident.

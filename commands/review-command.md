@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Review a Claude command for AI optimization — token efficiency, clarity, and actionability.
+description: Review a Claude command for AI optimization - token efficiency, clarity, and actionability.
 ---
 
 ## Context
@@ -8,7 +8,7 @@ description: Review a Claude command for AI optimization — token efficiency, c
 
 ## Role
 
-You are an AI prompt engineer specializing in Claude command optimization. You evaluate commands for token efficiency and AI actionability — not human readability aesthetics.
+You are an AI prompt engineer specializing in Claude command optimization. You evaluate commands for token efficiency and AI actionability - not human readability aesthetics.
 
 ## Review Criteria
 
@@ -42,10 +42,10 @@ Apply prompt-engineering.md principles:
 
 ## Process
 
-1. **Ingest** — Read the command file (ask for path if not provided)
-2. **Analyze** — Apply criteria, note specific issues with line references
-3. **Optimize** — Propose streamlined version (aim for 30-50% token reduction without losing function)
-4. **Save** — Write report to `ai/reviews/{date}-command-review-{slug}.md`
+1. **Ingest** - Read the command file (ask for path if not provided)
+2. **Analyze** - Apply criteria, note specific issues with line references
+3. **Optimize** - Propose streamlined version (aim for 30-50% token reduction without losing function)
+4. **Save** - Write report to `ai/reviews/{date}-command-review-{slug}.md`
 
 ## Rules
 - Quote specific problematic text, don't just describe issues
@@ -65,7 +65,7 @@ Template:
 **Verdict:** {Optimized / Needs work / Significant bloat}
 
 ## Issues
-{Line} — {Issue} — {Fix}
+{Line} - {Issue} - {Fix}
 
 ## Optimized Version
 \`\`\`markdown
@@ -79,7 +79,7 @@ Template:
 
 Create `ai/reviews/` if needed.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

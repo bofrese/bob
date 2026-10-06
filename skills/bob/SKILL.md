@@ -1,22 +1,22 @@
 ---
 name: bob
-description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection): if the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once — state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself — only names one.
+description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection): if the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once - state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself - only names one.
 user-invocable: true
 ---
 
-# Bob — Plugin Reference
+# Bob - Plugin Reference
 
-Bob is a Claude Code plugin covering the full product development lifecycle — from raw idea to shipped code. It imposes structured thinking at every stage rather than letting AI free-wheel. Bob is organized into three layers:
+Bob is a Claude Code plugin covering the full product development lifecycle - from raw idea to shipped code. It imposes structured thinking at every stage rather than letting AI free-wheel. Bob is organized into three layers:
 
-- **Discovery** — product strategy, market validation, personas, positioning
-- **Engineering** — planning, implementing, reviewing, documenting code
-- **Knowledge** — guidelines, domain capture, command quality improvement
+- **Discovery** - product strategy, market validation, personas, positioning
+- **Engineering** - planning, implementing, reviewing, documenting code
+- **Knowledge** - guidelines, domain capture, command quality improvement
 
-**Proactive nudge (bounded):** At most once per session, when the user describes engineering/product work conversationally with no bob command invoked yet, name the single most relevant command in one line (e.g. "This sounds like `/bob:design` territory — new concept, no existing boundary for it.") and continue answering normally. Do not repeat within the session even if the topic recurs. Do not run the command yourself — the human invokes it explicitly. This is discoverability, not ambient phase-selection.
+**Proactive nudge (bounded):** At most once per session, when the user describes engineering/product work conversationally with no bob command invoked yet, name the single most relevant command in one line (e.g. "This sounds like `/bob:design` territory - new concept, no existing boundary for it.") and continue answering normally. Do not repeat within the session even if the topic recurs. Do not run the command yourself - the human invokes it explicitly. This is discoverability, not ambient phase-selection.
 
 All commands share two mandatory protocols:
-- `bob:context-protocol` — loads current date and the right project files before starting
-- `bob:done-criteria` — checks `docs/process/done-criteria.md` and logs issues on finish
+- `bob:context-protocol` - loads current date and the right project files before starting
+- `bob:done-criteria` - checks `docs/process/done-criteria.md` and logs issues on finish
 
 ---
 
@@ -33,14 +33,14 @@ Bob reads and writes to predictable locations:
 | `projects/{name}/stories/{ID}/` | Engineering session artifacts (plans, reviews, implementations, investigations, brainstorms) and story-specific reference materials (specs, external docs, source inputs) while being worked on. |
 | `projects/{name}/_kanban.md` | Project-level kanban (stories as cards) |
 | `knowledge/` | Validated project knowledge: decisions made, confirmed patterns, defined concepts, synthesised research. Not for in-flight specs, drafts, or rough ideas. |
-| `knowledge/_INBOX/` | Staging area for rough captures not yet classified — gitignored. Run `/bob:library process` to file. |
-| `personal/` | Personal daily/weekly notes and scratchpad — gitignored, never committed |
+| `knowledge/_INBOX/` | Staging area for rough captures not yet classified - gitignored. Run `/bob:library process` to file. |
+| `personal/` | Personal daily/weekly notes and scratchpad - gitignored, never committed |
 | `bob/commands/` | Command definitions (slash commands) |
 | `bob/skills/` | Thinking frameworks invoked by commands |
 
 ---
 
-## Commands — Quick Reference
+## Commands - Quick Reference
 
 **Discovery layer**
 
@@ -92,14 +92,14 @@ Bob reads and writes to predictable locations:
 | `/bob:pm` | Conversational (opt. status doc) | Project mentor: assess state, recommend next step |
 | `/bob:setup` | `projects/`, `knowledge/`, `personal/`, `.gitignore`, `docs/process/done-criteria.md` | Bootstrap and upgrade bob infrastructure; idempotent |
 | `/bob:new-command` | `bob/commands/{name}.md` + README | Create a new bob command |
-| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped wrapper over `bob:learn` — extract learnings limited to one command |
+| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped wrapper over `bob:learn` - extract learnings limited to one command |
 | `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
 
 > Note: `{story_path}` is resolved by the `bob:story-context` skill at the start of each engineering command session.
 
 ---
 
-## Skills — Quick Reference
+## Skills - Quick Reference
 
 Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria`, `domain-knowledge`, `knowledge` retrieval, and `code-graph` detection).
 
@@ -108,7 +108,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:context-protocol` | Every command | Load current date + right project files; kanban sync for engineering commands; wire story-context |
 | `bob:story-context` | Every engineering command (via context-protocol) | Resolve active story via 4-tier chain; establish `{story_path}` for artifact placement |
 | `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
-| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 — Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
+| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 - Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
 | `bob:architect` | `/bob:design`, `/bob:plan`, `/bob:review`, `bob:document`, `bob:reflect` | What good design means: design lenses, domain placement, deep modules and readability, concepts and smells, patterns and drift |
 | `bob:writing` | `context-protocol` (every command) | How bob writes artifacts: TL;DR first, scannable, fixed icons, plain English, no AI tells |
@@ -154,5 +154,5 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 
 ## Additional Resources
 
-- **`references/commands.md`** — dense per-command descriptions: inputs, outputs, process phases, skills invoked
-- **`references/skills.md`** — dense per-skill descriptions: what each framework covers and when to use it
+- **`references/commands.md`** - dense per-command descriptions: inputs, outputs, process phases, skills invoked
+- **`references/skills.md`** - dense per-skill descriptions: what each framework covers and when to use it

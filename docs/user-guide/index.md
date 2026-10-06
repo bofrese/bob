@@ -1,30 +1,30 @@
 # Bob User Guide
 *Last updated: 2026-06-23*
 
-Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code—with human judgment at every decision point.
+Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code-with human judgment at every decision point.
 
 This guide is organized around what you actually *do*, not what bob *has*. Pick your starting point based on where you are:
 
 ## I'm new to Bob
-Start here: **[Getting Started](01-getting-started.md)** — Installation, your first session, what happens next.
+Start here: **[Getting Started](01-getting-started.md)** - Installation, your first session, what happens next.
 
 ## I'm planning a feature or thinking through a problem
-Read: **[Engineering Workflows](02-engineering-workflows.md)** — The core pipeline: Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn (proportional — small work stays on the `/bob:dev` fast path).
+Read: **[Engineering Workflows](02-engineering-workflows.md)** - The core pipeline: Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn (proportional - small work stays on the `/bob:dev` fast path).
 
 ## I'm designing a product or validating an idea
-Read: **[Discovery Workflows](03-discovery-workflows.md)** — Vision, personas, business model, validation strategy.
+Read: **[Discovery Workflows](03-discovery-workflows.md)** - Vision, personas, business model, validation strategy.
 
 ## I'm trying to understand how to organize my project
-Read: **[Project Management](04-project-management.md)** — How stories work, the kanban system, tracking progress across sessions.
+Read: **[Project Management](04-project-management.md)** - How stories work, the kanban system, tracking progress across sessions.
 
 ## I'm trying to keep documentation in sync with my code
-Read: **[Knowledge Management](05-knowledge-management.md)** — Architecture notes, guidelines, the knowledge vault, and what goes where.
+Read: **[Knowledge Management](05-knowledge-management.md)** - Architecture notes, guidelines, the knowledge vault, and what goes where.
 
 ## I need to look something up quickly
-Use: **[Commands Reference](06-commands-reference.md)** — Tables organized by layer, what each command does.
+Use: **[Commands Reference](06-commands-reference.md)** - Tables organized by layer, what each command does.
 
 ## Something isn't working or feels confusing
-Read: **[Troubleshooting](07-troubleshooting.md)** — Known friction points and how to resolve them.
+Read: **[Troubleshooting](07-troubleshooting.md)** - Known friction points and how to resolve them.
 
 ---
 
@@ -34,7 +34,7 @@ Everything Bob does rests on two ideas:
 
 **You decide, AI explores.** Every session is a conversation. The AI generates options, surfaces trade-offs, challenges your assumptions. You pick the direction. Nothing ships without your sign-off.
 
-**Files are the memory.** Each command writes its output to a well-known file location. Close your laptop, come back tomorrow, hand off to a colleague — the context lives in the files, not the chat history. This is also what makes honest review possible: a plan written in one session is reviewed fresh in another, with no memory of the conversation that produced it.
+**Files are the memory.** Each command writes its output to a well-known file location. Close your laptop, come back tomorrow, hand off to a colleague - the context lives in the files, not the chat history. This is also what makes honest review possible: a plan written in one session is reviewed fresh in another, with no memory of the conversation that produced it.
 
 ---
 
@@ -73,4 +73,4 @@ Everything Bob does rests on two ideas:
 
 ## Feedback
 
-If you find gaps, contradictions, or confusing sections, that's valuable. The guides surface what's unclear or missing in the system itself. Open an issue or reach out—this is a new system and user perspective helps sharpen both the implementation and the docs.
+If you find gaps, contradictions, or confusing sections, that's valuable. The guides surface what's unclear or missing in the system itself. Open an issue or reach out-this is a new system and user perspective helps sharpen both the implementation and the docs.

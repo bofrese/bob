@@ -1,8 +1,8 @@
-# Reflection Record — Artifact Template
+# Reflection Record - Artifact Template
 
 **Filename:** `{date}-reflect-{slug}.md`, written to `{story_path}/sessions/`.
 
-The Reflection Record captures what building this taught the human and the system — not a second review, not a full walkthrough. Keep it short; "no meaningful insight, ownership clear" is a valid, common, one-paragraph record.
+The Reflection Record captures what building this taught the human and the system - not a second review, not a full walkthrough. Keep it short; "no meaningful insight, ownership clear" is a valid, common, one-paragraph record.
 
 ```
 # Reflect: {Feature}
@@ -24,7 +24,7 @@ The Reflection Record captures what building this taught the human and the syste
 ## Where Understanding Stayed Inside the AI Session
 
 ## Ownership Gaps
-{"None — human can explain intent, critical paths, trade-offs, failure modes, debugging entry points, and likely change pressure" is a valid, and common, outcome.}
+{"None - human can explain intent, critical paths, trade-offs, failure modes, debugging entry points, and likely change pressure" is a valid, and common, outcome.}
 
 ## Candidates for /bob:learn
 {Decisions, patterns, or corrections worth considering for durable persistence. Promote nothing automatically.}

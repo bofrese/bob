@@ -6,7 +6,7 @@ user-invocable: false
 
 # UI Design Principles
 
-A thinking framework for expert UI/UX evaluation. Apply when designing, reviewing, or critiquing any user interface — across platforms, at any stage from concept to code.
+A thinking framework for expert UI/UX evaluation. Apply when designing, reviewing, or critiquing any user interface - across platforms, at any stage from concept to code.
 
 ---
 
@@ -18,11 +18,11 @@ A thinking framework for expert UI/UX evaluation. Apply when designing, reviewin
 
 ## 1. Visual Hierarchy is Not About Size
 
-Users don't read — they scan. The eye follows contrast, weight, spacing, and position in a predictable sequence. Good hierarchy creates a reading order that matches the user's priority sequence.
+Users don't read - they scan. The eye follows contrast, weight, spacing, and position in a predictable sequence. Good hierarchy creates a reading order that matches the user's priority sequence.
 
 **What separates expert from average:**
 - Think in *contrast ratios between elements*, not just individual element size
-- Negative space is an active design element — it directs attention as powerfully as content
+- Negative space is an active design element - it directs attention as powerfully as content
 - Color, weight, and position are hierarchy signals; decorative icons and labels often aren't
 - The reading order should be *designed*, not accidental
 
@@ -36,7 +36,7 @@ Every decision point, every unfamiliar pattern, every ambiguous label adds cogni
 
 **Hick's Law:** More choices = longer decision time. Reduce options at each decision step.
 **Miller's Law:** Working memory holds ~7 items. Don't exceed it in a single view.
-**Progressive disclosure:** Reveal complexity at the pace of user commitment — don't front-load.
+**Progressive disclosure:** Reveal complexity at the pace of user commitment - don't front-load.
 
 **The expert's move:** Distinguish between *complexity* (inherent to the domain) and *complication* (your fault). Ruthlessly eliminate complication.
 
@@ -60,7 +60,7 @@ The happy path is easy. The quality of an interface is revealed in its edges: em
 
 ## 4. Typography as Functional Architecture
 
-Typography isn't style — it's structure. It establishes hierarchy, sets reading rhythm, and communicates tone without words.
+Typography isn't style - it's structure. It establishes hierarchy, sets reading rhythm, and communicates tone without words.
 
 **The fundamentals experts apply:**
 - **Line length:** 45–75 characters for body text. Shorter = choppy. Longer = eye-tracking fatigue.
@@ -78,7 +78,7 @@ The brain organizes visual input into patterns automatically. Experts exploit th
 
 **The principles that matter in practice:**
 - **Proximity:** Elements close together are perceived as related. Don't break this accidentally.
-- **Similarity:** Visual consistency signals semantic consistency — same treatment = same behavior.
+- **Similarity:** Visual consistency signals semantic consistency - same treatment = same behavior.
 - **Common region:** A container (card, background fill) groups elements more powerfully than proximity alone.
 - **Figure/ground:** Background activity competes with foreground tasks. Suppress it.
 - **Closure:** Users complete incomplete shapes. You don't need to box everything in.
@@ -93,9 +93,9 @@ On touch interfaces, *where* something is placed matters as much as *what* it lo
 
 **What experts internalize:**
 - Touch targets: minimum 44×44pt, with adequate spacing between adjacent targets
-- Primary actions belong in the thumb zone (bottom center on phone) — the most naturally reachable area
-- Top corners are hardest to reach — reserve for infrequent or destructive actions
-- The finger obscures what it taps — affordances must be understood before the tap, not during
+- Primary actions belong in the thumb zone (bottom center on phone) - the most naturally reachable area
+- Top corners are hardest to reach - reserve for infrequent or destructive actions
+- The finger obscures what it taps - affordances must be understood before the tap, not during
 
 **On pointer interfaces:** Apply the same logic to click target size and cursor travel distance.
 
@@ -108,7 +108,7 @@ On touch interfaces, *where* something is placed matters as much as *what* it lo
 Animations and transitions are the system's language. They communicate: *what just happened, what is happening, what will happen.* They are not decoration.
 
 **What experts know:**
-- Motion direction reinforces the spatial model — slide in = going deeper, slide down = dismissing
+- Motion direction reinforces the spatial model - slide in = going deeper, slide down = dismissing
 - Duration: <200ms = instant, 200–500ms = responsive, >500ms = slow
 - Easing is meaning: ease-in = something leaving, ease-out = something arriving, spring = physicality
 - Absence of feedback on user action creates uncertainty and erodes trust
@@ -130,7 +130,7 @@ Every element on screen competes for attention. Noise is anything that doesn't s
 - Helper text explaining things that are obvious → remove
 - Repeated information → consolidate
 
-**The test:** "What would be lost if this element disappeared?" If the answer is "nothing" or "it would be clearer" — remove it.
+**The test:** "What would be lost if this element disappeared?" If the answer is "nothing" or "it would be clearer" - remove it.
 
 **Red flag:** Visual busyness. Labels explaining other labels. Empty space that feels like a mistake rather than intent. Color everywhere.
 
@@ -143,8 +143,8 @@ Consistency isn't about making things look the same. It's about **reducing the n
 **What this means in practice:**
 - Same interaction should produce same result, everywhere
 - Same visual treatment should mean same semantic meaning
-- Terminology consistent throughout — don't call it "entries" here and "records" there
-- A design system isn't a style guide — it's a cognitive budget. Spend it carefully.
+- Terminology consistent throughout - don't call it "entries" here and "records" there
+- A design system isn't a style guide - it's a cognitive budget. Spend it carefully.
 
 **Red flag:** Two similar button styles with no semantic distinction. The same action labeled differently in different contexts. Interaction patterns that vary without reason.
 
@@ -166,7 +166,7 @@ Don Norman's framework. Most designers nail level 1. World-class designers opera
 
 ## 11. Platform Fluency vs. Platform Deference
 
-Every platform has a language — conventions users are fluent in. Deviating forces relearning. The question isn't "should I follow the guidelines?" but "do I understand what it costs not to?"
+Every platform has a language - conventions users are fluent in. Deviating forces relearning. The question isn't "should I follow the guidelines?" but "do I understand what it costs not to?"
 
 **The expert's position:**
 - Know the platform guidelines well enough to *choose* when to follow them
@@ -197,7 +197,7 @@ UIs are used in the real world: one hand, bad lighting, distracted, stressed, ru
 
 ## 13. Brand Voice Lives in the Interface
 
-Colors, spacing, motion, copy — these express the brand without words. The emotional tone of the UI *is* the brand experience.
+Colors, spacing, motion, copy - these express the brand without words. The emotional tone of the UI *is* the brand experience.
 
 **What experts articulate:**
 - Dense, efficient layout = powerful, respects your time
@@ -207,7 +207,7 @@ Colors, spacing, motion, copy — these express the brand without words. The emo
 - Fast, snappy motion = responsive, efficient
 - Smooth, gradual motion = refined, thoughtful
 
-**The alignment question:** Does the UI's emotional tone match what the product promises? If the brand says "calm and trustworthy" but the interface feels demanding and busy — there's a gap.
+**The alignment question:** Does the UI's emotional tone match what the product promises? If the brand says "calm and trustworthy" but the interface feels demanding and busy - there's a gap.
 
 **Red flag:** Visual tone inconsistent with product positioning. In-app experience that feels completely different from the marketing. Personality-free interfaces for products that claim strong personality.
 
@@ -218,10 +218,10 @@ Colors, spacing, motion, copy — these express the brand without words. The emo
 Beyond any single screen: does the product-wide interaction model still hold together?
 
 - Minimize the number of independent interaction concepts a user must learn across the whole product, not just per screen.
-- Distinguish consistency of *meaning* from mere visual similarity — two elements that look alike but mean different things is worse than two that look different but behave the same way.
+- Distinguish consistency of *meaning* from mere visual similarity - two elements that look alike but mean different things is worse than two that look different but behave the same way.
 - Evaluate navigation and discoverability across the complete task flow, not just the current screen.
 - Don't let local component consistency make the product-wide experience worse (e.g. reusing a pattern where it doesn't fit just to "be consistent").
-- Treat every guideline and heuristic here as a lens for judgment, not an automatic verdict — a red flag is a prompt to look closer, not an automatic fail.
+- Treat every guideline and heuristic here as a lens for judgment, not an automatic verdict - a red flag is a prompt to look closer, not an automatic fail.
 
 ## The Expert's Final Check
 

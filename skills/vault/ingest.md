@@ -18,7 +18,7 @@ Read the file directly.
 
 Read the fetched content and extract key atomic concepts worth persisting in the vault. Each concept should be:
 - A single distinct idea (not a topic summary or full article)
-- Self-contained — makes sense without the source
+- Self-contained - makes sense without the source
 - Worth linking to or referencing in future notes
 
 Propose a list of candidate concepts (title + one-line description). Show the list and get confirmation before proceeding.
@@ -49,7 +49,7 @@ Report: source ingested, concepts extracted, actions taken.
 
 ## Rules
 
-- Always confirm the concept list before running reconcile — user may remove irrelevant items
-- Run reconcile before creating any note — no exceptions
-- Save raw source to `sources/` — do not delete it
+- Always confirm the concept list before running reconcile - user may remove irrelevant items
+- Run reconcile before creating any note - no exceptions
+- Save raw source to `sources/` - do not delete it
 - For all vault moves: use `obsidian move` if vault active, fall back to `mv`

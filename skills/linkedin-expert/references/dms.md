@@ -4,7 +4,7 @@
 
 A DM is a one-to-one conversation, not a scaled broadcast. The moment it feels like a template, you've lost. People can smell copy-paste at 10 metres.
 
-Content creates familiarity. The DM converts that familiarity into a relationship. It is never the opening move — it is the follow-up to some form of prior contact.
+Content creates familiarity. The DM converts that familiarity into a relationship. It is never the opening move - it is the follow-up to some form of prior contact.
 
 **The single most important test:** if your message could have been sent to 100 people with a name-swap, it's a template. Delete it.
 
@@ -17,7 +17,7 @@ Content creates familiarity. The DM converts that familiarity into a relationshi
 3. A mutual connection recommended you connect
 4. They match very specific criteria and you have a specific, non-generic reason to reach out
 
-If none of these apply, you're doing cold outreach — a different game with much lower conversion, and most people do it badly.
+If none of these apply, you're doing cold outreach - a different game with much lower conversion, and most people do it badly.
 
 ---
 
@@ -26,7 +26,7 @@ If none of these apply, you're doing cold outreach — a different game with muc
 **The opener (2 sentences max):**
 - Specific, not generic
 - References *exactly* what triggered you to reach out
-- Proves you paid attention — not replicable at scale
+- Proves you paid attention - not replicable at scale
 
 **Bad:** "Hey, I came across your profile and thought we should connect."
 
@@ -44,7 +44,7 @@ If none of these apply, you're doing cold outreach — a different game with muc
 **The ask (one ask only, clear and low-friction):**
 - "Would it be worth a 20-minute call?"
 - "Mind if I ask you one follow-up question?"
-- "I wrote something related — want me to send it over?"
+- "I wrote something related - want me to send it over?"
 
 **Never:** "Let's hop on a call to explore synergies."
 
@@ -54,7 +54,7 @@ If none of these apply, you're doing cold outreach — a different game with muc
 
 ### They commented on your post
 
-> "Sarah — thanks for the comment on the technical debt post. The point you raised about sunk cost psychology in engineering teams is something I've been wrestling with too. I wrote a short piece on how to reframe it as a risk conversation rather than a cost conversation — happy to share if useful."
+> "Sarah - thanks for the comment on the technical debt post. The point you raised about sunk cost psychology in engineering teams is something I've been wrestling with too. I wrote a short piece on how to reframe it as a risk conversation rather than a cost conversation - happy to share if useful."
 
 What this does:
 - Acknowledges them specifically
@@ -66,10 +66,10 @@ What this does:
 
 ### They posted about a problem you solve
 
-> "Noticed your post about the team scaling challenges — specifically the cultural drift as headcount grows. That's something I've spent a lot of time on. I wrote a framework for it that a few teams have used — not a pitch, genuinely might be useful. Want me to send it over?"
+> "Noticed your post about the team scaling challenges - specifically the cultural drift as headcount grows. That's something I've spent a lot of time on. I wrote a framework for it that a few teams have used - not a pitch, genuinely might be useful. Want me to send it over?"
 
 What this does:
-- Doesn't pretend you're unaware of a business opportunity — that would be dishonest
+- Doesn't pretend you're unaware of a business opportunity - that would be dishonest
 - Leads with the problem, not your service
 - Gives them a reason to say yes that doesn't feel like stepping into a sales funnel
 
@@ -77,13 +77,13 @@ What this does:
 
 ### Following up after a real conversation (event, call, etc.)
 
-> "Good talking at the conf yesterday. The point you made about AI governance in regulated industries is something I've been thinking about since. If you're still working through the internal buy-in problem, I ran into the same thing at a financial services client last year — happy to share what worked."
+> "Good talking at the conf yesterday. The point you made about AI governance in regulated industries is something I've been thinking about since. If you're still working through the internal buy-in problem, I ran into the same thing at a financial services client last year - happy to share what worked."
 
 ---
 
 ## The Follow-Up Rule
 
-If they don't reply: **one follow-up only**, sent 5-7 days later. Keep it shorter than the first. Reference something new — a post they published, something that happened in your industry.
+If they don't reply: **one follow-up only**, sent 5-7 days later. Keep it shorter than the first. Reference something new - a post they published, something that happened in your industry.
 
 If they don't reply to that: stop. A third follow-up crosses into harassment territory and guarantees they'll never work with you.
 
@@ -97,7 +97,7 @@ Treat DMs as a system, not one-offs. Maintain a mental (or literal) pipeline:
 |-------|-------------|--------|
 | **Warmed contacts** | People who regularly engage with your content | Check monthly: any worth a DM? |
 | **Active conversations** | People in current dialogue | What's the next natural move? |
-| **Dormant relationships** | Spoke 3-6 months ago | Re-engagement DM referencing something current — high-conversion, feels natural |
+| **Dormant relationships** | Spoke 3-6 months ago | Re-engagement DM referencing something current - high-conversion, feels natural |
 | **New inbounds** | People who DM you after a post | Respond within 24 hours or the moment is gone |
 
 The pipeline doesn't need to be large. 10-15 genuinely warm relationships in motion at any time is enough to sustain a consulting business.
@@ -129,6 +129,6 @@ Avoiding all of these already puts you in the top 10%.
 
 Stop thinking about DMs as outreach. Start thinking about them as continuing a conversation that your content already started.
 
-If your content is doing its job — demonstrating expertise, taking positions, telling stories — the DM is just the next natural step in a relationship that already exists in the reader's mind. You're not introducing yourself. You're deepening something already in motion.
+If your content is doing its job - demonstrating expertise, taking positions, telling stories - the DM is just the next natural step in a relationship that already exists in the reader's mind. You're not introducing yourself. You're deepening something already in motion.
 
 That shift changes everything about how you write them.

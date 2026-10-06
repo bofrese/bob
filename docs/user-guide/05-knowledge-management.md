@@ -9,7 +9,7 @@ The system that makes every future session better: capture what you learn, codif
 
 **Guidelines** live in `docs/guidelines/`. They answer: "How do we do [technology] in this project?" TypeScript patterns, testing approach, React conventions, security practices. Written once, applied automatically in every session.
 
-**Documentation** lives in `docs/`. It answers: "What did we build and why?" Architecture, APIs, design decisions — the *why* behind the code.
+**Documentation** lives in `docs/`. It answers: "What did we build and why?" Architecture, APIs, design decisions - the *why* behind the code.
 
 **Knowledge vault** lives in `knowledge/`. It answers: "What have we learned?" Research, architectural decisions, reusable patterns, concept definitions. Structured, searchable, and loaded automatically into engineering sessions when relevant.
 
@@ -54,7 +54,7 @@ Engineering sessions load the index and the notes that match their scope. Large 
 
 ## Knowledge Vault: What We've Learned
 
-The `knowledge/` vault stores research, decisions, patterns, and concepts as atomic notes. Unlike documentation (which explains the system), the vault captures *learned knowledge* — insights that inform future work.
+The `knowledge/` vault stores research, decisions, patterns, and concepts as atomic notes. Unlike documentation (which explains the system), the vault captures *learned knowledge* - insights that inform future work.
 
 Engineering commands automatically retrieve relevant vault notes at session start, so what you've captured surfaces when it matters.
 
@@ -63,10 +63,10 @@ Engineering commands automatically retrieve relevant vault notes at session star
 The fastest way to capture something mid-session without breaking flow:
 
 ```
-/bob:remember We should avoid X because of Y — discovered in story AUTH-002
+/bob:remember We should avoid X because of Y - discovered in story AUTH-002
 ```
 
-With no arguments, it asks "What should I remember?" — one question, done. The note lands in `knowledge/_INBOX/` for later processing.
+With no arguments, it asks "What should I remember?" - one question, done. The note lands in `knowledge/_INBOX/` for later processing.
 
 ### Managing the vault: `/bob:library`
 
@@ -77,7 +77,7 @@ With no arguments, it asks "What should I remember?" — one question, done. The
 | Command | What it does |
 |---------|-------------|
 | `/bob:library` | Show vault status: inbox count, note counts, pending suggestions |
-| `/bob:library process` | Work through inbox items — propose type, tags, filename for each; file on approval |
+| `/bob:library process` | Work through inbox items - propose type, tags, filename for each; file on approval |
 | `/bob:library ingest <url-or-file>` | Ingest an external source (article, paper, URL) directly into a typed note |
 | `/bob:library retrieve <query>` | Search the vault for notes matching a query |
 | `/bob:library organise` | Vault health check: orphaned notes, tag consistency, MOC candidates |
@@ -97,7 +97,7 @@ The vault uses four typed subfolders:
 
 Capture goes to `_INBOX/` (via `/bob:remember` or manually), then gets processed into typed notes via `/bob:library process`. Processing is interactive: the AI proposes type, tags, and filename; you confirm before anything is written.
 
-Raw source materials (articles, papers, specs) go to `sources/` — not as notes, but as originals you might reference.
+Raw source materials (articles, papers, specs) go to `sources/` - not as notes, but as originals you might reference.
 
 ### Automatic retrieval
 
@@ -117,7 +117,7 @@ If `knowledge/` doesn't exist, `/bob:library` or `/bob:remember` bootstraps it a
 
 **Maintain quarterly:** Run `/bob:library organise` to check tag consistency, find orphaned notes, and propose Maps of Content for clusters of related notes.
 
-**Let retrieval work:** Engineering sessions pick up relevant notes automatically. You don't need to remember what you captured — the vault does.
+**Let retrieval work:** Engineering sessions pick up relevant notes automatically. You don't need to remember what you captured - the vault does.
 
 ---
 
@@ -135,7 +135,7 @@ If `knowledge/` doesn't exist, `/bob:library` or `/bob:remember` bootstraps it a
 
 ## Tips
 
-**Capture cheap, curate later.** Use `/bob:remember` freely. Process with `/bob:library process` when you have 10 minutes — not in the moment.
+**Capture cheap, curate later.** Use `/bob:remember` freely. Process with `/bob:library process` when you have 10 minutes - not in the moment.
 
 **Guidelines are earned.** Don't create one for something you've done once. Wait until you've repeated a pattern 3-4 times and know what actually works.
 

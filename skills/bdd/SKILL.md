@@ -1,10 +1,10 @@
 ---
-name: BDD — Behaviour-Driven Development
+name: BDD - Behaviour-Driven Development
 description: Invoke this skill when defining acceptance criteria, testing strategy, or evaluating whether something is done. Used by bob commands during implementation planning and before writing code.
 user-invocable: false
 ---
 
-# BDD — Behaviour-Driven Development
+# BDD - Behaviour-Driven Development
 
 A thinking framework. Apply when defining tests, acceptance criteria, or evaluating whether something is "done".
 
@@ -18,11 +18,11 @@ A thinking framework. Apply when defining tests, acceptance criteria, or evaluat
 
 Every acceptance criterion follows this structure:
 
-- **Given** — the precondition. The state the system is in before the behaviour is triggered.
-- **When** — the action. What the user (or system) does.
-- **Then** — the observable outcome. What changes — and how you'd know it changed.
+- **Given** - the precondition. The state the system is in before the behaviour is triggered.
+- **When** - the action. What the user (or system) does.
+- **Then** - the observable outcome. What changes - and how you'd know it changed.
 
-If "Then" can't be observed — by a user, a log, an API response, a database state — it's not a real criterion. It's an implementation detail.
+If "Then" can't be observed - by a user, a log, an API response, a database state - it's not a real criterion. It's an implementation detail.
 
 ## What we test: behaviour, not implementation
 
@@ -40,7 +40,7 @@ Before shipping: does every acceptance criterion from the plan have a passing te
 
 ## Semantic and operational lenses
 
-Behavior-first testing stays primary. When relevant, also check for these — they're where "it works" and "it's correct" diverge:
+Behavior-first testing stays primary. When relevant, also check for these - they're where "it works" and "it's correct" diverge:
 
 - meaning-preserving data transformations (does a round-trip actually preserve meaning, not just bytes);
 - units, currency, rounding, nullability, and schema semantics;
@@ -48,4 +48,4 @@ Behavior-first testing stays primary. When relevant, also check for these — th
 - authorization and information exposure;
 - observable behavior rather than internal structure.
 
-BDD must not invent business semantics. A missing semantic expectation is a question for the human, or a `DESIGN FEEDBACK` item — not something to assume.
+BDD must not invent business semantics. A missing semantic expectation is a question for the human, or a `DESIGN FEEDBACK` item - not something to assume.

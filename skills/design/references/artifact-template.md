@@ -1,8 +1,8 @@
-# Design Record — Artifact Template
+# Design Record - Artifact Template
 
 **Filename:** `{date}-design-{slug}.md`, written to `{story_path}/sessions/`.
 
-The Design Record is the authoritative intent handed to Plan, Review Plan, Implement, Review, and Reflect. Keep it decision-dense and self-contained — someone who wasn't in the conversation must be able to plan from it.
+The Design Record is the authoritative intent handed to Plan, Review Plan, Implement, Review, and Reflect. Keep it decision-dense and self-contained - someone who wasn't in the conversation must be able to plan from it.
 
 ```
 # Design: {Capability}
@@ -63,4 +63,4 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 
 The Design Record describes intent. It does not update canonical architecture notes in `docs/architecture/`: `/bob:document` updates those after implementation, against the code that exists.
 
-Exclude from this record: implementation plans, file-by-file steps, and repeated product rationale already captured in the Brainstorm Brief — those belong to `/bob:plan`.
+Exclude from this record: implementation plans, file-by-file steps, and repeated product rationale already captured in the Brainstorm Brief - those belong to `/bob:plan`.

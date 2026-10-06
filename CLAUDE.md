@@ -1,4 +1,4 @@
-# CLAUDE.md — Command Development Guidelines
+# CLAUDE.md - Command Development Guidelines
 
 This file guides Claude (and human contributors) in creating new commands and maintaining existing ones for this repository.
 
@@ -8,7 +8,7 @@ This file guides Claude (and human contributors) in creating new commands and ma
 .claude/                       ← bob plugin root
 ├── .claude-plugin/
 │   └── plugin.json            ← plugin manifest
-├── commands/                  ← slash commands (flat — no subfolders); see README for full list
+├── commands/                  ← slash commands (flat - no subfolders); see README for full list
 ├── skills/                    ← framework skills (loaded by commands via Skill tool)
 │   ├── bob/                   ← authoritative catalog of all commands and skills (SKILL.md + references/)
 │   ├── context-protocol/      ← what context each command loads
@@ -32,31 +32,31 @@ This file guides Claude (and human contributors) in creating new commands and ma
 - Update any other affected sections
 
 **Always keep the bob skill in sync.** When you add, rename, or significantly change a command or skill, update:
-- `skills/bob/SKILL.md` — the quick-reference tables (commands by layer, skills table)
-- `skills/bob/references/commands.md` — the per-command detail entry
-- `skills/bob/references/skills.md` — the per-skill detail entry (if a skill changed)
+- `skills/bob/SKILL.md` - the quick-reference tables (commands by layer, skills table)
+- `skills/bob/references/commands.md` - the per-command detail entry
+- `skills/bob/references/skills.md` - the per-skill detail entry (if a skill changed)
 
 ## The Two Tiers
 
 Commands fall into two conceptual tiers. Both live in the same `commands/` folder. The distinction is about what they're concerned with, not where they live.
 
-**Discovery** — What to build and why. Output is product artifacts: vision, personas, design briefs. These live in `docs/product/` (authoritative, updated in place).
+**Discovery** - What to build and why. Output is product artifacts: vision, personas, design briefs. These live in `docs/product/` (authoritative, updated in place).
 
-**Engineering** — How to build it. Output is plans, code, reviews, documentation. Story session artifacts live in the story folder (`{story_path}/sessions/`). Some utility commands (pm, review-command, improve-command, docker-setup) write to `ai/`. Authoritative docs live in `docs/`.
+**Engineering** - How to build it. Output is plans, code, reviews, documentation. Story session artifacts live in the story folder (`{story_path}/sessions/`). Some utility commands (pm, review-command, improve-command, docker-setup) write to `ai/`. Authoritative docs live in `docs/`.
 
 The key connection: **Discovery output is input to Engineering.** A product vision grounds a brainstorm. A design brief informs a plan. Engineering commands know to look for relevant Discovery artifacts at well-known paths in `docs/product/`.
 
-## Skills — On-Demand Knowledge
+## Skills - On-Demand Knowledge
 
-Skills in `skills/` encode core thinking frameworks and interaction protocols. Not tutorials — just enough that when a command invokes one, it applies the framework consistently.
+Skills in `skills/` encode core thinking frameworks and interaction protocols. Not tutorials - just enough that when a command invokes one, it applies the framework consistently.
 
 **How commands use them:** A command invokes a skill at the specific point in its process where the framework applies using the Skill tool. Example: `/bob:plan` invokes `bob:bdd` when defining the testing strategy. `/bob:design` invokes `bob:architect` when judging a design.
 
-**Framework skills** (bdd, architect, writing, prompt-engineering, business-model, etc.) — generic thinking frameworks. Work for any project.
+**Framework skills** (bdd, architect, writing, prompt-engineering, business-model, etc.) - generic thinking frameworks. Work for any project.
 
-**Protocol skills** (context-protocol, done-criteria) — define how commands interact with the project context and done system.
+**Protocol skills** (context-protocol, done-criteria) - define how commands interact with the project context and done system.
 
-**Reference skill** (`bob/`) — the authoritative catalog of every command and skill: what each does, what it reads/writes, its process phases. See `skills/bob/SKILL.md` and `skills/bob/references/`.
+**Reference skill** (`bob/`) - the authoritative catalog of every command and skill: what each does, what it reads/writes, its process phases. See `skills/bob/SKILL.md` and `skills/bob/references/`.
 
 **What goes here vs `docs/guidelines/`:**
 - `skills/` = generic frameworks. "How to think about BDD." Works for any project. Ships with the plugin.
@@ -74,13 +74,13 @@ The skill (`skills/context-protocol/SKILL.md`) defines what each command tier lo
 
 ## Done Criteria Protocol
 
-Every output-producing command participates in the done system. **This is a non-negotiable architectural rule** — done-criteria must be invoked before responding to any new request. If the user asks to move on or start another command, run done-criteria first, then proceed.
+Every output-producing command participates in the done system. **This is a non-negotiable architectural rule** - done-criteria must be invoked before responding to any new request. If the user asks to move on or start another command, run done-criteria first, then proceed.
 
-The integration is a `## Done — Non-Deferrable` section at the end of every command:
+The integration is a `## Done - Non-Deferrable` section at the end of every command:
 
 > *Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.*
 
-The skill (`skills/done-criteria/SKILL.md`) contains everything: the bootstrap template AND the behaviours commands follow (bootstrap the project file if missing, check criteria before finishing, register new artifact types, track discovered issues). Commands don't each carry their own copy of the logic — they invoke the skill.
+The skill (`skills/done-criteria/SKILL.md`) contains everything: the bootstrap template AND the behaviours commands follow (bootstrap the project file if missing, check criteria before finishing, register new artifact types, track discovered issues). Commands don't each carry their own copy of the logic - they invoke the skill.
 
 The project's live instance (`docs/process/done-criteria.md`) is bootstrapped automatically the first time any command runs in a fresh project. It grows as the project adopts more commands.
 
@@ -90,7 +90,7 @@ The project's live instance (`docs/process/done-criteria.md`) is bootstrapped au
 
 Engineering commands surface discovered work (issues, deferred ideas, out-of-scope findings) by invoking `bob:work-routing`. This is a non-negotiable architectural rule:
 
-**Never embed routing logic in a command file.** Commands are orchestrators — they identify that work needs routing, then invoke the `bob:work-routing` skill. The skill owns the decision tree (this story Issues vs project INBOX).
+**Never embed routing logic in a command file.** Commands are orchestrators - they identify that work needs routing, then invoke the `bob:work-routing` skill. The skill owns the decision tree (this story Issues vs project INBOX).
 
 **Where PM steps live:** Engineering commands (plan, review, review-plan, implement, brainstorm, investigate, ui-review) each include a PM step at the appropriate phase. The step invokes `bob:work-routing` for items that need routing. Done-criteria's Work Routing responsibility runs as a session-end safety net for any items that weren't routed mid-session.
 
@@ -150,7 +150,7 @@ description: Brief description shown in command listings.
 ```
 
 - `allowed-tools`: Almost always `Bash(*), Read, Write, Edit` for full capability.
-- `description`: Keep it short — this appears in `/help` or command listings.
+- `description`: Keep it short - this appears in `/help` or command listings.
 
 ### Date Handling
 
@@ -225,7 +225,7 @@ Commands write to specific folders by convention:
 
 | Command Type | Output Folder |
 |--------------|---------------|
-| Brainstorm, Design, Plan, Review-Plan, Implement, Review, Handover, Reflect, Learn, Investigate, UI-Review | `{story_path}/sessions/` — `{story_path}` resolved by `bob:story-context` at session start |
+| Brainstorm, Design, Plan, Review-Plan, Implement, Review, Handover, Reflect, Learn, Investigate, UI-Review | `{story_path}/sessions/` - `{story_path}` resolved by `bob:story-context` at session start |
 | Docker/DevOps logs | `ai/docker/` |
 | Meta-commands (improve-command, review-command) | `ai/reviews/` |
 | Product artifacts | `docs/product/` |
@@ -295,7 +295,7 @@ Commands that involve implementation (like `/plan` or `/docker-setup`) should in
 - Use second person ("You are...") for role definitions
 - Use imperative mood for instructions ("Ask me...", "Walk me through...")
 - Use Markdown formatting consistently
-- Keep sections focused — if a section is getting long, consider splitting it
+- Keep sections focused - if a section is getting long, consider splitting it
 - Use tables for structured information
 - Use code blocks for templates, commands, and file examples
 - Use Mermaid for diagrams where visual representation helps
@@ -304,9 +304,9 @@ Commands that involve implementation (like `/plan` or `/docker-setup`) should in
 
 Commands fall into two categories:
 
-**Analysis/artifact commands** — produce reports or docs but never change application code (e.g. `plan`, `review`, `document`, Discovery commands). Include a clear "DO NOT IMPLEMENT" guardrail in these.
+**Analysis/artifact commands** - produce reports or docs but never change application code (e.g. `plan`, `review`, `document`, Discovery commands). Include a clear "DO NOT IMPLEMENT" guardrail in these.
 
-**Execution commands** — actually modify project files (e.g. `implement`, `docker-setup`). These need verification steps and graceful failure handling.
+**Execution commands** - actually modify project files (e.g. `implement`, `docker-setup`). These need verification steps and graceful failure handling.
 
 For implementing commands:
 - Include verification steps (did it actually work?)

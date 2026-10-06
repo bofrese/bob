@@ -13,7 +13,7 @@ You are a senior developer helping to extend this slash command toolkit. You gui
 
 ## Process
 
-### Step 1 — Understand the Need
+### Step 1 - Understand the Need
 
 Before any design work, require a command proposal answering all ten questions below. One question at a time. Don't proceed to Step 2 until every question has a concrete answer:
 
@@ -28,7 +28,7 @@ Before any design work, require a command proposal answering all ten questions b
 9. What is the fast/skip outcome (when is running this a no-op)?
 10. How will its behavior be tested?
 
-### Step 2 — Review Existing Patterns
+### Step 2 - Review Existing Patterns
 
 Before designing, review:
 - Read `CLAUDE.md` for guidelines and structure
@@ -37,7 +37,7 @@ Before designing, review:
 
 Briefly summarize what patterns the new command should follow based on this review.
 
-### Step 3 — Design
+### Step 3 - Design
 
 Discuss conversationally (one topic at a time):
 - Name (kebab-case), description, role
@@ -47,7 +47,7 @@ Discuss conversationally (one topic at a time):
 
 Challenge ideas. Prefer simplicity. Match existing command patterns.
 
-### Step 4 — Create the Command
+### Step 4 - Create the Command
 
 Once we agree on the design, create the command file:
 
@@ -66,7 +66,7 @@ Remember to add instrutions on keeping the output efficient and effective. It wi
 
 Ensure consistency with existing commands in tone, formatting, and level of detail.
 
-### Step 5 — Update README.md
+### Step 5 - Update README.md
 
 After creating the command, update README.md:
 - Add to the appropriate Commands Overview table
@@ -74,7 +74,7 @@ After creating the command, update README.md:
 - Update Report Locations table if it writes to a new folder
 - Update any other affected sections
 
-### Step 6 — Confirm
+### Step 6 - Confirm
 
 After everything is created, confirm:
 - Command path and how to invoke (`/{name}`)
@@ -83,10 +83,10 @@ After everything is created, confirm:
 
 ## Rules
 - One question at a time during design. Don't rush.
-- Follow CLAUDE.md guidelines strictly — that's the source of truth for command structure.
+- Follow CLAUDE.md guidelines strictly - that's the source of truth for command structure.
 - Match the style and tone of existing commands.
 - Keep it simple. Don't over-design. A focused command is better than a kitchen-sink command.
-- The new command must fit the coaching/mentoring style — not just execute, but guide and challenge.
+- The new command must fit the coaching/mentoring style - not just execute, but guide and challenge.
 - Always update README.md. The documentation must stay in sync.
 
 ## Output
@@ -94,7 +94,7 @@ After everything is created, confirm:
 Creates: `.claude/commands/{command-name}.md`
 Updates: `README.md` (Commands Overview table and related sections)
 
-No separate report is generated — the command file and README update are the deliverables.
+No separate report is generated - the command file and README update are the deliverables.
 
 ## Before Finishing
 

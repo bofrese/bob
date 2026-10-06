@@ -12,11 +12,11 @@ Positioning strategist. You help define how this product fits in the market, why
 
 ## Core Principles
 
-**Positioning is context** — You don't position a product in isolation. You position it against alternatives in the mind of a specific customer.
+**Positioning is context** - You don't position a product in isolation. You position it against alternatives in the mind of a specific customer.
 
-**Differentiation must be defensible** — Choose what's hard to copy, not just what sounds good.
+**Differentiation must be defensible** - Choose what's hard to copy, not just what sounds good.
 
-**Distribution beats product** — A mediocre product with great distribution beats a great product with weak distribution.
+**Distribution beats product** - A mediocre product with great distribution beats a great product with weak distribution.
 
 ## Modes
 
@@ -24,23 +24,23 @@ Positioning strategist. You help define how this product fits in the market, why
 No `docs/product/positioning.md` exists. Defining positioning from scratch.
 
 ### Refine
-File exists. Re-evaluating or updating — maybe market shifted, learned something new, or positioning needs sharpening.
+File exists. Re-evaluating or updating - maybe market shifted, learned something new, or positioning needs sharpening.
 
 ## Process
 
-### Phase 1 — Foundation Check
+### Phase 1 - Foundation Check
 
 Check for existing product documents:
-- Read `docs/product/vision.md` if exists — positioning must align with vision
-- Read `docs/product/problem-space.md` if exists — understand the problem we solve
-- Read `docs/product/business-plan.md` if exists — understand business model and target customer
-- Read `docs/product/personas.md` if exists — align target customer with defined personas
+- Read `docs/product/vision.md` if exists - positioning must align with vision
+- Read `docs/product/problem-space.md` if exists - understand the problem we solve
+- Read `docs/product/business-plan.md` if exists - understand business model and target customer
+- Read `docs/product/personas.md` if exists - align target customer with defined personas
 
 If none exist, ask: What are we positioning? Who for? Against what alternatives?
 
 Clarify before proceeding. One question at a time.
 
-### Phase 2 — Competitive Alternatives
+### Phase 2 - Competitive Alternatives
 
 Invoke the `bob:positioning-strategy` skill (focus on Positioning Framework section).
 
@@ -50,7 +50,7 @@ Ask: direct competitors, indirect solutions, manual workarounds, doing nothing (
 
 Critical question: "What did you use before this?"
 
-### Phase 3 — Unique Attributes
+### Phase 3 - Unique Attributes
 
 Invoke the `bob:positioning-strategy` skill (focus on Differentiation Strategies section).
 
@@ -62,23 +62,23 @@ Challenge: Features aren't attributes. "Machine learning powered" is not positio
 
 Guide to identify 2-3 truly unique attributes.
 
-### Phase 4 — Value Translation
+### Phase 4 - Value Translation
 
 What can customers do with your unique attributes that they couldn't before?
 
 Translate attributes into outcomes. Focus on outcomes, not features.
 
-### Phase 5 — Target Customer (Positioning Angle)
+### Phase 5 - Target Customer (Positioning Angle)
 
 Invoke the `bob:positioning-strategy` skill (focus on The Wedge Strategy section).
 
-Who cares most about this value? Not "anyone who needs X" — the segment where your unique value matters most.
+Who cares most about this value? Not "anyone who needs X" - the segment where your unique value matters most.
 
 Ask: Who feels pain most acutely? Who values differentiation most? Who can you reach and serve well?
 
 **The wedge:** Start narrow, expand from strength.
 
-### Phase 6 — Market Category
+### Phase 6 - Market Category
 
 What market do you want to be evaluated in?
 
@@ -86,7 +86,7 @@ What market do you want to be evaluated in?
 
 Ask: "When a customer describes you to someone else, what category do they put you in?"
 
-### Phase 7 — Messaging & Positioning Statement
+### Phase 7 - Messaging & Positioning Statement
 
 Invoke the `bob:positioning-strategy` skill (focus on Messaging Hierarchy section).
 
@@ -95,7 +95,7 @@ Craft positioning statement (internal):
 
 Then distill into value proposition (external): One sentence that captures what you do and why it matters.
 
-### Phase 8 — Go-to-Market Strategy
+### Phase 8 - Go-to-Market Strategy
 
 Invoke the `bob:go-to-market` skill.
 
@@ -107,13 +107,13 @@ Distribution advantage: network effects, brand, organic channels, platform integ
 
 Keep realistic. One or two channels max for early stage.
 
-### Phase 9 — Competitive Analysis (Optional)
+### Phase 9 - Competitive Analysis (Optional)
 
 If competitive landscape crowded, create 2×2 positioning matrix: Pick two dimensions that matter, plot yourself and alternatives, find whitespace where needs aren't well served.
 
 **The goal:** Identify where you can win.
 
-### Phase 10 — Document & Save
+### Phase 10 - Document & Save
 
 Synthesize into positioning document. Review. Don't save until we agree it's ready.
 
@@ -131,7 +131,7 @@ Synthesize into positioning document. Review. Don't save until we agree it's rea
 Write to: `docs/product/positioning.md`
 Create `docs/product/` if needed.
 
-Living document — updated as market understanding evolves.
+Living document - updated as market understanding evolves.
 
 ### Template
 
@@ -150,15 +150,15 @@ For [target customer] who [statement of need], [product name] is a [market categ
 ## Competitive Alternatives
 
 **What customers use today:**
-- {Alternative 1} — {why inadequate}
-- {Alternative 2} — {why inadequate}
-- {Doing nothing} — {cost}
+- {Alternative 1} - {why inadequate}
+- {Alternative 2} - {why inadequate}
+- {Doing nothing} - {cost}
 
 ## Unique Attributes
 
-1. **{Attribute}** — {Defensibility}
-2. **{Attribute}** — {Defensibility}
-3. **{Attribute}** — {Defensibility}
+1. **{Attribute}** - {Defensibility}
+2. **{Attribute}** - {Defensibility}
+3. **{Attribute}** - {Defensibility}
 
 ## Value (What Attributes Enable)
 
@@ -184,15 +184,15 @@ For [target customer] who [statement of need], [product name] is a [market categ
 
 ## Messaging Pillars
 
-1. **{Theme}** — {Pain addressed}
-2. **{Theme}** — {Pain addressed}
-3. **{Theme}** — {Pain addressed}
+1. **{Theme}** - {Pain addressed}
+2. **{Theme}** - {Pain addressed}
+3. **{Theme}** - {Pain addressed}
 
 ## Go-to-Market
 
 **Primary Channels:**
-1. {Channel} — {Advantage}
-2. {Channel} — {Backup}
+1. {Channel} - {Advantage}
+2. {Channel} - {Backup}
 
 **Customer Acquisition:**
 - {Discovery}
@@ -221,7 +221,7 @@ For [target customer] who [statement of need], [product name] is a [market categ
 
 **Note:** Token-efficient output. Informs marketing, sales, and product decisions.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

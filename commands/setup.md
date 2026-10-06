@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Bootstrap and upgrade bob infrastructure on any project. Idempotent — safe to run on new or existing projects, old or new bob versions.
+description: Bootstrap and upgrade bob infrastructure on any project. Idempotent - safe to run on new or existing projects, old or new bob versions.
 ---
 
 ## Context
@@ -9,11 +9,11 @@ description: Bootstrap and upgrade bob infrastructure on any project. Idempotent
 
 ## Role
 
-You are a project infrastructure specialist. Your job is to make all bob features work correctly — creating what's missing, upgrading what's stale, leaving everything else untouched. Non-destructive by default. One confirmation covers all changes.
+You are a project infrastructure specialist. Your job is to make all bob features work correctly - creating what's missing, upgrading what's stale, leaving everything else untouched. Non-destructive by default. One confirmation covers all changes.
 
 ## Process
 
-### Step 1 — Audit
+### Step 1 - Audit
 
 Run all checks silently before presenting anything.
 
@@ -76,12 +76,12 @@ find . -name "*.md" \
   2>/dev/null
 ```
 
-### Step 2 — Report and Confirm
+### Step 2 - Report and Confirm
 
 Present a concise status table. No changes yet.
 
 ```
-## Bob Setup — {date}
+## Bob Setup - {date}
 
 | Component              | Status          | Action needed               |
 |------------------------|-----------------|------------------------------|
@@ -108,17 +108,17 @@ Present a concise status table. No changes yet.
 
 Recommendations only - never install anything automatically.
 
-**If Ponytail is not installed:** a "lazy senior developer" reviewer that `/bob:review` uses for an over-engineering pass. Install with `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail` — more at https://ponytail.dev.
+**If Ponytail is not installed:** a "lazy senior developer" reviewer that `/bob:review` uses for an over-engineering pass. Install with `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail` - more at https://ponytail.dev.
 
-**If Obsidian Skills is not installed:** authoring skills for Obsidian-flavored markdown, Bases, and Canvas — bob is optimized for Obsidian and produces better-formatted notes when it is present. Install with `/plugin marketplace add kepano/obsidian-skills` then `/plugin install obsidian@obsidian-skills`. Note: bob's own `bob:obsidian` skill remains authoritative for vault mutations (rename/move) — its approval-gated workflow takes precedence over the plugin's generic `obsidian-cli` skill.
+**If Obsidian Skills is not installed:** authoring skills for Obsidian-flavored markdown, Bases, and Canvas - bob is optimized for Obsidian and produces better-formatted notes when it is present. Install with `/plugin marketplace add kepano/obsidian-skills` then `/plugin install obsidian@obsidian-skills`. Note: bob's own `bob:obsidian` skill remains authoritative for vault mutations (rename/move) - its approval-gated workflow takes precedence over the plugin's generic `obsidian-cli` skill.
 
 **If graphify is not installed (or older than 0.9.11):** graphify builds a persistent code knowledge graph that `bob:code-graph` queries so engineering commands orient from real structure instead of blind exploration. It is a separate third-party tool - recommend, never silent-install. Install with `uv tool install graphifyy` (the PyPI package is `graphifyy`, double-y, not a typo); upgrade a too-old copy with `uv tool upgrade graphifyy`. bob requires **>= 0.9.11**. Everything degrades gracefully when it is absent - bob behaves exactly as today.
 
 If everything is ✓: say "All bob infrastructure is present and up to date. Nothing to do." and stop.
 
-Otherwise: list what will change and ask "Ready to apply?" — one confirmation covers everything.
+Otherwise: list what will change and ask "Ready to apply?" - one confirmation covers everything.
 
-### Step 3 — Bootstrap missing infrastructure
+### Step 3 - Bootstrap missing infrastructure
 
 Execute only items marked as missing or partial. Skip items already present.
 
@@ -144,7 +144,7 @@ For each story missing any of these, create the missing pieces using the templat
 For each `_kanban.md` whose settings block lacks `new-line-trigger`, add `"new-line-trigger":"shift-enter"` to the existing settings JSON. Preserve all other settings keys.
 
 **Session files at story root:**
-For each dated file (`YYYY-MM-DD-*.md`) found directly in a story folder: move it into that story's `sessions/` subfolder (create if missing), then update every link to it — in the story's `_index.md` history table, `_kanban.md` cards, and cross-links between session files — to `sessions/[filename]`.
+For each dated file (`YYYY-MM-DD-*.md`) found directly in a story folder: move it into that story's `sessions/` subfolder (create if missing), then update every link to it - in the story's `_index.md` history table, `_kanban.md` cards, and cross-links between session files - to `sessions/[filename]`.
 
 **knowledge/ missing:**
 
@@ -194,22 +194,22 @@ Skip this entire item if `graphify` is not installed - the Step 2 recommendation
 
 3. **Idempotent re-run:** if the graph already exists, do not rebuild. If the hook is missing, offer `graphify hook install`. Always refresh the managed `.graphifyignore` block so the scope stays current as project folders change.
 
-### Step 3b — Bootstrap new skill artifacts (Design/Reflect/Learn rollout)
+### Step 3b - Bootstrap new skill artifacts (Design/Reflect/Learn rollout)
 
 **`docs/process/learnings.md` missing:** Locate `learn/references/persistence-map.md` in the plugin's `skills/` folder (same parent directory as this file's `commands/` folder). Read its Bootstrap section and create the file exactly as specified there.
 
-**`personal/interaction-profile.md` missing:** This is optional and personal (gitignored) — never auto-create silently. Offer once: "Want a personal interaction-profile file? It lets you set your preferred verbosity/experience-level defaults once instead of restating them per session." If yes, create `personal/` (if missing) and write a minimal starter:
+**`personal/interaction-profile.md` missing:** This is optional and personal (gitignored) - never auto-create silently. Offer once: "Want a personal interaction-profile file? It lets you set your preferred verbosity/experience-level defaults once instead of restating them per session." If yes, create `personal/` (if missing) and write a minimal starter:
 ```markdown
 ---
 title: Interaction Profile
 ---
 # Interaction Profile
 
-<!-- Personal, gitignored. Notes on your preferred interaction style — verbosity, question pacing, experience level — read by bob:context-protocol at session start. -->
+<!-- Personal, gitignored. Notes on your preferred interaction style - verbosity, question pacing, experience level - read by bob:context-protocol at session start. -->
 ```
 Ensure `personal/` is already covered by the `.gitignore` entries step above.
 
-### Step 4 — Upgrade done-criteria
+### Step 4 - Upgrade done-criteria
 
 **Missing:** Create `docs/process/` if needed. Locate `done-criteria/SKILL.md` in the plugin's `skills/` folder (same parent directory as this file's `commands/` folder). Read it and copy the Bootstrap Template (content after the final `---` separator) into `docs/process/done-criteria.md`. Replace `{date}` with today.
 
@@ -224,7 +224,7 @@ Ensure `personal/` is already covered by the `.gitignore` entries step above.
 
 Never remove, reorder, or modify existing sections.
 
-### Step 5 — Unmanaged file report
+### Step 5 - Unmanaged file report
 
 Setup does not judge or rearrange `docs/` content. `/bob:document` (Audit mode) owns that.
 
@@ -232,7 +232,7 @@ Setup does not judge or rearrange `docs/` content. `/bob:document` (Audit mode) 
 If found: list them. Say: "These files are outside bob's managed locations. To migrate: move them to `knowledge/_INBOX/` manually, then run `/bob:library process` to classify and file them."
 If none: skip silently.
 
-### Step 6 — Summary
+### Step 6 - Summary
 
 One compact table:
 
@@ -263,14 +263,14 @@ List any manual steps remaining (e.g., Obsidian wikilinks setting).
 ## Rules
 
 - Audit before acting. Never modify without showing the plan first.
-- One confirmation covers all changes — don't prompt per item.
+- One confirmation covers all changes - don't prompt per item.
 - Never overwrite or truncate existing files - only create missing files or append to existing ones. The one exception is the `.graphifyignore` managed block, which is regenerated between its markers each run; content outside the markers is always preserved.
 - Never silent-install third-party tools (graphify, plugins). Recommend and, for graphify, offer to run the build/hook only with explicit confirmation.
 - Never remove or reorder existing done-criteria sections.
 - If `projects/` exists but has no subdirectories, still offer to create the first subproject.
 - Skip silently any step where the target already exists and is up to date.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

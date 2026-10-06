@@ -1,10 +1,10 @@
-# Reflection Policy — Question Selection
+# Reflection Policy - Question Selection
 
 Reflect is not a second review and not an oral exam. It runs on a tight evidence-driven budget.
 
 ## Assume correctness is done
 
-`/bob:review` already decided whether the code is correct. Never re-open bugs, design-conformance failures, or findings it already settled. If new evidence of a correctness defect surfaces during Reflect, name it and route it back to `/bob:review` — do not fix or adjudicate it here.
+`/bob:review` already decided whether the code is correct. Never re-open bugs, design-conformance failures, or findings it already settled. If new evidence of a correctness defect surfaces during Reflect, name it and route it back to `/bob:review` - do not fix or adjudicate it here.
 
 ## Select 2-5 high-value questions from actual diff evidence
 
@@ -18,7 +18,7 @@ Do not ask generic retrospective questions ("what did you learn?", "how do you f
 - a surprising or non-obvious decision made mid-implementation with no human present;
 - a design smell, drift, unnecessary complexity or a missed simplification visible in the change (`bob:architect` `references/concepts.md`, `references/patterns.md`).
 
-If the diff gives fewer than two genuine candidates, ask fewer questions — do not manufacture more to hit a quota. A count of zero is valid when the change was small and mechanical.
+If the diff gives fewer than two genuine candidates, ask fewer questions - do not manufacture more to hit a quota. A count of zero is valid when the change was small and mechanical.
 
 ## The human has the map; probe the territory
 

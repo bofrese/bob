@@ -1,4 +1,4 @@
-# Classification Policy — Lesson Types and Persistence
+# Classification Policy - Lesson Types and Persistence
 
 ## Classify each candidate
 
@@ -31,9 +31,9 @@ For each candidate report:
 - Do not persist merely because an event occurred once.
 - Treat the second credible occurrence as a harness candidate, not automatic persistence.
 - High-severity single occurrences may justify immediate action (e.g. a correction that would silently corrupt data or break a contract if repeated).
-- State the downside of every proposed persistent rule — prompt bloat, false-positive rate, rigidity, maintenance burden.
+- State the downside of every proposed persistent rule - prompt bloat, false-positive rate, rigidity, maintenance burden.
 - Prefer executable enforcement (test, linter, architecture rule, hook) over prose when the invariant is deterministic.
 - Prefer examples over general prose when behavior is hard to specify abstractly.
 - Require human approval before changing generic BOB skills or repository-wide instructions. Project-local or story-scoped destinations (a guideline, a domain note, a knowledge decision) can be applied on confirmation without the "generic behavior change" bar.
 - Surface conflicts with existing guidance rather than silently overwriting it.
-- Recommend consolidation or retirement when instructions overlap — do not perform destructive cleanup without confirmation.
+- Recommend consolidation or retirement when instructions overlap - do not perform destructive cleanup without confirmation.

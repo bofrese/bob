@@ -12,7 +12,7 @@ Compact reference for validating problems before building solutions. Apply when 
 
 ## Core Truth
 
-**Problem-solution fit comes before product-market fit.** Most products fail because they solve the wrong problem or a problem that isn't painful enough — not because the solution is bad.
+**Problem-solution fit comes before product-market fit.** Most products fail because they solve the wrong problem or a problem that isn't painful enough - not because the solution is bad.
 
 ---
 
@@ -37,9 +37,9 @@ Explore the problem thoroughly before proposing solutions. Resist the urge to so
 People "hire" products to do a job. Understand the job, not just the feature request.
 
 **The job has three dimensions:**
-- **Functional** — What task are they trying to complete?
-- **Emotional** — How do they want to feel doing it?
-- **Social** — How does this affect how others perceive them?
+- **Functional** - What task are they trying to complete?
+- **Emotional** - How do they want to feel doing it?
+- **Social** - How does this affect how others perceive them?
 
 **Example:**
 - Functional: "I need to track project tasks"
@@ -51,8 +51,8 @@ People "hire" products to do a job. Understand the job, not just the feature req
 Not all problems are worth solving. Assess severity:
 
 **Frequency × Intensity = Priority**
-- **Frequency** — How often does this problem occur?
-- **Intensity** — How painful is it when it happens?
+- **Frequency** - How often does this problem occur?
+- **Intensity** - How painful is it when it happens?
 
 **The threshold:**
 - High frequency + high intensity = urgent problem (build for this)
@@ -65,9 +65,9 @@ Not all problems are worth solving. Assess severity:
 What are people doing TODAY?
 
 **Three categories:**
-1. **Existing solutions** — competitor products, tools
-2. **Workarounds** — manual processes, spreadsheets, hacks
-3. **Nothing** — they live with the pain
+1. **Existing solutions** - competitor products, tools
+2. **Workarounds** - manual processes, spreadsheets, hacks
+3. **Nothing** - they live with the pain
 
 **Critical questions:**
 - Why aren't existing solutions good enough?
@@ -81,11 +81,11 @@ What are people doing TODAY?
 How do you know the problem is real?
 
 **Evidence hierarchy (strongest to weakest):**
-1. **They're paying for an alternative** — problem is real, they value a solution
-2. **They've built a workaround** — problem is real, existing solutions don't fit
-3. **They complain about it unprompted** — problem is top-of-mind
-4. **They agree it's a problem when asked** — problem exists, but maybe not urgent
-5. **They say "that would be nice"** — problem is hypothetical
+1. **They're paying for an alternative** - problem is real, they value a solution
+2. **They've built a workaround** - problem is real, existing solutions don't fit
+3. **They complain about it unprompted** - problem is top-of-mind
+4. **They agree it's a problem when asked** - problem exists, but maybe not urgent
+5. **They say "that would be nice"** - problem is hypothetical
 
 **Only 1-3 are strong signals.**
 
@@ -108,10 +108,10 @@ Ask: "Tell me about the last time you experienced [problem]."
 ### 7. When to Kill Ideas
 
 Kill ideas fast when:
-- **No one is paying for alternatives** — if the problem was real, someone would be monetizing it
-- **Workarounds are "good enough"** — Excel works fine, your product won't displace it
-- **Problem only exists in hypotheticals** — "People would want this" ≠ people actually want this
-- **You can't find 10 people who've felt the pain in the last month** — problem isn't frequent or severe enough
+- **No one is paying for alternatives** - if the problem was real, someone would be monetizing it
+- **Workarounds are "good enough"** - Excel works fine, your product won't displace it
+- **Problem only exists in hypotheticals** - "People would want this" ≠ people actually want this
+- **You can't find 10 people who've felt the pain in the last month** - problem isn't frequent or severe enough
 
 **Better to kill a bad idea in a week than build it for six months.**
 
@@ -119,13 +119,13 @@ Kill ideas fast when:
 
 ## Red Flags
 
-**"Everyone needs this"** — If everyone is your customer, no one is.
+**"Everyone needs this"** - If everyone is your customer, no one is.
 
-**"There's no competition"** — Either the market doesn't exist or you haven't looked hard enough.
+**"There's no competition"** - Either the market doesn't exist or you haven't looked hard enough.
 
-**"People will change their behavior"** — They won't. Design for existing behavior.
+**"People will change their behavior"** - They won't. Design for existing behavior.
 
-**"If we build it, they will come"** — No. Distribution is harder than product.
+**"If we build it, they will come"** - No. Distribution is harder than product.
 
 ---
 

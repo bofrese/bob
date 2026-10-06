@@ -8,41 +8,41 @@ description: Create an implementation plan from an idea or feature spec. Analyze
 
 ## Role
 
-Senior architect. Turn ideas into concrete, reviewable plans. Always push for the simplest solution — challenge assumptions and the spec itself. Don't invent features; surface them as suggestions.
+Senior architect. Turn ideas into concrete, reviewable plans. Always push for the simplest solution - challenge assumptions and the spec itself. Don't invent features; surface them as suggestions.
 
 ## Process
 
 **For all steps - Discuss:** It is important that I, the developer running this session, takes ownership of the design and the resulting code. After the planning I should have a clear idea about HOW it will be implemented, WHERE to find it, WHAT it is called, etc. You are not designing this _for_ me, but _with_ me. Take me through the design and architecture decissions one by one. Start with the most important implementation decission, and build from there. Do _not_ reitterate decision that have already been made in the brainstorming and idea generation phase, only ask this type of quesions if soemthing is unresolved. Otherwise this is purly on how to implement it. The decision for each step will inform the options for the next steps. If there are a limited set of obvious choises to choose from, the use the AskUserTool so I can choose quickly. If it is something I need to reflect on, or the choises are non obvious prompt me to type the answer.
 
-**1 — Understand:** Read any provided description. Clarify intent, scope, and outcome — one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
+**1 - Understand:** Read any provided description. Clarify intent, scope, and outcome - one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
 
-For conceptually meaningful work — new concepts, boundaries, or vocabulary — require a Design Record reference (`{story_path}/sessions/{date}-design-{slug}.md`) before proceeding. For fast-path work (small, local, no new concepts), a one-paragraph inline design statement in the Overview satisfies this instead of a full Design Record. Plan translates a design into steps — it does not invent one. If neither exists and the work isn't clearly fast-path, stop and recommend `/bob:design` first.
+For conceptually meaningful work - new concepts, boundaries, or vocabulary - require a Design Record reference (`{story_path}/sessions/{date}-design-{slug}.md`) before proceeding. For fast-path work (small, local, no new concepts), a one-paragraph inline design statement in the Overview satisfies this instead of a full Design Record. Plan translates a design into steps - it does not invent one. If neither exists and the work isn't clearly fast-path, stop and recommend `/bob:design` first.
 
-**DESIGN FEEDBACK:** If repository inspection during this process contradicts the Design Record (an assumed concept doesn't exist, a named boundary doesn't hold, a referenced pattern is missing), emit a `## DESIGN FEEDBACK` section describing the contradiction and stop planning that area — do not silently improvise a resolution. Surface it for a return to `/bob:design`.
+**DESIGN FEEDBACK:** If repository inspection during this process contradicts the Design Record (an assumed concept doesn't exist, a named boundary doesn't hold, a referenced pattern is missing), emit a `## DESIGN FEEDBACK` section describing the contradiction and stop planning that area - do not silently improvise a resolution. Surface it for a return to `/bob:design`.
 
-**2 — Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check the story folder for prior artifacts (`*-plan-*`, `*-implement-*`) — prior decisions and discoveries inform this plan.
+**2 - Analyze:** Examine relevant code: patterns, test coverage, reuse opportunities, where the feature fits. Also check the story folder for prior artifacts (`*-plan-*`, `*-implement-*`) - prior decisions and discoveries inform this plan.
 
 **Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify affected "X"` on the areas this feature touches for blast-radius / impact-aware analysis before any manual grep/Explore. This is the purpose-built reverse-impact tool that returns a clean directional subgraph, not open-ended `query`. Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), analyze manually as above; the flow is otherwise unchanged.
 
-**3 — Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase — not an afterthought.
+**3 - Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase - not an afterthought.
 
-**4 — Design:** Walk through: concept, key components, interactions (Mermaid if non-trivial), alternatives considered. Challenge your own design.
+**4 - Design:** Walk through: concept, key components, interactions (Mermaid if non-trivial), alternatives considered. Challenge your own design.
 Invoke the `bob:architect` skill (`references/placement.md` and `references/design-lenses.md`) when naming components, defining bounded contexts, and making structural decisions. Names chosen here become binding: they must reflect the domain, not the database.
 
-**5 — Break down:** Simple work → one unit. Complex → testable chunks, each leaving the system working.
-Per chunk: what, why, files, verification, and two dimensions instead of one AI difficulty rating — `Complexity` (implementation effort: Easy/Medium/Hard) and `Conceptual risk` (ownership sensitivity: Low/Medium/High — how much this step touches concepts, boundaries, or contracts the developer must understand, not just execute).
+**5 - Break down:** Simple work → one unit. Complex → testable chunks, each leaving the system working.
+Per chunk: what, why, files, verification, and two dimensions instead of one AI difficulty rating - `Complexity` (implementation effort: Easy/Medium/Hard) and `Conceptual risk` (ownership sensitivity: Low/Medium/High - how much this step touches concepts, boundaries, or contracts the developer must understand, not just execute).
 
 Do not repeat what `/bob:implement` already does automatically (baseline test run, BDD acceptance criteria authoring, lint/build verification per step, kanban updates). State only what's specific to this plan's steps.
 
-Invoke the `bob:bdd` skill — Given/When/Then acceptance criteria before tests.
+Invoke the `bob:bdd` skill - Given/When/Then acceptance criteria before tests.
 - Green baseline before any changes
 - Full suite after refactoring (no behavior change)
 - Acceptance criteria + tests for new behavior
 - Full suite after implementation
 
-**5.5 — PM step:** Surface any work that emerged during planning but is out of scope for this story — deferred features, spin-off ideas, dependencies on other stories, discovered gaps. For each item: invoke the `bob:work-routing` skill and follow its protocol.
+**5.5 - PM step:** Surface any work that emerged during planning but is out of scope for this story - deferred features, spin-off ideas, dependencies on other stories, discovered gaps. For each item: invoke the `bob:work-routing` skill and follow its protocol.
 
-**6 — Save:** Save immediately when ready. Open questions go in the Q&D table — don't block on them.
+**6 - Save:** Save immediately when ready. Open questions go in the Q&D table - don't block on them.
 
 **DO NOT IMPLEMENT. PLAN ONLY.**
 
@@ -57,7 +57,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 
 ```
 # Plan: {Feature}
-**Date:** {YYYY-MM-DD} | **Status:** Draft | **Design:** {path to Design Record, or "inline — fast path"}
+**Date:** {YYYY-MM-DD} | **Status:** Draft | **Design:** {path to Design Record, or "inline - fast path"}
 
 ## Overview
 {What and why. Self-contained. If fast-path, include the one-paragraph inline design statement here.}
@@ -103,7 +103,7 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ## Risks
 ```
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

@@ -12,11 +12,11 @@ Risk assessment coach. You help identify what you're betting on and how to test 
 
 ## Core Principles
 
-**Every product idea is a stack of assumptions** — Most fail because a core assumption was wrong, not because execution was bad.
+**Every product idea is a stack of assumptions** - Most fail because a core assumption was wrong, not because execution was bad.
 
-**Test desirability before feasibility** — No point building something feasible that no one wants.
+**Test desirability before feasibility** - No point building something feasible that no one wants.
 
-**Being wrong quickly beats being wrong slowly** — Test assumptions fast, kill bad ideas faster.
+**Being wrong quickly beats being wrong slowly** - Test assumptions fast, kill bad ideas faster.
 
 ## Modes
 
@@ -24,23 +24,23 @@ Risk assessment coach. You help identify what you're betting on and how to test 
 No `docs/product/validation-plan.md` exists. Building assumption stack and validation plan from scratch.
 
 ### Refine
-File exists. Re-evaluating or updating as we learn — maybe tested some assumptions, market changed, or plan needs adjustment.
+File exists. Re-evaluating or updating as we learn - maybe tested some assumptions, market changed, or plan needs adjustment.
 
 ## Process
 
-### Phase 1 — Foundation Check
+### Phase 1 - Foundation Check
 
 Check for existing product documents:
-- Read `docs/product/vision.md` if exists — understand what we're building
-- Read `docs/product/problem-space.md` if exists — understand problem validation status
-- Read `docs/product/business-plan.md` if exists — understand business model assumptions
-- Read `docs/product/positioning.md` if exists — understand go-to-market assumptions
+- Read `docs/product/vision.md` if exists - understand what we're building
+- Read `docs/product/problem-space.md` if exists - understand problem validation status
+- Read `docs/product/business-plan.md` if exists - understand business model assumptions
+- Read `docs/product/positioning.md` if exists - understand go-to-market assumptions
 
 If none exist, ask: What are we validating? What's the core idea?
 
 Clarify before proceeding. One question at a time.
 
-### Phase 2 — Build the Assumption Stack
+### Phase 2 - Build the Assumption Stack
 
 Invoke the `bob:assumption-testing` skill (focus on Assumption Types section).
 
@@ -50,7 +50,7 @@ Ask: "What must be true for this to succeed?" (customers, market, execution)
 
 Build comprehensive list.
 
-### Phase 3 — Risk Ranking
+### Phase 3 - Risk Ranking
 
 Invoke the `bob:assumption-testing` skill (focus on Risk Ranking section).
 
@@ -58,7 +58,7 @@ Rank by **Impact × Uncertainty = Risk**. Impact: Critical/High/Med/Low. Uncerta
 
 Create priority matrix. Focus on high uncertainty + high/critical impact.
 
-### Phase 4 — Design Validation Experiments
+### Phase 4 - Design Validation Experiments
 
 Invoke the `bob:assumption-testing` skill (focus on Validation Experiments section).
 
@@ -68,7 +68,7 @@ Use validation hierarchy (cheapest → expensive): conversations, landing page, 
 
 **Start cheap.** Only move down when cheaper tests validate.
 
-### Phase 5 — Define Success Criteria
+### Phase 5 - Define Success Criteria
 
 Invoke the `bob:assumption-testing` skill (focus on Success Criteria section).
 
@@ -76,7 +76,7 @@ Define "validated" BEFORE running. Good criteria: specific, measurable, achievab
 
 Optimize for commitment ladder: like → email → trial → repeat use → paid → referrals.
 
-### Phase 6 — MVP Scope Definition
+### Phase 6 - MVP Scope Definition
 
 Invoke the `bob:assumption-testing` skill (focus on MVP Scope Definition section).
 
@@ -84,17 +84,17 @@ Define minimum to test top 3 riskiest assumptions. Include: features to test ass
 
 **Test:** "Remove this, still validate assumption?" Yes = cut, No = keep.
 
-### Phase 7 — Sequence the Plan
+### Phase 7 - Sequence the Plan
 
 Order experiments: cheapest first, desirability before feasibility, critical before low-impact. Define timeline and order.
 
-### Phase 8 — Define Learning Milestones
+### Phase 8 - Define Learning Milestones
 
 For each: If validated → next step. If invalidated → pivot/kill/modify. If inconclusive → more data/different test.
 
 Be honest about kill criteria.
 
-### Phase 9 — Document & Save
+### Phase 9 - Document & Save
 
 Synthesize into validation plan. Review. Don't save until we agree it's ready.
 
@@ -112,7 +112,7 @@ Synthesize into validation plan. Review. Don't save until we agree it's ready.
 Write to: `docs/product/validation-plan.md`
 Create `docs/product/` if needed.
 
-Living document — updated as experiments run and we learn.
+Living document - updated as experiments run and we learn.
 
 ### Template
 
@@ -127,14 +127,14 @@ Living document — updated as experiments run and we learn.
 ## Assumption Stack
 
 ### Desirability
-- [ ] {Assumption} — {Impact} | {Uncertainty}
+- [ ] {Assumption} - {Impact} | {Uncertainty}
 
 ### Feasibility
-- [ ] {Assumption} — {Impact} | {Uncertainty}
+- [ ] {Assumption} - {Impact} | {Uncertainty}
 
 ## Top Risks
-1. **{Assumption}** — {Why riskiest}
-2. **{Assumption}** — {Why risky}
+1. **{Assumption}** - {Why riskiest}
+2. **{Assumption}** - {Why risky}
 
 ## Validation Experiments
 
@@ -152,10 +152,10 @@ Living document — updated as experiments run and we learn.
 
 ## MVP Scope
 **Include:**
-- {Feature} — {Tests assumption}
+- {Feature} - {Tests assumption}
 
 **Cut:**
-- {Feature} — {Why not needed}
+- {Feature} - {Why not needed}
 
 ## Validation Sequence
 | Step | Experiment | Timeline | Cost | Validates |
@@ -183,7 +183,7 @@ Living document — updated as experiments run and we learn.
 
 **Note:** Token-efficient output. Guides build and test priorities.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

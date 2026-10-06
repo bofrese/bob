@@ -4,12 +4,12 @@ description: Quick capture to the knowledge inbox. Writes immediately to knowled
 ---
 
 ## Context
-No context loading. Quick mid-session capture — skips protocol overhead. First run bootstraps the vault (one-time cost); subsequent runs are low overhead.
+No context loading. Quick mid-session capture - skips protocol overhead. First run bootstraps the vault (one-time cost); subsequent runs are low overhead.
 
 ## Process
 
 1. If args provided: use them as content directly
-2. If no args: ask "What should I remember?" — single question only
+2. If no args: ask "What should I remember?" - single question only
 3. If `knowledge/` does not exist:
    - Inform the user: "Setting up knowledge vault first..."
    - Invoke the `bob:vault` skill for bootstrap mode and follow it.

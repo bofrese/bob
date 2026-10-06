@@ -1,24 +1,24 @@
-# Bob Commands — Dense Reference
+# Bob Commands - Dense Reference
 
 Each entry covers: purpose, inputs read, outputs written, process phases, and skills invoked.
 
 ---
 
-## `/bob:setup` — Infrastructure Bootstrap
+## `/bob:setup` - Infrastructure Bootstrap
 
-**Purpose:** Bootstrap and upgrade bob's working infrastructure on any project. Idempotent — safe to run on new projects, existing projects, and after bob version upgrades. Creates what's missing, patches done-criteria with new sections, never removes or overwrites existing content.
+**Purpose:** Bootstrap and upgrade bob's working infrastructure on any project. Idempotent - safe to run on new projects, existing projects, and after bob version upgrades. Creates what's missing, patches done-criteria with new sections, never removes or overwrites existing content.
 
 **Reads:** `.gitignore`, `docs/process/done-criteria.md`, `bob/commands/knowledge.md` (if knowledge vault missing), `bob/skills/done-criteria/SKILL.md` (for template comparison), `package.json` / git remote (to derive subproject name); graphify presence/version, `graphify-out/graph.json`, `graphify hook status`, `website/src/` (b2 signal).
 
 **Writes:** `projects/{name}/stories/` + `_kanban.md` (if missing); full knowledge vault structure (if missing); `personal/daily/`, `personal/weekly/`, `personal/scratchpad.md` (if missing); `.gitignore` entries; `docs/process/done-criteria.md` (create or patch); `.graphifyignore` (managed corpus-scope block, when graphify installed).
 
 **Process:**
-1. Audit — check all infrastructure silently; scan for orphan markdown files
-2. Report — present status table; confirm before touching anything
-3. Bootstrap — create only what's missing (projects/, knowledge/, personal/, gitignore entries)
-4. Upgrade done-criteria — detect missing sections by comparing project file against current bootstrap template; append only absent sections; update date
-5. Orphan report — list markdown files outside managed locations; suggest migration path via `knowledge/_INBOX/`
-6. Summary — compact table of what was created, patched, or already present
+1. Audit - check all infrastructure silently; scan for orphan markdown files
+2. Report - present status table; confirm before touching anything
+3. Bootstrap - create only what's missing (projects/, knowledge/, personal/, gitignore entries)
+4. Upgrade done-criteria - detect missing sections by comparing project file against current bootstrap template; append only absent sections; update date
+5. Orphan report - list markdown files outside managed locations; suggest migration path via `knowledge/_INBOX/`
+6. Summary - compact table of what was created, patched, or already present
 
 Bootstrap (step 3) also handles **graphify provisioning** when graphify is installed: recommends install/upgrade to `>= 0.9.11` if absent or old (`uv tool install graphifyy`, double-y, never silent-installed), offers to build the graph (`/graphify .`) and install the post-commit hook (`graphify hook install`) with a first-build cost warning, and writes/refreshes the plugin-aware `.graphifyignore` corpus scope. Scope tiers: Code + authoritative content (`docs/`, `knowledge/`, `website/src/`) kept; Historical (`projects/`, `ai/`) excluded (~74% of observed semantic cost). `website/dist/` excluded only when the b2 `website/src/` structure is present.
 
@@ -28,7 +28,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:pm` — Project Mentor
+## `/bob:pm` - Project Mentor
 
 **Purpose:** Assess where the project is, identify gaps in artifacts and process, and recommend concrete next steps. Also optimizes context loading for new sessions.
 
@@ -36,7 +36,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **Writes:** Conversational guidance (primary). Optionally `ai/{date}-project-status.md`.
 
-**Process (Mode 1 — Workflow Guidance, default):**
+**Process (Mode 1 - Workflow Guidance, default):**
 1. Load context per `context-protocol`
 2. Read `projects/_index.md` to identify all sub-projects
 3. For each sub-project: read `projects/{sub}/_kanban.md`; for each story in `In Progress` or `Ready`: read `projects/{sub}/stories/{id}/_kanban.md`
@@ -48,7 +48,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:product-vision` — Vision Foundation
+## `/bob:product-vision` - Vision Foundation
 
 **Purpose:** Establish or refine the single strategic foundation: what the product is, who it's for, what changes for them, what it is not, and how you know you're on track. Challenges vague or aspirational language throughout.
 
@@ -69,9 +69,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:problem-space` — Problem Validation
+## `/bob:problem-space` - Problem Validation
 
-**Purpose:** Validate the problem before building anything. Stays strictly in problem space — prohibits solution proposals during exploration.
+**Purpose:** Validate the problem before building anything. Stays strictly in problem space - prohibits solution proposals during exploration.
 
 **Reads:** `docs/product/vision.md`, `docs/product/problem-space.md` (if exists).
 
@@ -90,7 +90,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:personas` — User Archetypes
+## `/bob:personas` - User Archetypes
 
 **Purpose:** Define minimum necessary personas with genuinely different design implications. Challenges vague archetypes; pushes for specificity. Includes "Who This Is NOT For."
 
@@ -109,7 +109,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:business-plan` — Business Model
+## `/bob:business-plan` - Business Model
 
 **Purpose:** Build a complete, challenged business model with revenue mechanics, unit economics, GTM strategy, and a validation plan.
 
@@ -130,7 +130,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:positioning` — Market Positioning
+## `/bob:positioning` - Market Positioning
 
 **Purpose:** Define market category, differentiation, and messaging. Uses the five-component positioning framework. Optionally produces a competitive 2×2 matrix.
 
@@ -154,7 +154,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:validation-plan` — Assumption Testing
+## `/bob:validation-plan` - Assumption Testing
 
 **Purpose:** Build a prioritized assumption stack, rank by impact × uncertainty, design cheap experiments (cheapest first), define success criteria before running anything, scope the MVP, sequence the validation plan.
 
@@ -175,9 +175,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:design-brief` — Design Direction
+## `/bob:design-brief` - Design Direction
 
-**Purpose:** Translate product intent into design direction: principles, constraints, tone, voice. Explicitly not a UI spec — the frame within which design decisions are made.
+**Purpose:** Translate product intent into design direction: principles, constraints, tone, voice. Explicitly not a UI spec - the frame within which design decisions are made.
 
 **Reads:** `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md` (if exists).
 
@@ -197,7 +197,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:product-coach` — Discovery Orchestrator
+## `/bob:product-coach` - Discovery Orchestrator
 
 **Purpose:** Manages the entire product discovery process. Maintains a status README. Operates in four modes: Comprehensive Discovery (full sequence), Targeted Session (specific gap), Gap Analysis (what's missing/stale), Maintenance (keep existing docs current).
 
@@ -216,9 +216,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:brainstorm` — Feature Ideation
+## `/bob:brainstorm` - Feature Ideation
 
-**Purpose:** Structured feature brainstorm using a 5-phase process. Challenges the idea for value and explores outcome-level alternatives — does not decide architecture. Routes to `/bob:design` for conceptually meaningful work.
+**Purpose:** Structured feature brainstorm using a 5-phase process. Challenges the idea for value and explores outcome-level alternatives - does not decide architecture. Routes to `/bob:design` for conceptually meaningful work.
 
 **Reads:** `docs/product/vision.md` (optional).
 
@@ -230,34 +230,34 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 3. Converge: cluster and score (impact × effort × fit)
 4. Detail: flesh out top 1–2 ideas (concept level only)
 5. Commit: accepted capability statement, open questions; route to `/bob:design` or `/bob:plan`
-6. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately — invoke `bob:work-routing`
+6. **PM step:** Route any rejected alternatives or deferred ideas worth pursuing separately - invoke `bob:work-routing`
 
 **Skills:** `context-protocol`, `domain-knowledge` (on correction), `work-routing` (step 6), `done-criteria`
 
 ---
 
-## `/bob:design` — Conceptual Design
+## `/bob:design` - Conceptual Design
 
-**Purpose:** Socratic, evidence-based session to form the simplest coherent conceptual design for a capability — concepts, boundaries, vocabulary, trade-offs — before any implementation planning starts. The human owns every material decision; the command investigates, challenges, and exposes pressure points rather than handing over a finished architecture.
+**Purpose:** Socratic, evidence-based session to form the simplest coherent conceptual design for a capability - concepts, boundaries, vocabulary, trade-offs - before any implementation planning starts. The human owns every material decision; the command investigates, challenges, and exposes pressure points rather than handing over a finished architecture.
 
 **Reads:** Brainstorm Brief or accepted requirement, architecture index and scope-matched notes, repository evidence (code graph query when fresh, else manual exploration), relevant domain knowledge.
 
-**Writes:** `{story_path}/{date}-design-{slug}.md` (a Design Record) — the authoritative intent consumed by Plan, Review Plan, Implement, Review, and Reflect.
+**Writes:** `{story_path}/{date}-design-{slug}.md` (a Design Record) - the authoritative intent consumed by Plan, Review Plan, Implement, Review, and Reflect.
 
 **Process:**
 1. Start with evidence: load requirement, survey the repository (graph-first) before asking broad questions
 2. Socratic design conversation: one question/batch at a time, evidence-consistent brevity accepted, alternatives proposed only after the human has engaged
 3. Required challenges: existing concept reuse, new concepts, complexity removed/introduced/moved, reading path, future pressure, remaining awkwardness
-4. **PM step:** Route out-of-scope findings — invoke `bob:work-routing`
+4. **PM step:** Route out-of-scope findings - invoke `bob:work-routing`
 5. Exit and record: may conclude "return to Brainstorm," "investigate first," "do not build," or a completed Design Record
 
 **Skills:** `context-protocol`, `design` (interaction policy, dialogue questions, artifact template), `architect` (phase 1, lenses, interfaces, patterns), `code-graph` (phase 1 evidence), `domain-knowledge` (on correction), `work-routing` (step 4), `done-criteria`
 
 ---
 
-## `/bob:plan` — Implementation Planning
+## `/bob:plan` - Implementation Planning
 
-**Purpose:** Translate an accepted Design Record (or, for fast-path work, an inline design statement) into a concrete, reviewable implementation plan with BDD acceptance criteria and open questions. Does not invent concepts, boundaries, or vocabulary — that's Design's job. Planning only — no implementation.
+**Purpose:** Translate an accepted Design Record (or, for fast-path work, an inline design statement) into a concrete, reviewable implementation plan with BDD acceptance criteria and open questions. Does not invent concepts, boundaries, or vocabulary - that's Design's job. Planning only - no implementation.
 
 **Reads:** Design Record reference (required for conceptually meaningful work) or inline design statement, user-provided idea, project codebase, `{story_path}/*-plan-*` and `{story_path}/*-implement-*` (prior work in same story), `docs/product/vision.md`.
 
@@ -269,7 +269,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 3. Preparatory refactoring (if any)
 4. Design and architecture (Mermaid diagram if non-trivial)
 5. Implementation steps with BDD acceptance criteria, Complexity rating, and Conceptual risk rating
-5.5. **PM step:** Route out-of-scope work that surfaced during planning — invoke `bob:work-routing`
+5.5. **PM step:** Route out-of-scope work that surfaced during planning - invoke `bob:work-routing`
 6. Structural diff summary (files/modules/symbols touched, at a glance)
 7. Testing strategy
 8. Open questions
@@ -280,9 +280,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 ---
 
-## `/bob:review-plan` — Plan Review
+## `/bob:review-plan` - Plan Review
 
-**Purpose:** Independent, skeptical review of an implementation plan (and its Design Record, when one exists). Verifies plan assumptions against actual code and against Design. Recommended for high-risk work, optional for normal work — not mandatory just because a plan exists.
+**Purpose:** Independent, skeptical review of an implementation plan (and its Design Record, when one exists). Verifies plan assumptions against actual code and against Design. Recommended for high-risk work, optional for normal work - not mandatory just because a plan exists.
 
 **Reads:** Specified plan from story folder, referenced Design Record (if any), project codebase (to verify plan assumptions).
 
@@ -302,13 +302,13 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **Verdicts:** Approve / Approve with changes / Needs rework / Recommend rethink / Return to Design (design concerns only).
 
-**PM step:** Route findings clearly out of scope for this story — invoke `bob:work-routing`. Do not route ordinary plan gaps (those go in the report).
+**PM step:** Route findings clearly out of scope for this story - invoke `bob:work-routing`. Do not route ordinary plan gaps (those go in the report).
 
 **Skills:** `context-protocol`, `work-routing` (PM step), `done-criteria`
 
 ---
 
-## `/bob:implement` — Plan Execution
+## `/bob:implement` - Plan Execution
 
 **Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:handover`.
 
@@ -322,15 +322,15 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 3. Per step: implement → verify BDD criteria → commit
 4. Invoke `bob:design-signals` continuously; escalate to human at "pause for human decision" or stop at "stop and return to Design"
 5. Kanban update: mark resolved issues/tasks done
-6. **PM step (step 6.5):** For new issues or work discovered during implementation — invoke `bob:work-routing`
-7. Prepare concise input for `/bob:handover`: critical code paths, signals raised and their resolution, notable surprises — not a full walkthrough
+6. **PM step (step 6.5):** For new issues or work discovered during implementation - invoke `bob:work-routing`
+7. Prepare concise input for `/bob:handover`: critical code paths, signals raised and their resolution, notable surprises - not a full walkthrough
 8. Write Implementation Note
 
 **Skills:** `context-protocol`, `bdd` (step 3), `design-signals` (step 4, continuous), `work-routing` (step 6.5), `done-criteria`
 
 ---
 
-## `/bob:review` — Code Review
+## `/bob:review` - Code Review
 
 **Purpose:** Is the change correct? Review code changes for bugs, design conformance, and system health. Auto-detects scope from git state. Never modifies code.
 
@@ -339,9 +339,9 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 **Writes:** `{story_path}/{date}-review-{slug}.md`
 
 **Findings are sorted into three categories, each rated Critical/Important/Suggestion:**
-- Bugs — the code doesn't do what it's supposed to
-- Design-conformance failures — implementation doesn't match the approved Design Record/plan
-- Design concerns — code is correct and conforms, but the design itself now looks wrong; routed to `/bob:design` or `/bob:reflect`, not fixed here; includes contradicting an `established` pattern note and source-readability issues in new or significantly changed files
+- Bugs - the code doesn't do what it's supposed to
+- Design-conformance failures - implementation doesn't match the approved Design Record/plan
+- Design concerns - code is correct and conforms, but the design itself now looks wrong; routed to `/bob:design` or `/bob:reflect`, not fixed here; includes contradicting an `established` pattern note and source-readability issues in new or significantly changed files
 
 A clean review with no manufactured findings is a valid outcome. Recommends `/bob:document` and `/bob:handover` after significant agent-implemented changes.
 
@@ -355,7 +355,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
-## `/bob:reflect` — Engineering Reflection
+## `/bob:reflect` - Engineering Reflection
 
 **Purpose:** Recover human ownership of AI-implemented work after the human has read the Handover. Short, non-quizzy, peer-to-peer, not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
 
@@ -375,9 +375,9 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
-## `/bob:learn` — Harness Learning
+## `/bob:learn` - Harness Learning
 
-**Purpose:** Close the loop on the engineering pipeline — decide, evidence-first, whether anything from this session (or session chain) deserves to become a durable change to BOB, repository instructions, or the knowledge vault. Most sessions produce nothing durable; that is success, not a gap.
+**Purpose:** Close the loop on the engineering pipeline - decide, evidence-first, whether anything from this session (or session chain) deserves to become a durable change to BOB, repository instructions, or the knowledge vault. Most sessions produce nothing durable; that is success, not a gap.
 
 **Reads:** Corrections, interruptions, artifacts, accepted/rejected findings from this session, `docs/process/learnings.md` (prior staged occurrences across sessions), existing harness rules a candidate might conflict with. Deliberately excludes unrelated product context.
 
@@ -385,7 +385,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 **Process:**
 1. Gather evidence: corrections, missing/unnecessary questions, misunderstood facts, interruptions, repeated Review findings, tool/context gaps, artifact handoff failures
-2. Check `docs/process/learnings.md` for a matching prior occurrence — first occurrence logs and stops (unless high-severity); second credible occurrence becomes a harness candidate
+2. Check `docs/process/learnings.md` for a matching prior occurrence - first occurrence logs and stops (unless high-severity); second credible occurrence becomes a harness candidate
 3. Classify each candidate against the 10-row lesson-type table; report evidence, root cause, proposed change, destination, downside, recurrence basis, behavior test, recommendation
 4. Confirm with the human before editing any generic BOB skill or repository-wide instruction; project-local destinations can apply on confirmation without that bar
 5. Produce the Learning Record; "no persistent lesson" is a valid, common outcome
@@ -396,9 +396,9 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
-## `/bob:investigate` — Root Cause Analysis
+## `/bob:investigate` - Root Cause Analysis
 
-**Purpose:** Systematic root-cause investigation using a 7-phase process. Investigation only — no fixes proposed (that's for `/bob:plan`).
+**Purpose:** Systematic root-cause investigation using a 7-phase process. Investigation only - no fixes proposed (that's for `/bob:plan`).
 
 **Reads:** Project codebase (relevant files, call chains, test coverage), user-provided problem description.
 
@@ -419,7 +419,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 ---
 
-## `/bob:dev` — Working Session
+## `/bob:dev` - Working Session
 
 **Purpose:** Quick working session for code discussion, fixes, and direct changes. Skips the brainstorm/plan/review pipeline. For ad-hoc work where the scope is clear and small.
 
@@ -428,7 +428,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 **Writes:** Project files in place (direct code edits).
 
 **Process:**
-Unstructured — driven by the user. Claude acts as a peer developer: reads code, discusses, makes changes, pushes back on quality issues. Flags scope creep. Suggests switching to a formal bob command if the task grows too large.
+Unstructured - driven by the user. Claude acts as a peer developer: reads code, discusses, makes changes, pushes back on quality issues. Flags scope creep. Suggests switching to a formal bob command if the task grows too large.
 
 **Skills:** `context-protocol`, `done-criteria`
 
@@ -472,7 +472,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:user-guide` — End-User Guide
+## `/bob:user-guide` - End-User Guide
 
 **Purpose:** Create or maintain an end-user guide for the project. Reads the codebase to verify what actually exists before documenting it. Surfaces UX gaps, missing features, and friction points as a separate findings report.
 
@@ -481,8 +481,8 @@ Only the human promotes a pattern to `established`. Large documents are generate
 **Writes:** `docs/user-guide.md` (or CLAUDE.md-configured path), `{story_path}/{date}-user-guide-findings-{slug}.md` (findings report), CLAUDE.md root entry (user-guide path + maintenance reminder, first run only).
 
 **Modes:**
-- **New:** No guide exists — full discovery and write process
-- **Maintenance:** Guide exists — drift detection against codebase, then update
+- **New:** No guide exists - full discovery and write process
+- **Maintenance:** Guide exists - drift detection against codebase, then update
 
 **Key constraint:** Never documents a feature that cannot be verified in the codebase. Gaps go into findings, not the guide.
 
@@ -490,7 +490,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:guidelines` — Best Practice Guides
+## `/bob:guidelines` - Best Practice Guides
 
 **Purpose:** Create and maintain technology-specific best practice guidelines. Research-first (official style guides, tools, OWASP, etc.) before touching the codebase.
 
@@ -509,7 +509,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:docker-setup` — Docker Environment
+## `/bob:docker-setup` - Docker Environment
 
 **Purpose:** Set up or maintain a Docker-based development environment with a standard `make` interface. Verifies the environment actually works after setup.
 
@@ -523,7 +523,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:ui-review` — UI/UX Expert Review
+## `/bob:ui-review` - UI/UX Expert Review
 
 **Purpose:** Expert UI/UX review using the 13-lens framework from `ui-design` skill. Can optionally implement fixes after review with explicit user confirmation.
 
@@ -539,9 +539,9 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:art-director` — Visual Direction
+## `/bob:art-director` - Visual Direction
 
-**Purpose:** Art direction coaching for UI, brand, and marketing materials. Conversational by default — documents only on explicit request.
+**Purpose:** Art direction coaching for UI, brand, and marketing materials. Conversational by default - documents only on explicit request.
 
 **Reads:** `docs/product/vision.md` (optional), screenshots/mockups (user-provided).
 
@@ -553,7 +553,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:new-command` — Create Bob Command
+## `/bob:new-command` - Create Bob Command
 
 **Purpose:** Guided creation of a new bob slash command. Works through need, design, and structure conversationally. Enforces structural consistency with existing commands.
 
@@ -572,9 +572,9 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:improve-command` — Command Improvement
+## `/bob:improve-command` - Command Improvement
 
-**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic). **Scoped wrapper over `bob:learn`** — internally delegates evidence gathering and persistence-bar logic to `bob:learn` restricted to the one command identified in Phase 1.
+**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic). **Scoped wrapper over `bob:learn`** - internally delegates evidence gathering and persistence-bar logic to `bob:learn` restricted to the one command identified in Phase 1.
 
 **Reads:** Current session conversation, `bob/commands/{name}.md`, `docs/process/learnings.md` (via delegated `bob:learn` evidence gathering).
 
@@ -590,7 +590,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:review-command` — Command Quality Review
+## `/bob:review-command` - Command Quality Review
 
 **Purpose:** Prompt engineering quality review of a bob command. Targets 30–50% token reduction. Produces an optimized version.
 
@@ -610,13 +610,13 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:library` — Knowledge Vault Librarian
+## `/bob:library` - Knowledge Vault Librarian
 
 **Purpose:** Thin dispatcher over the `bob:vault` skill. Manages the project knowledge vault (`knowledge/`). Bootstraps the vault on first run. Five modes: status (no args), process (inbox to atomic notes), ingest (external source to notes), retrieve (search), organise (vault health).
 
 **Reads:** `knowledge/README.md`, `knowledge/_suggestions.md`, `knowledge/_INBOX/` (process mode), subfolder `_index.md` files, individual notes (retrieve/organise), external URL or local file (ingest mode).
 
-**Writes:** `knowledge/` notes, indexes, MOCs (process/organise/ingest modes); `knowledge/_suggestions.md` (process/organise/ingest); `knowledge/log.md` (process/organise/ingest — appended via `log_append.py`); `sources/` raw materials (process/ingest).
+**Writes:** `knowledge/` notes, indexes, MOCs (process/organise/ingest modes); `knowledge/_suggestions.md` (process/organise/ingest); `knowledge/log.md` (process/organise/ingest - appended via `log_append.py`); `sources/` raw materials (process/ingest).
 
 **Bootstrap:** Runs automatically if `knowledge/` doesn't exist. Delegates to `bob:vault` bootstrap mode: creates folder structure, `_schema.md`, `README.md`, subfolder indexes, `_suggestions.md`, gitignore entries, and `personal/` structure.
 
@@ -635,9 +635,9 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:remember` — Quick Knowledge Capture
+## `/bob:remember` - Quick Knowledge Capture
 
-**Purpose:** Instant capture to `knowledge/_INBOX/`. No context loading, no phases — must be immediate. Takes content from args or asks once.
+**Purpose:** Instant capture to `knowledge/_INBOX/`. No context loading, no phases - must be immediate. Takes content from args or asks once.
 
 **Reads:** Nothing (invokes `bob:vault` bootstrap skill if vault missing).
 
@@ -656,9 +656,9 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:linkedin` — LinkedIn Strategy Advisor
+## `/bob:linkedin` - LinkedIn Strategy Advisor
 
-**Purpose:** LinkedIn growth strategy advisor for consultants, founders, and B2B service businesses. Grounds strategy in the product's actual positioning and personas — not generic tips. Operates as a persistent expert mode: opens with a mode signal and reminds users to return with `/bob:linkedin`.
+**Purpose:** LinkedIn growth strategy advisor for consultants, founders, and B2B service businesses. Grounds strategy in the product's actual positioning and personas - not generic tips. Operates as a persistent expert mode: opens with a mode signal and reminds users to return with `/bob:linkedin`.
 
 **Reads:** `docs/product/positioning.md`, `docs/product/personas.md`, `docs/product/vision.md` (all optional; falls back to generic guidance if missing).
 

@@ -36,7 +36,7 @@ That is a fragile rule, and its failure mode is silent.
 
 ## Proposed Improvements
 
-### 1. Process — make the history row fire at artifact write, not at next request
+### 1. Process - make the history row fire at artifact write, not at next request
 
 **Issue:** The only reliable moment to record an artifact is immediately after writing it, while
 the path, type, summary and outcome are all in hand.
@@ -49,7 +49,7 @@ Write to: `{story_path}/sessions/{date}-brainstorm-{slug}.md`
 
 After writing the file, immediately add its row to `{story_path}/_index.md` History and update
 `{story_path}/_kanban.md`. Do not defer this to the end-of-session gate. Use the Story History
-and Kanban steps of `bob:done-criteria` Responsibility 4 as the format authority — this is a
+and Kanban steps of `bob:done-criteria` Responsibility 4 as the format authority - this is a
 trigger point, not a second copy of the rule.
 ```
 
@@ -59,13 +59,13 @@ same three lines belong at the artifact-write point of every command that produc
 
 ---
 
-### 2. Process — strengthen the deferral gate in `bob:done-criteria`
+### 2. Process - strengthen the deferral gate in `bob:done-criteria`
 
 **Issue:** "Before responding to any new request" is the weakest possible trigger. It fires on an
 event the model is not looking for, competes with the incoming request's own instructions, and
 leaves no trace when skipped.
 
-**Proposed Change** to `skills/done-criteria/SKILL.md`, in the `## Done — Non-Deferrable` framing
+**Proposed Change** to `skills/done-criteria/SKILL.md`, in the `## Done - Non-Deferrable` framing
 and in Responsibility 4:
 
 ```markdown
@@ -83,7 +83,7 @@ command arriving with its own Context block.
 
 ---
 
-### 3. Output — the Directions Considered table shape
+### 3. Output - the Directions Considered table shape
 
 **Issue:** The template specifies `| Option | Summary | Pros | Cons |`. In this session the useful
 shape was `| # | Direction | Verdict |`, where the verdict records who decided and why. Pros and
@@ -107,13 +107,13 @@ rejected direction safe to revisit.
 ---
 
 ## Changes Summary
-- [x] All 10 story-artifact commands — add — write-time registration line at each `Write to:`
+- [x] All 10 story-artifact commands - add - write-time registration line at each `Write to:`
   (`brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `reflect`, `learn`,
   `investigate`, `ui-review`). The other 21 commands with the done gate write outside a story,
   where Responsibility 4 already skips.
-- [x] `skills/done-criteria/SKILL.md` § Responsibility 4 — add — two entry points, idempotent,
+- [x] `skills/done-criteria/SKILL.md` § Responsibility 4 - add - two entry points, idempotent,
   missing row for a this-session artifact is a defect; same rule stated for the daily note
-- [ ] `commands/brainstorm.md` § Report template — modify — Directions Considered gets a Verdict
+- [ ] `commands/brainstorm.md` § Report template - modify - Directions Considered gets a Verdict
   column (not applied; ordinary severity, first occurrence)
 
 ## Rejected alternative

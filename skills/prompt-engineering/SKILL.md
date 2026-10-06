@@ -12,36 +12,36 @@ Compact reference for writing effective Claude commands. Apply when creating or 
 
 ## Core Principles
 
-**Be explicit** — "Write 5 bullets, each under 15 words" beats "be concise." Specify exact success criteria.
+**Be explicit** - "Write 5 bullets, each under 15 words" beats "be concise." Specify exact success criteria.
 
-**Structure clearly** — Separate Context, Role, Process, Output. Don't mix in prose.
+**Structure clearly** - Separate Context, Role, Process, Output. Don't mix in prose.
 
-**Minimize tokens** — Every token costs money and latency. High-signal only. Cut filler, redundancy, verbose examples.
+**Minimize tokens** - Every token costs money and latency. High-signal only. Cut filler, redundancy, verbose examples.
 
-**Load just-in-time** — Don't dump context upfront. Load principles/guidelines when they apply.
+**Load just-in-time** - Don't dump context upfront. Load principles/guidelines when they apply.
 
-**Allow uncertainty** — Give permission to say "I don't know" to reduce hallucinations.
+**Allow uncertainty** - Give permission to say "I don't know" to reduce hallucinations.
 
-**One question at a time** — Multi-part questions fragment attention.
+**One question at a time** - Multi-part questions fragment attention.
 
-**Perfect examples** — Claude 4.x pays close attention to details. Sloppy examples teach sloppy behavior.
+**Perfect examples** - Claude 4.x pays close attention to details. Sloppy examples teach sloppy behavior.
 
-**Standalone outputs** — Documents must be readable without conversation context. But standalone ≠ verbose. Include essentials only.
+**Standalone outputs** - Documents must be readable without conversation context. But standalone ≠ verbose. Include essentials only.
 
-**Avoid over-constraining** — "You are a helpful architect" beats "You are a world-renowned expert who never makes mistakes."
+**Avoid over-constraining** - "You are a helpful architect" beats "You are a world-renowned expert who never makes mistakes."
 
-**No aggressive language** — Claude 4.x is instruction-compliant. "CRITICAL: YOU MUST" causes over-triggering. Use normal language.
+**No aggressive language** - Claude 4.x is instruction-compliant. "CRITICAL: YOU MUST" causes over-triggering. Use normal language.
 
 ---
 
 ## Human-Owned-Workflow Design Rubric
 
-When creating or reviewing a command/skill, check it defines each of the following — token efficiency must not remove any of these distinctions, since they're what preserves human ownership:
+When creating or reviewing a command/skill, check it defines each of the following - token efficiency must not remove any of these distinctions, since they're what preserves human ownership:
 
 - single fundamental question the command answers;
 - explicit human vs. AI roles;
 - evidence requirements for any claim;
-- interaction policy (appropriate to experience level — don't infer lack of thought from brevity);
+- interaction policy (appropriate to experience level - don't infer lack of thought from brevity);
 - autonomy boundary (what AI may decide vs. must surface);
 - stop/escalation conditions;
 - exit condition (including a valid short/no-op outcome);
@@ -55,17 +55,17 @@ When creating or reviewing a command/skill, check it defines each of the followi
 
 ## Anti-Patterns
 
-**Unstructured instructions** — Mixing context, constraints, and format in prose.
+**Unstructured instructions** - Mixing context, constraints, and format in prose.
 
-**Aggressive triggers** — "CRITICAL!" "MUST!" "NEVER!" cause over-triggering.
+**Aggressive triggers** - "CRITICAL!" "MUST!" "NEVER!" cause over-triggering.
 
-**Vague constraints** — "Be concise" vs "3-5 sentences, under 100 words."
+**Vague constraints** - "Be concise" vs "3-5 sentences, under 100 words."
 
-**Poor examples** — Incomplete, inconsistent, or unrealistic.
+**Poor examples** - Incomplete, inconsistent, or unrealistic.
 
-**Context dumping** — Loading everything upfront instead of just-in-time.
+**Context dumping** - Loading everything upfront instead of just-in-time.
 
-**Multi-question barrages** — Asking 5 things at once instead of one at a time.
+**Multi-question barrages** - Asking 5 things at once instead of one at a time.
 
 **Verbose outputs** - Generated files become future context. Their style is owned by `bob:writing`; a command's Output section points there instead of restating style rules.
 
@@ -78,7 +78,7 @@ When creating or reviewing a command/skill, check it defines each of the followi
 {Date, project state, protocol loads}
 
 ## Role
-{Who Claude is — architect, reviewer, coach}
+{Who Claude is - architect, reviewer, coach}
 
 ## Process
 {Step-by-step, numbered phases}

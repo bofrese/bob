@@ -1,8 +1,8 @@
-# Learning Record — Artifact Template
+# Learning Record - Artifact Template
 
 **Filename:** `{date}-learn-{slug}.md`, written to `{story_path}/sessions/` (or `docs/process/sessions/` when Learn runs without story context).
 
-The Learning Record captures what this session's evidence justifies persisting — not a session recap. "No persistent lesson" is a valid, common, one-paragraph record.
+The Learning Record captures what this session's evidence justifies persisting - not a session recap. "No persistent lesson" is a valid, common, one-paragraph record.
 
 ```
 # Learn: {Scope}
@@ -28,7 +28,7 @@ The Learning Record captures what this session's evidence justifies persisting �
 - **Recommendation:** apply | experiment | defer | reject
 
 ## Applied This Session
-{Which candidates were confirmed and actually edited, with file paths. "None — all deferred pending approval" is valid.}
+{Which candidates were confirmed and actually edited, with file paths. "None - all deferred pending approval" is valid.}
 
 ## Rejected / Deferred
 {Candidates not acted on, with reason.}

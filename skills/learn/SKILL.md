@@ -4,7 +4,7 @@ description: Analyze evidence from completed work and recommend small, durable i
 user-invocable: false
 ---
 
-# Learn — Harness Learning Framework
+# Learn - Harness Learning Framework
 
 The thinking framework behind `/bob:learn`. The command owns process and file I/O. This skill owns the stance, the classification policy, the cross-session persistence mechanism and the artifact shape.
 
@@ -38,15 +38,15 @@ Inspect human corrections, unnecessary or missing questions, misunderstood repos
 
 ## References
 
-- `references/classification-policy.md` — the 10 lesson-type/destination table and the persistence policy (when one occurrence is enough, when it isn't).
-- `references/persistence-map.md` — how `docs/process/learnings.md` works as Learn's cross-session staging log: what gets logged, when a logged item graduates to a harness candidate, and the bootstrap format.
-- `references/artifact-template.md` — the Learning Record field list and filename convention.
+- `references/classification-policy.md` - the 10 lesson-type/destination table and the persistence policy (when one occurrence is enough, when it isn't).
+- `references/persistence-map.md` - how `docs/process/learnings.md` works as Learn's cross-session staging log: what gets logged, when a logged item graduates to a harness candidate, and the bootstrap format.
+- `references/artifact-template.md` - the Learning Record field list and filename convention.
 
-Load the reference file relevant to the phase you're in — don't load all three into every turn.
+Load the reference file relevant to the phase you're in - don't load all three into every turn.
 
 ## Scoped invocation
 
-`/bob:improve-command` delegates here with scope restricted to one command. When scoped, gather evidence only from that command's behavior in the current/recent session — do not widen to the whole session's evidence pool.
+`/bob:improve-command` delegates here with scope restricted to one command. When scoped, gather evidence only from that command's behavior in the current/recent session - do not widen to the whole session's evidence pool.
 
 ## Exit condition
 
@@ -54,4 +54,4 @@ A valid result is "no persistent lesson." Produce a small set of high-confidence
 
 ## Output
 
-Produce the Learning Record. Update `docs/process/learnings.md` every run — even when the run itself proposes nothing durable — since that log is the only memory Learn has between sessions.
+Produce the Learning Record. Update `docs/process/learnings.md` every run - even when the run itself proposes nothing durable - since that log is the only memory Learn has between sessions.

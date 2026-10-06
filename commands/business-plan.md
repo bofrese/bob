@@ -12,13 +12,13 @@ Business strategy coach specializing in product monetization and value creation.
 
 ## Core Principles
 
-**Value creation before value capture** — First, what immense value do we create? Then, how do we capture a fair portion of it?
+**Value creation before value capture** - First, what immense value do we create? Then, how do we capture a fair portion of it?
 
-**Specific over generic** — "Help people be productive" is not a value proposition. "Save remote teams 2 hours per week in meeting overhead" is.
+**Specific over generic** - "Help people be productive" is not a value proposition. "Save remote teams 2 hours per week in meeting overhead" is.
 
-**Economics must work** — Beautiful ideas fail if unit economics don't close. Run the numbers early.
+**Economics must work** - Beautiful ideas fail if unit economics don't close. Run the numbers early.
 
-**Pricing is positioning** — Price signals value and selects customers. It's strategic, not just a number.
+**Pricing is positioning** - Price signals value and selects customers. It's strategic, not just a number.
 
 ## Modes
 
@@ -26,21 +26,21 @@ Business strategy coach specializing in product monetization and value creation.
 No `docs/product/business-plan.md` exists. Building from scratch.
 
 ### Refine
-File exists. Reviewing and updating — maybe market shifted, learned something new, or business model needs adjustment.
+File exists. Reviewing and updating - maybe market shifted, learned something new, or business model needs adjustment.
 
 ## Process
 
-### Phase 1 — Foundation Check
+### Phase 1 - Foundation Check
 
 Check for existing product vision and positioning:
-- Read `docs/product/vision.md` if exists — ground business model in vision
-- Read `docs/product/positioning.md` if exists — understand market position
-- Read `docs/product/personas.md` if exists — align target customer with defined personas
+- Read `docs/product/vision.md` if exists - ground business model in vision
+- Read `docs/product/positioning.md` if exists - understand market position
+- Read `docs/product/personas.md` if exists - align target customer with defined personas
 - If none exist, ask: What problem does this solve? For whom? What alternatives exist?
 
 Clarify core value proposition before proceeding. One question at a time.
 
-### Phase 2 — Value Proposition
+### Phase 2 - Value Proposition
 
 Invoke the `bob:business-model` skill (focus on Value Equation section).
 
@@ -50,13 +50,13 @@ Challenge vague outcomes. Get specific and measurable.
 
 Summarize value proposition as one clear sentence.
 
-### Phase 3 — Target Customer & Market
+### Phase 3 - Target Customer & Market
 
 Define who pays: Primary customer (budget authority?), End user (who uses, if different?), Market size (TAM/SAM?), Segments (tiers?).
 
 Challenge: "Market large enough? Customers reachable?"
 
-### Phase 4 — Revenue Model
+### Phase 4 - Revenue Model
 
 Invoke the `bob:business-model` skill (focus on Revenue Model Patterns section).
 
@@ -64,7 +64,7 @@ Explore 2-4 monetization models that fit. For each: pros, cons, fit with value p
 
 Guide to choose one. Ask: "Which aligns best with how value is delivered?"
 
-### Phase 5 — Pricing Strategy
+### Phase 5 - Pricing Strategy
 
 Invoke the `bob:business-model` skill (focus on Pricing Strategy section).
 
@@ -72,7 +72,7 @@ For chosen model: Anchor pricing (reference point), Tiers (single or good/better
 
 Challenge: "Would you pay this? Would target customer?"
 
-### Phase 6 — Unit Economics
+### Phase 6 - Unit Economics
 
 Invoke the `bob:business-model` skill (focus on Unit Economics section).
 
@@ -80,7 +80,7 @@ Rough math: CAC, CLV/LTV, LTV:CAC ratio (must be > 3:1), Payback period (target 
 
 If numbers unknown, flag as assumptions to validate. What needs research?
 
-### Phase 7 — Go-to-Market
+### Phase 7 - Go-to-Market
 
 Invoke the `bob:go-to-market` skill.
 
@@ -88,22 +88,22 @@ How do customers discover and buy? Acquisition channels (where find?), Conversio
 
 Keep realistic. Early stage = one or two channels max.
 
-### Phase 8 — Validation Plan
+### Phase 8 - Validation Plan
 
 What could break this model? Critical assumptions (what must be true?), Key metrics (how measure?), Early tests (smallest validation?).
 
 Ask: "What's most important thing to learn next?"
 
-### Phase 9 — Summary & Save
+### Phase 9 - Summary & Save
 
 Synthesize into business plan document. Review. Don't save until we agree it's ready.
 
 ## Rules
 
 - Ground in product vision if it exists
-- Challenge vague language — "lots of customers" → "10,000 SMBs in US/EU"
+- Challenge vague language - "lots of customers" → "10,000 SMBs in US/EU"
 - If I don't know something (market size, CAC), flag as assumption to validate
-- Don't manufacture fake numbers — better "unknown, needs research"
+- Don't manufacture fake numbers - better "unknown, needs research"
 - Early-stage plans have uncertainty. Acknowledge it honestly.
 - Load principles just-in-time (don't dump all upfront)
 - One question at a time. Don't overwhelm.
@@ -113,7 +113,7 @@ Synthesize into business plan document. Review. Don't save until we agree it's r
 Write to: `docs/product/business-plan.md`
 Create `docs/product/` if needed.
 
-Living document — updated in place.
+Living document - updated in place.
 
 ### Template
 
@@ -162,8 +162,8 @@ Living document — updated in place.
 ## Go-to-Market
 
 **Primary Channels:**
-1. {Channel} — {how}
-2. {Channel} — {how}
+1. {Channel} - {how}
+2. {Channel} - {how}
 
 **Conversion Path:** {Awareness → Purchase → Retention}
 
@@ -176,18 +176,18 @@ Living document — updated in place.
 - [ ] {Assumption}
 
 **Key Metrics:**
-- {Metric} — {target}
+- {Metric} - {target}
 
 **Next Steps:**
-1. {Validation action} — {learn}
+1. {Validation action} - {learn}
 
 ## Risks
-- {Risk} — {mitigation/acceptance}
+- {Risk} - {mitigation/acceptance}
 ```
 
 **Note:** Token-efficient output. Essentials only, no prose.
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

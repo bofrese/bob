@@ -1,7 +1,7 @@
 # Project Management
 *Last updated: 2026-06-23*
 
-How Bob tracks work across the full lifecycle of a feature — from idea to shipped code.
+How Bob tracks work across the full lifecycle of a feature - from idea to shipped code.
 
 ---
 
@@ -25,9 +25,9 @@ projects/
 └── BUS/             ← business/marketing
 ```
 
-One product, multiple sub-projects. Each sub-project is a separate backlog with its own kanban board and story sequence. This keeps concerns clean — you don't want app engineering stories mixed with marketing tasks.
+One product, multiple sub-projects. Each sub-project is a separate backlog with its own kanban board and story sequence. This keeps concerns clean - you don't want app engineering stories mixed with marketing tasks.
 
-Story IDs are prefixed per sub-project: `APP-001`, `WEB-002`, `BUS-001`. You don't have to use this model — a single `projects/[NAME]/` folder works fine for simpler products.
+Story IDs are prefixed per sub-project: `APP-001`, `WEB-002`, `BUS-001`. You don't have to use this model - a single `projects/[NAME]/` folder works fine for simpler products.
 
 ---
 
@@ -40,7 +40,7 @@ projects/
     ├── _kanban.md                         # Sub-project board (stories as cards)
     └── stories/
         └── [STORY-ID]/
-            ├── _index.md                  # Story hub — description + history
+            ├── _index.md                  # Story hub - description + history
             ├── _notes.md                  # Developer notes (grows organically)
             ├── _kanban.md                 # Task board for this story
             └── tasks/
@@ -90,7 +90,7 @@ Stories flow left to right through these columns:
 | Column | Meaning |
 |--------|---------|
 | **INBOX** | Unreviewed ideas. Candidates, not commitments. |
-| **ToDo** | Committed — decided but not started. |
+| **ToDo** | Committed - decided but not started. |
 | **Refining** | Being brainstormed or planned. |
 | **Ready** | Has a reviewed plan. Ready to implement. |
 | **In Progress** | Implementation underway. |
@@ -111,7 +111,7 @@ Tasks and issues within a story:
 | **Verify** | Done, awaiting review. |
 | **done** | Completed. |
 
-Task cards link to files in `tasks/`. The card is just a title and link — all detail stays in the task file.
+Task cards link to files in `tasks/`. The card is just a title and link - all detail stays in the task file.
 
 ---
 
@@ -122,12 +122,12 @@ Bob drives the content, you drive the board.
 | Bob command | What Bob does automatically | What you do in Obsidian |
 |-------------|----------------------------|------------------------|
 | `/bob:brainstorm` | Creates story folder + files; writes brainstorm report; adds history entry to `_index.md` | Move story card → **Refining** |
-| `/bob:plan` | Writes plan; adds history entry | — |
+| `/bob:plan` | Writes plan; adds history entry | - |
 | `/bob:review-plan` | Writes review; adds history entry | Move card → **Ready** |
 | `/bob:implement` | Writes code + implementation report; updates task kanban | Move card → **In Progress**, then **Verify** |
 | `/bob:review` | Writes code review; adds history entry | Move card → **Done** once merged |
 
-The history table in `_index.md` is maintained automatically by Bob's done-criteria step — don't edit it by hand.
+The history table in `_index.md` is maintained automatically by Bob's done-criteria step - don't edit it by hand.
 
 ---
 
@@ -138,7 +138,7 @@ Once a story exists, your day-to-day workflow is in Obsidian:
 - **Move story cards** across the sub-project kanban as work progresses
 - **Move task cards** within the story kanban as tasks are picked up and completed
 - **Add issues** to the Issues column as you discover them during implementation or review
-- **Write in `_notes.md`** freely — gotchas, decisions, rabbit holes, code references
+- **Write in `_notes.md`** freely - gotchas, decisions, rabbit holes, code references
 - **Open session artifacts** (plans, brainstorms) directly from the history table in `_index.md`
 
 The Kanban plugin renders `_kanban.md` boards interactively. New task cards created in Obsidian automatically land in the story's `tasks/` folder via the `new-note-folder` setting.
@@ -164,7 +164,7 @@ Issues can be dealt with inline or converted to separate stories.
 
 When a story is dismissed or deferred, move its folder to `archive/dismissed/`. When it ships, Bob may move it to `archive/done/`. On the sub-project kanban, move the card to **ARCHIVE**.
 
-Why keep it? "Why didn't we do X?" — the archive has the answer.
+Why keep it? "Why didn't we do X?" - the archive has the answer.
 
 ---
 
@@ -174,7 +174,7 @@ Document dependencies in `_index.md`:
 
 ```markdown
 ## Blocked By
-- [APP-001](../APP-001/_index.md) — needs auth system first
+- [APP-001](../APP-001/_index.md) - needs auth system first
 ```
 
 Tracking: keep blocked stories in **ToDo** on the sub-project kanban until the dependency ships. Move them to **Ready** only when the plan is reviewed and dependencies are clear.
@@ -185,11 +185,11 @@ Tracking: keep blocked stories in **ToDo** on the sub-project kanban until the d
 
 The project mentor command is your overview of project state. It has four modes:
 
-**Default — project overview**
+**Default - project overview**
 Run `/bob:pm` with no arguments. It reads all sub-project kanbans and in-progress story kanbans, then tells you what's in flight, what's ready to start, what's blocked, and recommends what to work on next. Optionally appends a summary to `personal/daily/YYYY-MM-DD.md`.
 
 **Context optimization**
-Say "help me start a new session on [feature]" and pm recommends exactly which files to load and which command to use — keeps context tight.
+Say "help me start a new session on [feature]" and pm recommends exactly which files to load and which command to use - keeps context tight.
 
 **Command recommendation**
 Describe what you want to do ("I want to fix a UI bug") and pm identifies which bob command fits and explains the sequence.
@@ -209,11 +209,11 @@ For a new project with no kanbans yet, pm detects the absence and recommends sta
 
 **The story folder is persistent context.** When you return to a story after weeks away, the `_index.md` history table is your entry point. Everything links from there.
 
-**Sub-project prefixes clarify scope.** `APP-001` and `WEB-001` are different stories. Keep prefixes short (2-4 chars) and stable — renaming a prefix mid-project breaks links.
+**Sub-project prefixes clarify scope.** `APP-001` and `WEB-001` are different stories. Keep prefixes short (2-4 chars) and stable - renaming a prefix mid-project breaks links.
 
 ---
 
 ## Next Steps
 
 - Read [Engineering Workflows](02-engineering-workflows.md) to understand how stories flow through phases.
-- Ready to start? Run `/bob:brainstorm` — Bob will create the story structure and start the first session.
+- Ready to start? Run `/bob:brainstorm` - Bob will create the story structure and start the first session.

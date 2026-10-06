@@ -7,10 +7,10 @@
 **Purpose:** Frequency, algorithm training, top-of-mind presence
 
 **Mechanics:**
-- Hook in line 1 — no warmup, no "I was thinking about..."
+- Hook in line 1 - no warmup, no "I was thinking about..."
 - One idea per post. Not two. Not a listicle with 7 points.
-- White space forces dwell time — one sentence per line
-- End with a question or sharp close — not "what do you think?" but something that provokes a specific response
+- White space forces dwell time - one sentence per line
+- End with a question or sharp close - not "what do you think?" but something that provokes a specific response
 
 **What kills short posts:**
 - Starting with "I'm excited to share..."
@@ -26,11 +26,11 @@
 
 **Best for:** Frameworks, processes, counterintuitive arguments, detailed stories
 
-**Frequency:** 1-2x per week max — they require energy from the reader
+**Frequency:** 1-2x per week max - they require energy from the reader
 
 **Mechanics:**
-- Same hook rules — harder to execute at this length
-- Use numbered or lettered structure — signals a payoff is coming
+- Same hook rules - harder to execute at this length
+- Use numbered or lettered structure - signals a payoff is coming
 - Each section must earn the scroll
 - Last paragraph is the second most-read. Make it land.
 
@@ -40,7 +40,7 @@
 
 **Purpose:** Evergreen authority content, searchable, shareable as a URL
 
-**Critical reality:** Articles get far less algorithmic reach than posts. Almost nobody sees them in the feed. They are **not** a feed strategy — they are a **search and profile strategy**.
+**Critical reality:** Articles get far less algorithmic reach than posts. Almost nobody sees them in the feed. They are **not** a feed strategy - they are a **search and profile strategy**.
 
 **Use articles for:**
 - Content you want to link from your profile
@@ -59,7 +59,7 @@
 **This is the highest-effort, highest-return format for consultants.**
 
 **Mechanics:**
-- Slide 1 = the hook — must be a standalone provocation
+- Slide 1 = the hook - must be a standalone provocation
 - Each slide = one idea
 - 10-15 slides is the sweet spot
 - Last slide = CTA (follow, DM, link in comments)
@@ -80,7 +80,7 @@
 
 **Reality:** Generates reach but shallow engagement.
 
-**Use case:** Once a month max — to understand your audience or gather data to reference in a future post.
+**Use case:** Once a month max - to understand your audience or gather data to reference in a future post.
 
 ---
 
@@ -119,7 +119,7 @@ Almost never in regular posts. Your website is a conversion tool, not a discover
 3. Drive traffic from posts to the LinkedIn Article (lower friction than leaving LinkedIn)
 4. LinkedIn Article links to your site for the "full version" or lead magnet
 
-**Or:** Publish exclusively on LinkedIn Articles for thought leadership content; keep your site for service pages and case studies. Don't use your blog as a LinkedIn traffic destination — it rarely converts.
+**Or:** Publish exclusively on LinkedIn Articles for thought leadership content; keep your site for service pages and case studies. Don't use your blog as a LinkedIn traffic destination - it rarely converts.
 
 ---
 
@@ -127,31 +127,31 @@ Almost never in regular posts. Your website is a conversion tool, not a discover
 
 ### The Pillar System
 
-Pick 3 content pillars — topics you own. Everything you post sits in one of these buckets. Rotating across pillars prevents audience fatigue and tells both the algorithm and your audience what you stand for.
+Pick 3 content pillars - topics you own. Everything you post sits in one of these buckets. Rotating across pillars prevents audience fatigue and tells both the algorithm and your audience what you stand for.
 
 ### Week-by-Week Rhythm
 
-**Week 1 — Provocation week**
+**Week 1 - Provocation week**
 - 3-4 short posts (opinions, takes, observations)
 - 1 carousel or document (your big-reach play)
 - Goal: spike reach, attract new followers
 
-**Week 2 — Teaching week**
+**Week 2 - Teaching week**
 - 3-4 posts (frameworks, lessons, how-tos)
 - 1 long post (deep dive on one concept)
 - Goal: demonstrate expertise, build trust
 
-**Week 3 — Story week**
+**Week 3 - Story week**
 - 3-4 posts (client stories, personal stories, failures, pivots)
 - Consider a LinkedIn Article if you have evergreen content to anchor
 - Goal: emotional connection, DM triggers
 
-**Week 4 — Synthesis week**
+**Week 4 - Synthesis week**
 - 2-3 posts (pull together threads from the month)
 - 1 "state of the industry" or contrarian take
 - Review: what landed? What flopped? Adjust pillar weighting.
 
-This rhythm ensures content diversity — the thing that prevents audience fatigue.
+This rhythm ensures content diversity - the thing that prevents audience fatigue.
 
 ---
 
@@ -177,17 +177,17 @@ This rhythm ensures content diversity — the thing that prevents audience fatig
 - Put links in first comment, not body
 - Reply to every comment fast
 - Write from experience, not abstraction
-- Take positions — consultants who say nothing definitive get ignored
-- Track: impressions, profile views, follower growth, DMs received — not just likes
+- Take positions - consultants who say nothing definitive get ignored
+- Track: impressions, profile views, follower growth, DMs received - not just likes
 - Repurpose: one framework → carousel → 3 short posts → LinkedIn article → DM resource
 - Build a content bank (10-15 posts ready to publish)
 
 ### Don't
 - Link to external sites in post body
 - Post only about your services or announcements
-- Use engagement pods — LinkedIn detects it and poisons account metrics
+- Use engagement pods - LinkedIn detects it and poisons account metrics
 - Post more than once per day
-- Repost others' content as your primary strategy — signals you have nothing to say
-- Automate comments or use AI-obvious content — audiences have high bullshit detectors
-- Chase virality — one viral post to the wrong audience is worse than consistent posts to the right one
-- Neglect your profile — it's where people go after reading a post
+- Repost others' content as your primary strategy - signals you have nothing to say
+- Automate comments or use AI-obvious content - audiences have high bullshit detectors
+- Chase virality - one viral post to the wrong audience is worse than consistent posts to the right one
+- Neglect your profile - it's where people go after reading a post

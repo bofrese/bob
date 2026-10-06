@@ -32,10 +32,10 @@ Run when `knowledge/` does not exist. Steps:
    supersedes: optional-note-link
    ```
 
-   - `evidence` — path(s) or experiment references backing the claim. Distinguishes observed evidence from inferred lesson; a note with no `evidence` entries is an inference, not an observation, and should be treated as `proposed`.
-   - `status` — `proposed` (not yet confirmed by use), `validated` (confirmed by real use or review), `superseded` (replaced — keep `supersedes` pointing at what replaced it, or note what replaces this one).
-   - `last_validated` — the date this note's claim was last confirmed still true. Retrieval prefers notes with a recent `last_validated` over stale ones when several conflict.
-   - `supersedes` — relative link to the note this one replaces, when applicable.
+   - `evidence` - path(s) or experiment references backing the claim. Distinguishes observed evidence from inferred lesson; a note with no `evidence` entries is an inference, not an observation, and should be treated as `proposed`.
+   - `status` - `proposed` (not yet confirmed by use), `validated` (confirmed by real use or review), `superseded` (replaced - keep `supersedes` pointing at what replaced it, or note what replaces this one).
+   - `last_validated` - the date this note's claim was last confirmed still true. Retrieval prefers notes with a recent `last_validated` over stale ones when several conflict.
+   - `supersedes` - relative link to the note this one replaces, when applicable.
 
    These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `pattern` notes that make a durable claim.
 
@@ -54,7 +54,7 @@ Run when `knowledge/` does not exist. Steps:
 
    - Filenames: kebab-case, no spaces, no special characters, valid unix
    - All notes must have `title:` frontmatter
-   - No wikilinks anywhere — use relative markdown links: `[Title](../concepts/file.md)`
+   - No wikilinks anywhere - use relative markdown links: `[Title](../concepts/file.md)`
    - No date prefix for processed notes (date is in `timestamp:` frontmatter)
    - Inbox files: `YYYY-MM-DD-slug.md`
    - MOC files: `_MOC/kebab-case-topic.md` with `title:` property
@@ -69,7 +69,7 @@ Run when `knowledge/` does not exist. Steps:
    - Book chapters or excerpts you have synthesized
 
    Keep *out* of sources/:
-   - Your own notes or summaries (those are atomic notes — they belong in the typed folders)
+   - Your own notes or summaries (those are atomic notes - they belong in the typed folders)
    - One-off sources you will not reference again
    - Duplicate copies (use URLs in notes instead)
 
@@ -80,7 +80,7 @@ Run when `knowledge/` does not exist. Steps:
    ## OKF Alignment
 
    This schema follows the Open Knowledge Format (OKF) conventions with one deviation:
-   - `_index.md` naming deviates from OKF's `index.md` — retained for Obsidian sort-order benefit (underscore sorts before alphabetical entries)
+   - `_index.md` naming deviates from OKF's `index.md` - retained for Obsidian sort-order benefit (underscore sorts before alphabetical entries)
 
    ## Link Rules
 
@@ -104,15 +104,15 @@ Run when `knowledge/` does not exist. Steps:
 
    | Folder | What you'll find |
    |--------|-----------------|
-   | [decisions/](decisions/_index.md) | The "why" behind choices — architectural, design, and process decisions with rationale |
-   | [concepts/](concepts/_index.md) | Shared vocabulary — technology and domain concepts worth defining |
-   | [research/](research/_index.md) | What we learned from outside — external findings, benchmarks, tool evaluations |
-   | [patterns/](patterns/_index.md) | How to do it right — reusable solution patterns and anti-patterns |
-   | [sources/](sources/) | Originals before decomposition — raw articles, papers, specs. Topic subfolders emerge at 3+ files per topic. |
+   | [decisions/](decisions/_index.md) | The "why" behind choices - architectural, design, and process decisions with rationale |
+   | [concepts/](concepts/_index.md) | Shared vocabulary - technology and domain concepts worth defining |
+   | [research/](research/_index.md) | What we learned from outside - external findings, benchmarks, tool evaluations |
+   | [patterns/](patterns/_index.md) | How to do it right - reusable solution patterns and anti-patterns |
+   | [sources/](sources/) | Originals before decomposition - raw articles, papers, specs. Topic subfolders emerge at 3+ files per topic. |
 
    ## Tags
 
-   Tags are the cross-cutting discovery layer. Click any tag to see all notes with that tag. Every note must use tags from this list only — new tags are proposed and confirmed here before use.
+   Tags are the cross-cutting discovery layer. Click any tag to see all notes with that tag. Every note must use tags from this list only - new tags are proposed and confirmed here before use.
 
    | Tag | Covers |
    |-----|--------|

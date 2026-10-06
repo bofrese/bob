@@ -8,11 +8,11 @@ description: Review code changes critically. Auto-detects scope, checks guidelin
 
 ## Role
 
-Senior architect reviewing code. The fundamental question: is the change correct? Lens: correctness, design conformance, system health, simplicity. Good code acknowledged briefly — problems get attention.
+Senior architect reviewing code. The fundamental question: is the change correct? Lens: correctness, design conformance, system health, simplicity. Good code acknowledged briefly - problems get attention.
 
 ## Process
 
-**1 — Detect scope** (unless directed):
+**1 - Detect scope** (unless directed):
 ```bash
 git status --porcelain
 git log --oneline main..HEAD 2>/dev/null || git log --oneline master..HEAD 2>/dev/null
@@ -20,16 +20,16 @@ ls -t "${story_path}sessions/"*-plan-*.md 2>/dev/null | head -3
 ```
 Correlate plans with changed files. Form a scope hypothesis.
 
-**2 — Confirm scope:** Present branch, uncommitted changes, commits ahead of main, recent plans, correlation, proposed scope. Wait for confirmation.
+**2 - Confirm scope:** Present branch, uncommitted changes, commits ahead of main, recent plans, correlation, proposed scope. Wait for confirmation.
 
-**3 — Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. Load the Design Record the plan references; when one exists it is required alongside the plan. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing. Gather full diffs. Read all changed files completely.
+**3 - Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. Load the Design Record the plan references; when one exists it is required alongside the plan. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing. Gather full diffs. Read all changed files completely.
 
-**4 — Understand:** Approach taken, key components, design decisions, non-obvious behavior. Note plan deviations.
+**4 - Understand:** Approach taken, key components, design decisions, non-obvious behavior. Note plan deviations.
 
-**5 — Review:** Sort every finding into exactly one of three categories — never leave a finding untyped:
+**5 - Review:** Sort every finding into exactly one of three categories - never leave a finding untyped:
 - **Bugs:** Does the code do what it's supposed to? Edge cases, error handling, silent failures, security (input validation, auth, injection risks, sensitive data, hardcoded secrets), readability defects that hide a bug.
 - **Design-conformance failures:** Does the implementation match the approved Design Record / plan? Deviations not justified, steps skipped, contracts violated. Check against Plan alignment and against Design (when loaded in step 3).
-- **Design concerns:** The code is correct and matches the design, but the design itself now looks wrong in light of the implementation (system health, simplicity, architecture coherence, duplicated logic, unjustified abstractions, guideline anti-patterns, a change that contradicts an `established` pattern note or introduces a competing one, source-readability issues in new or significantly changed files such as a buried public surface). Invoke the `bob:architect` skill for this category (`references/design-lenses.md`, `references/patterns.md`, `references/interfaces-and-readability.md` as needed). These are not fixed as ordinary findings — route them toward `/bob:design` (revise the Design Record) or `/bob:reflect` (surface for the developer), not into an action item to patch here.
+- **Design concerns:** The code is correct and matches the design, but the design itself now looks wrong in light of the implementation (system health, simplicity, architecture coherence, duplicated logic, unjustified abstractions, guideline anti-patterns, a change that contradicts an `established` pattern note or introduces a competing one, source-readability issues in new or significantly changed files such as a buried public surface). Invoke the `bob:architect` skill for this category (`references/design-lenses.md`, `references/patterns.md`, `references/interfaces-and-readability.md` as needed). These are not fixed as ordinary findings - route them toward `/bob:design` (revise the Design Record) or `/bob:reflect` (surface for the developer), not into an action item to patch here.
 - **Done criteria:** Read `docs/process/done-criteria.md`. Verify each applicable item (file as bug or design-conformance failure depending on what failed).
 
 **Graph-assisted system health** (if a fresh Code Graph Context was emitted by `bob:code-graph` via the context protocol):
@@ -39,11 +39,11 @@ Correlate plans with changed files. Form a scope hypothesis.
 
 If no Code Graph Context is present (graphify absent, no graph, or stale), skip this and assess system health as above; the flow is otherwise unchanged.
 
-**Over-engineering pass:** If the Ponytail plugin is installed (its `/ponytail-review` command is available), run it on the same diff and fold its findings into the Simplicity assessment — deduplicate, don't double-report. If not installed, skip silently.
+**Over-engineering pass:** If the Ponytail plugin is installed (its `/ponytail-review` command is available), run it on the same diff and fold its findings into the Simplicity assessment - deduplicate, don't double-report. If not installed, skip silently.
 
-**PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues, technical debt, or improvement opportunities that are clearly out of scope for this story. In-scope findings go into the report — only route items that belong elsewhere.
+**PM step:** Before discussing findings, invoke `bob:work-routing` for any discovered issues, technical debt, or improvement opportunities that are clearly out of scope for this story. In-scope findings go into the report - only route items that belong elsewhere.
 
-**6 — Discuss:** One topic at a time, grouped by category (bugs / design-conformance failures / design concerns), each rated 🔴 Critical (must fix) · 🟡 Important (should fix) · 🟢 Suggestion. Briefly acknowledge good work. A clean review with no manufactured findings is a valid outcome — don't invent issues to fill sections.
+**6 - Discuss:** One topic at a time, grouped by category (bugs / design-conformance failures / design concerns), each rated 🔴 Critical (must fix) · 🟡 Important (should fix) · 🟢 Suggestion. Briefly acknowledge good work. A clean review with no manufactured findings is a valid outcome - don't invent issues to fill sections.
 
 Recommend `/bob:reflect` after significant agent-implemented changes.
 
@@ -51,7 +51,7 @@ Before writing the report: identify codebase patterns the change introduced, cha
 
 Ask before writing report - preview the verdict, the action items grouped 🔴 / 🟡 / 🟢, and the recommendation.
 
-**7 — Save.**
+**7 - Save.**
 
 ## Rules
 
@@ -150,7 +150,7 @@ _Reference only. The sections above hold everything needed to decide what to do.
 - {Non-obvious behavior, dependencies, gotchas}
 ```
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

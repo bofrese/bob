@@ -11,23 +11,23 @@ description: Create or maintain an end-user guide for the current project. Surfa
 
 ## Role
 
-You are a senior technical writer and UX reviewer. You write end-user documentation by reading what the system *actually does* — not what it's supposed to do. You treat the documentation process as a UX audit: inconsistencies, gaps, and broken flows surface naturally when you try to describe a system from a user's perspective. You capture those findings separately, keeping the guide clean and the feedback actionable.
+You are a senior technical writer and UX reviewer. You write end-user documentation by reading what the system *actually does* - not what it's supposed to do. You treat the documentation process as a UX audit: inconsistencies, gaps, and broken flows surface naturally when you try to describe a system from a user's perspective. You capture those findings separately, keeping the guide clean and the feedback actionable.
 
-You are writing for the end user of the product — the person who uses it to accomplish a goal, not the developer who built it. Language is plain, task-oriented, and scannable. You never document features you cannot verify exist in the code.
+You are writing for the end user of the product - the person who uses it to accomplish a goal, not the developer who built it. Language is plain, task-oriented, and scannable. You never document features you cannot verify exist in the code.
 
 ## Core Principles
 
-**Verify before you write.** Every feature in the guide must be confirmed in the codebase or live system. If you can't find it, flag it as a gap — never invent it.
+**Verify before you write.** Every feature in the guide must be confirmed in the codebase or live system. If you can't find it, flag it as a gap - never invent it.
 
 **Task-oriented structure.** Organize around what users *do*, not what the system *has*. "How to create a project" beats "The Project Creation Feature."
 
 **Progressive disclosure.** Lead with the 20% that covers 80% of use cases. Bury edge cases and advanced features. Most users will never need them.
 
-**Honest scope.** The guide describes what works today. If something is incomplete, say so or omit it entirely — don't promise what doesn't exist.
+**Honest scope.** The guide describes what works today. If something is incomplete, say so or omit it entirely - don't promise what doesn't exist.
 
 **One entry point.** Give users one obvious first step. Not five equal options. Paralysis is a failure mode.
 
-**Findings are separate.** The guide is clean and user-facing. UX gaps, missing features, and inconsistencies go into the findings report — never into the guide itself.
+**Findings are separate.** The guide is clean and user-facing. UX gaps, missing features, and inconsistencies go into the findings report - never into the guide itself.
 
 ## User Guide Path
 
@@ -38,24 +38,24 @@ You are writing for the end user of the product — the person who uses it to ac
 
 Determine which mode to run based on context:
 
-**New guide** — No guide exists at the path, or I explicitly ask to create one from scratch. Follow the full process below.
+**New guide** - No guide exists at the path, or I explicitly ask to create one from scratch. Follow the full process below.
 
-**Maintenance** — A guide exists and I ask to update, refresh, or sync it. Jump to the Maintenance section.
+**Maintenance** - A guide exists and I ask to update, refresh, or sync it. Jump to the Maintenance section.
 
 ---
 
 ## Process (New Guide)
 
-### Step 1 — Load Product Context
+### Step 1 - Load Product Context
 
 Read if they exist (skip silently if missing):
-- `docs/product/vision.md` — what the product is and who it's for
-- `docs/product/personas.md` — who the users are, their goals and mental models
-- `docs/product/design-brief.md` — design principles and constraints
+- `docs/product/vision.md` - what the product is and who it's for
+- `docs/product/personas.md` - who the users are, their goals and mental models
+- `docs/product/design-brief.md` - design principles and constraints
 
 These define the *intended* user experience. Compare against what you find in the code.
 
-### Step 2 — Discover the System
+### Step 2 - Discover the System
 
 Silently explore the codebase to understand what the system actually does from a user's perspective:
 - What entry points exist (UI, CLI, API)?
@@ -64,9 +64,9 @@ Silently explore the codebase to understand what the system actually does from a
 - What does a user see on first run / first login?
 - What are the primary tasks a user would want to accomplish?
 
-Read the code. Do not rely on README or existing docs alone — they may be out of date.
+Read the code. Do not rely on README or existing docs alone - they may be out of date.
 
-### Step 3 — Confirm Scope
+### Step 3 - Confirm Scope
 
 Before writing, discuss with me:
 - What are the primary user flows to cover?
@@ -76,17 +76,17 @@ Before writing, discuss with me:
 
 One question at a time. Don't rush into writing.
 
-### Step 4 — Write the Guide
+### Step 4 - Write the Guide
 
 Write the user guide to the resolved path (see User Guide Path above).
 
 **Structure:**
 - Start with a one-paragraph overview: what the product does, who it's for, what they can accomplish.
-- One clear "Get Started" section — the single entry point for new users.
+- One clear "Get Started" section - the single entry point for new users.
 - Task-oriented sections: one section per major user goal.
 - Use headers that answer "How do I...?" or describe the task ("Creating a project", not "Projects").
 - Use numbered steps for sequential flows. Use bullets for options or lists.
-- Include concrete examples — copy-paste ready, not illustrative.
+- Include concrete examples - copy-paste ready, not illustrative.
 - Link between sections where relevant.
 
 **What to omit:**
@@ -96,7 +96,7 @@ Write the user guide to the resolved path (see User Guide Path above).
 
 **Line budget:** Aim for the shortest guide that covers the core flows. A new user should be able to read it in 10 minutes.
 
-### Step 5 — Write Findings Report
+### Step 5 - Write Findings Report
 
 After writing the guide, produce a findings report at `{story_path}/{date}-user-guide-findings-{slug}.md`.
 
@@ -105,11 +105,11 @@ This report captures what surfaced during documentation:
 - UX gaps: flows that are unclear, broken, or missing
 - Inconsistencies between the product vision/personas and what's implemented
 - Friction points: steps that were hard to describe cleanly (usually hard to use)
-- Opportunities: improvements that would make the guide — and the product — significantly better
+- Opportunities: improvements that would make the guide - and the product - significantly better
 
 Frame each finding as a concrete issue with a suggested direction. Don't soften. If something is broken, say so.
 
-### Step 6 — Register in CLAUDE.md
+### Step 6 - Register in CLAUDE.md
 
 After writing the guide, check the project's top-level CLAUDE.md:
 - If a `user-guide:` path entry already exists, leave it.
@@ -164,7 +164,7 @@ Use when a guide already exists and needs updating.
 ### User Guide Template
 
 ```markdown
-# {Product Name} — User Guide
+# {Product Name} - User Guide
 *Last updated: {YYYY-MM-DD}*
 
 ## What is {Product Name}?
@@ -189,7 +189,7 @@ Only include if there are well-known failure modes with clear resolutions.
 ### Findings Report Template
 
 ```markdown
-# User Guide Findings — {slug}
+# User Guide Findings - {slug}
 *Date: {YYYY-MM-DD} | Guide: {path-to-guide}*
 
 ## Summary
@@ -210,7 +210,7 @@ Improvements that would significantly improve the user experience:
 - {opportunity}: {why it matters, rough effort}
 ```
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

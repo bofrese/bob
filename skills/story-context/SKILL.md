@@ -1,6 +1,6 @@
 ---
 name: story-context
-description: Invoke this skill at the start of every engineering command (brainstorm, design, plan, review-plan, implement, review, document, handover, reflect, learn, investigate, ui-review), after loading context files. Resolves which story is active via a 4-tier chain, confirms with the user, and establishes the story folder path for artifact placement. Follow the protocol exactly — do not proceed until story context is confirmed.
+description: Invoke this skill at the start of every engineering command (brainstorm, design, plan, review-plan, implement, review, document, handover, reflect, learn, investigate, ui-review), after loading context files. Resolves which story is active via a 4-tier chain, confirms with the user, and establishes the story folder path for artifact placement. Follow the protocol exactly - do not proceed until story context is confirmed.
 version: 1.0.0
 ---
 
@@ -16,9 +16,9 @@ The skill invocation system provides an absolute base directory for this skill. 
 
 Before resolving a story, decide whether this work needs tracking at all:
 
-- `true` — durable Brainstorm, Design, Plan, Review Plan, Implement, Review, Reflect, or Learn artifacts tied to a story. Proceed with the resolution chain below.
-- `false` — read-only analysis, a micro-reflection, or Dev fast-path work, unless the user explicitly asks for tracking. Skip story resolution entirely; do not create or require a story.
-- **Ambiguous** — ask the user directly, once, rather than defaulting either way.
+- `true` - durable Brainstorm, Design, Plan, Review Plan, Implement, Review, Reflect, or Learn artifacts tied to a story. Proceed with the resolution chain below.
+- `false` - read-only analysis, a micro-reflection, or Dev fast-path work, unless the user explicitly asks for tracking. Skip story resolution entirely; do not create or require a story.
+- **Ambiguous** - ask the user directly, once, rather than defaulting either way.
 
 A missing story is a routing question, not proof that work cannot proceed. Never create a story merely to satisfy this protocol.
 
@@ -26,7 +26,7 @@ A missing story is a routing question, not proof that work cannot proceed. Never
 
 Work through the tiers in order. Stop at the first tier that yields a result.
 
-### Tier 1 — Path-derived (certain)
+### Tier 1 - Path-derived (certain)
 
 **Trigger:** A file argument was provided and its path contains `projects/[sub]/stories/[ID]/`.
 
@@ -34,11 +34,11 @@ Work through the tiers in order. Stop at the first tier that yields a result.
 bash "$SKILL_BASE_DIR/scripts/detect-story-from-path.sh" "<file-arg-path>"
 ```
 
-If the script outputs `SUBPROJECT=` and `STORY_ID=`, the story is certain. Print the Story Context block and proceed — no confirmation needed.
+If the script outputs `SUBPROJECT=` and `STORY_ID=`, the story is certain. Print the Story Context block and proceed - no confirmation needed.
 
 ---
 
-### Tier 2 — Explicit mention (certain)
+### Tier 2 - Explicit mention (certain)
 
 **Trigger:** No file arg, but the conversation or args contain a pattern matching `[A-Z]+-[0-9]+` (e.g. `BOB-001`).
 
@@ -48,11 +48,11 @@ Resolve the path: `projects/[subproject]/stories/[STORY-ID]/`. Run:
 bash "$SKILL_BASE_DIR/scripts/detect-story-from-path.sh" "projects/[subproject]/stories/[STORY-ID]/_index.md"
 ```
 
-If the directory exists, print the Story Context block and proceed — no confirmation needed.
+If the directory exists, print the Story Context block and proceed - no confirmation needed.
 
 ---
 
-### Tier 3 — Obsidian open tabs (probable)
+### Tier 3 - Obsidian open tabs (probable)
 
 **Trigger:** Tiers 1-2 yielded nothing. Try Obsidian.
 
@@ -61,14 +61,14 @@ bash "$SKILL_BASE_DIR/scripts/get-open-obsidian-files.sh" | bash "$SKILL_BASE_DI
 ```
 
 - **Zero results:** Fall through to tier 4.
-- **One result:** Print the Story Context block and ask: "I see `[story-id]` open in Obsidian — is that the story we're working on?"
+- **One result:** Print the Story Context block and ask: "I see `[story-id]` open in Obsidian - is that the story we're working on?"
 - **Multiple results:** List all candidates and ask the user to choose.
 
 If the Obsidian CLI is unavailable (command fails), skip tiers 3 and 4 silently.
 
 ---
 
-### Tier 4 — Obsidian recents (uncertain)
+### Tier 4 - Obsidian recents (uncertain)
 
 **Trigger:** Tier 3 yielded nothing. Try recents.
 
@@ -76,11 +76,11 @@ If the Obsidian CLI is unavailable (command fails), skip tiers 3 and 4 silently.
 bash "$SKILL_BASE_DIR/scripts/get-recent-obsidian-files.sh" | bash "$SKILL_BASE_DIR/scripts/filter-story-paths.sh" | head -1
 ```
 
-Take the most recent match. Print the Story Context block and ask: "The most recently opened story file I can see is `[story-id]` — is that what we're working on?"
+Take the most recent match. Print the Story Context block and ask: "The most recently opened story file I can see is `[story-id]` - is that what we're working on?"
 
 ---
 
-### Fallback — Stop and ask
+### Fallback - Stop and ask
 
 **Trigger:** All tiers exhausted with no result, or user declined all suggestions.
 
@@ -99,7 +99,7 @@ If `projects/` does not exist at all: invoke the `bob:project-tracking` skill an
 
 ## Story Context Output Block
 
-Once a story is confirmed, print this block exactly — downstream commands parse it:
+Once a story is confirmed, print this block exactly - downstream commands parse it:
 
 ```
 **Story Context**
@@ -113,12 +113,12 @@ If a task ID was detected, add a fourth line:
 - Task ID: `[TASK-ID]`
 ```
 
-After printing the block, set `story_path = projects/[subproject]/stories/[STORY-ID]/` in your working memory. Session artifacts (brainstorm, plan, review, etc.) are written to `{story_path}sessions/` — see the command's own Output section for the exact filename pattern.
+After printing the block, set `story_path = projects/[subproject]/stories/[STORY-ID]/` in your working memory. Session artifacts (brainstorm, plan, review, etc.) are written to `{story_path}sessions/` - see the command's own Output section for the exact filename pattern.
 
 ---
 
 ## Notes
 
 - Tiers 3 and 4 require Obsidian to be running. If the CLI is unavailable, skip silently to fallback.
-- Tiers 1 and 2 are certain — proceed without asking. Tiers 3 and 4 are inferred — always ask.
+- Tiers 1 and 2 are certain - proceed without asking. Tiers 3 and 4 are inferred - always ask.
 - Do not cache story context across separate command invocations. Each command invocation resolves fresh.

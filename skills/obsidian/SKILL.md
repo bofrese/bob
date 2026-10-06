@@ -131,7 +131,7 @@ Returns one vault-relative path per line for every open markdown tab. Use this i
 obsidian recents
 ```
 
-Returns recently opened files as vault-relative paths, most recent first. History-based — reflects past visits, not current open tabs.
+Returns recently opened files as vault-relative paths, most recent first. History-based - reflects past visits, not current open tabs.
 
 ## Setup Instructions (for users with no vault)
 

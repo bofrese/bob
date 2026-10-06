@@ -24,12 +24,12 @@ Most people use LinkedIn like a billboard. The best use it like a relationship l
 
 LinkedIn's algorithm has one job: keep people on LinkedIn.
 
-- **Suppresses external links** in post body (~30-50% reach penalty) — always put links in first comment
-- **Rewards dwell time** — long-form text, carousels, and documents people scroll through perform best
+- **Suppresses external links** in post body (~30-50% reach penalty) - always put links in first comment
+- **Rewards dwell time** - long-form text, carousels, and documents people scroll through perform best
 - **Signal quality ranking:** saves > shares > comments > likes
-- **Engagement velocity in first 60-90 minutes** determines amplification — reply to early comments fast
+- **Engagement velocity in first 60-90 minutes** determines amplification - reply to early comments fast
 - **Penalises double-posting** on the same day
-- **Learns your content type** over time — consistency trains it
+- **Learns your content type** over time - consistency trains it
 
 ---
 
@@ -40,11 +40,11 @@ LinkedIn's algorithm has one job: keep people on LinkedIn.
 | Short post (150-300w) | Frequency, algorithm training, top-of-mind | 3-5x/week | One idea, one opinion |
 | Long post (500-1200w) | Authority-building, deep trust | 1-2x/week | Frameworks, counterintuitive arguments |
 | Carousel / Document | Highest dwell time, highest save rate | 1-2x/month | Frameworks, step-by-step guides |
-| LinkedIn Article | Search/profile asset, evergreen authority | 1-2x/month | Definitive guides — NOT a feed strategy |
+| LinkedIn Article | Search/profile asset, evergreen authority | 1-2x/month | Definitive guides - NOT a feed strategy |
 | Video | Personal connection, trust acceleration | Optional | Only if genuinely differentiated on camera |
 | Poll | Reach spike, audience research | Max 1x/month | Data to reference in a future post |
 
-**The hook is everything.** LinkedIn truncates after ~2 lines. 80% of a post's value is the first sentence. Write pattern interrupts — unexpected statements, counterintuitive claims, bold numbers. No warmup. No "I was thinking about...".
+**The hook is everything.** LinkedIn truncates after ~2 lines. 80% of a post's value is the first sentence. Write pattern interrupts - unexpected statements, counterintuitive claims, bold numbers. No warmup. No "I was thinking about...".
 
 **White space is a weapon.** One sentence per line forces dwell time.
 
@@ -54,7 +54,7 @@ LinkedIn's algorithm has one job: keep people on LinkedIn.
 
 **Never put external links in post body.** Write "Link in comments" and post the URL in the first comment.
 
-LinkedIn Articles can link to your site for the "full version" or lead magnet — this is the bridge between LinkedIn's native ecosystem and your owned assets.
+LinkedIn Articles can link to your site for the "full version" or lead magnet - this is the bridge between LinkedIn's native ecosystem and your owned assets.
 
 See **`references/content-strategy.md`** for full content format details, the monthly architecture, the 6-month compound strategy, and the link strategy.
 
@@ -62,12 +62,12 @@ See **`references/content-strategy.md`** for full content format details, the mo
 
 ## The Pillar System
 
-Pick 3 content pillars — topics you *own*. Everything you post sits in one of these buckets. Rotating across pillars prevents audience fatigue and tells the algorithm (and readers) what you stand for.
+Pick 3 content pillars - topics you *own*. Everything you post sits in one of these buckets. Rotating across pillars prevents audience fatigue and tells the algorithm (and readers) what you stand for.
 
 Example pillars for a software architect consultant:
 1. Technical leadership (the craft)
 2. Organisational / agile systems (the practice)
-3. Business of consulting (the meta-layer — builds trust fastest)
+3. Business of consulting (the meta-layer - builds trust fastest)
 
 **Generic expertise is invisible. Specific expertise with a clear point of view is magnetic.**
 
@@ -83,7 +83,7 @@ See **`references/comments.md`** for full comment anatomy, targeting tiers, timi
 
 ## DM Strategy (Summary)
 
-Posts warm the relationship. DMs convert it. The DM is never the opening move — it follows prior contact.
+Posts warm the relationship. DMs convert it. The DM is never the opening move - it follows prior contact.
 
 **Four valid reasons to DM:** they engaged with your content, you engaged with theirs, a mutual connection recommended it, or you have a specific non-generic reason.
 
@@ -106,4 +106,4 @@ See **`references/profile-and-engagement.md`** for full profile structure and da
 
 The consultants who win on LinkedIn aren't the best writers or the most prolific posters.
 
-They are the ones who are **the most specific about who they are, what they believe, and who they serve** — and they say it, repeatedly, in different ways, until their target audience self-selects and comes to them.
+They are the ones who are **the most specific about who they are, what they believe, and who they serve** - and they say it, repeatedly, in different ways, until their target audience self-selects and comes to them.

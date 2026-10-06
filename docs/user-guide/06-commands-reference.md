@@ -15,7 +15,7 @@ Quick lookup for all bob commands, organized by layer.
 
 ## Discovery Commands
 
-Use these to figure out what to build and why. All optional—skip if you have clear strategy already.
+Use these to figure out what to build and why. All optional-skip if you have clear strategy already.
 
 ### `/bob:product-coach`
 **The entry point for product strategy work.**
@@ -48,7 +48,7 @@ Creates or updates your strategic north star. Everything else flows from this.
 ### `/bob:personas`
 **Define the real people you're building for.**
 
-Detailed characters with goals, behaviors, frustrations—not demographics.
+Detailed characters with goals, behaviors, frustrations-not demographics.
 
 | | |
 |---|---|
@@ -136,7 +136,7 @@ The core pipeline: idea → plan → code → review → shipped.
 ### `/bob:brainstorm`
 **Structured ideation for a feature.**
 
-Coaches you through diverge → converge → detail → commit. Challenges the idea for value — does not decide architecture.
+Coaches you through diverge → converge → detail → commit. Challenges the idea for value - does not decide architecture.
 
 | | |
 |---|---|
@@ -151,7 +151,7 @@ Coaches you through diverge → converge → detail → commit. Challenges the i
 ### `/bob:design`
 **Form the simplest coherent conceptual design for a capability.**
 
-Socratic, evidence-based, and human-owned. Investigates the repository first, then runs a Socratic conversation about concepts, boundaries, and trade-offs — one question or tightly-related batch at a time.
+Socratic, evidence-based, and human-owned. Investigates the repository first, then runs a Socratic conversation about concepts, boundaries, and trade-offs - one question or tightly-related batch at a time.
 
 | | |
 |---|---|
@@ -181,7 +181,7 @@ Self-contained so someone without the conversation context can execute it. Loads
 ### `/bob:review-plan`
 **Independent critical review of a plan.**
 
-Fresh context. Doesn't trust the plan's assumptions—re-reads the codebase. Looks for gaps, oversimplifications, security issues, simpler alternatives.
+Fresh context. Doesn't trust the plan's assumptions-re-reads the codebase. Looks for gaps, oversimplifications, security issues, simpler alternatives.
 
 | | |
 |---|---|
@@ -255,7 +255,7 @@ Short, non-quizzy peer conversation. Assumes `/bob:review` settled correctness a
 ### `/bob:learn`
 **Extract durable harness lessons, or none.**
 
-Runs at the end of a session (typically after Reflect). Classifies evidence — corrections, interruptions, repeated Review findings, missing tools — into destinations: a durable bob prompt/skill improvement, a staged occurrence (not yet a pattern), or nothing. "No lesson this time" is a valid, common outcome.
+Runs at the end of a session (typically after Reflect). Classifies evidence - corrections, interruptions, repeated Review findings, missing tools - into destinations: a durable bob prompt/skill improvement, a staged occurrence (not yet a pattern), or nothing. "No lesson this time" is a valid, common outcome.
 
 | | |
 |---|---|
@@ -264,7 +264,7 @@ Runs at the end of a session (typically after Reflect). Classifies evidence — 
 | **Start here when** | End of a session that exposed a reusable harness lesson |
 | **Time** | 5 – 15min |
 
-`/bob:improve-command` is a thin, scoped wrapper over this — limited to a single command's improvement.
+`/bob:improve-command` is a thin, scoped wrapper over this - limited to a single command's improvement.
 
 ---
 
@@ -336,10 +336,10 @@ Research-first: official style guides and standards, *then* your code. Elevates 
 No phases, no overhead. Call it mid-session without breaking flow.
 
 ```
-/bob:remember We should avoid X because of Y — discovered in AUTH-002
+/bob:remember We should avoid X because of Y - discovered in AUTH-002
 ```
 
-With no arguments: asks "What should I remember?" — one question, done. Writes to `knowledge/_INBOX/`. Bootstraps the vault on first use.
+With no arguments: asks "What should I remember?" - one question, done. Writes to `knowledge/_INBOX/`. Bootstraps the vault on first use.
 
 | | |
 |---|---|
@@ -363,7 +363,7 @@ With no arguments: asks "What should I remember?" — one question, done. Writes
 | Command | What it does |
 |---------|-------------|
 | `/bob:library` | Vault status: inbox count, note counts, pending suggestions |
-| `/bob:library process` | Work through inbox items interactively — propose type, tags, filename; file on approval |
+| `/bob:library process` | Work through inbox items interactively - propose type, tags, filename; file on approval |
 | `/bob:library ingest <url-or-file>` | Ingest an external source directly into a typed note |
 | `/bob:library retrieve <query>` | Search vault for notes matching a query |
 | `/bob:library organise` | Vault health check: orphaned notes, tag consistency, MOC candidates |
@@ -387,8 +387,8 @@ Reads your kanban boards, assesses project state, recommends what to work on nex
 | **Time** | 10 – 20min |
 
 **Modes:**
-- **Default:** First checks `bob:story-context` — if you're resuming a specific story, it summarizes that story's state and recommends the next command directly instead of a generic dashboard. Otherwise it treats this as new work, risk-classifies it, recommends fast/standard/full, and only creates a story if tracking is actually needed. Falls through to the kanban dashboard either way.
-- **Context optimization:** "Help me start a session on [feature]" — tells you exactly which files to load and which command to run.
+- **Default:** First checks `bob:story-context` - if you're resuming a specific story, it summarizes that story's state and recommends the next command directly instead of a generic dashboard. Otherwise it treats this as new work, risk-classifies it, recommends fast/standard/full, and only creates a story if tracking is actually needed. Falls through to the kanban dashboard either way.
+- **Context optimization:** "Help me start a session on [feature]" - tells you exactly which files to load and which command to run.
 - **Command recommendation:** Describe what you want to do and pm identifies the right command.
 - **Status report:** Writes a structured report covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
 
@@ -422,7 +422,7 @@ Finds bloat, ambiguity, missing guardrails. Proposes leaner version.
 ---
 
 ### `/bob:improve-command`
-**Extract learnings from a completed session — scoped to one command.**
+**Extract learnings from a completed session - scoped to one command.**
 
 A thin wrapper over `/bob:learn`, scoped to a single command's design/process/output. Kept available during the transition; `/bob:learn` is now the primary, session-wide version of this.
 
@@ -438,7 +438,7 @@ A thin wrapper over `/bob:learn`, scoped to a single command's design/process/ou
 ### `/bob:setup`
 **Bootstrap or upgrade Bob infrastructure on any project.**
 
-Idempotent — safe to run on new or existing projects. Creates what's missing, upgrades stale infrastructure, leaves everything else untouched. The right starting point for a new project.
+Idempotent - safe to run on new or existing projects. Creates what's missing, upgrades stale infrastructure, leaves everything else untouched. The right starting point for a new project.
 
 What it creates/checks:
 - `projects/{name}/` with initial kanban board
@@ -450,7 +450,7 @@ What it creates/checks:
 | | |
 |---|---|
 | **Checks** | `projects/`, `knowledge/`, `personal/`, `.gitignore`, done-criteria |
-| **Writes** | Missing infrastructure — one confirmation covers all changes |
+| **Writes** | Missing infrastructure - one confirmation covers all changes |
 | **Start here when** | Setting up a new project, or after installing bob on an existing project |
 | **Time** | 5 – 10min |
 
@@ -483,7 +483,7 @@ Art direction coaching for visual design, UI, brand. Works as a creative partner
 | **Start here when** | You need visual design direction or creative feedback |
 
 ### `/bob:dev`
-**Fast path — no pipeline.** Working session for code discussion, quick fixes, and direct changes: no brainstorm/design/plan/review cycle. Checks each change against a four-question escalation test (new concept? contract change? boundary crossing? hard to reverse?) — any "yes" means it recommends `/bob:design` instead of proceeding.
+**Fast path - no pipeline.** Working session for code discussion, quick fixes, and direct changes: no brainstorm/design/plan/review cycle. Checks each change against a four-question escalation test (new concept? contract change? boundary crossing? hard to reverse?) - any "yes" means it recommends `/bob:design` instead of proceeding.
 
 | | |
 |---|---|
@@ -503,7 +503,7 @@ Create or maintain the user-facing documentation for this project.
 
 **Follow session boundaries.** They exist for a reason: clean context, explicit decisions, honest critique.
 
-**Read the reports before the next phase.** They're not just logs—they're context the next command builds on and your chance to catch problems early.
+**Read the reports before the next phase.** They're not just logs-they're context the next command builds on and your chance to catch problems early.
 
 **Edit the plans.** Plans include a "Questions & Decisions" table. Your job is to review it, approve, override, add context.
 
@@ -513,5 +513,5 @@ Create or maintain the user-facing documentation for this project.
 
 ## Next Steps
 
-- [Engineering Workflows](02-engineering-workflows.md) — How to use these commands together
-- [Project Management](04-project-management.md) — How work is organized
+- [Engineering Workflows](02-engineering-workflows.md) - How to use these commands together
+- [Project Management](04-project-management.md) - How work is organized

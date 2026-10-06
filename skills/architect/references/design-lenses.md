@@ -2,7 +2,7 @@
 
 ## Good design in BOB
 
-Optimize for whole-system comprehensibility and conceptual integrity — not formal adherence to named principles.
+Optimize for whole-system comprehensibility and conceptual integrity - not formal adherence to named principles.
 
 Use SOLID, DRY, KISS, YAGNI, cohesion, coupling, information hiding, dependency direction, modularity, testability, DDD, and similar ideas as diagnostic lenses. Never treat them as independent objectives or scores.
 

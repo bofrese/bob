@@ -50,9 +50,9 @@ Or manually create `projects/[PROJECT]/stories/[ID]/` with `_index.md` and `_kan
 
 ### "I can't remember which story I was working on"
 
-Run `/bob:pm` — it shows recent activity and can tell you which stories are in progress.
+Run `/bob:pm` - it shows recent activity and can tell you which stories are in progress.
 
-Or check your Obsidian vault — Bob tries to detect open or recently-edited story files automatically.
+Or check your Obsidian vault - Bob tries to detect open or recently-edited story files automatically.
 
 ### "The story folder got created but Bob can't find it"
 
@@ -94,7 +94,7 @@ Perfectionism is a failure mode. "Good enough that I can plan it" is the thresho
 
 ### "I'm saving a brainstorm but realized we missed something"
 
-That's fine. Save it. Then run another brainstorm on the same story for the missing aspect. Or save and immediately run `/bob:plan` — the planning phase often surfaces what the brainstorm missed.
+That's fine. Save it. Then run another brainstorm on the same story for the missing aspect. Or save and immediately run `/bob:plan` - the planning phase often surfaces what the brainstorm missed.
 
 ---
 
@@ -122,7 +122,7 @@ That's what the review-plan phase is for. Run `/bob:review-plan`. If it also fla
 
 ### "The review contradicted something in the plan"
 
-Great—that's the review working. Read the contradiction carefully. The review might be wrong, or the plan might need adjustment.
+Great-that's the review working. Read the contradiction carefully. The review might be wrong, or the plan might need adjustment.
 
 Update the plan to address the finding. Then re-run `/bob:review-plan` or at least carefully verify the fix before implementing.
 
@@ -142,7 +142,7 @@ They're probably right about different things. Synthesize: what's the resolution
 
 Bob stops and asks. Answer the question. It's information the plan was missing.
 
-After the session, consider whether the plan should have caught this. If so, that's a learning for how to plan better next time. If the problem was genuinely unexpected, it's fine—the implementation report notes it.
+After the session, consider whether the plan should have caught this. If so, that's a learning for how to plan better next time. If the problem was genuinely unexpected, it's fine-the implementation report notes it.
 
 ### "I disagree with how the AI implemented something"
 
@@ -206,7 +206,7 @@ Document high-level decisions, architecture, and features. Don't document implem
 ### "I created a guideline but nobody follows it"
 
 Reasons:
-1. **It's not loaded.** Guidelines in `docs/guidelines/` are loaded by engineering commands automatically—but only if they're there *before* the session starts. Did you create it? Does the file exist?
+1. **It's not loaded.** Guidelines in `docs/guidelines/` are loaded by engineering commands automatically-but only if they're there *before* the session starts. Did you create it? Does the file exist?
 2. **It's too vague.** "Be clean" doesn't help. "Use composition over inheritance, one component per file, lift shared state to parent" does.
 3. **It contradicts the code.** If 80% of your code doesn't follow the guideline, the guideline is wrong. Update it.
 
@@ -230,7 +230,7 @@ Messy project state makes it hard to find context. Spend 10 minutes every week c
 
 ### "I have too many stories in-progress"
 
-Kanban is a visibility tool. If you have 10 stories in the In Progress column, you're not managing workflow—you're just tracking. Limit to 2-3 stories in progress. Finish them or move them to Blocked.
+Kanban is a visibility tool. If you have 10 stories in the In Progress column, you're not managing workflow-you're just tracking. Limit to 2-3 stories in progress. Finish them or move them to Blocked.
 
 ### "The kanban board doesn't match what I'm actually working on"
 
@@ -311,4 +311,4 @@ Open an issue on GitHub with these details.
 
 ## Next Steps
 
-Still stuck? Run `/bob:pm` — the project mentor has holistic view of the system and can suggest next steps based on your specific situation.
+Still stuck? Run `/bob:pm` - the project mentor has holistic view of the system and can suggest next steps based on your specific situation.

@@ -4,11 +4,11 @@ description: Non-deferrable. Invoke before responding to any new request at the 
 user-invocable: false
 ---
 
-# Done Criteria — Protocol
+# Done Criteria - Protocol
 
 This skill does two jobs: it defines **how commands interact with the done system**, and it contains the **bootstrap template** that seeds a fresh project.
 
-The protocol has four distinct responsibilities — verification, knowledge candidates, work routing, administration — even though one command invocation still orchestrates all four in sequence. Keeping them conceptually separate is what lets each follow its own rule (verification is non-deferrable; administration is not) instead of one blanket "always do all of this" policy.
+The protocol has four distinct responsibilities - verification, knowledge candidates, work routing, administration - even though one command invocation still orchestrates all four in sequence. Keeping them conceptually separate is what lets each follow its own rule (verification is non-deferrable; administration is not) instead of one blanket "always do all of this" policy.
 
 ---
 
@@ -17,7 +17,7 @@ The protocol has four distinct responsibilities — verification, knowledge cand
 - **Verification is non-deferrable for mutations.** A command that changed code or a durable artifact cannot skip Responsibility 1.
 - **Knowledge persistence requires classification and usually human confirmation.** Responsibility 2 stages candidates; it does not silently write durable rules.
 - **Work routing asks once per distinct item set.** Never prompt the user twice for the same discovered items in one session (see the "skip if already routed" note under Responsibility 3).
-- **Administration must not block a completed technical result when infrastructure is absent.** Missing `personal/daily/`, no story context, no kanban — skip silently, do not treat as a failure.
+- **Administration must not block a completed technical result when infrastructure is absent.** Missing `personal/daily/`, no story context, no kanban - skip silently, do not treat as a failure.
 - **Fast-path work without a story skips story history and kanban mutation.** No story path resolved means Responsibility 4's story-history and kanban steps are silently skipped, not flagged as incomplete.
 - **Design completion cannot be reduced to "all sections filled."** Unresolved uncertainty explicitly marked as safe to defer is a valid result.
 - **Reflect completion means the important ownership question was explored**, not that the human passed a quiz. A short "no gap" record is valid.
@@ -39,7 +39,7 @@ If it **does** exist: do nothing. It's already bootstrapped.
 
 ---
 
-## Responsibility 1 — Verification
+## Responsibility 1 - Verification
 
 Command-specific completion checks. Non-deferrable for any command that mutated code or a durable artifact.
 
@@ -49,8 +49,8 @@ Which items apply:
 - `implement` → Code changes section
 - `plan` → Plans section
 - `review`, `review-plan` → Reviews section
-- `design` → Design section. Completion is not "all sections filled" — unresolved uncertainty explicitly marked as safe to defer is a valid result.
-- `reflect` → Reflection section. Completion means the important ownership question was explored, not that the human passed a quiz — a short "no gap" record is a valid result.
+- `design` → Design section. Completion is not "all sections filled" - unresolved uncertainty explicitly marked as safe to defer is a valid result.
+- `reflect` → Reflection section. Completion means the important ownership question was explored, not that the human passed a quiz - a short "no gap" record is a valid result.
 - `learn` → Harness learning section. "No persistent lesson" is a valid, complete result.
 - `document` → Documentation section
 - `handover` → Handover section
@@ -58,13 +58,13 @@ Which items apply:
 
 **Register new artifact types:** If your command introduces an artifact type that isn't already tracked in `docs/process/done-criteria.md`, add a new subsection under DONE with the appropriate criteria. This is how the list grows as a project adopts more commands.
 
-**The golden rule:** criteria must be generic, not feature-specific. "Tests must pass" — yes. "The login tests must pass" — no. Feature-specific dependencies belong in the plan.
+**The golden rule:** criteria must be generic, not feature-specific. "Tests must pass" - yes. "The login tests must pass" - no. Feature-specific dependencies belong in the plan.
 
 ---
 
-## Responsibility 2 — Knowledge candidates
+## Responsibility 2 - Knowledge candidates
 
-Decisions, patterns, or corrections worth considering for durable persistence. Staging, not automatic writing — classification and (usually) human confirmation gate anything that actually persists.
+Decisions, patterns, or corrections worth considering for durable persistence. Staging, not automatic writing - classification and (usually) human confirmation gate anything that actually persists.
 
 Before finishing, explicitly list any of the following that emerged this session and aren't already in your output artifact:
 
@@ -76,16 +76,16 @@ For each item found: name it, explain why it matters, and recommend the specific
 
 Also check for:
 
-4. **Decisions and insights** not yet captured in `knowledge/` → write candidates to `knowledge/_INBOX/YYYY-MM-DD-<slug>.md` (frontmatter: `title:`, `type: inbox`, `timestamp: YYYY-MM-DDThh:mm:ssZ`; body: the decision or insight) and surface nudge: "N item(s) captured to `knowledge/_INBOX/` — run `/bob:library process` to file them." Skip if `knowledge/` does not exist. If `knowledge/_INBOX/` does not exist, run `mkdir -p knowledge/_INBOX/` before writing.
-5. **Repeated corrections or interruptions** worth staging as a harness-learning candidate → append to `docs/process/learnings.md` per `bob:learn`'s `references/persistence-map.md` (create the file if missing, using that reference's bootstrap format). Do not classify or persist a durable harness change here — that is `/bob:learn`'s job; this step only stages the evidence so a second occurrence is recognizable later.
+4. **Decisions and insights** not yet captured in `knowledge/` → write candidates to `knowledge/_INBOX/YYYY-MM-DD-<slug>.md` (frontmatter: `title:`, `type: inbox`, `timestamp: YYYY-MM-DDThh:mm:ssZ`; body: the decision or insight) and surface nudge: "N item(s) captured to `knowledge/_INBOX/` - run `/bob:library process` to file them." Skip if `knowledge/` does not exist. If `knowledge/_INBOX/` does not exist, run `mkdir -p knowledge/_INBOX/` before writing.
+5. **Repeated corrections or interruptions** worth staging as a harness-learning candidate → append to `docs/process/learnings.md` per `bob:learn`'s `references/persistence-map.md` (create the file if missing, using that reference's bootstrap format). Do not classify or persist a durable harness change here - that is `/bob:learn`'s job; this step only stages the evidence so a second occurrence is recognizable later.
 
 If none of the categories apply: skip silently.
 
 ---
 
-## Responsibility 3 — Work routing
+## Responsibility 3 - Work routing
 
-Unresolved product/code work discovered during the session — issues, technical debt, deferred ideas.
+Unresolved product/code work discovered during the session - issues, technical debt, deferred ideas.
 
 If your command discovered issues, technical debt, or improvement opportunities during this session:
 
@@ -98,17 +98,17 @@ If your command discovered issues, technical debt, or improvement opportunities 
 - **no** → skip tracking; items remain in the command output only
 - **specify** → user can exclude or redirect individual items before filing
 
-**Step 4:** After filing, confirm: "Filed to kanban: [summary — e.g., BOB-004 Issues +2, INBOX +1]." For 🔴 Critical items: name them explicitly in the summary.
+**Step 4:** After filing, confirm: "Filed to kanban: [summary - e.g., BOB-004 Issues +2, INBOX +1]." For 🔴 Critical items: name them explicitly in the summary.
 
-Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm`, `design`, `handover`, `reflect`, `learn` — engineering tier commands that touch or read code, or that classify harness lessons.
+Commands this applies to: `review`, `implement`, `plan`, `document`, `investigate`, `review-plan`, `brainstorm`, `design`, `handover`, `reflect`, `learn` - engineering tier commands that touch or read code, or that classify harness lessons.
 
-**Skip if already routed:** If a mid-session PM step already ran during this session and routed all discovered items, skip this responsibility to avoid prompting the user twice for the same items — this is the "work routing asks once per distinct item set" rule above.
+**Skip if already routed:** If a mid-session PM step already ran during this session and routed all discovered items, skip this responsibility to avoid prompting the user twice for the same items - this is the "work routing asks once per distinct item set" rule above.
 
 Commands that skip this: Discovery commands (`product-vision`, `personas`, `design-brief`).
 
 ---
 
-## Responsibility 4 — Administration
+## Responsibility 4 - Administration
 
 Daily notes, story history, kanban updates. Must never block a completed technical result when the relevant infrastructure (a daily-notes folder, a story path) is simply absent.
 
@@ -141,7 +141,7 @@ date: YYYY-MM-DD
 
 ## Notes
 ```
-No confirmation needed — personal content, gitignored entirely.
+No confirmation needed - personal content, gitignored entirely.
 
 **Update story history:** Every session artifact gets exactly one row in `{story_path}/_index.md`. The command that writes the artifact adds it immediately; this step confirms it exists and adds it if it does not. Never add a second row for the same file.
 
@@ -151,11 +151,11 @@ No confirmation needed — personal content, gitignored entirely.
 
 Where:
 - `{type}` is the command type (Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Documentation, Handover, Reflection, Harness Learning, Investigation, UI Review)
-- `{filename}` is `sessions/[artifact-filename]` — all session artifacts live in the story's `sessions/` subfolder, never at the story root
+- `{filename}` is `sessions/[artifact-filename]` - all session artifacts live in the story's `sessions/` subfolder, never at the story root
 - `{one-line summary}` is what was done
 - `{outcome}` is the result (e.g. Committed, Draft, Ready, Approve with changes, Completed, Root cause identified)
 
-If `story_path` was not resolved (e.g. a Discovery command with no story context, or fast-path work that skipped story creation), skip this step silently — this is the "fast-path work skips story history and kanban mutation" rule above.
+If `story_path` was not resolved (e.g. a Discovery command with no story context, or fast-path work that skipped story creation), skip this step silently - this is the "fast-path work skips story history and kanban mutation" rule above.
 
 ---
 
@@ -173,7 +173,7 @@ Everything below the `---` is the template. Copy it verbatim into `docs/process/
 
 ---
 
-## READY — Before work starts
+## READY - Before work starts
 
 These must be true before `implement` (or any execution command) begins:
 
@@ -183,7 +183,7 @@ These must be true before `implement` (or any execution command) begins:
 
 ---
 
-## DONE — Before output is considered complete
+## DONE - Before output is considered complete
 
 Every command checks applicable items before finishing.
 

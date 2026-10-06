@@ -1,10 +1,10 @@
-# Bob Skills — Dense Reference
+# Bob Skills - Dense Reference
 
 Skills are thinking frameworks loaded into context when commands need them. Most are read-only reference frameworks (no file I/O). Exceptions noted.
 
 ---
 
-## `bob:context-protocol` — Session Bootstrap
+## `bob:context-protocol` - Session Bootstrap
 
 **File I/O:** Reads per-command file list (see table below). No writes.
 
@@ -37,7 +37,7 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 
 ---
 
-## `bob:story-context` — Active Story Resolution
+## `bob:story-context` - Active Story Resolution
 
 **File I/O:**
 - **Reads:** `projects/*/stories/*/` (via scripts); Obsidian workspace state (tiers 3-4)
@@ -46,19 +46,19 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 **Invoked by:** Every engineering command (via context-protocol), after file loading.
 
 **Resolution chain (4 tiers + fallback):**
-1. **Tier 1 — Path-derived (certain):** File arg contains `projects/[sub]/stories/[ID]/` → extract via `detect-story-from-path.sh`
-2. **Tier 2 — Explicit mention (certain):** Args/conversation contain `[A-Z]+-[0-9]+` pattern → resolve path and verify directory exists
-3. **Tier 3 — Obsidian open tabs (probable):** Query open markdown tabs via `obsidian eval`; filter for story paths; ask if one match, list if multiple
-4. **Tier 4 — Obsidian recents (uncertain):** Query recents via `obsidian recents`; take most recent story path; ask for confirmation
+1. **Tier 1 - Path-derived (certain):** File arg contains `projects/[sub]/stories/[ID]/` → extract via `detect-story-from-path.sh`
+2. **Tier 2 - Explicit mention (certain):** Args/conversation contain `[A-Z]+-[0-9]+` pattern → resolve path and verify directory exists
+3. **Tier 3 - Obsidian open tabs (probable):** Query open markdown tabs via `obsidian eval`; filter for story paths; ask if one match, list if multiple
+4. **Tier 4 - Obsidian recents (uncertain):** Query recents via `obsidian recents`; take most recent story path; ask for confirmation
 5. **Fallback:** Stop and ask user; offer to create new story or bootstrap `projects/` via project-tracking skill
 
 **Output contract:** Prints a `**Story Context**` block with Path, Story ID, Subproject (and optionally Task ID). Downstream commands use `story_path` from the Path line for all artifact placement.
 
-**Scripts:** `detect-story-from-path.sh`, `get-open-obsidian-files.sh`, `get-recent-obsidian-files.sh`, `filter-story-paths.sh` — located in `skills/story-context/scripts/`.
+**Scripts:** `detect-story-from-path.sh`, `get-open-obsidian-files.sh`, `get-recent-obsidian-files.sh`, `filter-story-paths.sh` - located in `skills/story-context/scripts/`.
 
 ---
 
-## `bob:done-criteria` — Completion Protocol
+## `bob:done-criteria` - Completion Protocol
 
 **File I/O:**
 - **Reads:** `docs/process/done-criteria.md`
@@ -79,7 +79,7 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 
 ---
 
-## `bob:bdd` — Behavior-Driven Development
+## `bob:bdd` - Behavior-Driven Development
 
 **File I/O:** None (reference framework).
 
@@ -157,70 +157,70 @@ Then [observable outcome]
 
 ---
 
-## `bob:design` — Conceptual Design Framework
+## `bob:design` - Conceptual Design Framework
 
-**File I/O:** None (reference framework — the `/bob:design` command owns artifact I/O).
+**File I/O:** None (reference framework - the `/bob:design` command owns artifact I/O).
 
 **Invoked by:** `/bob:design`
 
-**Core discipline:** Socratic, evidence-based conceptual design for an experienced developer. The human is the architect; the skill's job is to investigate, expose pressure points, and make weak reasoning visible — not to hand over a finished architecture.
+**Core discipline:** Socratic, evidence-based conceptual design for an experienced developer. The human is the architect; the skill's job is to investigate, expose pressure points, and make weak reasoning visible - not to hand over a finished architecture.
 
-- `references/interaction-policy.md` — pacing and when brevity is sufficient vs. when to push back (the six conditions that make a short answer insufficient)
+- `references/interaction-policy.md` - pacing and when brevity is sufficient vs. when to push back (the six conditions that make a short answer insufficient)
 - Design lenses, placement, interfaces, concepts and patterns: `bob:architect`
-- `references/artifact-template.md` — the Design Record field list and filename convention
+- `references/artifact-template.md` - the Design Record field list and filename convention
 
-**Human decision boundary:** Never silently decide domain meaning, boundaries, semantic contracts, generalization, irreversible migrations, or major trade-offs — record human decisions and AI assumptions separately.
+**Human decision boundary:** Never silently decide domain meaning, boundaries, semantic contracts, generalization, irreversible migrations, or major trade-offs - record human decisions and AI assumptions separately.
 
 ---
 
-## `bob:design-signals` — Implementation as Sensor
+## `bob:design-signals` - Implementation as Sensor
 
-**File I/O:** None (reference framework — `/bob:implement` owns artifact I/O).
+**File I/O:** None (reference framework - `/bob:implement` owns artifact I/O).
 
 **Invoked by:** `/bob:implement` (step 5, continuously through the implement phase).
 
-**Core discipline:** Distinguish mechanical implementation friction (imports, syntax, routine fixtures — resolve autonomously) from evidence that the approved conceptual design may not fit reality. Pausing is driven by the evidence's escalation tier, never by a plan step's Complexity or Conceptual-risk rating.
+**Core discipline:** Distinguish mechanical implementation friction (imports, syntax, routine fixtures - resolve autonomously) from evidence that the approved conceptual design may not fit reality. Pausing is driven by the evidence's escalation tier, never by a plan step's Complexity or Conceptual-risk rating.
 
-- `references/signal-taxonomy.md` — the 12 conceptual signals (new concept, special case, contract change, boundary reversal, ownership ambiguity, duplicate concept, naming resistance, disproportionate test complexity, abstraction/data mismatch, unplanned indirection, disproven assumption, etc.) and the six-field evidence template (observation/location, affected Design assumption, why it matters, plausible interpretations, safe-continuation status, required human decision).
-- `references/escalation-policy.md` — the four tiers (continue autonomously / continue and record / pause for human decision / stop and return to Design) and the decision procedure for picking one.
+- `references/signal-taxonomy.md` - the 12 conceptual signals (new concept, special case, contract change, boundary reversal, ownership ambiguity, duplicate concept, naming resistance, disproportionate test complexity, abstraction/data mismatch, unplanned indirection, disproven assumption, etc.) and the six-field evidence template (observation/location, affected Design assumption, why it matters, plausible interpretations, safe-continuation status, required human decision).
+- `references/escalation-policy.md` - the four tiers (continue autonomously / continue and record / pause for human decision / stop and return to Design) and the decision procedure for picking one.
 
 **Rules:** Never raise a signal merely because implementation is difficult. Never hide a signal behind an adapter, helper, flag, or branch. No signal without an observation and a source location.
 
 ---
 
-## `bob:reflect` — Engineering Reflection Framework
+## `bob:reflect` - Engineering Reflection Framework
 
-**File I/O:** None (reference framework — the `/bob:reflect` command owns artifact I/O).
+**File I/O:** None (reference framework - the `/bob:reflect` command owns artifact I/O).
 
 **Invoked by:** `/bob:reflect`
 
 **Core discipline:** Ownership recovery after the human has read the Handover, run as a peer conversation, not a review or a quiz. Assumes `/bob:review` already settled correctness; selects a small number of questions from actual diff evidence rather than a generic checklist.
 
-- `references/reflection-policy.md` — assume correctness is done; the human has the map (the Handover), probe the territory; two to five questions from Handover gaps, Review deviations, smells, drift and missed simplifications; keep it short.
-- `references/ownership-signals.md` — the six-bullet ownership standard (domain intent, critical paths, trade-offs/fragile assumptions, failure modes, debugging entry point, future-change impact, ability to disagree) — reproduction of code is never the bar.
-- `references/artifact-template.md` — the Reflection Record field list and filename convention.
+- `references/reflection-policy.md` - assume correctness is done; the human has the map (the Handover), probe the territory; two to five questions from Handover gaps, Review deviations, smells, drift and missed simplifications; keep it short.
+- `references/ownership-signals.md` - the six-bullet ownership standard (domain intent, critical paths, trade-offs/fragile assumptions, failure modes, debugging entry point, future-change impact, ability to disagree) - reproduction of code is never the bar.
+- `references/artifact-template.md` - the Reflection Record field list and filename convention.
 
-**Rules:** Never re-review correctness. Never quiz line-by-line recall. Never shame incomplete understanding. Promote nothing to durable knowledge automatically — identify candidates for `/bob:learn` instead.
+**Rules:** Never re-review correctness. Never quiz line-by-line recall. Never shame incomplete understanding. Promote nothing to durable knowledge automatically - identify candidates for `/bob:learn` instead.
 
 ---
 
-## `bob:learn` — Harness Learning Framework
+## `bob:learn` - Harness Learning Framework
 
 **File I/O:** Reads `docs/process/learnings.md` (cross-session staging log); the `/bob:learn` command owns Learning Record artifact I/O.
 
 **Invoked by:** `/bob:learn`; `/bob:improve-command` (delegated, scoped to one command)
 
-**Core discipline:** Evidence-first classification of session lessons into durable harness improvements or none. One occurrence is usually evidence, not a rule — persistence requires a second credible occurrence (or high severity) plus a stated downside.
+**Core discipline:** Evidence-first classification of session lessons into durable harness improvements or none. One occurrence is usually evidence, not a rule - persistence requires a second credible occurrence (or high severity) plus a stated downside.
 
-- `references/classification-policy.md` — the 10 lesson-type/destination table and the full persistence policy (when one occurrence is enough, when it isn't, human-approval gate for generic BOB changes).
-- `references/persistence-map.md` — how `docs/process/learnings.md` works as cross-session memory: bootstrap format, entry format, when an entry graduates from staged to harness candidate.
-- `references/artifact-template.md` — the Learning Record field list and filename convention.
+- `references/classification-policy.md` - the 10 lesson-type/destination table and the full persistence policy (when one occurrence is enough, when it isn't, human-approval gate for generic BOB changes).
+- `references/persistence-map.md` - how `docs/process/learnings.md` works as cross-session memory: bootstrap format, entry format, when an entry graduates from staged to harness candidate.
+- `references/artifact-template.md` - the Learning Record field list and filename convention.
 
-**Rules:** Never persist from a single low-severity occurrence. Never redesign product architecture here — durable architecture insight routes through Design/Reflect first. Never silently modify a generic BOB command/skill — always confirm. Prefer executable enforcement over prose for deterministic invariants. "No persistent lesson" is a valid, common exit.
+**Rules:** Never persist from a single low-severity occurrence. Never redesign product architecture here - durable architecture insight routes through Design/Reflect first. Never silently modify a generic BOB command/skill - always confirm. Prefer executable enforcement over prose for deterministic invariants. "No persistent lesson" is a valid, common exit.
 
 ---
 
-## `bob:assumption-testing` — Risk-Based Validation
+## `bob:assumption-testing` - Risk-Based Validation
 
 **File I/O:** None (reference framework).
 
@@ -236,7 +236,7 @@ Then [observable outcome]
 
 ---
 
-## `bob:business-model` — Revenue and Economics
+## `bob:business-model` - Revenue and Economics
 
 **File I/O:** None (reference framework).
 
@@ -244,7 +244,7 @@ Then [observable outcome]
 
 **Covers:**
 - **Value Equation:** Value created − Price = Customer surplus; Price − Cost = Margin
-- **Revenue model patterns:** Subscription, transaction, freemium, usage-based, marketplace, licensing, services — with trade-offs for each
+- **Revenue model patterns:** Subscription, transaction, freemium, usage-based, marketplace, licensing, services - with trade-offs for each
 - **Unit economics:** CAC, LTV, LTV:CAC ratio (target: 3:1+), payback period (target: <12 months), gross margin benchmarks
 - **Pricing strategy:** Value-based vs cost-plus vs competitive; anchoring, decoy pricing, price psychology
 - **Business Model Canvas:** 9-block reference
@@ -253,7 +253,7 @@ Then [observable outcome]
 
 ---
 
-## `bob:positioning-strategy` — Market Differentiation
+## `bob:positioning-strategy` - Market Differentiation
 
 **File I/O:** None (reference framework).
 
@@ -261,7 +261,7 @@ Then [observable outcome]
 
 **Covers:**
 - **Five-component positioning framework:** (1) competitive alternatives, (2) unique attributes, (3) value to customer, (4) target customer, (5) market category
-- **Three differentiation strategies:** Best product, best price, best relationship — pick one
+- **Three differentiation strategies:** Best product, best price, best relationship - pick one
 - **Wedge strategy:** Enter with a narrow beachhead; expand from a position of strength
 - **Messaging hierarchy:** Internal positioning statement → external one-sentence → content pillars
 - **2×2 competitive matrix:** Choose axes that put you in the upper-right; avoid axes your competitors own
@@ -269,7 +269,7 @@ Then [observable outcome]
 
 ---
 
-## `bob:go-to-market` — Channel Strategy
+## `bob:go-to-market` - Channel Strategy
 
 **File I/O:** None (reference framework).
 
@@ -280,13 +280,13 @@ Then [observable outcome]
 - **Channel selection by customer type:** B2C vs B2B vs developer vs enterprise
 - **Bullseye framework:** Brainstorm all channels → test cheaply → double down on what works → ignore the rest
 - **CAC economics:** How channel cost affects unit economics viability
-- **Growth loops:** Viral, content, paid, sales — design them before spending money
+- **Growth loops:** Viral, content, paid, sales - design them before spending money
 - **Launch strategy options:** Product Hunt, community launch, direct outreach, waitlist, press
 - **Distribution moats:** What makes your channel hard to copy (network effects, content moat, relationships)
 
 ---
 
-## `bob:problem-validation` — Problem-Space Discipline
+## `bob:problem-validation` - Problem-Space Discipline
 
 **File I/O:** None (reference framework).
 
@@ -297,13 +297,13 @@ Then [observable outcome]
 - **Jobs-to-be-Done:** Functional (what they're trying to accomplish), emotional (how they want to feel), social (how they want to be perceived)
 - **Problem severity matrix:** Frequency × Intensity → Urgent (high/high), Latent (low/high), Frequent (high/low), Background noise (low/low)
 - **Current alternatives taxonomy:** Direct competitors, indirect alternatives, DIY, doing nothing
-- **Evidence hierarchy:** Paying customers > active workarounds > complaints > agreement > "sounds nice" — only the first two matter
+- **Evidence hierarchy:** Paying customers > active workarounds > complaints > agreement > "sounds nice" - only the first two matter
 - **Mom Test questions:** Ask about their life (not your idea); get specifics, not hypotheticals
 - **Kill criteria:** Conditions under which to stop and pivot the problem framing
 
 ---
 
-## `bob:ui-design` — 13-Lens Evaluation
+## `bob:ui-design` - 13-Lens Evaluation
 
 **File I/O:** None (reference framework).
 
@@ -311,23 +311,23 @@ Then [observable outcome]
 
 **The 13 lenses (each includes red flags):**
 
-1. **Visual Hierarchy** — Does the eye know where to go? F-pattern, Z-pattern, size/weight/color to guide attention
-2. **Cognitive Load** — Hick's Law (fewer options → faster decisions), Miller's Law (7±2 chunks), progressive disclosure
-3. **States** — Empty state, loading state, error state, success state — all must be designed
-4. **Typography as Architecture** — Scale, weight, spacing, line length (45–75 chars), leading as structure
-5. **Gestalt Principles** — Proximity, similarity, closure, continuity — do groupings communicate relationships?
-6. **Fitts's Law** — Target size and distance; critical actions must be large and close; destructive actions must be distant
-7. **Microinteractions** — Feedback on every action; transitions that communicate cause → effect
-8. **Signal/Noise** — Every element must earn its place; decorative elements are noise
-9. **Consistency** — Identical elements for identical actions; predictability as trust
-10. **Emotional Design (Norman's 3 levels)** — Visceral (first impression), behavioral (ease of use), reflective (meaning)
-11. **Platform Fluency** — Does it feel native? Uses platform conventions unless there's a strong reason not to
-12. **Context Design** — Stress conditions (tired, distracted, time pressure, one hand); accessibility
-13. **Brand Voice in Interface** — Microcopy, labels, error messages — do they sound like the product?
+1. **Visual Hierarchy** - Does the eye know where to go? F-pattern, Z-pattern, size/weight/color to guide attention
+2. **Cognitive Load** - Hick's Law (fewer options → faster decisions), Miller's Law (7±2 chunks), progressive disclosure
+3. **States** - Empty state, loading state, error state, success state - all must be designed
+4. **Typography as Architecture** - Scale, weight, spacing, line length (45–75 chars), leading as structure
+5. **Gestalt Principles** - Proximity, similarity, closure, continuity - do groupings communicate relationships?
+6. **Fitts's Law** - Target size and distance; critical actions must be large and close; destructive actions must be distant
+7. **Microinteractions** - Feedback on every action; transitions that communicate cause → effect
+8. **Signal/Noise** - Every element must earn its place; decorative elements are noise
+9. **Consistency** - Identical elements for identical actions; predictability as trust
+10. **Emotional Design (Norman's 3 levels)** - Visceral (first impression), behavioral (ease of use), reflective (meaning)
+11. **Platform Fluency** - Does it feel native? Uses platform conventions unless there's a strong reason not to
+12. **Context Design** - Stress conditions (tired, distracted, time pressure, one hand); accessibility
+13. **Brand Voice in Interface** - Microcopy, labels, error messages - do they sound like the product?
 
 ---
 
-## `bob:prompt-engineering` — Command Writing Principles
+## `bob:prompt-engineering` - Command Writing Principles
 
 **File I/O:** None (reference framework).
 
@@ -339,7 +339,7 @@ Then [observable outcome]
 - **Minimize tokens:** Every word should earn its place; target 30–50% below naive draft
 - **Load just-in-time:** Don't front-load all context; load files when the step needs them
 - **One question at a time:** Never ask more than one clarifying question per turn
-- **Avoid aggressive language:** "never", "always", "must" — use sparingly; they inflate and get ignored
+- **Avoid aggressive language:** "never", "always", "must" - use sparingly; they inflate and get ignored
 - **Standalone outputs:** A new session should be able to read the output without conversation context
 
 **Anti-patterns:** Padding with philosophy, restating the obvious, front-loaded disclaimers, vague output instructions ("produce a comprehensive analysis").
@@ -366,37 +366,37 @@ description: [one line, what and when]
 
 ---
 
-## `bob:linkedin-expert` — LinkedIn Marketing
+## `bob:linkedin-expert` - LinkedIn Marketing
 
 **File I/O:** None (reference framework).
 
-**Invoked by:** `linkedin` command (hidden knowledge base — not user-facing).
+**Invoked by:** `linkedin` command (hidden knowledge base - not user-facing).
 
 **Covers:**
 - **Core mental model:** Trust accumulation engine; algorithm mechanics; personal brand vs company page
-- **Content formats:** Short/long posts, carousels, LinkedIn Articles, video, polls — with purpose, frequency, and mechanics for each
+- **Content formats:** Short/long posts, carousels, LinkedIn Articles, video, polls - with purpose, frequency, and mechanics for each
 - **Link strategy:** Why external links kill reach; when/how to link to your own site; LinkedIn Articles vs your blog
 - **Monthly architecture:** Content pillar system, week-by-week rhythm, 6-month compound strategy
 - **Comments strategy:** Anatomy of a great comment, targeting tiers, timing, dos/don'ts
 - **DM strategy:** Four valid reasons to DM, anatomy, worked examples, follow-up rules, pipeline system
-- **Profile optimisation:** Headline, About, Featured, Experience — as a conversion page
+- **Profile optimisation:** Headline, About, Featured, Experience - as a conversion page
 - **Engagement system:** Daily comment cadence, strategic targets, metrics that actually matter
 
 **Reference files:**
-- `references/content-strategy.md` — formats, link strategy, monthly architecture, 6-month arc, dos/don'ts
-- `references/comments.md` — comment anatomy, targeting, timing, dos/don'ts
-- `references/dms.md` — DM anatomy, examples, follow-up rules, pipeline system
-- `references/profile-and-engagement.md` — profile structure, daily engagement system, tracking
+- `references/content-strategy.md` - formats, link strategy, monthly architecture, 6-month arc, dos/don'ts
+- `references/comments.md` - comment anatomy, targeting, timing, dos/don'ts
+- `references/dms.md` - DM anatomy, examples, follow-up rules, pipeline system
+- `references/profile-and-engagement.md` - profile structure, daily engagement system, tracking
 
 ---
 
-## `bob:domain-knowledge` — Project-Specific Terminology
+## `bob:domain-knowledge` - Project-Specific Terminology
 
 **File I/O:**
 - **Reads:** `docs/domain/README.md`, `docs/domain/{slug}.md` (if exists)
 - **Writes:** `docs/domain/{slug}.md` (new or updated), `docs/domain/README.md` (index)
 
-**Invoked by:** `brainstorm`, `plan` — when the user corrects a domain misunderstanding
+**Invoked by:** `brainstorm`, `plan` - when the user corrects a domain misunderstanding
 
 **Purpose:** Capture project-specific nuance that an informed developer wouldn't assume. One concept per invocation.
 
@@ -415,14 +415,14 @@ description: [one line, what and when]
 
 ---
 
-## `bob:knowledge` — Knowledge Vault Retrieval
+## `bob:knowledge` - Knowledge Vault Retrieval
 
 **File I/O:** Reads `knowledge/README.md`, selected `_index.md` files, and at most 5 individual notes. Never writes.
 
 **Invoked by:** `bob:context-protocol` at the start of every engineering command.
 
 **What it does:**
-1. Check for vault (`knowledge/README.md`) — skip silently if missing
+1. Check for vault (`knowledge/README.md`) - skip silently if missing
 2. Load root README in full (small, always relevant)
 3. Identify and load relevant notes (at most 5; progressive disclosure via Obsidian search or `_index.md` scanning)
 4. Output Knowledge Context block with full MOC list and pre-loaded notes
@@ -449,7 +449,7 @@ description: [one line, what and when]
 
 ---
 
-## `bob:vault` — Vault Management Controller
+## `bob:vault` - Vault Management Controller
 
 **File I/O:** Reads and writes `knowledge/` notes, indexes, MOCs, `log.md`, `sources/`. Executes Python scripts in `bob/skills/vault/scripts/`.
 
@@ -457,23 +457,23 @@ description: [one line, what and when]
 
 **What it does:**
 Receives a mode from the library command and loads only the relevant sub-file:
-- `process` → `skills/vault/process.md` — reconcile-gated inbox processing, subagent batching for large inboxes
-- `ingest` → `skills/vault/ingest.md` — fetch/extract from URL or local file, reconcile, save source
-- `organise` → `skills/vault/organise.md` — incremental (git_scope.py), lint, integrity audit, active maintenance
-- `bootstrap` → `skills/vault/bootstrap.md` — vault initialisation
-- `status` → inline — counts and last-modified date
+- `process` → `skills/vault/process.md` - reconcile-gated inbox processing, subagent batching for large inboxes
+- `ingest` → `skills/vault/ingest.md` - fetch/extract from URL or local file, reconcile, save source
+- `organise` → `skills/vault/organise.md` - incremental (git_scope.py), lint, integrity audit, active maintenance
+- `bootstrap` → `skills/vault/bootstrap.md` - vault initialisation
+- `status` → inline - counts and last-modified date
 
 **Python scripts** (`bob/skills/vault/scripts/`):
-- `lint.py` — frontmatter audit (required fields, old field names), broken links
-- `git_scope.py` — files changed since a timestamp; supplements with `git status --porcelain` for untracked
-- `log_append.py` — append operation entry to `knowledge/log.md`; creates file on first write
-- `orphan.py` — notes with no inbound links from other vault notes
+- `lint.py` - frontmatter audit (required fields, old field names), broken links
+- `git_scope.py` - files changed since a timestamp; supplements with `git status --porcelain` for untracked
+- `log_append.py` - append operation entry to `knowledge/log.md`; creates file on first write
+- `orphan.py` - notes with no inbound links from other vault notes
 
-**Shared:** `reconcile.md` — discovery-classify-confirm procedure, read by process and ingest before any note write. Mirrors `bob:knowledge` discovery traversal.
+**Shared:** `reconcile.md` - discovery-classify-confirm procedure, read by process and ingest before any note write. Mirrors `bob:knowledge` discovery traversal.
 
 ---
 
-## `bob:obsidian` — Obsidian Vault File Operations
+## `bob:obsidian` - Obsidian Vault File Operations
 
 **File I/O:** No reads or writes directly. Executes `obsidian rename` / `obsidian move` via the Obsidian CLI, which modifies files inside the vault.
 
@@ -496,15 +496,15 @@ Receives a mode from the library command and loads only the relevant sub-file:
 
 ---
 
-## `bob:work-routing` — Discovered Work Item Routing
+## `bob:work-routing` - Discovered Work Item Routing
 
 **File I/O:**
 - **Reads:** `{story_path}/_kanban.md`, `projects/{subproject}/_kanban.md`
-- **Writes:** `{story_path}/_kanban.md` (Issues column), `projects/{subproject}/_kanban.md` (INBOX column) — only after user confirms
+- **Writes:** `{story_path}/_kanban.md` (Issues column), `projects/{subproject}/_kanban.md` (INBOX column) - only after user confirms
 
-**User-invokable:** No — invoked mid-session by engineering commands.
+**User-invokable:** No - invoked mid-session by engineering commands.
 
-**Invoked by:** All engineering commands (`implement`, `review`, `review-plan`, `plan`, `brainstorm`, `investigate`, `ui-review`) mid-session when they surface issues, deferred ideas, out-of-scope findings, or new dependencies. Also invoked by `bob:done-criteria` (Responsibility 3 — Work routing) for end-of-session routing.
+**Invoked by:** All engineering commands (`implement`, `review`, `review-plan`, `plan`, `brainstorm`, `investigate`, `ui-review`) mid-session when they surface issues, deferred ideas, out-of-scope findings, or new dependencies. Also invoked by `bob:done-criteria` (Responsibility 3 - Work routing) for end-of-session routing.
 
 **What it does:**
 - Accepts a list of work items with description, severity (🔴/🟡/🟢), and discovery context
@@ -512,4 +512,4 @@ Receives a mode from the library command and loads only the relevant sub-file:
 - Asks user for confirmation before filing; names 🔴 Critical items explicitly
 - After filing, confirms counts: "Filed N items: {story-id} Issues (+N), INBOX (+N)."
 
-**Key rule:** Routing logic lives here — individual commands must not embed their own routing decisions.
+**Key rule:** Routing logic lives here - individual commands must not embed their own routing decisions.

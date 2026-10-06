@@ -24,12 +24,12 @@ For `process`, `organise`, and `status` modes: invoke the `bob:vault` skill and 
 ## Retrieve Mode
 
 1. Read `knowledge/README.md`
-2. If Obsidian vault is active for this project (`obsidian vault info=path 2>/dev/null` returns a path matching `$PWD`): `obsidian search query="<user terms>"` — returns excerpts, token-efficient
+2. If Obsidian vault is active for this project (`obsidian vault info=path 2>/dev/null` returns a path matching `$PWD`): `obsidian search query="<user terms>"` - returns excerpts, token-efficient
 3. Otherwise: `grep -rl "<user terms>" knowledge/` to find files, then read relevant excerpts
 4. Present matching excerpts with file paths
 5. Ask if any should be opened in full
 
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

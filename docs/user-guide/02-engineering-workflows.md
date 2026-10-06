@@ -15,23 +15,23 @@ But there's a critical step you might miss: **Review the plan before implementin
 Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn
 ```
 
-Brainstorm decides whether the idea is worth building. Design decides the concept — boundaries, vocabulary, trade-offs — before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
+Brainstorm decides whether the idea is worth building. Design decides the concept - boundaries, vocabulary, trade-offs - before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
 
 Each step is a separate session (usually separate days). Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
 
-## Proportional Paths — Small Work Stays Small
+## Proportional Paths - Small Work Stays Small
 
 Not every change earns the full pipeline. Bob classifies work qualitatively (new concept? contract change? boundary crossing? hard to reverse?) and scales accordingly:
 
-- **Fast** — `/bob:dev`. No brainstorm/design/plan/review cycle at all — a working session for local, reversible, conceptually settled changes. If a "quick fix" turns out to cross one of the four questions above, `/bob:dev` says so and recommends `/bob:design` instead of quietly proceeding.
-- **Standard** — Design → Plan → Implement → Review → Document → Handover → a short Reflect. Brainstorm is skippable when intent is already clear.
-- **Full** — the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
+- **Fast** - `/bob:dev`. No brainstorm/design/plan/review cycle at all - a working session for local, reversible, conceptually settled changes. If a "quick fix" turns out to cross one of the four questions above, `/bob:dev` says so and recommends `/bob:design` instead of quietly proceeding.
+- **Standard** - Design → Plan → Implement → Review → Document → Handover → a short Reflect. Brainstorm is skippable when intent is already clear.
+- **Full** - the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
 
-`/bob:pm` applies this classification when you're not sure which path fits — describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
+`/bob:pm` applies this classification when you're not sure which path fits - describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
 
-## Learn — Closing the Loop
+## Learn - Closing the Loop
 
-After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons — a repeated correction, a missing tool, a prompt gap — and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is a thin wrapper over `/bob:learn` scoped to a single command.
+After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons - a repeated correction, a missing tool, a prompt gap - and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is a thin wrapper over `/bob:learn` scoped to a single command.
 
 ## Phase 1: Brainstorm
 
@@ -40,12 +40,12 @@ After Reflect (or after any session that surfaced a real friction point), `/bob:
 **What you do:** Say `/bob:brainstorm` and describe the idea. The AI asks structured questions to help you explore it.
 
 **The AI guides you through:**
-1. **Diverge** — What are different ways to solve this? What alternatives exist?
-2. **Converge** — Which approach is best given what matters (effort, impact, user value, technical fit)?
-3. **Detail** — Flesh out the chosen approach. What's the user experience? What are the limitations?
-4. **Commit** — Summarize what we're doing, open questions, and confirm you're ready to move forward.
+1. **Diverge** - What are different ways to solve this? What alternatives exist?
+2. **Converge** - Which approach is best given what matters (effort, impact, user value, technical fit)?
+3. **Detail** - Flesh out the chosen approach. What's the user experience? What are the limitations?
+4. **Commit** - Summarize what we're doing, open questions, and confirm you're ready to move forward.
 
-Brainstorm challenges the idea for value. It does not decide architecture — that's Design's job next.
+Brainstorm challenges the idea for value. It does not decide architecture - that's Design's job next.
 
 **Output:** `{story_path}/{date}-brainstorm-{slug}.md` (a Brainstorm Brief)
 
@@ -59,7 +59,7 @@ A complete record of what you discussed, what you considered, what you decided, 
 
 **When:** After brainstorm, for conceptually meaningful work. Skip straight to Plan when the requirement is already stable and simple.
 
-**What you do:** Run `/bob:design`. The AI reads your Brainstorm Brief (or accepted requirement), inspects the repository for existing concepts and boundaries, and runs a Socratic conversation — one question or tightly-related batch at a time.
+**What you do:** Run `/bob:design`. The AI reads your Brainstorm Brief (or accepted requirement), inspects the repository for existing concepts and boundaries, and runs a Socratic conversation - one question or tightly-related batch at a time.
 
 **The AI works through:**
 - What existing concept in the codebase might already express this?
@@ -72,7 +72,7 @@ You're treated as an experienced developer: concise, specific answers are accept
 
 **Output:** `{story_path}/{date}-design-{slug}.md` (a Design Record)
 
-The authoritative conceptual intent that Plan, Review Plan, Implement, Review, and Reflect all read from. A valid outcome can also be "return to Brainstorm," "investigate first," or "do not build" — Design isn't required to end in a green light.
+The authoritative conceptual intent that Plan, Review Plan, Implement, Review, and Reflect all read from. A valid outcome can also be "return to Brainstorm," "investigate first," or "do not build" - Design isn't required to end in a green light.
 
 **Time:** 20 minutes to 1 hour depending on conceptual weight.
 
@@ -91,11 +91,11 @@ The authoritative conceptual intent that Plan, Review Plan, Implement, Review, a
 The AI reads the brainstorm, examines the codebase, and walks you through implementation step by step.
 
 **The plan includes:**
-- **Approach** — How the change will be made. Where code will live. What patterns will be used.
-- **Test strategy** — What needs to be tested *before* implementation. Using BDD (Given/When/Then) thinking.
-- **Implementation steps** — Concrete numbered steps, one per code change or feature.
-- **Questions & decisions** — Flags things the plan is unsure about. Your job is to answer or override.
-- **Risks** — What could go wrong? What assumptions are we making?
+- **Approach** - How the change will be made. Where code will live. What patterns will be used.
+- **Test strategy** - What needs to be tested *before* implementation. Using BDD (Given/When/Then) thinking.
+- **Implementation steps** - Concrete numbered steps, one per code change or feature.
+- **Questions & decisions** - Flags things the plan is unsure about. Your job is to answer or override.
+- **Risks** - What could go wrong? What assumptions are we making?
 
 **Output:** `{story_path}/{date}-plan-{slug}.md`
 
@@ -263,28 +263,28 @@ That's okay. Document what you did in the implementation report and mention it. 
 
 Once you've done this a few times, it becomes a rhythm:
 
-**Day 1 — Brainstorm**
+**Day 1 - Brainstorm**
 Morning coffee, 1 session, 1 artifact, clear direction.
 
-**Day 2 — Design**
+**Day 2 - Design**
 Concept locked down: boundaries, vocabulary, trade-offs. Skip this day for simple, stable work.
 
-**Day 3 — Plan**
+**Day 3 - Plan**
 New session, fresh thinking, complete plan written.
 
-**Day 4 — Review Plan**
+**Day 4 - Review Plan**
 Catch problems the planning session missed.
 
-**Day 5 — Implement**
+**Day 5 - Implement**
 Follow the plan, write code, verify it works.
 
-**Day 6 — Review**
+**Day 6 - Review**
 Freshly reviewed code with guidelines applied.
 
-**Day 7 — Document and Handover**
+**Day 7 - Document and Handover**
 `/bob:document` updates the architecture notes to match what was built; `/bob:handover` tells the change as a story you read before Reflect.
 
-**Day 8 — Reflect**
+**Day 8 - Reflect**
 Short peer conversation, after reading the Handover, to make sure you own the mental model, not just the AI session. Often 10 minutes.
 
 Do it again next week with a different feature. By the tenth feature, you'll notice the quality is consistent, decisions are recorded, and context doesn't disappear between sessions.
