@@ -111,7 +111,11 @@ Commands that skip this: Discovery commands (`product-vision`, `personas`, `desi
 
 Daily notes, story history, kanban updates. Must never block a completed technical result when the relevant infrastructure (a daily-notes folder, a story path) is simply absent.
 
-**Update daily note:** If `personal/daily/` directory exists: append a session entry to `personal/daily/YYYY-MM-DD.md`, creating the file if it doesn't exist. If the directory does not exist: skip silently.
+**These steps are idempotent and have two entry points.** A command that produces a session artifact registers it at the moment it writes the file, using the formats below. This skill then runs again at the end-of-session gate. Finding the work already done is the expected case: verify and say nothing. Finding an artifact produced this session with no History row is a defect - add the row and tell the user it was late.
+
+Two entry points exist because the end-of-session gate alone is not a reliable trigger. It fires on the next user request, competing with that request's own instructions, and it leaves no trace when it is skipped. The write-time trigger sits next to the action; this one is the backstop.
+
+**Update daily note:** One entry per command run, same idempotency rule - if this run already appended its entry, do not append a second. If `personal/daily/` directory exists: append a session entry to `personal/daily/YYYY-MM-DD.md`, creating the file if it doesn't exist. If the directory does not exist: skip silently.
 
 Append under `## Sessions`:
 ```
@@ -138,7 +142,7 @@ date: YYYY-MM-DD
 ```
 No confirmation needed — personal content, gitignored entirely.
 
-**Update story history:** After producing any output artifact, add one row to `{story_path}/_index.md` history table:
+**Update story history:** Every session artifact gets exactly one row in `{story_path}/_index.md`. The command that writes the artifact adds it immediately; this step confirms it exists and adds it if it does not. Never add a second row for the same file.
 
 ```
 | {date} | [{type}]({filename}) | {one-line summary} | {outcome} |

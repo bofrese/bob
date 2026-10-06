@@ -138,6 +138,9 @@ Based on the verdict, recommend the next step explicitly:
 ## Output
 
 Write to: `{story_path}/sessions/{date}-review-plan-{slug}.md`
+
+**On write, before anything else:** register the artifact. Add its row to `{story_path}/_index.md` History and update `{story_path}/_kanban.md`, using `bob:done-criteria` Responsibility 4 as the format authority. Do not defer this to the end-of-session gate - that gate fires on the next user request, which is too late and too easy to miss.
+
 where `{date}` is today's date and `{slug}` is a short kebab-case descriptor matching the plan being reviewed.
 
 Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session.

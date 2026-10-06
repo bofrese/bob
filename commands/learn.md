@@ -63,6 +63,9 @@ Produce the Learning Record using `references/artifact-template.md`. "No persist
 
 Write to: `{story_path}/sessions/{date}-learn-{slug}.md`
 
+**On write, before anything else:** register the artifact. Add its row to `{story_path}/_index.md` History and update `{story_path}/_kanban.md`, using `bob:done-criteria` Responsibility 4 as the format authority. Do not defer this to the end-of-session gate - that gate fires on the next user request, which is too late and too easy to miss.
+
+
 Use the path resolved by `bob:story-context`. If this run has no story context (e.g. invoked standalone against `docs/process/learnings.md` staging), write to `docs/process/sessions/{date}-learn-{slug}.md` instead. Field-by-field structure is defined in `bob:learn`'s `references/artifact-template.md` — do not duplicate it here.
 
 Also maintain `docs/process/learnings.md` per `references/persistence-map.md` — this is Learn's cross-session memory, updated every run regardless of whether a durable lesson resulted.
