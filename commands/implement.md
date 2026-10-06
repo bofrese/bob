@@ -49,7 +49,7 @@ Invoke the `bob:design-signals` skill continuously throughout this phase — imp
 - Read `{story_path}/_kanban.md`. Mark resolved tasks and issues done: change `- [ ]` to `- [x]` and move the card to `## done`.
 - For any new issues or work discovered during implementation: invoke the `bob:work-routing` skill and follow its protocol.
 
-**7 — Prepare for Reflect:** Before writing the note, prepare concise input for `/bob:reflect` — not a full walkthrough. Identify the few code paths that carry the architectural meaning (not every file touched), any Design Signals raised and how they resolved, and anything surprising enough that the developer should specifically look at it. This replaces the AI-led ownership-transfer narrative that used to run here: recovering ownership is `/bob:reflect`'s job, done with the developer, not a monologue Implement delivers to them.
+**7 - Prepare for Handover:** Before writing the note, prepare concise input for `/bob:handover`, not a walkthrough: the few code paths that carry the architectural meaning (not every file touched), any Design Signals raised and how they resolved, and anything surprising enough that the developer should look at it.
 
 Before writing the note, scan the implementation for codebase patterns: a new recurring structure, a departure from an `established` pattern note, or a competing variant. Name each in the note's Discoveries. `/bob:document` (Update mode) records them as pattern notes after Review. Technology pitfalls go to `/bob:guidelines`.
 

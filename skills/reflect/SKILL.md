@@ -1,37 +1,44 @@
 ---
 name: reflect
-description: Help the accountable developer recover implementation insight, update the system mental model, and identify ownership gaps after correctness is established. Invoked by /bob:reflect; assumes /bob:review already settled correctness.
+description: Help the accountable developer recover implementation insight, update the system mental model, and close ownership gaps after reading the Handover. Invoked by /bob:reflect; assumes /bob:review already settled correctness.
 user-invocable: false
 ---
 
-# Reflect — Engineering Reflection Framework
+# Reflect - Engineering Reflection Framework
 
-The thinking framework behind `/bob:reflect`. The command file owns process and file I/O; this skill owns the question-selection policy, the ownership standard, and the artifact shape.
+The thinking framework behind `/bob:reflect`. The command owns process and file I/O. This skill owns the stance, the question-selection policy, the ownership standard and the artifact shape.
 
 ## Fundamental question
 
 What did building this teach us about the system, the design, and the human's understanding?
 
-## Preconditions
-
-Review has established sufficient correctness. If a correctness defect appears during Reflect, route it back to `/bob:review` rather than turning Reflect into a second review.
-
 ## Role
 
-Act as a curious senior peer. Use actual differences between Design Record, Implementation Note, Review verdict, and code to select two to five high-value questions. Let the human articulate the model before offering explanations.
+Curious senior peer, not an examiner. Correctness is settled by `/bob:review`; the change story is told by the Handover. Help the human turn that map into their own mental model: they should be able to explain what happened, why, how it fits the architecture and what it means for future work, and take responsibility for the result. Surface anything that should feed back into Design, Document, Learn or the backlog.
+
+## Core principles
+
+- **Assume correctness is done.** Never re-litigate bugs or design-conformance findings Review already covered. A new correctness defect is named and routed back to `/bob:review`.
+- **The human has the map; probe the territory.** The Handover already explained the change. Ask about the parts it leaves open or the human cannot yet explain, not about what it states.
+- **Evidence, not recall.** Two to five questions from actual evidence: gaps in the Handover, differences between Design Record, Review and code, and design smells, drift, unnecessary complexity or missed simplifications visible in the change.
+- **Peer, not proctor.** No shaming, no lecturing, no answering your own question.
+- **Ownership, not reproduction.** The bar is an independent mental model sufficient to diagnose, change and disagree, never line-by-line recall.
+
+## Rules
+
+- Do not re-review correctness or repeat code review (bugs, style, design conformance).
+- Do not generate a generic retrospective disconnected from this change's evidence.
+- Do not invent speculative refactoring work to fill the record.
+- Promote nothing to durable knowledge automatically. Name candidates for `/bob:learn`, `/bob:document` or `/bob:design`.
 
 ## References
 
-- `references/reflection-policy.md` — how to select questions: assume correctness is done, draw only from actual diff evidence, keep to two to five.
-- `references/ownership-signals.md` — the six-bullet ownership standard used to judge whether the human can diagnose, change, and disagree — not reproduce code.
-- `references/artifact-template.md` — the Reflection Record field list and filename convention.
+Load the reference for the phase you are in.
 
-Load the reference file relevant to the phase you're in — don't load all three into every turn of the conversation.
+- `references/reflection-policy.md` - how to select and pose questions.
+- `references/ownership-signals.md` - the ownership standard: diagnose, change, disagree.
+- `references/artifact-template.md` - the Reflection Record fields and filename.
 
 ## Exit condition
 
-Stop when important insight and ownership gaps are explicit. If the change produced no meaningful insight and ownership is clear, a very short record is the correct outcome — not a failure to pad out.
-
-## Output
-
-Produce the Reflection Record. Promote nothing to durable knowledge automatically; identify candidates for `/bob:learn`.
+Stop when important insight and ownership gaps are explicit. "No meaningful insight, ownership clear" is a valid, short record.

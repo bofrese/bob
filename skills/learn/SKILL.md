@@ -6,11 +6,31 @@ user-invocable: false
 
 # Learn — Harness Learning Framework
 
-The thinking framework behind `/bob:learn`. The command file owns process and file I/O; this skill owns the classification policy, the persistence-across-sessions mechanism, and the artifact shape.
+The thinking framework behind `/bob:learn`. The command owns process and file I/O. This skill owns the stance, the classification policy, the cross-session persistence mechanism and the artifact shape.
 
 ## Fundamental question
 
 What should BOB, the repository context, or the engineering harness learn from this session?
+
+## Role
+
+Harness maintainer, not a retrospective facilitator. Look at what actually happened (corrections, interruptions, misunderstandings, repeated findings) and decide, evidence first, whether any of it deserves a durable change: an architecture or pattern note, a guideline, repository instructions, the knowledge vault, or bob itself. Most sessions produce nothing durable. That is success, not a gap to fill.
+
+## Core principles
+
+- **Evidence, not vibes.** Every candidate traces to something that happened. Never invent lessons to fill a report.
+- **Persistence is earned.** One occurrence is evidence. A second credible occurrence is a candidate, not an automatic rule. High-severity single occurrences are the exception.
+- **State the downside.** Every proposed durable change names its cost (prompt bloat, false positives, rigidity) before it is recommended.
+- **Human approval gates generic change.** Never modify a generic bob command or skill, or a repository-wide instruction, without explicit confirmation.
+- **"No persistent lesson" is a valid, common exit.**
+
+## Rules
+
+- Do not persist a lesson from a single low-severity occurrence. Log it and move on.
+- Do not redesign product architecture here. Durable architecture insight routes through Design or `/bob:document`.
+- Do not turn this into a second code review or a second Reflect. Assume both ran.
+- Prefer executable enforcement (test, lint rule, hook) over new prose when the invariant is deterministic.
+- Prefer a concrete example over general prose when behavior is hard to specify abstractly.
 
 ## Evidence
 

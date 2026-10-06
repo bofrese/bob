@@ -46,7 +46,7 @@ Read each listed file if it exists. Skip silently if missing. Skip any file alre
 | `review-plan` | `docs/product/vision.md` |
 | `implement` | `docs/product/vision.md` |
 | `review` | `docs/product/vision.md` |
-| `reflect` | Design Record, Implementation Note, Review verdict, selected critical code. Deliberately excludes a generic guideline dump. |
+| `reflect` | Handover, Design Record, Review verdict, the architecture notes the Handover links to, selected critical code. Deliberately excludes a generic guideline dump and index-wide note loading. |
 | `learn` | Corrections, interruptions, artifacts, accepted/rejected findings from this session, plus `docs/process/learnings.md` (prior staged occurrences) and existing harness rules the candidate might conflict with. Deliberately excludes unrelated product context. |
 | `ui-review` | `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md`, then invoke the `bob:ui-design` skill |
 | `new-command` | invoke the `bob:prompt-engineering` skill |
@@ -138,7 +138,7 @@ Notify the user: "No project guidelines found — run `/bob:guidelines` to creat
 
 For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `investigate`:
 
-Reflect deliberately excludes this section, for the same reason it skips Guidelines: it works from this change's evidence.
+Reflect skips this section: it loads only the notes the Handover links to (see its per-command row).
 
 **If `docs/architecture/README.md` exists:**
 1. Read it as the navigation index. Do not load all notes.

@@ -6,7 +6,7 @@ The Reflection Record captures what building this taught the human and the syste
 
 ```
 # Reflect: {Feature}
-**Date:** {YYYY-MM-DD} | **Design:** `{path or N/A}` | **Implementation:** `{path}` | **Review:** `{path}`
+**Date:** {YYYY-MM-DD} | **Handover:** `{path or "not read"}` | **Design:** `{path or N/A}` | **Review:** `{path}`
 
 ## Expectation vs. Reality
 
@@ -15,6 +15,7 @@ The Reflection Record captures what building this taught the human and the syste
 ## Assumptions Validated or Weakened
 
 ## Complexity Removed, Introduced, or Moved
+{Include smells, drift and missed simplifications the change introduced or exposed.}
 
 ## Actual Reading/Navigation Path
 

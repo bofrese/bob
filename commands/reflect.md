@@ -1,68 +1,46 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Help the accountable developer recover implementation insight and close ownership gaps after correctness is established. Short, non-quizzy, peer-to-peer.
+description: Help the accountable developer recover implementation insight and close ownership gaps after reading the Handover. Short, non-quizzy, peer-to-peer.
 ---
 
 ## Context
 - Today's date: `python3 -c "from datetime import date;print(date.today().isoformat(),end='')"`
 - If the date above is blank, determine today's date in YYYY-MM-DD format using any available command.
-- This is an existing project. Silently familiarize yourself with the project structure, key architectural patterns, and UI conventions before starting.
 - Use the Skill tool to invoke the `bob:context-protocol` skill and follow the protocol.
-- Use the Skill tool to invoke the `bob:reflect` skill for the reflection policy, ownership signals, and artifact template. This command file is the process wrapper; the skill carries the framework.
-
-## Role
-
-Curious senior peer, not an examiner. Correctness is already settled by `/bob:review` — your job is to help the human recover the mental model an AI session may have kept to itself, and to surface anything that should feed back into Design, Learn, or the backlog.
-
-Fundamental question every session must answer: **What did building this teach us about the system, the design, and the human's understanding?**
-
-## Preconditions
-
-Review has established sufficient correctness. If a correctness defect surfaces during Reflect, name it and route it back to `/bob:review` — do not turn this session into a second review.
-
-## Core Principles
-
-- **Assume correctness is done.** Never re-litigate bugs or design-conformance findings already covered by Review.
-- **Evidence, not recall.** Select two to five high-value questions from actual differences between Design Record, Implementation Note, Review verdict, and code — never a generic checklist.
-- **Human speaks first.** Let the human articulate their model before offering an explanation.
-- **Peer, not proctor.** Mutual respect. No shaming, no lecturing, no self-answering your own question.
-- **Ownership, not reproduction.** The bar is a sufficient independent mental model to diagnose, change, and disagree — never line-by-line recall or code reproduction.
+- Use the Skill tool to invoke the `bob:reflect` skill. It owns the role, principles, rules, reflection policy, ownership standard and artifact template.
 
 ## Process
 
-### Phase 1 — Load evidence
-Read the Design Record (or embedded `## Design` fallback), the Implementation Note's "Input for /bob:handover" section, and the Review verdict. Identify the few code paths that carry architectural meaning — not every changed file.
+### Gate
+Confirm both before starting:
+- Review has established sufficient correctness.
+- I have read the Handover for this change. If none exists, recommend `/bob:handover` first. If I choose to continue without one, note it in the record header.
 
-### Phase 2 — Select questions
-Invoke the `bob:reflect` skill's `references/reflection-policy.md`. Pick two to five questions grounded in actual evidence: a Design Signal that fired, a deviation Review noted, a surprising code path Implement flagged, or a gap between what was planned and what shipped. Do not manufacture questions when the diff gives none.
+### Phase 1 - Load evidence
+Read the Handover, the Design Record and the Review verdict. Load the architecture notes the Handover links to, and nothing wider. Open the few code paths the Handover's reading order marks as carrying the design.
 
-### Phase 3 — Explore together
-Invoke `references/ownership-signals.md` for what "the human owns this" looks like. Work through, only where evidence suggests a gap:
+### Phase 2 - Select questions
+Use `references/reflection-policy.md`. Pick two to five questions from the evidence. Ask none when the evidence gives none.
+
+### Phase 3 - Explore together
+Use `references/ownership-signals.md`. Only where a question exposed a gap, work through:
 - expectation versus implementation reality;
-- concepts clarified, split, merged, or newly discovered;
+- concepts clarified, split, merged or newly discovered;
 - assumptions validated or weakened;
-- complexity removed, introduced, or moved;
-- actual reading/navigation path;
+- complexity removed, introduced or moved, and simplifications missed;
+- design smells or drift the change introduced or exposed;
+- the actual reading and navigation path;
 - future pressure points and fragile assumptions;
-- where important understanding stayed inside the AI session.
+- understanding that stayed inside the AI session.
 
-If an answer is vague, inspect that area together rather than supplying the answer immediately.
+If an answer is vague, inspect that area together instead of supplying the answer.
 
-### Phase 4 — Insights worth carrying forward
-Ask what this session teaches that should influence future work: better design or architecture, a new feature idea, a documentation or guideline gap. These are candidates, not commitments — invoke `bob:work-routing` for anything that should become backlog work, and name any pattern worth a `/bob:document` or `/bob:guidelines` follow-up (do not write those docs here).
+### Phase 4 - Route
+- Backlog work: invoke the `bob:work-routing` skill.
+- Name candidates for `/bob:learn`, stale or missing architecture notes for `/bob:document`, and design revisits for `/bob:design`. Do not write those here.
 
-### Phase 5 — Exit and record
-Stop when important insight and ownership gaps are explicit. A very short record — "no meaningful insight, ownership clear" — is a valid and common outcome; do not pad it. Produce the Reflection Record using `references/artifact-template.md`.
-
-## Rules
-
-- Do not re-review correctness — that is Review's job, already done.
-- Do not quiz line-by-line recall or ask the human to reproduce code.
-- Do not repeat code review (bugs, style, design-conformance) — route any that surface back to `/bob:review`.
-- Do not generate a generic retrospective template disconnected from this diff's actual evidence.
-- Do not invent speculative refactoring work to fill the record.
-- Do not shame or lecture on incomplete understanding — inspect the gap together instead.
-- Promote nothing to durable knowledge automatically; identify candidates for `/bob:learn` instead.
+### Phase 5 - Record
+Write the Reflection Record using `references/artifact-template.md`. If I say "save", write what is established so far.
 
 ## Output
 
@@ -70,10 +48,9 @@ Write to: `{story_path}/sessions/{date}-reflect-{slug}.md`
 
 **On write, before anything else:** register the artifact. Add its row to `{story_path}/_index.md` History and update `{story_path}/_kanban.md`, using `bob:done-criteria` Responsibility 4 as the format authority. Do not defer this to the end-of-session gate - that gate fires on the next user request, which is too late and too easy to miss.
 
+Use the path resolved by `bob:story-context`.
 
-Use the path resolved by `bob:story-context`. The `story_path` was established earlier in this session. Field-by-field structure is defined in `bob:reflect`'s `references/artifact-template.md` — do not duplicate it here.
-
-## Done — Non-Deferrable
+## Done - Non-Deferrable
 **Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
 
 Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.
