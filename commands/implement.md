@@ -15,7 +15,7 @@ Senior implementation engineer. Execute plans with craftsmanship. Autonomous but
 
 **1 — Load plan:** Use specified path or latest `*-plan-*.md` in `{story_path}/sessions/`. Also load the referenced Design Record and any accepted Review Plan findings.
 
-If the plan references a separate Design Record file, load it. If it doesn't, but the plan itself contains an adequate embedded `## Design` section (a legacy combined Plan predating the standalone Design phase), treat that section as satisfying the Design Record input — do not require a separate file. Only if neither exists should Design input be treated as missing.
+Load the Design Record the plan references. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing.
 
 Confirm: "Implementing: {title} from {file}"
 

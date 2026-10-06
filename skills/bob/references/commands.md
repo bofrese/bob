@@ -312,12 +312,12 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:reflect` rather than delivering an AI-led ownership-transfer walkthrough.
 
-**Reads:** Specified plan from `{story_path}/`, referenced Design Record — or, if none is referenced, the plan's own embedded `## Design` section (legacy combined Plan) — review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
+**Reads:** Specified plan from `{story_path}/`, referenced Design Record, review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
 
 **Writes:** Project source files (primary), `{story_path}/{date}-implement-{slug}.md` (an Implementation Note), updates plan status to "Implemented", updates `{story_path}/_kanban.md`.
 
 **Process:**
-1. Load plan, Design Record (or embedded `## Design` fallback), and review; note deviations required
+1. Load plan, Design Record, and review; note deviations required
 2. Confirm scope before starting
 3. Per step: implement → verify BDD criteria → commit
 4. Invoke `bob:design-signals` continuously; escalate to human at "pause for human decision" or stop at "stop and return to Design"
@@ -334,7 +334,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **Purpose:** Is the change correct? Review code changes for bugs, design conformance, and system health. Auto-detects scope from git state. Never modifies code.
 
-**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `{story_path}/`, referenced Design Record (or the plan's embedded `## Design` section, legacy fallback), matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
+**Reads:** Git diff (staged/unstaged/commits ahead of main), changed files (read completely), associated plan from `{story_path}/`, referenced Design Record, matched guidelines from `docs/guidelines/`, `docs/process/done-criteria.md`.
 
 **Writes:** `{story_path}/{date}-review-{slug}.md`
 
@@ -359,7 +359,7 @@ A clean review with no manufactured findings is a valid outcome. Recommends `/bo
 
 **Purpose:** Recover human ownership of AI-implemented work after correctness is established. Short, non-quizzy, peer-to-peer — not a second review, not an oral exam. Assumes `/bob:review` already settled correctness.
 
-**Reads:** Design Record (or embedded `## Design` fallback), Implementation Note's "Input for /bob:handover" section, Review verdict, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
+**Reads:** Handover, Design Record, Review verdict, the architecture notes the Handover links to, selected critical code paths. Deliberately excludes a generic guideline dump and the full prior conversation.
 
 **Writes:** `{story_path}/{date}-reflect-{slug}.md` (a Reflection Record)
 
@@ -556,7 +556,7 @@ Unstructured — driven by the user. Claude acts as a peer developer: reads code
 
 ## `/bob:improve-command` — Command Improvement
 
-**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic). **Scoped compatibility wrapper over `bob:learn`** — internally delegates evidence gathering and persistence-bar logic to `bob:learn` restricted to the one command identified in Phase 1. Kept available, not deprecated, until `/bob:learn` proves itself.
+**Purpose:** Extract reusable learnings from a completed session to improve a specific bob command. Keeps all improvements generic (project-agnostic). **Scoped wrapper over `bob:learn`** — internally delegates evidence gathering and persistence-bar logic to `bob:learn` restricted to the one command identified in Phase 1.
 
 **Reads:** Current session conversation, `bob/commands/{name}.md`, `docs/process/learnings.md` (via delegated `bob:learn` evidence gathering).
 

@@ -22,7 +22,7 @@ Correlate plans with changed files. Form a scope hypothesis.
 
 **2 — Confirm scope:** Present branch, uncommitted changes, commits ahead of main, recent plans, correlation, proposed scope. Wait for confirmation.
 
-**3 — Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. If the plan references a separate Design Record file, load it — a Design Record, when one exists, is required alongside the plan. If the plan has no separate Design Record but contains an adequate embedded `## Design` section (a legacy combined Plan predating the standalone Design phase), treat that section as satisfying the Design Record input. Only if neither exists should Design input be treated as missing. Gather full diffs. Read all changed files completely.
+**3 — Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. Load the Design Record the plan references; when one exists it is required alongside the plan. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing. Gather full diffs. Read all changed files completely.
 
 **4 — Understand:** Approach taken, key components, design decisions, non-obvious behavior. Note plan deviations.
 

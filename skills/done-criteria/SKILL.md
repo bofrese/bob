@@ -8,7 +8,7 @@ user-invocable: false
 
 This skill does two jobs: it defines **how commands interact with the done system**, and it contains the **bootstrap template** that seeds a fresh project.
 
-The protocol combines what used to be treated as one undifferentiated checklist. It is internally four distinct responsibilities — verification, knowledge candidates, work routing, administration — even though one command invocation still orchestrates all four in sequence. Keeping them conceptually separate is what lets each follow its own rule (verification is non-deferrable; administration is not) instead of one blanket "always do all of this" policy.
+The protocol has four distinct responsibilities — verification, knowledge candidates, work routing, administration — even though one command invocation still orchestrates all four in sequence. Keeping them conceptually separate is what lets each follow its own rule (verification is non-deferrable; administration is not) instead of one blanket "always do all of this" policy.
 
 ---
 

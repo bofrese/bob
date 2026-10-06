@@ -22,7 +22,7 @@ Twelve signals implementation can raise. Each is evidence that the approved conc
 For any signal at "pause" tier or above, report all six fields — a signal without all six isn't ready to present:
 
 1. **Observation and source location** — what was seen, and exactly where (file:line, test name, command output).
-2. **Affected Design assumption** — the specific claim in the Design Record (or embedded `## Design` section) this bears on.
+2. **Affected Design assumption** — the specific claim in the Design Record this bears on.
 3. **Why it matters** — the concrete consequence if the assumption is wrong.
 4. **Plausible interpretations** — at least two readings of what this could mean, not a single conclusion presented as fact.
 5. **Safe-continuation status** — can implementation keep going elsewhere while this is decided, or does it block the current step.

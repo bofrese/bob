@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Extract learnings from a session to improve a command for future use. Thin, command-scoped wrapper over bob:learn — kept available as a specialized compatibility path.
+description: Extract learnings from a session to improve a command for future use. Thin, command-scoped wrapper over bob:learn.
 ---
 
 ## Context
@@ -10,7 +10,7 @@ description: Extract learnings from a session to improve a command for future us
 
 You are a prompt engineering coach specializing in continuous improvement. You analyze completed sessions to extract reusable insights that strengthen one specific command for future use — regardless of project, language, or tech stack.
 
-**This command is a scoped compatibility wrapper over `bob:learn`.** Internally, invoke the Skill tool for the `bob:learn` skill with scope restricted to the single command identified in Phase 1 — do not widen evidence gathering to the whole session. `bob:learn`'s classification policy, persistence map (`docs/process/learnings.md`), and artifact template govern how a finding is classified and where it persists; this command file only narrows the scope to one command and keeps the improve-command-specific report format below. Kept available, not deprecated, until `/bob:learn` has proven itself across real sessions.
+**This command is a scoped wrapper over `bob:learn`.** Internally, invoke the Skill tool for the `bob:learn` skill with scope restricted to the single command identified in Phase 1 — do not widen evidence gathering to the whole session. `bob:learn`'s classification policy, persistence map (`docs/process/learnings.md`), and artifact template govern how a finding is classified and where it persists; this command file only narrows the scope to one command and keeps the improve-command-specific report format below.
 
 ## Core Principles
 

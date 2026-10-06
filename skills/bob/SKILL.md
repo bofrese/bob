@@ -91,7 +91,7 @@ Bob reads and writes to predictable locations:
 | `/bob:pm` | Conversational (opt. status doc) | Project mentor: assess state, recommend next step |
 | `/bob:setup` | `projects/`, `knowledge/`, `personal/`, `.gitignore`, `docs/process/done-criteria.md` | Bootstrap and upgrade bob infrastructure; idempotent |
 | `/bob:new-command` | `bob/commands/{name}.md` + README | Create a new bob command |
-| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped compatibility wrapper over `bob:learn` — extract learnings limited to one command |
+| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped wrapper over `bob:learn` — extract learnings limited to one command |
 | `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
 
 > Note: `{story_path}` is resolved by the `bob:story-context` skill at the start of each engineering command session.
