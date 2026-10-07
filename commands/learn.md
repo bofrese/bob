@@ -30,7 +30,7 @@ Use `references/classification-policy.md`. For each candidate that meets the per
 
 ### Phase 4 - Confirm and apply
 
-Present candidates to me. Generic bob skill or repository-wide instruction changes need my explicit approval before editing. Project-local or story-scoped changes (a guideline, a domain note) can be applied once confirmed. Update `docs/process/learnings.md`: remove promoted entries, keep unresolved single-occurrence entries.
+Present candidates to me. Generic bob skill or repository-wide instruction changes need my explicit approval before editing. Project-local or story-scoped changes (a guideline, a domain note) can be applied once confirmed. Update `docs/process/learnings.md`: mark promoted entries `status: promoted` (keep them as history), keep unresolved single-occurrence entries.
 
 ### Phase 5 - Record
 

@@ -1,7 +1,7 @@
 # Bob User Guide
 *Last updated: 2026-06-23*
 
-Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code-with human judgment at every decision point.
+Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code - with human judgment at every decision point.
 
 This guide is organized around what you actually *do*, not what bob *has*. Pick your starting point based on where you are:
 
@@ -73,4 +73,4 @@ Everything Bob does rests on two ideas:
 
 ## Feedback
 
-If you find gaps, contradictions, or confusing sections, that's valuable. The guides surface what's unclear or missing in the system itself. Open an issue or reach out-this is a new system and user perspective helps sharpen both the implementation and the docs.
+If you find gaps, contradictions, or confusing sections, that's valuable. The guides surface what's unclear or missing in the system itself. Open an issue or reach out - this is a new system and user perspective helps sharpen both the implementation and the docs.

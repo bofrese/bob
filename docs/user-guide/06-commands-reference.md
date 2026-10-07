@@ -15,7 +15,7 @@ Quick lookup for all bob commands, organized by layer.
 
 ## Discovery Commands
 
-Use these to figure out what to build and why. All optional-skip if you have clear strategy already.
+Use these to figure out what to build and why. All optional - skip if you have clear strategy already.
 
 ### `/bob:product-coach`
 **The entry point for product strategy work.**
@@ -48,7 +48,7 @@ Creates or updates your strategic north star. Everything else flows from this.
 ### `/bob:personas`
 **Define the real people you're building for.**
 
-Detailed characters with goals, behaviors, frustrations-not demographics.
+Detailed characters with goals, behaviors, frustrations - not demographics.
 
 | | |
 |---|---|
@@ -181,7 +181,7 @@ Self-contained so someone without the conversation context can execute it. Loads
 ### `/bob:review-plan`
 **Independent critical review of a plan.**
 
-Fresh context. Doesn't trust the plan's assumptions-re-reads the codebase. Looks for gaps, oversimplifications, security issues, simpler alternatives.
+Fresh context. Doesn't trust the plan's assumptions - re-reads the codebase. Looks for gaps, oversimplifications, security issues, simpler alternatives.
 
 | | |
 |---|---|
@@ -503,7 +503,7 @@ Create or maintain the user-facing documentation for this project.
 
 **Follow session boundaries.** They exist for a reason: clean context, explicit decisions, honest critique.
 
-**Read the reports before the next phase.** They're not just logs-they're context the next command builds on and your chance to catch problems early.
+**Read the reports before the next phase.** They're not just logs - they're context the next command builds on and your chance to catch problems early.
 
 **Edit the plans.** Plans include a "Questions & Decisions" table. Your job is to review it, approve, override, add context.
 

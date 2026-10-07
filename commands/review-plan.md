@@ -153,6 +153,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 **Plan reviewed:** {path or name of the plan}
 **Verdict:** {Approve / Approve with changes / Needs rework / Recommend rethink / Return to Design}
 
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+
 ## Summary
 2-3 paragraph overall assessment. What's good, what's concerning, what's the recommendation.
 

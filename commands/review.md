@@ -80,13 +80,13 @@ The report has two halves: a **decision-first top** the reader can act on alone,
 **Date:** {YYYY-MM-DD} | **Verdict:** ✅ Approve | ⚠️ Approve with concerns | ❌ Needs work | 🛑 Significant issues
 **Scope:** {what reviewed} | **Plan:** {path or N/A} | **Design:** {path or N/A}
 
-## 🚦 Summary
+## TL;DR
 {2-4 sentences: the overall judgement, then the count of 🔴 must-fix / 🟡 your-call / 🟢 optional items. Close with: "You should be able to decide from this section alone; Details below is reference only."}
 
-## ✅ What's good
+## What's good
 - {thing - brief, supports the verdict. "Nothing notable" is valid.}
 
-## 📌 Action items
+## Action items
 {Each item plain-English and self-contained, with a "see {section} below" pointer when a Details block expands it. "No action items" is valid.}
 
 ### 🔴 Must fix
@@ -98,12 +98,12 @@ The report has two halves: a **decision-first top** the reader can act on alone,
 ### 🟢 Optional
 3. {action}
 
-## 🧭 Recommendation
+## Recommendation
 {Run `/bob:reflect`? Yes/No + one line why. Name any other next command.}
 
 ---
 
-## 📋 Details
+## Details
 _Reference only. The sections above hold everything needed to decide what to do._
 
 ### Findings

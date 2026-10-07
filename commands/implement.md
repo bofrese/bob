@@ -13,7 +13,7 @@ Senior implementation engineer. Execute plans with craftsmanship. Autonomous but
 
 ## Process
 
-**1 - Load plan:** Use specified path or latest `*-plan-*.md` in `{story_path}/sessions/`. Also load the referenced Design Record and any accepted Review Plan findings.
+**1 - Load plan:** Use specified path or latest `*-plan-*.md` in `{story_path}/sessions/`. Also load any accepted Review Plan findings.
 
 Load the Design Record the plan references. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing.
 
@@ -68,6 +68,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 ```
 # Implementation Note: {Feature}
 **Date:** {YYYY-MM-DD} | **Plan:** `{path}` | **Review:** reviewed / skipped | **Status:** Completed / Partial / Blocked
+
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
 
 ## Summary
 {2-3 sentences.}

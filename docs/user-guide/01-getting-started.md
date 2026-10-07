@@ -1,7 +1,7 @@
 # Getting Started with Bob
 *Last updated: 2026-06-23*
 
-This guide covers installation and your first session-from "what is this?" to "I just finished my first brainstorm."
+This guide covers installation and your first session - from "what is this?" to "I just finished my first brainstorm."
 
 ## What is Bob?
 
@@ -10,7 +10,7 @@ Bob is a Claude Code plugin that structures AI-assisted development into phases:
 - **Engineering:** Build it disciplined (brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn), proportional to risk - trivial work stays on the `/bob:dev` fast path
 - **Knowledge:** Capture guidelines and documentation so every future session is better
 
-Each phase is a separate session with a clear command. Each session writes its output to files. The next session reads those files. You decide at every step-the AI explores options and surfaces trade-offs.
+Each phase is a separate session with a clear command. Each session writes its output to files. The next session reads those files. You decide at every step - the AI explores options and surfaces trade-offs.
 
 ## Installation
 
@@ -81,7 +81,7 @@ Skip Discovery. Start with `/bob:brainstorm` for your next feature.
 
 ### 4. Engage with the output
 
-Every command produces a report-a brainstorm, plan, review, or implementation report. **Read it carefully.** The AI has done the groundwork (read the codebase, thought through options, made assumptions). Now you engage with it.
+Every command produces a report - a brainstorm, plan, review, or implementation report. **Read it carefully.** The AI has done the groundwork (read the codebase, thought through options, made assumptions). Now you engage with it.
 
 - Does the plan make sense? Push back on parts that don't.
 - Are there questions you want to explore deeper? Ask them.
@@ -91,7 +91,7 @@ When you're ready, ask the AI to write the final report to a file.
 
 ### 5. You're done for this phase
 
-Close Claude. Files are saved. You can come back tomorrow, or hand off to a colleague. Everything they need is in the files-no chat history required.
+Close Claude. Files are saved. You can come back tomorrow, or hand off to a colleague. Everything they need is in the files - no chat history required.
 
 ## File Locations
 
@@ -130,11 +130,11 @@ This is the flow: each command reads the previous command's output. Files are th
 
 ## What Not to Do
 
-- **Don't try to brainstorm, plan, and implement in one session.** Session boundaries exist for a reason-they keep context clean and force you to make decisions explicit. One command, one session, one artifact.
+- **Don't try to brainstorm, plan, and implement in one session.** Session boundaries exist for a reason - they keep context clean and force you to make decisions explicit. One command, one session, one artifact.
 
 - **Don't skip reading the output.** The AI made assumptions. Your job is to verify they're right before they become code.
 
-- **Don't expect perfection on first draft.** Plans will need refinement. Code will need review. This is normal. The process surfaces and corrects problems-that's the whole point.
+- **Don't expect perfection on first draft.** Plans will need refinement. Code will need review. This is normal. The process surfaces and corrects problems - that's the whole point.
 
 - **Don't work in chat history.** If you change files directly in code, run the appropriate command (`/bob:review`, `/bob:implement`) so the artifact matches reality.
 

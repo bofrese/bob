@@ -2,7 +2,7 @@
 
 **Filename:** `{date}-design-{slug}.md`, written to `{story_path}/sessions/`.
 
-The Design Record is the authoritative intent handed to Plan, Review Plan, Implement, Review, and Reflect. Keep it decision-dense and self-contained - someone who wasn't in the conversation must be able to plan from it.
+The Design Record is the authoritative intent handed to Plan, Review Plan, Implement, Review, Handover, Document, and Reflect. Keep it decision-dense and self-contained - someone who wasn't in the conversation must be able to plan from it.
 
 ```
 # Design: {Capability}

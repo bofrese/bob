@@ -115,7 +115,7 @@ Features mentioned in the system that I couldn't fully verify in code/docs:
 - **Clarify guidelines loading timing.** Document exactly when guidelines are loaded relative to when a user picks their scope/story.
 
 ### Low Priority
-- **Strengthen Troubleshooting with video references** (if any exist). "This is a common pattern-see the demo here."
+- **Strengthen Troubleshooting with video references** (if any exist). "This is a common pattern - see the demo here."
 - **Add a "Decision Log" template** to Project Management. Mentions decisions are captured, but doesn't provide a standard format for story-level decisions.
 
 ---
@@ -146,7 +146,7 @@ I recommend Option 1. The new guides are comprehensive and better organized.
 
 ## Process Notes
 
-During refactoring, I was writing from the user's perspective and discovered gaps by trying to explain concepts. These findings emerged naturally-not from testing the code, but from testing the *explanations* against user needs.
+During refactoring, I was writing from the user's perspective and discovered gaps by trying to explain concepts. These findings emerged naturally - not from testing the code, but from testing the *explanations* against user needs.
 
 **Strong areas:** Engineering workflow is solid and clear. Discovery commands are well-designed.
 

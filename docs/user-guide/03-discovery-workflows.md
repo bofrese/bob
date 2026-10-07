@@ -25,7 +25,7 @@ Product Vision → Personas → Design Brief
 Problem Space → Business Model → Positioning → Validation Plan
 ```
 
-Not strictly linear-you can loop back. And not all necessary-pick what matters.
+Not strictly linear - you can loop back. And not all necessary - pick what matters.
 
 **Quick path (most projects):** Vision → Personas → Business Model
 
@@ -65,7 +65,7 @@ This is the single source of truth. Everything downstream (personas, plans, brai
 
 ## Phase 2: Personas
 
-**What:** Detailed characters representing your users. Not demographics on a slide-real people with goals, behaviors, frustrations.
+**What:** Detailed characters representing your users. Not demographics on a slide - real people with goals, behaviors, frustrations.
 
 **When:** After vision is clear. Before design or detailed planning.
 
@@ -244,4 +244,4 @@ The "change your mind" part is the point: these are working documents, not holy 
 
 - If you have a vision already, read [Engineering Workflows](02-engineering-workflows.md) to move to building.
 - If you need product strategy guidance, run `/bob:product-coach`.
-- If you're solo on discovery without engineering yet, that's fine-discovery stands alone.
+- If you're solo on discovery without engineering yet, that's fine - discovery stands alone.

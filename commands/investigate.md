@@ -139,6 +139,9 @@ Template:
 **Date:** {YYYY-MM-DD}
 **Status:** {Root cause identified / Needs more data / Hypothesis tested}
 
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+
 ## Problem Statement
 {Observed vs. expected behavior, conditions, symptoms}
 

@@ -147,7 +147,7 @@ Pricing = positioning. Signals value and selects customers.
 
 **"Everyone will pay"** → Most won't. Design for who actually pays.
 
-**"Just reduce churn"** → If LTV fundamentally low, churn isn't problem-product is.
+**"Just reduce churn"** → If LTV fundamentally low, churn isn't problem - product is.
 
 ---
 

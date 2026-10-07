@@ -8,6 +8,9 @@ The Reflection Record captures what building this taught the human and the syste
 # Reflect: {Feature}
 **Date:** {YYYY-MM-DD} | **Handover:** `{path or "not read"}` | **Design:** `{path or N/A}` | **Review:** `{path}`
 
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+
 ## Expectation vs. Reality
 
 ## Concepts Clarified, Split, Merged, or Discovered

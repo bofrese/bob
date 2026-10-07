@@ -20,6 +20,7 @@ commit, otherwise by commit time (reliable only when no commits are near that ti
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -102,6 +103,11 @@ def story_text(story_path):
     return "\n".join(chunks)
 
 
+def mentioned(path, text):
+    """True if path appears in text on a path boundary (notes.md does not match _notes.md)."""
+    return re.search(r"(?<![\w.-])" + re.escape(path) + r"(?![\w-])", text) is not None
+
+
 def dirty(repo, story_repo, story_path, text, nested):
     staged = lines(git(repo, "diff", "--cached", "--name-only", check=False))
     unstaged = lines(git(repo, "diff", "--name-only", check=False))
@@ -115,7 +121,7 @@ def dirty(repo, story_repo, story_path, text, nested):
         absf = os.path.join(repo, f)
         from_root = os.path.relpath(absf, story_repo)
         in_story = os.path.commonpath([absf, story_path]) == story_path
-        (candidates if in_story or f in text or from_root in text else unattributed).append(f)
+        (candidates if in_story or mentioned(f, text) or mentioned(from_root, text) else unattributed).append(f)
     return [f for f in staged if keep(f)], candidates, unattributed
 
 
@@ -217,10 +223,13 @@ def selftest():
         run(root, "add", "staged.txt")
         write(os.path.join(root, "src", "ref.py"))
         write(os.path.join(root, "other.txt"))
+        write(os.path.join(root, "notes.md"))  # story text only mentions _notes.md
+        write(os.path.join(story, "sessions", "ref.md"), "See `_notes.md`.\n")
         r = by_repo(gather(story, "S-1"), ".")
         assert r["staged"] == ["staged.txt"], r
         assert "src/ref.py" in r["candidates"], r
         assert "other.txt" in r["unattributed"], r
+        assert "notes.md" in r["unattributed"], r
         assert not any(f.startswith("code") for f in r["unattributed"] + r["candidates"]), r
 
         # --full ignores the baseline
@@ -235,6 +244,35 @@ def selftest():
         write(os.path.join(story, "sessions", "2026-02-01-handover-y.md"))
         r = by_repo(gather(story, "S-1"), ".")
         assert r["baseline"] is not None and r["reliable"] is False, r
+
+        # submodule pointer NOT bumped in the handover commit -> time mapping
+        def time_mapped(name, minutes_after):
+            c, rt = os.path.join(tmp, name + "-code"), os.path.join(tmp, name + "-root")
+            for r in (c, rt):
+                os.makedirs(r)
+                run(r, "init", "-q", "-b", "main")
+            write(os.path.join(c, "a.py"))
+            run(c, "add", ".")
+            run(c, "commit", "-qm", "T-1: before")
+            run(rt, "submodule", "add", "-q", c, "code")
+            run(rt, "commit", "-qm", "T-1: add submodule")
+            st = os.path.join(rt, "stories", "T-1")
+            write(os.path.join(st, "sessions", "2026-03-01-handover-z.md"))
+            run(rt, "add", "stories")
+            run(rt, "commit", "-qm", "T-1: handover")  # pointer untouched
+            handover_time = clock[0]
+            c = os.path.join(rt, "code")  # the submodule checkout
+            write(os.path.join(c, "b.py"))
+            run(c, "add", ".")
+            clock[0] = handover_time + minutes_after * 60 - 7200  # run() adds 7200 back
+            run(c, "commit", "-qm", "T-1: after")
+            return by_repo(gather(st, "T-1"), "code")
+
+        far = time_mapped("far", 120)
+        assert far["note"].startswith("mapped by commit time") and far["reliable"] is True, far
+        assert [x.split(" ", 1)[1] for x in far["commits"]] == ["T-1: after"], far
+        near = time_mapped("near", 30)
+        assert near["note"].startswith("mapped by commit time") and near["reliable"] is False, near
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     print("selftest ok")

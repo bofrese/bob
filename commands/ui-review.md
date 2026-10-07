@@ -129,6 +129,9 @@ Template:
 **Input:** {Screenshot / Code / Both}
 **Tech stack:** {Platform and UI framework}
 
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+
 ## Product Context
 - **Vision loaded:** {Yes / No}
 - **Personas loaded:** {Yes / No}

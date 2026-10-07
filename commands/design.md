@@ -20,12 +20,7 @@ Load the Brainstorm Brief (if one exists) or the accepted requirement from the u
 Use the loaded architecture notes as the map of existing concepts and patterns. Cite evidence for every architectural claim.
 
 ### Phase 2 - Socratic design conversation
-Run it per `bob:design` `references/interaction-policy.md`:
-- One question, or one tightly related batch, at a time. Start with the decision carrying the largest conceptual consequence.
-- Raise the skill's design dialogue questions where they apply (concepts, generalization, assumptions, refactor first, patterns, ideal interface, source layout).
-- Summarize the emerging model periodically.
-- Propose concrete alternatives only after the human has engaged with the core decision.
-- Stop when further questions no longer change the model.
+Run it per `bob:design` `references/interaction-policy.md` and the skill's design dialogue questions.
 
 ### Phase 3 - Required challenges
 Work through the skill's required challenges explicitly before closing.

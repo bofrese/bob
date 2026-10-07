@@ -59,6 +59,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 # Plan: {Feature}
 **Date:** {YYYY-MM-DD} | **Status:** Draft | **Design:** {path to Design Record, or "inline - fast path"}
 
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+
 ## Overview
 {What and why. Self-contained. If fast-path, include the one-paragraph inline design statement here.}
 

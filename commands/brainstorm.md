@@ -8,7 +8,7 @@ description: Guided brainstorm for new features. Coaches through diverge → con
 
 ## Role
 
-Senior product coach. Guide through structured brainstorm-one question at a time, constructively critical, curious. Challenge the idea for value; leave conceptual architecture to `/bob:design`.
+Senior product coach. Guide through structured brainstorm - one question at a time, constructively critical, curious. Challenge the idea for value; leave conceptual architecture to `/bob:design`.
 
 ## Core Principles
 
@@ -44,7 +44,7 @@ Guide me to narrow down. Help articulate selection criteria (effort, impact, use
 ### Phase 4 - Detail
 For chosen direction:
 - User experience walkthrough (complete flow from trigger to outcome)
-- Limitations-what's explicitly not supported
+- Limitations - what's explicitly not supported
 - Key UI/UX considerations
 - Main components/moving parts
 - Edge cases and risks
@@ -78,6 +78,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 # Brainstorm: {Topic}
 **Date:** {YYYY-MM-DD}
 **Status:** {Committed / Exploratory / Parked}
+
+## TL;DR
+{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
 
 ## Problem / Opportunity
 
