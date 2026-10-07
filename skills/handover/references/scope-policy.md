@@ -15,7 +15,7 @@ A story can span several repos: the repo holding the story folder, its submodule
 | Situation | Action |
 |---|---|
 | Baseline found and reliable in every repo with changes | State it: "Since the last handover ({date}): N commits in X, M in Y, plus staged files." Proceed unless the user objects |
-| No previous handover, or it is not committed | Ask: whole story (story-ID commits) or a range the user names |
+| No previous handover, or it is not committed | Ask: whole story or a range the user names. Whole story = story-ID commits (`commits`) plus `related`: untagged commits since the story's `started:` date that touch story files or files its artifacts reference. List `related` and include only the ones the user confirms |
 | Any repo `reliable: false` | Show what was found for that repo and ask the user to confirm or name the range |
 | User asks for the whole story | Re-run with `--full` |
 

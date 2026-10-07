@@ -10,6 +10,8 @@ other nested git repos under its root). Per repo:
     baseline      commit the change set starts after (null = no baseline)
     reliable      true when the baseline can be trusted without asking the user
     commits       commits in scope: since baseline, or story-ID commits when no baseline
+    related       no baseline only: untagged commits since the story's `started:` date that
+                  touch story-related files (inferred, so the user confirms them)
     staged        staged files (staged = "intend to commit, read the handover first")
     candidates    unstaged/untracked files the story artifacts reference (offer to stage)
     unattributed  other dirty files
@@ -108,20 +110,55 @@ def mentioned(path, text):
     return re.search(r"(?<![\w.-])" + re.escape(path) + r"(?![\w-])", text) is not None
 
 
-def dirty(repo, story_repo, story_path, text, nested):
+def story_started(story_path):
+    """The `started:` date from the story's _index.md frontmatter, or None."""
+    try:
+        with open(os.path.join(story_path, "_index.md"), encoding="utf-8") as fh:
+            m = re.search(r"^started:\s*['\"]?([0-9]{4}-[0-9]{2}-[0-9]{2})", fh.read(), re.M)
+    except OSError:
+        return None
+    return m.group(1) if m else None
+
+
+def own_file(nested_rel):
+    """Filter: files that belong to this repo, not to a nested repo inside it."""
+    return lambda f: not any(f == n or f.startswith(n + "/") for n in nested_rel)
+
+
+def story_related(f, repo, story_repo, story_path, text):
+    """True if repo-relative file f is in the story folder or referenced by its artifacts."""
+    absf = os.path.join(repo, f)
+    return (os.path.commonpath([absf, story_path]) == story_path
+            or mentioned(f, text) or mentioned(os.path.relpath(absf, story_repo), text))
+
+
+def related_commits(repo, story_repo, story_path, text, nested_rel, since, tagged):
+    """Untagged commits since `since` that touch at least one story-related file."""
+    if not since:
+        return []
+    keep, tagged_ids = own_file(nested_rel), {c.split(" ", 1)[0] for c in tagged}
+    out, commit, hit = [], None, False
+    log = git(repo, "log", f"--since={since}", "--format=@@%h %s", "--name-only", "HEAD", check=False)
+    for line in log.splitlines() + ["@@"]:
+        if line.startswith("@@"):
+            if commit and hit and commit.split(" ", 1)[0] not in tagged_ids:
+                out.append(commit)
+            commit, hit = line[2:] or None, False
+        elif line and not hit and keep(line):
+            hit = story_related(line, repo, story_repo, story_path, text)
+    return out
+
+
+def dirty(repo, story_repo, story_path, text, nested_rel):
     staged = lines(git(repo, "diff", "--cached", "--name-only", check=False))
     unstaged = lines(git(repo, "diff", "--name-only", check=False))
     untracked = lines(git(repo, "ls-files", "--others", "--exclude-standard", check=False))
-    nested_rel = {os.path.relpath(n, repo) for n in nested}
-    keep = lambda f: not any(f == n or f.startswith(n + "/") for n in nested_rel)
+    keep = own_file(nested_rel)
     candidates, unattributed = [], []
     for f in sorted(set(unstaged + untracked) - set(staged)):
-        if not keep(f):
-            continue
-        absf = os.path.join(repo, f)
-        from_root = os.path.relpath(absf, story_repo)
-        in_story = os.path.commonpath([absf, story_path]) == story_path
-        (candidates if in_story or mentioned(f, text) or mentioned(from_root, text) else unattributed).append(f)
+        if keep(f):
+            related = story_related(f, repo, story_repo, story_path, text)
+            (candidates if related else unattributed).append(f)
     return [f for f in staged if keep(f)], candidates, unattributed
 
 
@@ -133,6 +170,7 @@ def gather(story_path, story_id, full=False):
     base, reliable, note = story_baseline(story_repo, handover)
     base_time = int(git(story_repo, "show", "-s", "--format=%ct", base)) if base else None
     text = story_text(story_path)
+    started = story_started(story_path)
     out = {"story_repo": story_repo, "story_id": story_id, "full": full,
            "handover": os.path.relpath(handover, story_repo) if handover else None, "repos": []}
     for repo in repos:
@@ -142,12 +180,14 @@ def gather(story_path, story_id, full=False):
             r_base, r_rel, r_note = map_baseline(story_repo, base, base_time, repo)
         else:
             r_base, r_rel, r_note = None, False, note
-        nested = [n for n in repos if n != repo and n.startswith(repo + os.sep)]
-        staged, candidates, unattributed = dirty(repo, story_repo, story_path, text, nested)
+        nested_rel = {os.path.relpath(n, repo) for n in repos if n != repo and n.startswith(repo + os.sep)}
+        staged, candidates, unattributed = dirty(repo, story_repo, story_path, text, nested_rel)
+        commits = commit_list(repo, rng=r_base) if r_base else commit_list(repo, story_id=story_id)
+        related = [] if r_base else related_commits(repo, story_repo, story_path, text, nested_rel, started, commits)
         out["repos"].append({
             "repo": os.path.relpath(repo, story_repo),
             "baseline": r_base, "reliable": r_rel, "note": r_note,
-            "commits": commit_list(repo, rng=r_base) if r_base else commit_list(repo, story_id=story_id),
+            "commits": commits, "related": related,
             "staged": staged, "candidates": candidates, "unattributed": unattributed,
         })
     return out
@@ -187,17 +227,29 @@ def selftest():
         run(code, "commit", "-qm", "S-1: first code")
         run(root, "submodule", "add", "-q", code, "code")
         story = os.path.join(root, "stories", "S-1")
-        write(os.path.join(story, "_index.md"), "# S-1\nTouches `src/ref.py`.\n")
+        write(os.path.join(story, "_index.md"),
+              "---\nstarted: 2023-01-01\n---\n# S-1\nTouches `src/ref.py` and `lib/x.py`.\n")
         run(root, "add", ".")
         run(root, "commit", "-qm", "S-1: story")
         sub = os.path.join(root, "code")
 
-        # no handover -> baseline null, story-ID commits listed
+        # untagged commits: one touches a story-referenced file, one does not
+        write(os.path.join(sub, "lib", "x.py"))
+        run(sub, "add", ".")
+        run(sub, "commit", "-qm", "untagged related")
+        write(os.path.join(sub, "lib", "y.py"))
+        run(sub, "add", ".")
+        run(sub, "commit", "-qm", "untagged unrelated")
+
+        # no handover -> baseline null, story-ID commits listed, untagged related ones inferred
         res = gather(story, "S-1")
         r = by_repo(res, ".")
         assert r["baseline"] is None and r["reliable"] is False, r
         assert any("S-1: story" in c for c in r["commits"]), r
-        assert any("S-1: first code" in c for c in by_repo(res, "code")["commits"]), res
+        s = by_repo(res, "code")
+        assert any("S-1: first code" in c for c in s["commits"]), s
+        assert [c.split(" ", 1)[1] for c in s["related"]] == ["untagged related"], s
+        assert not any("first code" in c for c in s["related"]), s  # tagged ones not repeated
 
         # committed handover -> baseline is that commit; submodule anchored by pointer
         write(os.path.join(sub, "b.py"))
