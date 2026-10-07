@@ -19,6 +19,7 @@ Skills are thinking frameworks loaded into context when commands need them. Most
 6. For engineering commands: load `docs/guidelines/` selectively once scope is clear
 7. For engineering commands: invoke `bob:knowledge` for relevant vault retrieval
 8. For engineering commands: invoke `bob:code-graph` for graph freshness + query capability (skips silently if graphify/graph absent)
+- Intent (story work): loads every Intent Source in full plus earlier `## Intent Changes`; defines the request recap, the change table, "untouched still applies", and the plan's `## Intent Coverage` checks
 
 **Per-command loading table (selected):**
 
@@ -106,7 +107,7 @@ Then [observable outcome]
 
 **File I/O:** None (reference framework).
 
-**Invoked by:** `/bob:design`, `/bob:plan` (placement, lenses), `/bob:review` (design-concern lens), `bob:document` (concepts, patterns), `bob:reflect` (smells, drift).
+**Invoked by:** `/bob:design`, `/bob:review` (design-concern lens), `bob:document` (concepts, patterns), `bob:reflect` (smells, drift).
 
 **Core discipline:** Strategic over tactical: how does this change fit the system over time? Concept first, framework second. Smells, competing patterns and drift are surfaced as questions with evidence, never fixed silently; the human decides.
 

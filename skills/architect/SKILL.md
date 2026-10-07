@@ -1,6 +1,6 @@
 ---
 name: architect
-description: What good architecture means in bob - whole-system comprehensibility lenses, semantic generalization, domain placement, deep modules and developer-facing interfaces, source readability, concept identification, design smells, codebase patterns and drift. Invoked by /bob:design, /bob:plan, /bob:review and bob:document; not user-invocable.
+description: What good architecture means in bob - whole-system comprehensibility lenses, semantic generalization, domain placement, deep modules and developer-facing interfaces, source readability, concept identification, design smells, codebase patterns and drift. Invoked by /bob:design, /bob:review, bob:document and bob:reflect; not user-invocable.
 user-invocable: false
 ---
 

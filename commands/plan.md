@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(*), Read, Write, Edit
-description: Create an implementation plan from an idea or feature spec. Analyzes codebase, plans steps, ready for dev or AI handoff.
+description: Translate a Design Record into an implementation plan. Analyzes codebase, plans steps, ready for dev or AI handoff.
 ---
 
 ## Context
@@ -8,13 +8,13 @@ description: Create an implementation plan from an idea or feature spec. Analyze
 
 ## Role
 
-Senior architect. Turn ideas into concrete, reviewable plans. Always push for the simplest solution - challenge assumptions and the spec itself. Don't invent features; surface them as suggestions.
+Senior engineer. Translate an approved design into concrete, reviewable implementation steps. Push for the simplest implementation of that design. Don't invent features or concepts; surface them as suggestions or `DESIGN FEEDBACK`.
 
 ## Process
 
-**For all steps - Discuss:** It is important that I, the developer running this session, takes ownership of the design and the resulting code. After the planning I should have a clear idea about HOW it will be implemented, WHERE to find it, WHAT it is called, etc. You are not designing this _for_ me, but _with_ me. Take me through the design and architecture decissions one by one. Start with the most important implementation decission, and build from there. Do _not_ reitterate decision that have already been made in the brainstorming and idea generation phase, only ask this type of quesions if soemthing is unresolved. Otherwise this is purly on how to implement it. The decision for each step will inform the options for the next steps. If there are a limited set of obvious choises to choose from, the use the AskUserTool so I can choose quickly. If it is something I need to reflect on, or the choises are non obvious prompt me to type the answer.
+**For all steps - Discuss:** Design decisions are made in `/bob:design` and are not reopened here. Take me through the implementation decisions one at a time, most consequential first: step order, refactoring before the feature, where code goes within the approved concepts, test approach. After planning I should know HOW it will be built and WHERE to find it. When the options are few and obvious, use the AskUserQuestion tool; otherwise ask me to type the answer. A question that needs a new concept, boundary, name or trade-off is a design question: raise it as `DESIGN FEEDBACK`.
 
-**1 - Understand:** Read any provided description. Clarify intent, scope, and outcome - one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
+**1 - Understand:** Read the Design Record (or the fast-path statement). Clarify only what planning needs - one question at a time. If the user corrects a domain misunderstanding or clarifies project-specific terminology, invoke the `bob:domain-knowledge` skill before continuing.
 
 For conceptually meaningful work - new concepts, boundaries, or vocabulary - require a Design Record reference (`{story_path}/sessions/{date}-design-{slug}.md`) before proceeding. For fast-path work (small, local, no new concepts), a one-paragraph inline design statement in the Overview satisfies this instead of a full Design Record. Plan translates a design into steps - it does not invent one. If neither exists and the work isn't clearly fast-path, stop and recommend `/bob:design` first.
 
@@ -24,10 +24,9 @@ For conceptually meaningful work - new concepts, boundaries, or vocabulary - req
 
 **Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify affected "X"` on the areas this feature touches for blast-radius / impact-aware analysis before any manual grep/Explore. This is the purpose-built reverse-impact tool that returns a clean directional subgraph, not open-ended `query`. Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph doesn't answer. If no Code Graph Context is present (graphify absent, no graph, or stale), analyze manually as above; the flow is otherwise unchanged.
 
-**3 - Fit:** Can this be implemented cleanly as-is, or is refactoring required first? If refactoring is needed, it becomes an explicit phase - not an afterthought.
+**3 - Fit:** Can the design be implemented cleanly as-is, or is refactoring required first (start from the Design Record's refactoring needs)? If refactoring is needed, it becomes an explicit phase - not an afterthought.
 
-**4 - Design:** Walk through: concept, key components, interactions (Mermaid if non-trivial), alternatives considered. Challenge your own design.
-Invoke the `bob:architect` skill (`references/placement.md` and `references/design-lenses.md`) when naming components, defining bounded contexts, and making structural decisions. Names chosen here become binding: they must reflect the domain, not the database.
+**4 - Map the design:** Map the Design Record's concepts, interfaces and patterns onto files and components (Mermaid if non-trivial). Use the Design Record's vocabulary for names. Anything the Design Record does not settle is `DESIGN FEEDBACK`, not a decision made here.
 
 **5 - Break down:** Simple work → one unit. Complex → testable chunks, each leaving the system working.
 Per chunk: what, why, files, verification, and two dimensions instead of one AI difficulty rating - `Complexity` (implementation effort: Easy/Medium/Hard) and `Conceptual risk` (ownership sensitivity: Low/Medium/High - how much this step touches concepts, boundaries, or contracts the developer must understand, not just execute).
@@ -42,7 +41,7 @@ Invoke the `bob:bdd` skill - Given/When/Then acceptance criteria before tests.
 
 **5.5 - PM step:** Surface any work that emerged during planning but is out of scope for this story - deferred features, spin-off ideas, dependencies on other stories, discovered gaps. For each item: invoke the `bob:work-routing` skill and follow its protocol.
 
-**6 - Save:** Save immediately when ready. Open questions go in the Q&D table - don't block on them.
+**6 - Save:** Save immediately when ready. Open questions go in the Q&D table - don't block on them. Before saving, check `## Intent Coverage` per `bob:context-protocol` Intent section: every source section and change row has a row or an explicit change marking it out of scope.
 
 **DO NOT IMPLEMENT. PLAN ONLY.**
 
@@ -74,8 +73,15 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 |--------|--------|-------|
 **Checkpoint:** Green before proceeding.
 
-## Design
-{Approach and key components. Mermaid if helpful. Decisions and rejected alternatives.}
+## Intent Changes
+{Only if planning changed intent, per `bob:context-protocol` Intent section. Omit otherwise.}
+
+## Intent Coverage
+| Intent item (source section or change row) | Must be present | Step / target |
+|---|---|---|
+
+## Design Mapping
+{How the Design Record's concepts and interfaces map to components and files. Mermaid if helpful. No new concepts.}
 
 ## Implementation Steps
 **Baseline:** Green before starting.

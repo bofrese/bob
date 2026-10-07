@@ -267,7 +267,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 1. Problem statement
 2. Current system analysis (blast-radius via the code graph first when fresh - `graphify affected`; else manual exploration; relevant files and patterns)
 3. Preparatory refactoring (if any)
-4. Design and architecture (Mermaid diagram if non-trivial)
+4. Design mapping: Design Record concepts onto files and components (Mermaid if non-trivial)
 5. Implementation steps with BDD acceptance criteria, Complexity rating, and Conceptual risk rating
 5.5. **PM step:** Route out-of-scope work that surfaced during planning - invoke `bob:work-routing`
 6. Structural diff summary (files/modules/symbols touched, at a glance)
@@ -276,7 +276,7 @@ Bootstrap (step 3) also handles **graphify provisioning** when graphify is insta
 
 **DESIGN FEEDBACK:** if repository inspection contradicts the Design Record, Plan emits a `DESIGN FEEDBACK` section and stops planning that area rather than improvising.
 
-**Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `architect` (step 4: placement, lenses), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
+**Skills:** `context-protocol`, `code-graph` (step 2 blast-radius), `domain-knowledge` (on correction), `bdd` (step 5), `work-routing` (step 5.5), `done-criteria`
 
 ---
 

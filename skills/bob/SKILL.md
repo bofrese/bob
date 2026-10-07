@@ -110,7 +110,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
 | `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 - Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
 | `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
-| `bob:architect` | `/bob:design`, `/bob:plan`, `/bob:review`, `bob:document`, `bob:reflect` | What good design means: design lenses, domain placement, deep modules and readability, concepts and smells, patterns and drift |
+| `bob:architect` | `/bob:design`, `/bob:review`, `bob:document`, `bob:reflect` | What good design means: design lenses, domain placement, deep modules and readability, concepts and smells, patterns and drift |
 | `bob:writing` | `context-protocol` (every command) | How bob writes artifacts: TL;DR first, scannable, fixed icons, plain English, no AI tells |
 | `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, dialogue questions, Design Record template |
 | `bob:document` | `/bob:document` | Docs layout, Discover / Update / Audit modes, concept and pattern note templates |

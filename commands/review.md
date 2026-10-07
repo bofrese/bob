@@ -22,7 +22,7 @@ Correlate plans with changed files. Form a scope hypothesis.
 
 **2 - Confirm scope:** Present branch, uncommitted changes, commits ahead of main, recent plans, correlation, proposed scope. Wait for confirmation.
 
-**3 - Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. Load the Design Record the plan references; when one exists it is required alongside the plan. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing. Gather full diffs. Read all changed files completely.
+**3 - Load context:** Guidelines for file extensions/paths/concepts in scope. Read plan if changes correlate to one. Load the Design Record the plan references; when one exists it is required alongside the plan. If the plan references none and does not state an explicit fast-path decision to skip Design, treat Design input as missing. Use the plan's `## Intent Coverage` as the conformance checklist, re-checked against the Intent Sources themselves (`bob:context-protocol` Intent section). Gather full diffs. Read all changed files completely.
 
 **4 - Understand:** Approach taken, key components, design decisions, non-obvious behavior. Note plan deviations.
 
@@ -45,7 +45,7 @@ If no Code Graph Context is present (graphify absent, no graph, or stale), skip 
 
 **6 - Discuss:** One topic at a time, grouped by category (bugs / design-conformance failures / design concerns), each rated 🔴 Critical (must fix) · 🟡 Important (should fix) · 🟢 Suggestion. Briefly acknowledge good work. A clean review with no manufactured findings is a valid outcome - don't invent issues to fill sections.
 
-Recommend `/bob:reflect` after significant agent-implemented changes.
+After significant agent-implemented changes, recommend the rest of the loop in order: `/bob:document` (Update mode, when `docs/architecture/` exists or patterns changed), then `/bob:handover`, then `/bob:reflect` once the Handover is read.
 
 Before writing the report: identify codebase patterns the change introduced, changed or contradicted. Name each and recommend `/bob:document` (Update mode) to record it as a pattern note. Repeated technology pitfalls go to `/bob:guidelines`.
 
@@ -99,7 +99,7 @@ The report has two halves: a **decision-first top** the reader can act on alone,
 3. {action}
 
 ## Recommendation
-{Run `/bob:reflect`? Yes/No + one line why. Name any other next command.}
+{Next steps: `/bob:document` (Update) Yes/No, `/bob:handover` then `/bob:reflect` Yes/No, each with one line why. Name any other next command.}
 
 ---
 

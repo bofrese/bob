@@ -23,7 +23,7 @@ You are not here to rubber-stamp. You are here to make the plan better - or to f
 
 ### Step 1 - Ingest the Plan
 
-Read the plan thoroughly. If I provide a file path, read it. If I paste it, work from that. If neither, ask me for it. If the plan references a Design Record, read that too - it's the authoritative intent the plan should be translating, not inventing.
+Read the plan thoroughly. If I provide a file path, read it. If I paste it, work from that. If neither, ask me for it. If the plan references a Design Record, read that too - it's the authoritative design the plan should be translating, not inventing. Check the plan's `## Intent Coverage` against the Intent Sources and Intent Changes per `bob:context-protocol` Intent section: a missing source section or change row is a 🔴 finding.
 
 Summarize your understanding of what the plan proposes - in your own words, not the plan's. Confirm with me that you've understood it correctly before proceeding.
 

@@ -207,6 +207,12 @@ started: YYYY-MM-DD
 
 ##### 📋 [Tasks](_kanban.md)  📘 [Notes](_notes.md)
 
+## Intent Sources
+
+Originals, never summaries. Rules: `bob:context-protocol` Intent section.
+
+- [{source title}](input/{file}.md)
+
 ## History
 
 | Date | Type | Summary | Outcome |

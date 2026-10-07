@@ -76,6 +76,29 @@ Use the resolved `Path:` from the story-context output block for all artifact pl
 
 ---
 
+## Intent (story work)
+
+Original intent must never be lost through summaries, and later refinements must never be overruled by the original. Current intent = **original sources + an ordered list of explicit changes**. No artifact rewrites it as a new summary.
+
+**Sources.** `{story_path}/_index.md` `## Intent Sources` links every original: `input/*` documents, user-supplied files, and request recaps. When intent arrives in conversation instead of a file, write a recap to `{story_path}/input/{date}-request.md`: complete, not condensed (every requirement, idea, constraint and open question raised), well formatted. Show it to the user and save only after they confirm it; then register it under Intent Sources.
+
+**Changes.** Any phase that refines intent (brainstorm, design, plan) records an `## Intent Changes` table in its artifact:
+
+| Source ref | Change | New content | Why | Decided by |
+|---|---|---|---|---|
+| {source file + section, or earlier change row} | dropped / changed / added / deferred | {the new intent} | {reason} | {person} |
+
+**Rules.**
+- Anything in a source that no change row touches **still applies**.
+- Precedence: the latest explicit change wins over earlier changes, which win over the original. Order = the `_index.md` History table.
+- Summaries are navigation only. Quote a source with a link when it matters; a paraphrase never replaces it.
+
+**Loading.** `design`, `plan`, `review-plan`, `implement`, `review` and `handover` read every Intent Source **in full**, plus the `## Intent Changes` section of every earlier artifact in History, before their own process starts. Fast-path work without a story skips this section.
+
+**Coverage.** The plan carries an `## Intent Coverage` table: each current intent item (source section or change row) → what must be present → plan step / target. `review-plan` checks that every source section and change row has a row (or an explicit change marking it out of scope). `implement` verifies the table as its final step. `review` uses it as its conformance checklist.
+
+---
+
 ## Kanban Sync (Engineering commands, after story context confirmed)
 
 For `brainstorm`, `design`, `plan`, `review-plan`, `implement`, `review`, `document`, `handover`, `reflect`, `learn`, `investigate`, `ui-review`:

@@ -43,7 +43,7 @@ Invoke the `bob:design-signals` skill continuously throughout this phase - imple
 **STOP when:** tests fail and unfixable · plan requires ugly/hacky code · fundamental mismatch with reality · a design signal escalates to "pause for human decision" or "stop and return to Design."
 **Don't stop for:** minor improvements (implement + document in report) · easily fixed lint · discoverable info · signals that resolve to "continue autonomously" or "continue and record."
 
-**6 - Final verify:** Full test suite + linter + build. Unfixable → STOP.
+**6 - Final verify:** Full test suite + linter + build. Unfixable → STOP. Then walk the plan's `## Intent Coverage` against the result and the Intent Sources (`bob:context-protocol` Intent section); record ✅ / gap per row in the note. A gap you cannot close → STOP.
 
 **6.5 - Kanban update:**
 - Read `{story_path}/_kanban.md`. Mark resolved tasks and issues done: change `- [ ]` to `- [x]` and move the card to `## done`.
@@ -90,6 +90,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 
 ## Discoveries
 {Insights for future consideration. New, changed or competing codebase patterns for `/bob:document`.}
+
+## Intent Coverage
+{Per plan row: ✅ / gap, with file evidence.}
 
 ## Test Results
 {Summary. New tests added.}

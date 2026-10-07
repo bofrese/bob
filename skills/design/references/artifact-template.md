@@ -14,6 +14,9 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 
 ## Accepted Capability
 
+## Intent Changes
+{Table per `bob:context-protocol` Intent section: every source item this design drops, changes, adds or defers. Each row is a human-owned decision. "None" is valid.}
+
 ## Repository Evidence Inspected
 | Area | Finding | Source |
 |------|---------|--------|

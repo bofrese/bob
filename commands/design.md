@@ -13,7 +13,7 @@ description: Form and defend the simplest coherent conceptual design for a capab
 ## Process
 
 ### Phase 1 - Start with evidence
-Load the Brainstorm Brief (if one exists) or the accepted requirement from the user. Invoke the `bob:architect` skill. Then inspect the repository before asking broad questions:
+Load the Intent Sources and earlier Intent Changes per `bob:context-protocol` Intent section (if the requirement came only from conversation, capture the request recap first). Invoke the `bob:architect` skill. Then inspect the repository before asking broad questions:
 
 **Graph first.** If the Code Graph Context (emitted by `bob:code-graph` via the context protocol) reports a fresh graph, use `graphify query "<question>"` to survey what already exists: relevant concepts, naming, boundaries, similar capabilities, data/control flow. Cite the `source_location` it returns as the file:line reference. Fall back to grep/Explore for anything the graph does not answer. Without a Code Graph Context, examine the repository manually.
 

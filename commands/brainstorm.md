@@ -29,7 +29,7 @@ Before asking your first question, orient the user:
 - Name the 5 phases: Seed → Diverge → Converge → Detail → Commit
 - Tell them they can say **"save"** at any time to write the report and exit
 
-Then ask what we're brainstorming. Clarify until you understand the intent, user need, and problem.
+Then ask what we're brainstorming. Clarify until you understand the intent, user need, and problem. If the idea came from conversation (no source file yet), capture the request recap per `bob:context-protocol` Intent section and get my confirmation before Phase 2.
 
 ### Phase 2 - Diverge
 Challenge my idea. Then explore:
@@ -96,6 +96,9 @@ Use the path resolved by `bob:story-context`. The `story_path` was established e
 | ... | ... | ... | ... |
 
 ## Accepted Capability Statement
+
+## Intent Changes
+{Changes to the Intent Sources made during this brainstorm, per `bob:context-protocol` Intent section. "None" is valid.}
 
 ## Assumptions
 
