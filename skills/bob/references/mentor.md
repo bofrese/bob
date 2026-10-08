@@ -40,7 +40,7 @@ Create a story or bootstrap `projects/` per `references/story-files.md`. Move or
 
 ## Status report
 
-On request, write `ai/{date}-project-status.md` (create `ai/`):
+On request, write `{story_path}sessions/{date}-project-status.md`, or `docs/process/sessions/{date}-project-status.md` without a story (create the folder):
 
 ```markdown
 # Project Status Report
