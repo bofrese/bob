@@ -2,6 +2,7 @@
 """Audit vault notes for frontmatter issues and broken internal links.
 
 Usage: python3 lint.py [vault_root]
+       python3 lint.py --selftest
   vault_root: path to knowledge/ directory (default: knowledge/)
 
 Output: JSON list of issues, one per file.
@@ -75,7 +76,29 @@ def lint_vault(vault_root):
     return issues
 
 
+def selftest():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        vault = os.path.join(tmp, "knowledge")
+        os.makedirs(os.path.join(vault, "concepts"))
+        good = "---\ntype: concept\ntitle: A\ntags: []\ntimestamp: 2026-01-01\n---\nSee [b](../concepts/b.md)\n"
+        with open(os.path.join(vault, "concepts", "a.md"), "w") as f:
+            f.write(good)
+        with open(os.path.join(vault, "concepts", "b.md"), "w") as f:
+            f.write("---\ntitle: B\nsource: x\n---\n[gone](../concepts/gone.md)\n")
+        result = {r["file"]: r["issues"] for r in lint_vault(vault)}
+        assert list(result) == [os.path.join("knowledge", "concepts", "b.md")], result
+        issues = result[os.path.join("knowledge", "concepts", "b.md")]
+        assert "missing required field: type:" in issues, issues
+        assert "old field name: source: (should be resource:)" in issues, issues
+        assert "broken link: ../concepts/gone.md" in issues, issues
+    print("ok")
+
+
 if __name__ == "__main__":
+    if "--selftest" in sys.argv:
+        selftest()
+        sys.exit(0)
     vault_root = sys.argv[1] if len(sys.argv) > 1 else "knowledge"
     if not os.path.isdir(vault_root):
         print(json.dumps({"error": f"vault not found: {vault_root}"}))

@@ -2,6 +2,7 @@
 """Return vault notes changed since a given date, via git log + untracked files.
 
 Usage: python3 git_scope.py [since_date] [vault_dir]
+       python3 git_scope.py --selftest
   since_date: ISO date string, e.g. 2026-06-18T10:45:00Z (optional)
               If omitted or log.md missing, returns all notes in vault_dir.
   vault_dir:  path to vault directory (default: knowledge)
@@ -44,7 +45,7 @@ def get_changed_notes(since_date, vault_dir):
     # Untracked and modified files via git status
     try:
         result = subprocess.run(
-            ["git", "status", "--porcelain", vault_dir],
+            ["git", "status", "--porcelain", "--untracked-files=all", vault_dir],
             capture_output=True, text=True, check=True
         )
         for line in result.stdout.splitlines():
@@ -58,7 +59,27 @@ def get_changed_notes(since_date, vault_dir):
     return sorted(changed)
 
 
+def selftest():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        cwd = os.getcwd()
+        os.chdir(tmp)
+        try:
+            os.makedirs("knowledge/concepts")
+            open("knowledge/concepts/a.md", "w").close()
+            open("knowledge/notes.txt", "w").close()
+            assert get_all_notes("knowledge") == [os.path.join("knowledge", "concepts", "a.md")]
+            subprocess.run(["git", "init", "-q"], check=True)
+            assert get_changed_notes("2000-01-01", "knowledge") == ["knowledge/concepts/a.md"]
+        finally:
+            os.chdir(cwd)
+    print("ok")
+
+
 if __name__ == "__main__":
+    if "--selftest" in sys.argv:
+        selftest()
+        sys.exit(0)
     since_date = sys.argv[1] if len(sys.argv) > 1 else None
     vault_dir = sys.argv[2] if len(sys.argv) > 2 else "knowledge"
 

@@ -12,17 +12,13 @@ Five components that define positioning:
 
 ### 1. Competitive Alternatives
 
-What would customers use if your product didn't exist?
-
-Not "competitors" - alternatives: direct competitors (similar products), indirect solutions (different approach, same job), manual workarounds (spreadsheets, email, paper), and **doing nothing** (often the real competition).
+What would customers use if your product didn't exist? Not "competitors" - alternatives: direct competitors (similar products), indirect solutions (different approach, same job), manual workarounds (spreadsheets, email, paper), and **doing nothing** (often the real competition).
 
 **Key question:** "What did you use before this?"
 
 ### 2. Unique Attributes
 
-What capabilities do you have that alternatives don't?
-
-Strong attributes are provable and demonstrable, defensible (hard to copy quickly), and valued by customers (not just technically interesting).
+What capabilities do you have that alternatives don't? Strong attributes are provable and demonstrable, defensible (hard to copy quickly), and valued by customers (not just technically interesting).
 
 **Warning:** Features ≠ attributes. "ML powered" is not positioning. "10x faster than manual" is.
 

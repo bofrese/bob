@@ -69,8 +69,6 @@ obsidian move path="old-folder/old-name.md" name="new-name" to="new-folder"
 
 ## Workflow
 
-Every file operation follows this exact sequence:
-
 1. **Run prerequisite checks** - vault detection, CLI check, file path valid; stop if any fails
 2. **Check backlinks** - show what currently links to the file:
    ```bash
@@ -101,7 +99,6 @@ obsidian search query="authentication flow" limit=10
 ```
 
 - Returns matching note titles and excerpts
-- Uses Obsidian's index (faster than filesystem grep)
 - Use to locate relevant notes before loading them into context
 - Combine with `obsidian read path="..."` to load the content of specific results
 

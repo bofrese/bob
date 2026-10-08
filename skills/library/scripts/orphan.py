@@ -2,6 +2,7 @@
 """Find vault notes with no inbound links from other vault notes.
 
 Usage: python3 orphan.py [vault_root]
+       python3 orphan.py --selftest
   vault_root: path to knowledge/ directory (default: knowledge/)
 
 Output: JSON list of {"file": "...", "title": "..."} for orphaned notes.
@@ -65,7 +66,27 @@ def find_orphans(vault_root):
     return sorted(orphans, key=lambda x: x["file"])
 
 
+def selftest():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        cwd = os.getcwd()
+        os.chdir(tmp)
+        try:
+            os.makedirs("knowledge/concepts")
+            with open("knowledge/concepts/a.md", "w") as f:
+                f.write("---\ntitle: A\n---\n[b](../concepts/b.md)\n")
+            with open("knowledge/concepts/b.md", "w") as f:
+                f.write("---\ntitle: B\n---\n")
+            assert find_orphans("knowledge") == [{"file": os.path.join("knowledge", "concepts", "a.md"), "title": "A"}]
+        finally:
+            os.chdir(cwd)
+    print("ok")
+
+
 if __name__ == "__main__":
+    if "--selftest" in sys.argv:
+        selftest()
+        sys.exit(0)
     vault_root = sys.argv[1] if len(sys.argv) > 1 else "knowledge"
     if not os.path.isdir(vault_root):
         print(json.dumps({"error": f"vault not found: {vault_root}"}))

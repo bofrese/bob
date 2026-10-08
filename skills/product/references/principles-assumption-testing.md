@@ -68,9 +68,8 @@ Structure per assumption:
 
 ## Build-Measure-Learn
 
-**Build (Minimum):** Smallest thing to test the assumption.
-
-**Measure (Specific):** Not "see if people like it." Instead: "20% trial → paid in 30d."
+- **Build (Minimum):** Smallest thing to test the assumption.
+- **Measure (Specific):** Not "see if people like it." Instead: "20% trial → paid in 30d."
 
 **Learn (Honest):**
 - **Validated:** Evidence supports, proceed
@@ -92,9 +91,8 @@ MVP = Minimum to validate riskiest assumptions.
 
 ### What to Cut
 
-**Include:** Features to test core assumptions, minimum core value, enough quality for actual use
-
-**Cut:** Features that don't test assumptions, nice-to-haves, optimizations, polish, scale beyond testing needs
+- **Include:** Features to test core assumptions, minimum core value, enough quality for actual use
+- **Cut:** Features that don't test assumptions, nice-to-haves, optimizations, polish, scale beyond testing needs
 
 **Test:** "If we remove this, can we still validate our riskiest assumption?"
 - Yes → Cut it
@@ -127,15 +125,11 @@ Optimize for climbing ladder, not stopping at bottom.
 
 ## Red Flags
 
-**"We'll figure it out as we build"** → No. Test assumptions before building.
-
-**"If we build it, they will come"** → Distribution assumption = deadliest assumption.
-
-**"Everyone loved the idea"** → Did they pay? If not, not validation.
-
-**"We need to launch to really know"** → Launch = most expensive test. Run cheaper first.
-
-**"MVP needs 50 features"** → Not MVP. Full product. Cut scope.
+- **"We'll figure it out as we build"** → No. Test assumptions before building.
+- **"If we build it, they will come"** → Distribution assumption = deadliest assumption.
+- **"Everyone loved the idea"** → Did they pay? If not, not validation.
+- **"We need to launch to really know"** → Launch = most expensive test. Run cheaper first.
+- **"MVP needs 50 features"** → Not MVP. Full product. Cut scope.
 
 ## Validation Checklist
 

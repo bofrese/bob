@@ -2,6 +2,7 @@
 """Append an operation entry to knowledge/log.md. Creates the file if missing.
 
 Usage: python3 log_append.py <mode> <summary> [log_path]
+       python3 log_append.py --selftest
   mode:     operation mode (process, organise, ingest, etc.)
   summary:  one-line summary of what happened
   log_path: path to log file (default: knowledge/log.md)
@@ -20,7 +21,24 @@ def append_entry(mode, summary, log_path="knowledge/log.md"):
     print(entry.strip())
 
 
+def selftest():
+    import contextlib
+    import io
+    import os
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
+        log = os.path.join(tmp, "log.md")
+        append_entry("process", "first", log)
+        append_entry("organise", "second", log)
+        text = open(log, encoding="utf-8").read()
+        assert text.count("\n## [") == 2 and "] process\nfirst" in text and text.rstrip().endswith("second"), text
+    print("ok")
+
+
 if __name__ == "__main__":
+    if "--selftest" in sys.argv:
+        selftest()
+        sys.exit(0)
     if len(sys.argv) < 3:
         print("Usage: log_append.py <mode> <summary> [log_path]", file=sys.stderr)
         sys.exit(1)
