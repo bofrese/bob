@@ -9,7 +9,7 @@ The Reflection Record captures what building this taught the human and the syste
 **Date:** {YYYY-MM-DD} | **Handover:** `{path or "not read"}` | **Design:** `{path or N/A}` | **Review:** `{path}`
 
 ## TL;DR
-{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+{3-6 bullets : what this is, what was decided, what is open.}
 
 ## Expectation vs. Reality
 
@@ -29,11 +29,11 @@ The Reflection Record captures what building this taught the human and the syste
 ## Ownership Gaps
 {"None - human can explain intent, critical paths, trade-offs, failure modes, debugging entry points, and likely change pressure" is a valid, and common, outcome.}
 
-## Candidates for /bob:learn
+## Candidates for learn
 {Decisions, patterns, or corrections worth considering for durable persistence. Promote nothing automatically.}
 
 ## Candidates for Backlog / Design / Documentation
 {New stories, design revisits, or documentation/guideline gaps this session surfaced, if any.}
 ```
 
-Exclude from this record: correctness findings (belongs to `/bob:review`), line-by-line code walkthroughs, and speculative refactoring work invented to fill the record.
+Exclude from this record: correctness findings (belongs to `review`), line-by-line code walkthroughs, and speculative refactoring work invented to fill the record.
