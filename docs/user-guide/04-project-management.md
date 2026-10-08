@@ -66,11 +66,11 @@ Before your first story, run `/bob:setup` once:
 /bob:setup
 ```
 
-This creates the `projects/` folder with your first subproject and kanban board, plus the `knowledge/` vault and `personal/` notes. One command, one confirmation, everything in place. Safe to run on any project.
+This creates the `projects/` folder with your first subproject and kanban board, plus the `knowledge/` vault and `personal/` notes. One skill, one confirmation, everything in place. Safe to run on any project.
 
 ### Starting your first story
 
-Run any engineering command (`/bob:brainstorm`, `/bob:plan`, etc.) and Bob will:
+Run any engineering skill (`/bob:brainstorm`, `/bob:plan`, etc.) and Bob will:
 
 1. Look for an open story (from Obsidian tabs, recent files, or explicit mention)
 2. If none found, offer to create a new story
@@ -119,7 +119,7 @@ Task cards link to files in `tasks/`. The card is just a title and link - all de
 
 Bob drives the content, you drive the board.
 
-| Bob command | What Bob does automatically | What you do in Obsidian |
+| Bob skill | What Bob does automatically | What you do in Obsidian |
 |-------------|----------------------------|------------------------|
 | `/bob:brainstorm` | Creates story folder + files; writes brainstorm report; adds history entry to `_index.md` | Move story card → **Refining** |
 | `/bob:plan` | Writes plan; adds history entry | - |
@@ -181,29 +181,29 @@ Tracking: keep blocked stories in **ToDo** on the sub-project kanban until the d
 
 ---
 
-## Using `/bob:pm`
+## Using the `bob` hub
 
-The project mentor command is your overview of project state. It has four modes:
+The hub skill doubles as project mentor and gives your overview of project state. It has four modes:
 
 **Default - project overview**
-Run `/bob:pm` with no arguments. It reads all sub-project kanbans and in-progress story kanbans, then tells you what's in flight, what's ready to start, what's blocked, and recommends what to work on next. Optionally appends a summary to `personal/daily/YYYY-MM-DD.md`.
+Run `/bob:bob` with no arguments. It reads all sub-project kanbans and in-progress story kanbans, then tells you what's in flight, what's ready to start, what's blocked, and recommends what to work on next. Optionally appends a summary to `personal/daily/YYYY-MM-DD.md`.
 
 **Context optimization**
-Say "help me start a new session on [feature]" and pm recommends exactly which files to load and which command to use - keeps context tight.
+Say "help me start a new session on [feature]" and the hub recommends exactly which files to load and which skill to use - keeps context tight.
 
-**Command recommendation**
-Describe what you want to do ("I want to fix a UI bug") and pm identifies which bob command fits and explains the sequence.
+**Skill recommendation**
+Describe what you want to do ("I want to fix a UI bug") and the hub identifies which bob skill fits and explains the sequence.
 
 **Status report**
-Ask for a status report and pm writes a structured artifact to `ai/{date}-project-status.md` covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
+Ask for a status report and the hub writes a structured status report (in the story's `sessions/` folder, else `docs/process/`) covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
 
-For a new project with no kanbans yet, pm detects the absence and recommends starting with `/bob:product-vision` (if you want product strategy) or `/bob:brainstorm` (if you want to start building).
+For a new project with no kanbans yet, the hub detects the absence and recommends starting with `/bob:product` (vision mode, if you want product strategy) or `/bob:brainstorm` (if you want to start building).
 
 ---
 
 ## Tips
 
-**Let Bob build the structure.** The first command on a new story creates everything correctly. Don't create folders or templates by hand.
+**Let Bob build the structure.** The first skill on a new story creates everything correctly. Don't create folders or templates by hand.
 
 **`_notes.md` is yours.** It's free-form, personal, and not polished. Write in it liberally as you work. It's the place for gotchas, code pointers, and decisions that don't fit a formal artifact.
 

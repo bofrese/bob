@@ -1,7 +1,7 @@
 # Bob User Guide
 *Last updated: 2026-06-23*
 
-Bob is a Claude Code plugin for structured, AI-assisted product development. From first idea through shipped, tested, documented code - with human judgment at every decision point.
+Bob is a set of Agent Skills (a Claude Code plugin) for structured, AI-assisted product development. From first idea through shipped, tested, documented code - with human judgment at every decision point.
 
 This guide is organized around what you actually *do*, not what bob *has*. Pick your starting point based on where you are:
 
@@ -21,7 +21,7 @@ Read: **[Project Management](04-project-management.md)** - How stories work, the
 Read: **[Knowledge Management](05-knowledge-management.md)** - Architecture notes, guidelines, the knowledge vault, and what goes where.
 
 ## I need to look something up quickly
-Use: **[Commands Reference](06-commands-reference.md)** - Tables organized by layer, what each command does.
+Use: **[Skills Reference](06-skills-reference.md)** - Tables organized by layer, what each skill does.
 
 ## Something isn't working or feels confusing
 Read: **[Troubleshooting](07-troubleshooting.md)** - Known friction points and how to resolve them.
@@ -34,15 +34,18 @@ Everything Bob does rests on two ideas:
 
 **You decide, AI explores.** Every session is a conversation. The AI generates options, surfaces trade-offs, challenges your assumptions. You pick the direction. Nothing ships without your sign-off.
 
-**Files are the memory.** Each command writes its output to a well-known file location. Close your laptop, come back tomorrow, hand off to a colleague - the context lives in the files, not the chat history. This is also what makes honest review possible: a plan written in one session is reviewed fresh in another, with no memory of the conversation that produced it.
+**Just describe your work.** In a project that uses bob, a session primer and the `bob` hub skill make sure the right phase starts - you do not have to remember the skill names.
+
+**Files are the memory.** Each skill writes its output to a well-known file location. Close your laptop, come back tomorrow, hand off to a colleague - the context lives in the files, not the chat history. This is also what makes honest review possible: a plan written in one session is reviewed fresh in another, with no memory of the conversation that produced it.
 
 ---
 
 ## Quick Start
 
 1. **Install Bob** (if you haven't):
-   ```bash
-   git clone https://github.com/bofrese/bob.git ~/.claude/plugins/bob
+   ```
+   /plugin marketplace add bofrese/claude-plugins
+   /plugin install bob@bofrese-plugins
    ```
 
 2. **Bootstrap your project** (new projects only):
@@ -51,10 +54,10 @@ Everything Bob does rests on two ideas:
    ```
    Creates the folder structure, knowledge vault, and project infrastructure in one go.
 
-3. **Open Claude Code in your project directory** and pick your first command:
-   - New product? Start with `/bob:product-coach` for comprehensive discovery.
+3. **Open Claude Code in your project directory** and pick your first skill:
+   - New product? Start with `/bob:product` for comprehensive discovery.
    - Have an idea to build? Start with `/bob:brainstorm`.
-   - Want a project overview? Start with `/bob:pm` for a status check and recommendations.
+   - Want a project overview? Start with `/bob:bob` for a status check and recommendations.
 
 4. **Read the output carefully.** It's your first draft, not gospel. Engage with it. Push back on assumptions. Edit the plans. When you're happy, move to the next phase.
 
@@ -67,7 +70,7 @@ Everything Bob does rests on two ideas:
 - **Each guide is self-contained.** You can read them in any order based on what you need right now.
 - **They describe what actually happens**, not what's supposed to happen. If you find gaps between the guide and reality, that's a finding worth noting.
 - **They're task-oriented.** "How do I track progress on a feature?" beats "Here's what a kanban is."
-- **They assume you have Claude Code open** and can run commands. References like `/bob:plan` are commands you can invoke.
+- **They assume you have Claude Code open** and can run skills. References like `/bob:plan` are skills you can invoke.
 
 ---
 

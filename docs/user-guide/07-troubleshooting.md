@@ -5,7 +5,7 @@ Known friction points and how to resolve them.
 
 ## Installation & Setup
 
-### "I installed Bob but the commands don't show up"
+### "I installed Bob but the skills don't show up"
 
 **Check:** Did you restart Claude Code after installing?
 
@@ -15,28 +15,14 @@ Plugins need a restart to load. Close and reopen Claude, or in the terminal:
 claude --reload-plugins
 ```
 
-**Check:** Is the plugin in the right place?
+**Check:** Is the plugin installed? Run `/plugin` and look for `bob`. Reinstall with:
 
-User-level (all projects):
-```bash
-ls ~/.claude/plugins/bob
+```claude
+/plugin marketplace add bofrese/claude-plugins
+/plugin install bob@bofrese-plugins
 ```
 
-Project-level (current project):
-```bash
-ls .claude/plugins/bob
-```
-
-If one exists, that's the one being used. The project-level takes precedence.
-
-**Check:** Is it a valid plugin?
-
-Inside the bob folder, there should be a `.claude-plugin/` folder:
-```bash
-ls .claude/plugins/bob/.claude-plugin/plugin.json
-```
-
-If that file doesn't exist, the clone didn't work. Try cloning again.
+**Check:** Did a 3.x project keep old names (`/bob:product-coach`, `/bob:pm`)? Run `/bob:setup`: it reports old names and offers to fix them.
 
 ---
 
@@ -50,7 +36,7 @@ Or manually create `projects/[PROJECT]/stories/[ID]/` with `_index.md` and `_kan
 
 ### "I can't remember which story I was working on"
 
-Run `/bob:pm` - it shows recent activity and can tell you which stories are in progress.
+Run `/bob:bob` - it shows recent activity and can tell you which stories are in progress.
 
 Or check your Obsidian vault - Bob tries to detect open or recently-edited story files automatically.
 
@@ -206,7 +192,7 @@ Document high-level decisions, architecture, and features. Don't document implem
 ### "I created a guideline but nobody follows it"
 
 Reasons:
-1. **It's not loaded.** Guidelines in `docs/guidelines/` are loaded by engineering commands automatically - but only if they're there *before* the session starts. Did you create it? Does the file exist?
+1. **It's not loaded.** Guidelines in `docs/guidelines/` are loaded by engineering skills automatically - but only if they're there *before* the session starts. Did you create it? Does the file exist?
 2. **It's too vague.** "Be clean" doesn't help. "Use composition over inheritance, one component per file, lift shared state to parent" does.
 3. **It contradicts the code.** If 80% of your code doesn't follow the guideline, the guideline is wrong. Update it.
 
@@ -242,7 +228,7 @@ Update it. The board is your source of truth for project state. If it's wrong, i
 
 ### "Bob loaded the wrong vision or guideline"
 
-The context-protocol skill loads documents from well-known paths. If the wrong file is being loaded:
+The `bob` hub's project-knowledge step loads documents from well-known paths. If the wrong file is being loaded:
 - Check where the file actually is
 - Check whether multiple versions exist (maybe one in `docs/product/` and one elsewhere)
 - Delete duplicates or move files to standard locations
@@ -252,16 +238,16 @@ The context-protocol skill loads documents from well-known paths. If the wrong f
 If a file isn't being loaded automatically, mention it in the session:
 > "Please read this file for context: [path]"
 
-Or use the Skill tool directly to invoke context-protocol manually.
+Or invoke the `bob` skill manually and ask it to run the start checklist.
 
 ### "Previous sessions' context is bleeding into this session"
 
 Each session should start fresh. If you notice Bob remembering things from a previous session that shouldn't carry over, that's a bug. Reset by:
 1. Close Claude completely
 2. Reopen
-3. Run the command again
+3. Run the skill again
 
-If it persists, it might be a Obsidian detection issue. Check the story-context skill documentation.
+If it persists, it might be a Obsidian detection issue. Check the story resolution rules in the `bob` hub (`skills/bob/references/story.md`).
 
 ---
 
@@ -285,9 +271,9 @@ You can. Use Claude normally without Bob. Bob is best for:
 
 Quick copy fixes or one-line fixes can skip Bob.
 
-### "The commands are slow"
+### "The skills are slow"
 
-Commands can be slow if:
+Skills can be slow if:
 - The codebase is huge (AI reads a lot of files)
 - The task is complex (AI explores multiple approaches)
 - Context loading is slow (lots of discovery files)
@@ -301,9 +287,9 @@ This is normal. Patience. Or reduce context if you know a narrower scope.
 If you hit something that feels like a bug:
 
 1. **What were you trying to do?** (run `/bob:brainstorm`, `/bob:implement`, etc.)
-2. **What happened?** (output was wrong, command crashed, asked unexpected question, etc.)
+2. **What happened?** (output was wrong, skill crashed, asked unexpected question, etc.)
 3. **What did you expect?** (should have asked X, should have output Y, etc.)
-4. **Reproduce:** Can you run the command again and see the same issue?
+4. **Reproduce:** Can you run the skill again and see the same issue?
 
 Open an issue on GitHub with these details.
 
@@ -311,4 +297,4 @@ Open an issue on GitHub with these details.
 
 ## Next Steps
 
-Still stuck? Run `/bob:pm` - the project mentor has holistic view of the system and can suggest next steps based on your specific situation.
+Still stuck? Run `/bob:bob` - the project mentor has holistic view of the system and can suggest next steps based on your specific situation.

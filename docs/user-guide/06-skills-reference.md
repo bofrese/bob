@@ -1,135 +1,68 @@
-# Commands Reference
-*Last updated: 2026-08-23*
+# Skills Reference
+*Last updated: 2026-10-08*
 
-Quick lookup for all bob commands, organized by layer.
+Quick lookup for all bob skills, organized by layer. Each skill is invoked as `/bob:<name>`, or loads automatically when you describe matching work.
 
 ## Quick Find
 
-**Looking for a command? Use search (Cmd+F / Ctrl+F) or scroll to your layer:**
-- [Discovery Commands](#discovery-commands)
-- [Engineering Commands](#engineering-commands)
-- [Knowledge Commands](#knowledge-commands)
-- [Meta Commands](#meta-commands)
+**Looking for a skill? Use search (Cmd+F / Ctrl+F) or scroll to your layer:**
+- [Product Skills](#product-skills)
+- [Engineering Skills](#engineering-skills)
+- [Knowledge Skills](#knowledge-skills)
+- [Meta Skills](#meta-skills)
+- [Principle Skills](#principle-skills)
 
 ---
 
-## Discovery Commands
+## Product Skills
 
 Use these to figure out what to build and why. All optional - skip if you have clear strategy already.
 
-### `/bob:product-coach`
-**The entry point for product strategy work.**
+### `/bob:product`
+**Product discovery coach and keeper of `docs/product/`.**
 
-Your guide through the full discovery process. Assess what exists, identify gaps, recommend next steps. Maintains `docs/product/README.md` so you always know what's been done.
+One skill, several modes. Name the mode in your request ("write the vision", "define personas") or leave it open: the default coach mode assesses what exists, finds gaps and moves into a mode when needed. Product work has no story; documents are updated in place.
+
+| Mode | Use when | Writes (`docs/product/`) |
+|---|---|---|
+| coach (default) | Discovery from the start, "what am I missing", maintaining the product docs | `README.md` plus any document below |
+| vision | What the product is, who it is for, why it matters | `vision.md` |
+| personas | Who the users are | `personas.md` |
+| problem-space | Is the problem real and painful enough? Kill or proceed | `problem-space.md` |
+| validation | Biggest assumptions, experiments, MVP scope | `validation-plan.md` |
+| business-plan | Business model, pricing, unit economics | `business-plan.md` |
+| positioning | Market position, differentiation, go-to-market | `positioning.md` |
 
 | | |
 |---|---|
-| **Start here when** | You want comprehensive guidance through discovery, or you're filling gaps in existing product docs |
-| **Output** | Product artifacts in `docs/product/` as needed |
-| **Time** | Varies by mode (30min to 2hrs per artifact) |
+| **Reads** | Existing `docs/product/` documents; modes read the ones they depend on (vision first) |
+| **Start here when** | New product, strategy needs revisiting, or product docs have gaps |
+| **Time** | 30min to 2hrs per document |
 
 ---
 
-### `/bob:product-vision`
-**Establish what you're building, who it's for, why it matters.**
+### `/bob:brand-design`
+**Design direction and art direction.**
 
-Creates or updates your strategic north star. Everything else flows from this.
+| Mode | Use when | Writes |
+|---|---|---|
+| design-brief | The product's design goals, principles, tone and voice | `docs/product/design-brief.md` |
+| art-director | Visual direction for UI, web, brand or marketing: palette, typography, layout, mockup critique | `docs/guidelines/visual-design.md` (optional) |
 
-| | |
-|---|---|
-| **Reads** | Existing `docs/product/vision.md` if updating |
-| **Writes** | `docs/product/vision.md` |
-| **Start here when** | New product, or strategy needs revisiting |
-| **Output includes** | Problem statement, market opportunity, target persona, solution approach, success metrics |
-| **Time** | 45min – 2hrs |
-
----
-
-### `/bob:personas`
-**Define the real people you're building for.**
-
-Detailed characters with goals, behaviors, frustrations - not demographics.
+Grounds itself in `vision.md` and `personas.md`; flags them when missing. Direction only - it does not design screens.
 
 | | |
 |---|---|
-| **Reads** | `docs/product/vision.md` |
-| **Writes** | `docs/product/personas.md` |
-| **Start here when** | After vision is set, before design or detailed planning |
-| **Time** | 30 – 60min |
-
----
-
-### `/bob:design-brief`
-**The visual and interactive direction.**
-
-How should this product look and feel? What interaction patterns?
-
-| | |
-|---|---|
-| **Reads** | `docs/product/vision.md`, `docs/product/personas.md` |
-| **Writes** | `docs/product/design-brief.md` |
-| **Start here when** | After vision and personas |
 | **Time** | 20 – 45min |
 
 ---
 
-### `/bob:problem-space`
-**Validate the problem before building solutions.**
-
-Is this real? Painful enough? Why hasn't it been solved?
-
-| | |
-|---|---|
-| **Reads** | `docs/product/vision.md` |
-| **Writes** | `docs/product/problem-space.md` |
-| **Start here when** | After vision, before major resource commitment |
-| **Time** | 30 – 60min |
+### `/bob:linkedin`
+**LinkedIn growth advisor** for consultants, founders and B2B service businesses. Content pillars, posts, comments, DMs and profile, grounded in your positioning and personas.
 
 ---
 
-### `/bob:business-plan`
-**How do you create and capture value?**
-
-Pricing, revenue model, unit economics.
-
-| | |
-|---|---|
-| **Reads** | `docs/product/vision.md`, `docs/product/personas.md` |
-| **Writes** | `docs/product/business-plan.md` |
-| **Start here when** | Strategy solidifying, need business model clarity |
-| **Time** | 45min – 1.5hrs |
-
----
-
-### `/bob:positioning`
-**How you win in the market.**
-
-Competitive strategy, differentiation, go-to-market.
-
-| | |
-|---|---|
-| **Reads** | `docs/product/vision.md`, `docs/product/business-plan.md` (if exists) |
-| **Writes** | `docs/product/positioning.md` |
-| **Start here when** | After business model, before launch |
-| **Time** | 1 – 2hrs |
-
----
-
-### `/bob:validation-plan`
-**Test your biggest assumptions before building.**
-
-What are you betting on? How will you validate?
-
-| | |
-|---|---|
-| **Reads** | All existing `docs/product/` artifacts |
-| **Writes** | `docs/product/validation-plan.md` |
-| **Start here when** | After strategy defined, before major development commitment |
-| **Time** | 30 – 75min |
-
----
-
-## Engineering Commands
+## Engineering Skills
 
 The core pipeline: idea → plan → code → review → shipped.
 
@@ -264,7 +197,7 @@ Runs at the end of a session (typically after Reflect). Classifies evidence - co
 | **Start here when** | End of a session that exposed a reusable harness lesson |
 | **Time** | 5 – 15min |
 
-`/bob:improve-command` is a thin, scoped wrapper over this - limited to a single command's improvement.
+**Scoped mode:** name one skill ("improve plan from this session") and `/bob:learn` limits itself to that skill. It writes a report into the story's `sessions/` folder, else `docs/process/`.
 
 ---
 
@@ -297,7 +230,7 @@ Root cause analysis, not quick fixes. Explores thoroughly. Identifies contributi
 
 ---
 
-## Knowledge Commands
+## Knowledge Skills
 
 Build and maintain the knowledge base that makes every future session better.
 
@@ -360,7 +293,7 @@ With no arguments: asks "What should I remember?" - one question, done. Writes t
 
 **Modes:**
 
-| Command | What it does |
+| Call | What it does |
 |---------|-------------|
 | `/bob:library` | Vault status: inbox count, note counts, pending suggestions |
 | `/bob:library process` | Work through inbox items interactively - propose type, tags, filename; file on approval |
@@ -370,68 +303,53 @@ With no arguments: asks "What should I remember?" - one question, done. Writes t
 
 ---
 
-## Meta Commands
+## Meta Skills
 
-The toolkit maintains itself. Build, review, improve commands.
+The toolkit maintains itself. Orient, build and review skills.
 
-### `/bob:pm`
-**Project mentor and manager.**
+### `/bob:bob`
+**The hub: start and finish checklists, project mentor.**
 
-Reads your kanban boards, assesses project state, recommends what to work on next. Also helps start sessions efficiently and recommends the right command for what you're trying to do.
+Every bob phase invokes the hub at its start (resolve the story, load project knowledge, name the phase) and at its end (story History, done criteria, next step). You can also call it directly for "where am I, what next": it reads your kanban boards, assesses project state and recommends one next step.
 
 | | |
 |---|---|
 | **Reads** | `projects/_index.md`, sub-project and story kanban boards |
-| **Writes** | Optional summary to `personal/daily/YYYY-MM-DD.md`, or full report to `ai/{date}-project-status.md` |
+| **Writes** | Optional summary to `personal/daily/YYYY-MM-DD.md`, or a status report in the story's `sessions/` folder (else `docs/process/`) |
 | **Start here when** | New session, unsure what to do, want project overview |
-| **Time** | 10 – 20min |
 
 **Modes:**
-- **Default:** First checks `bob:story-context` - if you're resuming a specific story, it summarizes that story's state and recommends the next command directly instead of a generic dashboard. Otherwise it treats this as new work, risk-classifies it, recommends fast/standard/full, and only creates a story if tracking is actually needed. Falls through to the kanban dashboard either way.
-- **Context optimization:** "Help me start a session on [feature]" - tells you exactly which files to load and which command to run.
-- **Command recommendation:** Describe what you want to do and pm identifies the right command.
-- **Status report:** Writes a structured report covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
+- **Where am I (default):** If you are resuming a story, it summarizes the story's state and recommends the next skill. Otherwise it treats this as new work, risk-classifies it, recommends fast/standard/full, and only creates a story if tracking is needed.
+- **Which phase:** Describe what you want to do and it names the right skill and why.
+- **Start a new session:** "Help me start a session on [feature]" - tells you which files to load.
+- **Status report:** A structured report covering discovery foundation, recent activity, guidelines coverage, open plans and gaps.
 
 ---
 
-### `/bob:new-command`
-**Create a new slash command.**
+### `/bob:new-skill`
+**Create a new skill.**
 
-Guides you through design. Creates file. Updates README. Use when the toolkit is missing something.
+Guides you through proposal questions and design, creates `SKILL.md` and references, validates, and updates the README skill table.
 
 | | |
 |---|---|
-| **Writes** | `commands/{command-name}.md`, updates README |
+| **Writes** | `skills/{skill-name}/SKILL.md` (and references), README skill table |
 | **Start here when** | Toolkit missing a workflow you need |
 | **Time** | 30 – 60min |
 
 ---
 
-### `/bob:review-command`
-**Optimize an existing command.**
+### `/bob:review-skill`
+**Optimize an existing skill.**
 
-Finds bloat, ambiguity, missing guardrails. Proposes leaner version.
+Checks spec compliance, description triggering, progressive disclosure and token efficiency. Proposes a leaner version; never edits the skill itself.
 
 | | |
 |---|---|
-| **Reads** | Command file |
-| **Writes** | Improved command file |
-| **Start here when** | Command feels slow or produces inconsistent results |
+| **Reads** | The skill |
+| **Writes** | Review report in the story's `sessions/` folder, else `docs/process/` |
+| **Start here when** | A skill feels slow, triggers wrongly or produces inconsistent results |
 | **Time** | 15 – 30min |
-
----
-
-### `/bob:improve-command`
-**Extract learnings from a completed session - scoped to one command.**
-
-A thin wrapper over `/bob:learn`, scoped to a single command's design/process/output. Kept available during the transition; `/bob:learn` is now the primary, session-wide version of this.
-
-| | |
-|---|---|
-| **Reads** | Session history, command file, outputs produced |
-| **Writes** | `ai/reviews/{date}-improve-{command-name}.md` |
-| **Start here when** | After using a command and identifying improvements |
-| **Time** | 20 – 40min |
 
 ---
 
@@ -456,7 +374,7 @@ What it creates/checks:
 
 ---
 
-## DevOps Commands
+## DevOps Skills
 
 ### `/bob:docker-setup`
 **Set up or update Docker development environment.**
@@ -466,21 +384,13 @@ Creates Dockerfile, Makefile, install docs. Verifies it works.
 | | |
 |---|---|
 | **Reads** | Project structure, dependencies |
-| **Writes** | `Dockerfile`, `Makefile`, `docs/install.md`, `ai/docker/{date}-docker-setup.md` |
+| **Writes** | `Dockerfile`, `Makefile`, `docs/install.md`, a setup note |
 | **Start here when** | Setting up containerized dev environment |
 | **Time** | 20 – 45min |
 
 ---
 
-## Other Commands
-
-### `/bob:art-director`
-Art direction coaching for visual design, UI, brand. Works as a creative partner to develop visual identity and design language.
-
-| | |
-|---|---|
-| **Reads** | `docs/product/vision.md`, `docs/product/design-brief.md` (if exists) |
-| **Start here when** | You need visual design direction or creative feedback |
+## Other Skills
 
 ### `/bob:dev`
 **Fast path - no pipeline.** Working session for code discussion, quick fixes, and direct changes: no brainstorm/design/plan/review cycle. Checks each change against a four-question escalation test (new concept? contract change? boundary crossing? hard to reverse?) - any "yes" means it recommends `/bob:design` instead of proceeding.
@@ -491,27 +401,31 @@ Art direction coaching for visual design, UI, brand. Works as a creative partner
 | **Time** | Minutes |
 
 ### `/bob:user-guide`
-Create or maintain the user-facing documentation for this project.
+Create or maintain the user-facing documentation for this project. Also reports UX gaps and missing features as a separate findings report.
+
+## Principle Skills
+
+Ways of thinking that other skills load, and that you can call directly: `/bob:architect` (architecture judgment), `/bob:bdd` (acceptance criteria, testing behaviour), `/bob:ui-design` (14 UI lenses), `/bob:obsidian` (vault-safe moves and renames).
 
 ---
 
-## Using Commands Effectively
+## Using Skills Effectively
 
-**One command per session.** Don't try to brainstorm, plan, and implement in one go. Each command is focused.
+**One phase per session.** Don't try to brainstorm, plan, and implement in one go. Each skill is focused.
 
 **Read the output carefully.** It's your first draft, not gospel. Engage with it. Push back. Edit before committing.
 
 **Follow session boundaries.** They exist for a reason: clean context, explicit decisions, honest critique.
 
-**Read the reports before the next phase.** They're not just logs - they're context the next command builds on and your chance to catch problems early.
+**Read the reports before the next phase.** They're not just logs - they're context the next phase builds on and your chance to catch problems early.
 
 **Edit the plans.** Plans include a "Questions & Decisions" table. Your job is to review it, approve, override, add context.
 
-**Trust done-criteria.** If a command flags something as not done, it probably is right. The criteria exist because something slipped before.
+**Trust done-criteria.** If a phase flags something as not done, it probably is right. The criteria exist because something slipped before.
 
 ---
 
 ## Next Steps
 
-- [Engineering Workflows](02-engineering-workflows.md) - How to use these commands together
+- [Engineering Workflows](02-engineering-workflows.md) - How to use these skills together
 - [Project Management](04-project-management.md) - How work is organized

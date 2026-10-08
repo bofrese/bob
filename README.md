@@ -2,11 +2,11 @@
 
 AI knows how to write good code. The problem is it rarely does - unless you give it a reason to.
 
-Bob is a set of slash commands for Claude Code that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each command loads the right principles, reads the right context, follows the right process. Reliably, every time.
+Bob is a set of 29 [Agent Skills](https://agentskills.io) that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each skill loads the right principles, reads the right context, follows the right process. Reliably, every time.
 
-**Two independent layers:** Product strategy commands (vision, validation, business model, positioning) and engineering commands (brainstorm, plan, implement, review). Use one, use both, or start where it matters most to you.
+**Two independent layers:** Product strategy skills (vision, validation, business model, positioning) and engineering skills (brainstorm, plan, implement, review). Use one, use both, or start where it matters most to you.
 
-Language-agnostic. Platform-agnostic. Works across any stack.
+Language-agnostic. Works across any stack. Built to the Agent Skills spec; tested in Claude Code.
 
 👉 [Homepage](https://bob.bofrese.dk/) · [User Guide](docs/user-guide/index.md) · [Presentation](https://bob.bofrese.dk/presentation/index.html)
 
@@ -30,8 +30,8 @@ Bob solves all three. Deliberately. By design.
 
 This isn't a toolkit that runs commands for you. It's a toolkit that thinks *with* you.
 
-- **Use what you need.** Discovery and Engineering are independent layers. Use Discovery commands for product strategy work. Use Engineering commands for development workflows. Use both together for the full lifecycle. They amplify each other but don't require each other.
-- **Explicit commands, not ambient magic.** You invoke `/bob:plan`, `/bob:review`, `/bob:implement` - deliberately, knowingly. When you do, the AI knows exactly what phase you're in. It loads the right principles, reads the right context, follows the right process. No hoping it guesses what you need. You're explicit about what you're doing; the AI is explicit about how it helps.
+- **Use what you need.** Discovery and Engineering are independent layers. Use the product skills for strategy work. Use the engineering skills for development workflows. Use both together for the full lifecycle. They amplify each other but don't require each other.
+- **Phases, not ambient magic.** Each skill is one phase: `/bob:plan`, `/bob:review`, `/bob:implement`. When a phase runs, the AI knows exactly what you are doing. It loads the right principles, reads the right context, follows the right process. You can also just describe your work: the `bob` hub skill and a session primer make sure the right phase starts.
 - **Files are the memory.** Everything persists in git - vision, plans, decisions, guidelines. Context survives across sessions, branches, and people. Close your laptop. Come back tomorrow. Hand off to a colleague. The project remembers.
 - **Session boundaries create honesty.** A plan written in one session is reviewed in another - by a fresh context with no memory of the conversation that produced it. That's how you get genuine critique instead of polite agreement.
 - **Quality holds up over time.** The tenth feature gets the same disciplined treatment as the first. Guidelines get checked. Principles get applied. Technical debt doesn't silently accumulate.
@@ -41,7 +41,7 @@ This isn't a toolkit that runs commands for you. It's a toolkit that thinks *wit
 
 ## User Guide
 
-The full story - how commands connect, how memory works, how a feature travels from idea to shipped code - is all in one place:
+The full story - how the skills connect, how memory works, how a feature travels from idea to shipped code - is all in one place:
 
 👉 [Read the User Guide](docs/user-guide/index.md)   
 👉 [See the Homepage](https://bob.bofrese.dk/)   
@@ -49,28 +49,117 @@ The full story - how commands connect, how memory works, how a feature travels f
 
 ---
 
-## What Bob Does
+## How to use it
 
-Three layers, not three stages. Use any independently or connect them.
+**Just describe your work.** In a project that uses bob, a SessionStart hook adds a short primer, and the `bob` hub skill loads before work starts: it resolves the story, loads project knowledge and names the fitting phase. "Plan the export feature" or "this test fails, find out why" is enough.
+
+**Or call a phase directly** with a slash command: `/bob:plan`, `/bob:review`, `/bob:product`. Skills are the only entry point; there are no separate commands.
+
+**Not sure?** Ask "Bob, where are we and what next?" - the `bob` hub skill gives a status and the next step.
 
 ```mermaid
 graph TD
-    D["Discovery<br/>/bob:product-coach · /bob:product-vision · /bob:problem-space<br/>/bob:personas · /bob:business-plan · /bob:positioning · /bob:validation-plan · /bob:linkedin"]
-    E["Engineering<br/>/bob:brainstorm → /bob:design → /bob:plan → /bob:review-plan<br/>/bob:implement → /bob:review → /bob:document → /bob:handover<br/>/bob:reflect → /bob:learn"]
-    K["Knowledge<br/>/bob:document · /bob:user-guide · /bob:guidelines · /bob:library · /bob:remember"]
+    D["Product<br/>product · brand-design · linkedin"]
+    E["Engineering<br/>brainstorm → design → plan → review-plan → implement<br/>→ review → document → handover → reflect → learn<br/>(also: dev, investigate, ui-review)"]
+    K["Knowledge<br/>document · user-guide · guidelines · library · remember"]
 
     D -->|grounds| E
     E -->|produces| K
     K -->|guides| E
 ```
 
-**Discovery** - Product strategy and validation: vision, problem space, personas, business model, positioning, validation planning. Start with `/bob:product-coach` for guided discovery, or jump to individual commands for targeted work.
+**Product** - `product` coaches discovery and keeps `docs/product/` current: vision, problem space, personas, validation plan, business model, positioning, go-to-market. `brand-design` and `linkedin` cover design direction and LinkedIn growth.
 
-**Engineering** - Disciplined development pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. Each command loads the right principles and follows the right process.
+**Engineering** - the pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. `dev` is the short path for small, settled changes; `investigate` finds root causes; `ui-review` critiques interfaces.
 
-**Knowledge** - Documentation and guidelines that accumulate over time and make future sessions better. Use `/bob:document` for canonical architecture notes (concepts and codebase patterns), `/bob:user-guide` for end-user guides (also surfaces UX gaps as a findings report). Use `/bob:library` to manage a structured vault of decisions, concepts, research, and patterns - process inbox items, ingest external sources, organise the vault, or search. Use `/bob:remember` to capture anything mid-session without breaking flow.
+**Knowledge** - notes that accumulate and make future sessions better: `document` for architecture notes, `user-guide` for end-user guides, `guidelines` for best practices, `library` for the knowledge vault, `remember` for quick capture.
 
-For the full command reference - what each command does, what it reads and writes, how they connect - see the [User Guide](docs/user-guide/index.md).
+## Skills
+
+Generated from the skill frontmatter by `python3 scripts/check.py --write-readme`.
+
+<!-- skills:start -->
+
+**Hub**
+
+| Skill | Description |
+|---|---|
+| `bob` | Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next step). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named. |
+
+**Engineering phases**
+
+| Skill | Description |
+|---|---|
+| `brainstorm` | Bob's brainstorm phase. Coaches a guided feature brainstorm (seed, diverge, converge, detail, commit) and writes a Brainstorm Brief. Use when value, outcome or problem framing of an idea is open. Explores outcomes only, never architecture or code. |
+| `design` | Bob's design phase. Forms and defends the simplest coherent conceptual design for a capability, grounded in repository evidence, and writes a Design Record. Socratic and human-owned. Use when concepts, boundaries, naming or whole-system fit are open, before planning. |
+| `dev` | Bob's dev phase. A peer working session for code discussion, quick fixes and direct changes, without the brainstorm, plan and review cycle. Use when work is local, reversible, settled and easy to verify. Escalates to design when a change outgrows the fast path. |
+| `document` | Bob's document phase. Writes and maintains a project's canonical architecture notes (concepts, patterns, README index) in docs/architecture/, in Discover, Update or Audit mode. Use when architecture notes must reflect the code, after review or to check drift. Never changes application code. |
+| `handover` | Bob's handover phase. Narrates a delivered change for approval instead of a pull request (the full diff in reading order, with the reasoning at each place) so the accountable developer can own it. Coverage-checked. Use when delegated work must be owned by the human, after document, before reflect. |
+| `implement` | Bob's implement phase. Executes an approved implementation plan autonomously with tests at every step, and pauses when evidence shows the design does not fit reality. Use only when the user asks to implement a plan or to start building from one. |
+| `investigate` | Bob's investigate phase. Systematic bug and issue investigation (hypotheses, code tracing, 5 Whys, impact, fix options) that finds the root cause and writes an investigation report. Use when a bug needs a root cause, not a quick fix. Investigates only, never implements fixes. |
+| `learn` | Bob's learn phase. Analyzes evidence from completed work and recommends small, durable improvements to the AI development harness without instruction accretion. Scoped mode improves one skill or command. Use when a session exposed a reusable harness lesson, or to improve a skill after using it. |
+| `plan` | Bob's plan phase. Translates a Design Record into a reviewable implementation plan - step order, refactoring, files, tests, risks - ready for a developer or AI handoff. Use when the design is owned and the execution shape is needed. Plans only, never implements. |
+| `reflect` | Bob's reflect phase. A short, peer-to-peer reflection after the developer reads the Handover, recovering implementation insight and closing ownership gaps in a Reflection Record. Use after reading the Handover, or when implementation surprised. Assumes review settled correctness. |
+| `review` | Bob's code review phase. Reviews code changes critically against the plan, Design Record, guidelines and done criteria (bugs, design conformance, design concerns, system health). Detects scope from git. Use when correctness of a change must be established independently. Reports only, never fixes. |
+| `review-plan` | Bob's plan review phase. Critically and independently reviews an implementation plan against the codebase and Design Record (gaps, simpler solutions, security, misalignment) and writes a verdict. Use when facts or risk justify an independent check of a plan. Reviews only, never edits the plan. |
+| `ui-review` | Bob's UI review phase. Expert UI/UX critique of a screen, flow, component or app (from screenshots or code) against design principles and product artifacts, with ranked fix options and optional implementation. Use when a UI needs an expert review. Implements only on explicit request. |
+
+**Product**
+
+| Skill | Description |
+|---|---|
+| `brand-design` | Bob's brand and design direction coach. Writes the product design brief (goals, principles, tone, voice) and gives art direction for UI, brand, web and marketing visuals (colour, typography, layout). Use for design direction, visual identity or look-and-feel questions. |
+| `linkedin` | Bob's LinkedIn growth advisor for consultants, founders and B2B service businesses. Builds LinkedIn strategy (content pillars, posts, comments, DMs, profile, algorithm) grounded in the product's positioning and personas. Use for LinkedIn marketing, personal branding or thought leadership. |
+| `product` | Bob's product coach. Guides product discovery and keeps docs/product/ current - vision, personas, problem space, validation plan, business model, pricing, positioning and go-to-market. Use for product or business strategy work, or to find gaps in the product docs. |
+
+**Knowledge and meta**
+
+| Skill | Description |
+|---|---|
+| `docker-setup` | Bob's Docker dev environment builder. Creates or updates Dockerfile, docker-compose, Makefile targets and install docs, then verifies the environment really runs. Use only when the user asks to set up, fix or maintain a Docker development environment. |
+| `guidelines` | Bob's guideline writer. Creates and maintains short best-practice guidelines in docs/guidelines/ for the project's languages, frameworks and concepts, researched from authoritative sources. Use when the user wants coding guidelines, technology pitfalls or linter setup written down. |
+| `library` | Bob's knowledge vault librarian for knowledge/. Processes the inbox into atomic notes, ingests external sources (URL or file), searches notes, runs vault health checks, shows status, and bootstraps the vault. Use when the user wants to file, find or organise project knowledge. |
+| `new-skill` | Bob's skill author. Designs and creates a new Agent Skills spec-compliant skill for bob or for the current project - proposal questions, design, SKILL.md and references, validation, catalog sync. Use when the user wants to add a skill, a bob phase or a slash command. |
+| `remember` | Bob's quick capture. Writes a thought, decision or insight straight to the knowledge inbox (knowledge/_INBOX/) without loading context or running a phase. Use when the user says "remember this", "note that" or wants to capture something mid-session for later filing. |
+| `review-skill` | Bob's skill reviewer. Reviews an Agent Skill for spec compliance, description triggering, progressive disclosure, token efficiency and clarity, and proposes a leaner version. Use when the user wants a skill, prompt or slash command checked or optimised. Reviews only, never edits the skill. |
+| `setup` | Bob's project setup. Bootstraps and upgrades bob infrastructure in a project - projects/, knowledge vault, done criteria, story structure repairs, recommended tools. Idempotent and non-destructive. Use only when the user asks to set up, install or upgrade bob in a project. |
+| `user-guide` | Bob's user guide writer. Creates or maintains an end-user guide for the current project from what the code really does, and reports UX gaps and missing features as separate findings. Use when the user wants end-user documentation written, updated or checked for drift. |
+
+**Principles**
+
+| Skill | Description |
+|---|---|
+| `architect` | Bob's architecture judgment - whole-system comprehensibility lenses, domain placement, deep modules, interfaces, source readability, concept identification, design smells, codebase patterns and drift. Use when judging a design, an abstraction, where code belongs, or architectural fit. |
+| `bdd` | Bob's behaviour-driven development principles - Given/When/Then acceptance criteria, testing behaviour not implementation, and the golden done check. Use when defining acceptance criteria or a testing strategy, or when judging whether work is done. |
+| `obsidian` | Bob's Obsidian vault operations - moves and renames .md files through the Obsidian CLI so links stay intact, and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search. |
+| `ui-design` | Bob's UI design principles - 14 expert lenses (hierarchy, cognitive load, states, typography, Gestalt, touch targets, motion, noise, consistency, emotion, platform, context, brand, whole system) and a final check. Use when designing, reviewing or critiquing any user interface. |
+
+<!-- skills:end -->
+
+---
+
+## What is new in 4.0.0
+
+- **Skills only.** `commands/` is gone. The 58 listing entries (commands plus skills) are now 29 skills. Every skill follows the Agent Skills spec.
+- **The `bob` hub.** One skill holds the start and finish checklists that every phase shares (story, project knowledge, done criteria, next step). It replaces the eight protocol skills and `pm`.
+- **Primer hook.** A SessionStart hook tells the agent that a bob project starts with the hub, so you do not have to remember to call it. `setup` also writes a short bob block into `AGENTS.md` for Codex and Copilot.
+- **Fewer, bigger skills.** Seven product commands became modes of `product`; two design commands became modes of `brand-design`.
+- **Bug fixes** (from 3.1.1): the markdown-move guard only blocks when Obsidian and its CLI are present; `ai/reviews/` no longer ships inside the plugin.
+
+Details: [CHANGELOG.md](CHANGELOG.md).
+
+## Upgrading from 3.x
+
+Project files (`docs/`, `projects/`, `knowledge/`) are unchanged. What changed are the names. Run `/bob:setup` in your project: it scans `CLAUDE.md`, `AGENTS.md`, `docs/process/*.md` and `docs/guidelines/` for old names, shows each hit with its replacement, and offers to fix them.
+
+| Old | New |
+|---|---|
+| product-coach, product-vision, personas, problem-space, validation-plan, business-plan, positioning | `product` (mode) |
+| design-brief, art-director | `brand-design` (mode) |
+| new-command, review-command | `new-skill`, `review-skill` |
+| improve-command | `learn` (scoped mode) |
+| pm | `bob` |
+| create-prompt | removed |
 
 ---
 
@@ -80,17 +169,17 @@ Bob's value compounds over time because every session writes to a shared, persis
 
 | Location | What lives here |
 |---|---|
-| `docs/product/` | Strategy artifacts: vision, problem space, personas, business plan, positioning, validation plan, design brief. Maintained by Discovery commands; used by Engineering commands to ground their work. |
+| `docs/product/` | Strategy artifacts: vision, problem space, personas, business plan, positioning, validation plan, design brief. Maintained by the product skill; used by engineering skills to ground their work. |
 | `docs/architecture/` | Canonical architecture knowledge: one small note per system concept (`concepts/`) and codebase pattern (`patterns/`), indexed by `README.md`. Written by `/bob:document`; loaded by scope in engineering sessions. |
-| `docs/guidelines/` | Technology best practices - researched from authoritative sources, applied to your stack. Engineering commands load only the guidelines relevant to the work at hand. |
+| `docs/guidelines/` | Technology best practices - researched from authoritative sources, applied to your stack. Engineering skills load only the guidelines relevant to the work at hand. |
 | `docs/domain/` | Project-specific terminology. Corrections, non-obvious distinctions, context-specific meanings. Captured when AI misunderstands something that a domain expert would know. |
-| `docs/process/done-criteria.md` | The project's evolving definition of done. Auto-bootstrapped on first run; grows as more commands are used. |
-| `docs/process/learnings.md` | `/bob:learn`'s cross-session staging log - occurrences seen once, not yet confirmed as a pattern. A second credible occurrence becomes a harness candidate. |
+| `docs/process/done-criteria.md` | The project's evolving definition of done. Auto-bootstrapped on first run; grows as more skills are used. |
+| `docs/process/learnings.md` | `learn`'s cross-session staging log - occurrences seen once, not yet confirmed as a pattern. A second credible occurrence becomes a harness candidate. |
 | `projects/{name}/stories/{ID}/` | Session artifacts - designs, plans, reviews, implementations, handovers, investigations, brainstorms. Organized by story. The project's decision log: they explain *why* things were built the way they were. |
-| `knowledge/` | Working knowledge vault: decisions, research and anything that fits nowhere more specific. Automatically loaded into context by every engineering command. Managed by `/bob:library`; quick capture via `/bob:remember`. |
-| `personal/` | Personal daily notes, weekly digests, scratchpad. Gitignored - never committed. Written by `done-criteria` at the end of every session. |
+| `knowledge/` | Working knowledge vault: decisions, research and anything that fits nowhere more specific. Loaded into context by every engineering skill. Managed by `/bob:library`; quick capture via `/bob:remember`. |
+| `personal/` | Personal daily notes, weekly digests, scratchpad. Gitignored - never committed. Written by the `bob` hub's finish checklist at the end of every session. |
 
-This is the memory layer. The reason `/bob:review` can check a feature against its plan. The reason `/bob:implement` knows what patterns to follow. The reason a fresh session isn't starting from scratch.
+This is the memory layer. The reason `review` can check a feature against its plan. The reason `implement` knows what patterns to follow. The reason a fresh session isn't starting from scratch.
 
 ---
 
@@ -121,7 +210,7 @@ See more on [finding and installing claude plugins here](https://code.claude.com
 /plugin install obsidian@obsidian-skills
 ```
 
-**graphify** - builds a persistent code knowledge graph that bob's engineering commands query (via `bob:code-graph`) to orient from real structure instead of blind exploration. `/bob:setup` recommends it, offers to build the graph and install the post-commit auto-rebuild hook, and writes a scoped `.graphifyignore`. bob requires **>= 0.9.11**; everything degrades gracefully when graphify is absent.
+**graphify** - builds a persistent code knowledge graph that bob's engineering skills query (the `bob` hub's code-graph step) to orient from real structure instead of blind exploration. `/bob:setup` recommends it, offers to build the graph and install the post-commit auto-rebuild hook, and writes a scoped `.graphifyignore`. bob requires **>= 0.9.11**; everything degrades gracefully when graphify is absent.
 
 ```bash
 uv tool install graphifyy   # package is "graphifyy" (double-y), not a typo
@@ -154,31 +243,27 @@ With the alias, `claude-bob` anywhere opens Claude with your local Bob loaded - 
 
 ---
 
-## Quick Start - Your First Command
+## Quick Start
 
-After installation, start with Bob, simply be mentioning him by name:
+After installation, mention Bob by name:
 
 ```claude
 Hi Bob, what can you help with? How do we get started?
 ```
 
-Bob can help you when in doubt on which bob command to run. Once you get familliar with the available commmands its faster to call them directly with a slash command (`/bob:...`)
-
-**`/bob:pm` is your project mentor** - it assesses where you are, identifies what's missing, and suggests exactly which commands to run next.
-
 **Common starting points:**
-- **First time on a project?** `/bob:setup` to bootstrap all bob infrastructure (idempotent - safe to run again after updates)
-- **Product strategy work?** `/bob:product-coach` for comprehensive discovery guidance
-- **New feature?** `/bob:brainstorm` → `/bob:plan` → `/bob:implement` → `/bob:review`
+- **First time on a project?** `/bob:setup` bootstraps bob infrastructure (idempotent - safe to run again after updates)
+- **Product strategy work?** `/bob:product`
+- **New feature?** `/bob:brainstorm` → `/bob:design` → `/bob:plan` → `/bob:implement` → `/bob:review`
 - **Quick fix or code discussion?** `/bob:dev` - direct working session, no pipeline
 - **Inherited codebase?** `/bob:document` (Discover) to map its concepts and patterns
-- **Not sure?** `/bob:pm` to get oriented - or simply ask "Bob"
+- **Not sure?** Ask "Bob" - the `bob` hub names the next step
 
 ---
 
 ## Contributing
 
-This is a living toolkit - continuously evolving. New commands, sharper existing ones, better patterns. Never finished, and that's by design.
+This is a living toolkit - continuously evolving. New skills, sharper existing ones, better patterns. Never finished, and that's by design.
 
 Pull requests are welcome. Bob is opinionated, and the opinions are deliberate. A PR might land as-is, get adapted, or get a respectful decline - not because your idea is wrong, but because it doesn't fit the direction. You're welcome to have strong opinions too; that's what makes contributions worth having.
 

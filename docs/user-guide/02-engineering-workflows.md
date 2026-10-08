@@ -27,11 +27,11 @@ Not every change earns the full pipeline. Bob classifies work qualitatively (new
 - **Standard** - Design → Plan → Implement → Review → Document → Handover → a short Reflect. Brainstorm is skippable when intent is already clear.
 - **Full** - the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
 
-`/bob:pm` applies this classification when you're not sure which path fits - describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
+The `bob` hub applies this classification when you're not sure which path fits - describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
 
 ## Learn - Closing the Loop
 
-After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons - a repeated correction, a missing tool, a prompt gap - and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. `/bob:improve-command` is a thin wrapper over `/bob:learn` scoped to a single command.
+After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons - a repeated correction, a missing tool, a prompt gap - and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. Name one skill and `/bob:learn` runs in scoped mode, limited to improving that skill.
 
 ## Phase 1: Brainstorm
 
@@ -117,7 +117,7 @@ The plan is self-contained: someone who wasn't in the brainstorm conversation co
 /bob:review-plan projects/myapp/stories/APP-001/2026-06-16-plan-auth.md
 ```
 
-This command does something critical: it ignores the planning session. Fresh context. No memory of the conversation that produced the plan. It re-reads the codebase independently and checks:
+This skill does something critical: it ignores the planning session. Fresh context. No memory of the conversation that produced the plan. It re-reads the codebase independently and checks:
 - Does the plan's description of the current codebase match reality?
 - Are there simpler approaches the plan missed?
 - Are there security issues or edge cases not covered?
@@ -321,5 +321,5 @@ This discipline is what maintains quality over time. It's also what makes it pos
 ## Next Steps
 
 - Read [Project Management](04-project-management.md) to understand how to organize stories and tasks.
-- Read [Commands Reference](06-commands-reference.md) for details on each command.
+- Read [Skills Reference](06-skills-reference.md) for details on each skill.
 - Ready to start? Run `/bob:brainstorm` on your first feature.

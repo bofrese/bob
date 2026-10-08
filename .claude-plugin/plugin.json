@@ -1,7 +1,7 @@
 {
   "name": "bob",
-  "version": "3.1.1",
-  "description": "AI-powered product development framework. Commands, principles, and protocols for the full product development lifecycle - from discovery through shipped, tested, documented code.",
+  "version": "4.0.0",
+  "description": "AI-powered product development framework. Agent Skills, principles, and protocols for the full product development lifecycle - from discovery through shipped, tested, documented code.",
   "author": {
     "name": "Bo Frese",
     "url": "https://bofrese.dk"

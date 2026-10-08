@@ -17,7 +17,7 @@ The system that makes every future session better: capture what you learn, codif
 
 ## Guidelines: How We Do It Here
 
-A guideline is a set of validated practices for a technology in your project. When one exists, engineering commands (`/bob:brainstorm`, `/bob:plan`, `/bob:implement`, `/bob:review`) load relevant guidelines automatically before starting.
+A guideline is a set of validated practices for a technology in your project. When one exists, engineering skills (`/bob:brainstorm`, `/bob:plan`, `/bob:implement`, `/bob:review`) load relevant guidelines automatically before starting.
 
 ### Creating and updating guidelines
 
@@ -56,7 +56,7 @@ Engineering sessions load the index and the notes that match their scope. Large 
 
 The `knowledge/` vault stores research, decisions, patterns, and concepts as atomic notes. Unlike documentation (which explains the system), the vault captures *learned knowledge* - insights that inform future work.
 
-Engineering commands automatically retrieve relevant vault notes at session start, so what you've captured surfaces when it matters.
+Engineering skills automatically retrieve relevant vault notes at session start, so what you've captured surfaces when it matters.
 
 ### Quick capture: `/bob:remember`
 
@@ -70,11 +70,11 @@ With no arguments, it asks "What should I remember?" - one question, done. The n
 
 ### Managing the vault: `/bob:library`
 
-`/bob:library` is the full vault management command. Run it with no arguments to see vault status.
+`/bob:library` is the full vault management skill. Run it with no arguments to see vault status.
 
 **Modes:**
 
-| Command | What it does |
+| Skill | What it does |
 |---------|-------------|
 | `/bob:library` | Show vault status: inbox count, note counts, pending suggestions |
 | `/bob:library process` | Work through inbox items - propose type, tags, filename for each; file on approval |
@@ -101,11 +101,11 @@ Raw source materials (articles, papers, specs) go to `sources/` - not as notes, 
 
 ### Automatic retrieval
 
-You don't need to search the vault yourself. At the start of every engineering session, `bob:brainstorm`, `bob:plan`, `bob:implement`, `bob:review`, and similar commands automatically search the vault for notes relevant to the current story and load up to 5 matches. What you filed last week appears silently in context this week.
+You don't need to search the vault yourself. At the start of every engineering session, `bob:brainstorm`, `bob:plan`, `bob:implement`, `bob:review`, and similar skills automatically search the vault for notes relevant to the current story and load up to 5 matches. What you filed last week appears silently in context this week.
 
 ### Vault setup
 
-If `knowledge/` doesn't exist, `/bob:library` or `/bob:remember` bootstraps it automatically the first time you run either command.
+If `knowledge/` doesn't exist, `/bob:library` or `/bob:remember` bootstraps it automatically the first time you run either skill.
 
 ---
 

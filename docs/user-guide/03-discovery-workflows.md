@@ -23,6 +23,8 @@ Optional but powerful: figure out what to build and why before you build it. You
 Product Vision → Personas → Design Brief
      ↓
 Problem Space → Business Model → Positioning → Validation Plan
+     ↓
+Engineering: Brainstorm → Design → Plan → ...
 ```
 
 Not strictly linear - you can loop back. And not all necessary - pick what matters.
@@ -39,7 +41,7 @@ Not strictly linear - you can loop back. And not all necessary - pick what matte
 
 **When:** At the start of a new project, or when direction needs revisiting.
 
-**Run:** `/bob:product-vision`
+**Run:** `/bob:product` (vision mode)
 
 The AI asks:
 - What problem are you solving?
@@ -69,7 +71,7 @@ This is the single source of truth. Everything downstream (personas, plans, brai
 
 **When:** After vision is clear. Before design or detailed planning.
 
-**Run:** `/bob:personas`
+**Run:** `/bob:product` (personas mode)
 
 The AI grounded in your vision, creates 2-4 detailed personas. Each includes:
 - Name, role, context
@@ -92,7 +94,7 @@ The AI grounded in your vision, creates 2-4 detailed personas. Each includes:
 
 **When:** After vision and personas. Before UI design or high-fidelity mockups.
 
-**Run:** `/bob:design-brief`
+**Run:** `/bob:brand-design` (design-brief mode)
 
 The AI creates a design brief grounded in who your personas are and what they need:
 - Visual style (modern, minimal, playful, etc.)
@@ -114,7 +116,7 @@ The AI creates a design brief grounded in who your personas are and what they ne
 
 **When:** After vision. Before major development commitment.
 
-**Run:** `/bob:problem-space`
+**Run:** `/bob:product` (problem-space mode)
 
 The AI challenges your assumptions:
 - Is this actually a problem people face?
@@ -138,7 +140,7 @@ You explore evidence (user research, competitor analysis, market signals).
 
 **When:** After vision and personas. When strategy is solidifying.
 
-**Run:** `/bob:business-plan`
+**Run:** `/bob:product` (business-plan mode)
 
 The AI explores:
 - How does the customer get value from this?
@@ -160,7 +162,7 @@ The AI explores:
 
 **When:** After business model. When you're ready to think about launch or market fit.
 
-**Run:** `/bob:positioning`
+**Run:** `/bob:product` (positioning mode)
 
 The AI explores:
 - Who are your competitors?
@@ -183,7 +185,7 @@ The AI explores:
 
 **When:** After strategy is defined. Before development or major resource commitment.
 
-**Run:** `/bob:validation-plan`
+**Run:** `/bob:product` (validation mode)
 
 The AI identifies your riskiest assumptions (market size, customer willingness to pay, technical feasibility, etc.) and designs small experiments to test them:
 - Fake landing page signup to validate demand
@@ -208,16 +210,16 @@ Once Discovery is done, it feeds into Engineering automatically:
 - `/bob:review` verifies UI changes fit the design brief
 - Everything is grounded in validated business assumptions
 
-You don't have to re-introduce your strategy every session. It's in the files. Commands read it automatically.
+You don't have to re-introduce your strategy every session. It's in the files. Skills read it automatically.
 
 ---
 
 ## Product Coach: The Shortcut
 
-If you don't know which commands to run or want guidance through the whole discovery process, start with:
+If you don't know which skills to run or want guidance through the whole discovery process, start with:
 
 ```
-/bob:product-coach
+/bob:product
 ```
 
 It's a conversational guide that helps you figure out what you need, guides you through each phase, and maintains the navigation file (`docs/product/README.md`) so you always know what exists and what's missing.
@@ -228,13 +230,13 @@ It's a conversational guide that helps you figure out what you need, guides you 
 
 **Solo discovery:** You're validating an idea before building. Run discovery, document findings, iterate on strategy. Great for founders, product managers, anyone thinking through strategy.
 
-**Paired with engineering:** You have a vision and are building features. Start with discovery to establish the foundation (vision, personas, business model). Then switch to engineering commands for brainstorm → plan → implement cycles. Each feature is grounded in the strategy. Strategy can be revisited if market changes.
+**Paired with engineering:** You have a vision and are building features. Start with discovery to establish the foundation (vision, personas, business model). Then switch to engineering skills for brainstorm → plan → implement cycles. Each feature is grounded in the strategy. Strategy can be revisited if market changes.
 
 ---
 
 ## What If You Change Your Mind?
 
-Revise the artifacts. Run `/bob:product-vision` to update vision. Run `/bob:personas` to refine personas. Engineering commands pick up the changes automatically.
+Revise the artifacts. Run `/bob:product` (vision mode) to update vision. Run `/bob:product` (personas mode) to refine personas. Engineering skills pick up the changes automatically.
 
 The "change your mind" part is the point: these are working documents, not holy scripture. They're statements of what you believe today. When you learn something new, update them and keep moving.
 
@@ -243,5 +245,5 @@ The "change your mind" part is the point: these are working documents, not holy 
 ## Next Steps
 
 - If you have a vision already, read [Engineering Workflows](02-engineering-workflows.md) to move to building.
-- If you need product strategy guidance, run `/bob:product-coach`.
+- If you need product strategy guidance, run `/bob:product`.
 - If you're solo on discovery without engineering yet, that's fine - discovery stands alone.

@@ -2,6 +2,7 @@
 """Check bob's structural rules. Prints one line per problem, exits 1 if any.
 
 Usage: python3 scripts/check.py [extra paths to scan for em dashes, e.g. ../docs]
+       python3 scripts/check.py --write-readme   (regenerate the skill table in README.md)
 Rules: skills/new-skill/references/authoring-rules.md
 """
 import re
@@ -19,6 +20,17 @@ HUB_REF = re.compile(r"`bob:bob`|`bob` skill|`bob` hub")
 PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 # Quick capture: deliberately skips the hub checklists.
 HUB_EXEMPT = PRINCIPLE | {"remember"}
+# README skill table groups; anything not listed lands in "Knowledge and meta".
+GROUPS = [
+    ("Hub", {HUB}),
+    ("Engineering phases", {"brainstorm", "design", "plan", "review-plan", "implement", "review", "document",
+                            "handover", "reflect", "learn", "investigate", "dev", "ui-review"}),
+    ("Product", {"product", "brand-design", "linkedin"}),
+    ("Principles", PRINCIPLE),
+]
+OTHER = "Knowledge and meta"
+README = ROOT / "README.md"
+TABLE_RE = re.compile(r"(<!-- skills:start -->\n).*?(<!-- skills:end -->)", re.S)
 EM_DASH = chr(0x2014)
 SKIP_DIRS = {".git", "node_modules"}
 
@@ -78,6 +90,27 @@ def check_skill(path, problems):
             problems.append(f"{rel}: lacks the closing line '{FINISH_LINE}'")
 
 
+def skill_table():
+    """Markdown skill table built from the skill frontmatter, grouped."""
+    skills = {p.parent.name: (frontmatter(p.read_text()) or {}).get("description", "").strip("\"'")
+              for p in ROOT.glob("skills/*/SKILL.md")}
+    grouped = [(g, sorted(n for n in skills if n in names)) for g, names in GROUPS]
+    listed = {n for _, ns in grouped for n in ns}
+    grouped.insert(3, (OTHER, sorted(set(skills) - listed)))
+    out = []
+    for group, names in grouped:
+        out += [f"**{group}**", "", "| Skill | Description |", "|---|---|"]
+        out += [f"| `{n}` | {skills[n].replace('|', '/')} |" for n in names] + [""]
+    return "\n".join(out)
+
+
+def readme_with_table(text):
+    """text with the generated table between the skills markers, or None if markers are missing."""
+    if not TABLE_RE.search(text):
+        return None
+    return TABLE_RE.sub(lambda m: m[1] + "\n" + skill_table() + "\n" + m[2], text)
+
+
 def iter_text(base):
     for p in base.rglob("*"):
         if p.is_file() and p.suffix in {".md", ".py", ".sh", ".json"} and not SKIP_DIRS & set(p.parts):
@@ -94,6 +127,13 @@ def main(extra):
     for s in sorted(ROOT.glob("skills/*/SKILL.md")):
         check_skill(s, problems)
 
+    text = README.read_text()
+    fresh = readme_with_table(text)
+    if fresh is None:
+        problems.append("README.md: missing <!-- skills:start --> / <!-- skills:end --> markers")
+    elif fresh != text:
+        problems.append("README.md: skill table is stale, run: python3 scripts/check.py --write-readme")
+
     for base in [ROOT, *map(Path, extra)]:
         for p in iter_text(base.resolve()):
             for n, line in enumerate(p.read_text(errors="ignore").split("\n"), 1):
@@ -109,10 +149,20 @@ def selftest():
     assert fm == {"name": "x", "description": "Folded: text more", "metadata": ""}, fm
     assert unquoted_colons("---\nname: x\ndescription: a: b\nother: \"a: b\"\n---") == ["description"]
     assert frontmatter("no frontmatter") is None and frontmatter("---\nname: x") is None
+    t = readme_with_table("a\n<!-- skills:start -->\nSTALE\n<!-- skills:end -->\nb")
+    assert t.startswith("a\n<!-- skills:start -->\n\n**Hub**") and t.endswith("<!-- skills:end -->\nb") and "STALE" not in t
+    assert readme_with_table(t) == t and readme_with_table("none") is None
+    assert "| `bob` |" in t and "**Principles**" in t and "**Knowledge and meta**" in t
     print("ok")
 
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         sys.exit(selftest())
+    if "--write-readme" in sys.argv:
+        new = readme_with_table(README.read_text())
+        if new is None:
+            sys.exit("README.md: missing skills markers")
+        README.write_text(new)
+        sys.exit(0)
     sys.exit(main(sys.argv[1:]))
