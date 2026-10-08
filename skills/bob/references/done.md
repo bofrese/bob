@@ -18,7 +18,7 @@ Check every item in `docs/process/done-criteria.md` that applies to this phase. 
 | learn | Harness learning. "No persistent lesson" is valid |
 | document | Documentation |
 | handover | Handover |
-| product phases | Output is self-contained and readable without prior context |
+| product, brand-design, linkedin | Output is self-contained and readable without prior context |
 
 A phase that changed code or a durable artifact never skips this step.
 

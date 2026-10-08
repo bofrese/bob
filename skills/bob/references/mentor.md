@@ -23,7 +23,7 @@ Use the Phases table in the hub SKILL.md. Explain why this phase and not the alt
 When the user asks what context a new session needs:
 - Focused work (bug, small feature): matching guidelines and the plan, nothing else.
 - Broad work (new feature, refactoring): vision, related plans and brainstorms, affected guidelines; consider `plan` first.
-- New project: `product` work first (vision, then personas and design brief), then engineering.
+- New project: the `product` skill first (vision, then personas), then `brand-design` (design brief), then engineering.
 
 ```text
 Context for new session:

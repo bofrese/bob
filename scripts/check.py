@@ -19,10 +19,10 @@ HUB_REF = re.compile(r"`bob:bob`|`bob` skill|`bob` hub")
 PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 # Skills not yet converted to the spec format. Each conversion removes its name; empty at 4.0.0.
 NOT_CONVERTED = {
-    "architect", "assumption-testing", "bdd", "business-model", "code-graph", "context-protocol",
-    "domain-knowledge", "done-criteria", "go-to-market",
-    "knowledge", "linkedin-expert", "obsidian", "positioning-strategy",
-    "problem-validation", "project-tracking", "prompt-engineering", "story-context",
+    "architect", "bdd", "code-graph", "context-protocol",
+    "domain-knowledge", "done-criteria",
+    "knowledge", "linkedin-expert", "obsidian",
+    "project-tracking", "prompt-engineering", "story-context",
     "ui-design", "vault", "work-routing", "writing",
 }
 # Legacy commands: protocol lines, unless the command delegates to the hub.

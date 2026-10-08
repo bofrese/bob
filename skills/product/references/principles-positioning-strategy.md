@@ -1,20 +1,10 @@
----
-name: Positioning Strategy Principles
-description: Invoke this skill when working on market positioning, competitive analysis, or differentiation strategy. Used by bob:positioning and bob:product-coach commands.
-user-invocable: false
----
-
 # Positioning Strategy Principles
 
-Compact reference for market positioning, differentiation, and competitive strategy. Apply when working on positioning, GTM strategy, or competitive analysis.
-
----
+Contents: Core Truth, The Positioning Framework, Differentiation Strategies, The Wedge Strategy, Messaging Hierarchy, Competitive Analysis, Red Flags, When to Reposition, Checklist, Key Insight.
 
 ## Core Truth
 
 **Positioning is context.** You position against alternatives in mind of specific customer. Best product with unclear positioning loses to mediocre product with clear positioning.
-
----
 
 ## The Positioning Framework
 
@@ -24,11 +14,7 @@ Five components that define positioning:
 
 What would customers use if your product didn't exist?
 
-Not "competitors" - alternatives:
-- Direct competitors (similar products)
-- Indirect solutions (different approach, same job)
-- Manual workarounds (spreadsheets, email, paper)
-- **Doing nothing** (often real competition)
+Not "competitors" - alternatives: direct competitors (similar products), indirect solutions (different approach, same job), manual workarounds (spreadsheets, email, paper), and **doing nothing** (often the real competition).
 
 **Key question:** "What did you use before this?"
 
@@ -36,10 +22,7 @@ Not "competitors" - alternatives:
 
 What capabilities do you have that alternatives don't?
 
-Strong attributes are:
-- Provable and demonstrable
-- Defensible (hard to copy quickly)
-- Valued by customers (not just technically interesting)
+Strong attributes are provable and demonstrable, defensible (hard to copy quickly), and valued by customers (not just technically interesting).
 
 **Warning:** Features ≠ attributes. "ML powered" is not positioning. "10x faster than manual" is.
 
@@ -47,9 +30,7 @@ Strong attributes are:
 
 What can customers do with your unique attributes that they couldn't before?
 
-Translate attributes to value:
-- Attribute: "Real-time sync across devices"
-- Value: "Never lose work when switching phone to laptop"
+Translate attributes to value. Attribute: "Real-time sync across devices". Value: "Never lose work when switching phone to laptop".
 
 **Focus on outcomes, not features.**
 
@@ -57,8 +38,7 @@ Translate attributes to value:
 
 Who cares most about this value?
 
-Not: "Anyone who needs X"
-Instead: Segment where unique value matters most
+Not "anyone who needs X", but the segment where your unique value matters most.
 
 Example: Slack = "team communication" for everyone, but positioned as "communication for software teams" initially - narrow wedge, clearest value.
 
@@ -66,14 +46,9 @@ Example: Slack = "team communication" for everyone, but positioned as "communica
 
 What market do you want evaluated in?
 
-**Three options:**
-- **Existing:** Join established market (easier to explain, harder to differentiate)
-- **Adjacent:** Reframe ("Not CRM, revenue intelligence")
-- **New:** Create category (hardest to explain, highest potential if you win)
+Three options: **Existing** (join an established market: easier to explain, harder to differentiate), **Adjacent** (reframe: "Not CRM, revenue intelligence"), **New** (create a category: hardest to explain, highest potential if you win).
 
 **Test:** When customer describes you to others, what category do they use?
-
----
 
 ## Differentiation Strategies
 
@@ -86,8 +61,6 @@ What market do you want evaluated in?
 **Integration (ecosystem):** Fit seamlessly into existing workflow/platform. Risk: platform dependency. Works: platform entrenched, integration valuable.
 
 **Best differentiation is defensible.** Choose what's hard to copy.
-
----
 
 ## The Wedge Strategy
 
@@ -108,8 +81,6 @@ Start narrow, expand from strength.
 
 **Mistake:** "X for everyone" from day one.
 
----
-
 ## Messaging Hierarchy
 
 **Level 1 (Internal):** "For [target] who [need], [product] is [category] that [benefit]. Unlike [alternatives], [differentiator]."
@@ -119,8 +90,6 @@ Start narrow, expand from strength.
 - Good: "Turn meeting notes into action items automatically, so nothing falls through cracks"
 
 **Level 3 (Content):** 3-5 messaging pillars. Each addresses pain, highlights capability, provable with evidence.
-
----
 
 ## Competitive Analysis
 
@@ -141,8 +110,6 @@ Questions:
 
 **Positioning:** Make inaction cost feel unbearable.
 
----
-
 ## Red Flags
 
 **"No competition"** → Either market doesn't exist or you haven't looked. Customers always have alternatives.
@@ -152,8 +119,6 @@ Questions:
 **"Like [big company] but for [segment]"** → Lazy. Doesn't articulate unique value.
 
 **"The Uber of..."** → Category analogies rarely work. Explain what you do, not who you're like.
-
----
 
 ## When to Reposition
 
@@ -171,8 +136,6 @@ Questions:
 4. Narrow or shift to that segment
 5. Update messaging and GTM
 
----
-
 ## Checklist
 
 - [ ] Clearly articulate competitive alternatives?
@@ -182,8 +145,6 @@ Questions:
 - [ ] Named market category for evaluation?
 - [ ] Messaging makes obvious why segment should choose you?
 - [ ] Target can repeat positioning to others?
-
----
 
 ## Key Insight
 

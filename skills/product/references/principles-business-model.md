@@ -1,20 +1,10 @@
----
-name: Business Model Principles
-description: Invoke this skill when working on monetization, pricing, or business strategy. Used by bob:business-plan and bob:product-coach commands for business model design and unit economics.
-user-invocable: false
----
-
 # Business Model Principles
 
-Compact reference for business model thinking, value proposition, and unit economics. Apply when working on monetization, pricing, or business strategy.
-
----
+Contents: Core Truth, The Value Equation, Revenue Model Patterns, Unit Economics, Pricing Strategy, Business Model Canvas (Compact), Validation Questions, Red Flags, Key Insight.
 
 ## Core Truth
 
 **Value creation before value capture.** First, create immense value for customers. Then, capture a fair portion. Get order wrong = no business model saves you.
-
----
 
 ## The Value Equation
 
@@ -26,8 +16,6 @@ Maximize numerator, minimize denominator.
 - **Perceived Likelihood:** Why they'll believe it works. Proof: testimonials, guarantees, case studies
 - **Time Delay:** How fast they get results. Immediate wins build trust
 - **Effort & Sacrifice:** How easy to use/adopt. Lower friction = higher value
-
----
 
 ## Revenue Model Patterns
 
@@ -43,8 +31,6 @@ Maximize numerator, minimize denominator.
 
 Choose model that aligns with value delivery.
 
----
-
 ## Unit Economics
 
 Math must work at individual customer level.
@@ -53,7 +39,7 @@ Math must work at individual customer level.
 
 **CAC (Customer Acquisition Cost)**
 - Marketing + sales spend ÷ new customers
-- Include: ads, salaries, tools
+- Include: ad spend, content costs, sales salaries, tools, agencies
 
 **LTV (Lifetime Value)**
 - ARPU × gross margin ÷ churn rate
@@ -77,8 +63,6 @@ Math must work at individual customer level.
 
 **Brutal truth: LTV:CAC < 3:1 = no business, just expensive hobby.**
 
----
-
 ## Pricing Strategy
 
 Pricing = positioning. Signals value and selects customers.
@@ -101,8 +85,6 @@ Pricing = positioning. Signals value and selects customers.
 
 **The test:** "Would I pay this for this value?" If you hesitate, value unclear or price wrong.
 
----
-
 ## Business Model Canvas (Compact)
 
 **Value Proposition:** What value for whom? Why them?
@@ -123,8 +105,6 @@ Pricing = positioning. Signals value and selects customers.
 
 **Key Partnerships:** Who helps deliver value?
 
----
-
 ## Validation Questions
 
 - [ ] LTV:CAC > 3:1?
@@ -137,8 +117,6 @@ Pricing = positioning. Signals value and selects customers.
 - [ ] Have resources to support this model?
 - [ ] Understand customer acquisition motion?
 
----
-
 ## Red Flags
 
 **"Monetization later"** → No. Business model = core strategy, not afterthought.
@@ -148,8 +126,6 @@ Pricing = positioning. Signals value and selects customers.
 **"Everyone will pay"** → Most won't. Design for who actually pays.
 
 **"Just reduce churn"** → If LTV fundamentally low, churn isn't problem - product is.
-
----
 
 ## Key Insight
 

@@ -53,4 +53,4 @@ Then:
 - yes: file all. no: they stay in the artifact only. specify: apply the user's changes, file the rest.
 - Confirm: "Filed N items: {ID} Issues (+N), INBOX (+N)."
 
-Product phases (vision, personas, design brief) do not route work.
+The product skills (`product`, `brand-design`, `linkedin`) do not route work.

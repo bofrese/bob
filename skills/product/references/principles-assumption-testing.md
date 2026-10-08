@@ -1,20 +1,10 @@
----
-name: Assumption Testing Principles
-description: Invoke this skill when identifying, ranking, and testing assumptions before building. Used by bob:validation-plan and bob:product-coach commands for validation planning and MVP definition.
-user-invocable: false
----
-
 # Assumption Testing Principles
 
-Compact reference for identifying, ranking, and testing assumptions before building. Apply when working on validation planning, MVP definition, or early-stage product validation.
-
----
+Contents: Core Truth, Assumption Types, The Assumption Stack, Risk Ranking, Validation Experiments, Build-Measure-Learn, MVP Scope Definition, Success Criteria, Red Flags, Validation Checklist, Key Insight.
 
 ## Core Truth
 
 **Every product idea is a stack of assumptions.** Most fail because a core assumption was wrong, not execution. Find riskiest assumptions and test them before writing code.
-
----
 
 ## Assumption Types
 
@@ -23,8 +13,6 @@ Compact reference for identifying, ranking, and testing assumptions before build
 **Feasibility:** Can we build it? Scale it? Support it? Distribute it?
 
 **Test desirability first.** No point building something feasible that no one wants.
-
----
 
 ## The Assumption Stack
 
@@ -40,22 +28,12 @@ Build explicit list: "Our product succeeds IF..."
 └─ Can scale to N users (feasibility)
 ```
 
----
-
 ## Risk Ranking
 
 **Impact × Uncertainty = Risk**
 
-### Impact Scale
-- **Critical:** Product fails completely if wrong
-- **High:** Major pivot required
-- **Medium:** Delays or scope reduction
-- **Low:** Minor adjustment
-
-### Uncertainty Scale
-- **High:** Pure guess, no evidence
-- **Medium:** Some signals, inconclusive
-- **Low:** Strong evidence, confident
+- **Impact:** Critical (product fails completely if wrong), High (major pivot required), Medium (delays or scope reduction), Low (minor adjustment).
+- **Uncertainty:** High (pure guess, no evidence), Medium (some signals, inconclusive), Low (strong evidence, confident).
 
 ### Priority Matrix
 
@@ -66,8 +44,6 @@ Build explicit list: "Our product succeeds IF..."
 | **Low** | Validate once | Monitor | Assume | Assume |
 
 Focus: high uncertainty + high impact.
-
----
 
 ## Validation Experiments
 
@@ -90,8 +66,6 @@ Structure per assumption:
 
 **Start at #1. Only move down when cheaper tests validate.**
 
----
-
 ## Build-Measure-Learn
 
 **Build (Minimum):** Smallest thing to test the assumption.
@@ -104,8 +78,6 @@ Structure per assumption:
 - **Inconclusive:** Need more data or different test
 
 Weak signals ≠ validation. "They liked it" ≠ "they paid for it."
-
----
 
 ## MVP Scope Definition
 
@@ -127,8 +99,6 @@ MVP = Minimum to validate riskiest assumptions.
 **Test:** "If we remove this, can we still validate our riskiest assumption?"
 - Yes → Cut it
 - No → Keep it
-
----
 
 ## Success Criteria
 
@@ -155,8 +125,6 @@ Define "validated" BEFORE running experiment.
 
 Optimize for climbing ladder, not stopping at bottom.
 
----
-
 ## Red Flags
 
 **"We'll figure it out as we build"** → No. Test assumptions before building.
@@ -169,8 +137,6 @@ Optimize for climbing ladder, not stopping at bottom.
 
 **"MVP needs 50 features"** → Not MVP. Full product. Cut scope.
 
----
-
 ## Validation Checklist
 
 - [ ] Listed all critical assumptions?
@@ -180,8 +146,6 @@ Optimize for climbing ladder, not stopping at bottom.
 - [ ] Defined specific success criteria?
 - [ ] Run cheapest tests first?
 - [ ] Measuring commitment, not interest?
-
----
 
 ## Key Insight
 

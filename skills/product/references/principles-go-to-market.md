@@ -1,28 +1,16 @@
----
-name: Go-to-Market Principles
-description: Invoke this skill when working on GTM strategy, channel selection, or growth planning. Used by bob:positioning and bob:business-plan commands for distribution and customer acquisition strategy.
-user-invocable: false
----
-
 # Go-to-Market Principles
 
-Compact reference for distribution, customer acquisition, and growth strategy. Apply when working on GTM strategy, channel selection, or growth planning.
-
----
+Contents: Core Truth, The GTM Question, Channel Categories, Channel Selection, Bullseye Framework, Common Channels, CAC Economics, Growth Loops, Launch Strategy, Distribution Moats, Red Flags, GTM Checklist, Key Insight.
 
 ## Core Truth
 
 **Distribution equals product.** Mediocre product + great distribution > great product + weak distribution. Plan distribution before building.
-
----
 
 ## The GTM Question
 
 "If we build this, how will people find out?"
 
 No clear answer = no GTM strategy, just hope.
-
----
 
 ## Channel Categories
 
@@ -39,8 +27,6 @@ No clear answer = no GTM strategy, just hope.
 - Cons: Expensive, stops when budget stops
 
 **Winning formula: 1 paid + 1 earned → owned**
-
----
 
 ## Channel Selection
 
@@ -66,8 +52,6 @@ Pick where you have unfair advantage:
 
 Commit 3 months. Make it work or kill it. Then add second.
 
----
-
 ## Bullseye Framework
 
 **Outer Ring (Brainstorm):** List 15-20 plausible channels
@@ -77,8 +61,6 @@ Commit 3 months. Make it work or kill it. Then add second.
 **Inner Ring (Focus):** Double down on best CAC channel, optimize until plateau, then add next
 
 Don't spread thin. One channel done well.
-
----
 
 ## Common Channels
 
@@ -93,17 +75,9 @@ Don't spread thin. One channel done well.
 | **Referrals** | Network effects products | Immediate | Incentive cost | Viral coefficient |
 | **Influencer** | Consumer, visual products | 1-3mo | Commission or fee | Conv per influencer |
 
----
-
 ## CAC Economics
 
-**CAC = Total acquisition spend ÷ customers acquired**
-
-Include: ad spend, content costs, sales salaries, tools, agencies
-
-**Channel viability: CAC < ⅓ LTV**
-
----
+**Channel viability: CAC < ⅓ LTV.** CAC and LTV are defined in `principles-business-model.md`, Unit Economics.
 
 ## Growth Loops
 
@@ -117,8 +91,6 @@ Include: ad spend, content costs, sales salaries, tools, agencies
 
 Best loops are self-reinforcing. Growth creates more growth.
 
----
-
 ## Launch Strategy
 
 **Soft (Beta):** Limited audience, 1-3mo, learn before wide release. Risk: momentum fizzles.
@@ -126,8 +98,6 @@ Best loops are self-reinforcing. Growth creates more growth.
 **Public:** Announce widely (PH, HN, press), 1-day event. One shot, must be ready.
 
 **Rolling:** Launch to segments sequentially, 3-6mo. Controlled, learn/adapt.
-
----
 
 ## Distribution Moats
 
@@ -141,8 +111,6 @@ Best loops are self-reinforcing. Growth creates more growth.
 
 Build for defensibility, not just initial traction.
 
----
-
 ## Red Flags
 
 **"We'll get press and go viral"** → Viral isn't strategy, it's luck.
@@ -155,8 +123,6 @@ Build for defensibility, not just initial traction.
 
 **"Word-of-mouth is our channel"** → WOM results from PMF + GTM, not the strategy itself.
 
----
-
 ## GTM Checklist
 
 - [ ] Identified where target customer hangs out?
@@ -167,8 +133,6 @@ Build for defensibility, not just initial traction.
 - [ ] Can measure CAC accurately?
 - [ ] Identified growth loop?
 - [ ] Have unfair distribution advantage?
-
----
 
 ## Key Insight
 

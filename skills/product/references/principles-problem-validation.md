@@ -1,20 +1,10 @@
----
-name: Problem Validation Principles
-description: Invoke this skill when validating problems before building solutions, working on problem discovery, or making early-stage product decisions. Used by bob:problem-space and bob:product-coach commands.
-user-invocable: false
----
-
 # Problem Validation Principles
 
-Compact reference for validating problems before building solutions. Apply when working on problem discovery, validation, or early-stage product decisions.
-
----
+Contents: Core Truth, The Framework, Red Flags, Application Checklist, Key Insight.
 
 ## Core Truth
 
 **Problem-solution fit comes before product-market fit.** Most products fail because they solve the wrong problem or a problem that isn't painful enough - not because the solution is bad.
-
----
 
 ## The Framework
 
@@ -115,8 +105,6 @@ Kill ideas fast when:
 
 **Better to kill a bad idea in a week than build it for six months.**
 
----
-
 ## Red Flags
 
 **"Everyone needs this"** - If everyone is your customer, no one is.
@@ -126,8 +114,6 @@ Kill ideas fast when:
 **"People will change their behavior"** - They won't. Design for existing behavior.
 
 **"If we build it, they will come"** - No. Distribution is harder than product.
-
----
 
 ## Application Checklist
 
@@ -141,8 +127,6 @@ Before committing to build:
 - [ ] Would solving this problem measurably improve their life or work?
 
 If you can't check all boxes, the problem needs more validation.
-
----
 
 ## Key Insight
 
