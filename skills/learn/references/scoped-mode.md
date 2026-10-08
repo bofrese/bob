@@ -22,7 +22,7 @@ Extract learnings from a session to improve one skill or command for future use,
    - Process steps skipped or needing more structure.
    - Edge cases its guidance does not cover.
 4. **Propose** per finding: exact text to add, modify or remove and where; new steps or template sections if needed.
-5. **Validate** against the `prompt-engineering` skill (token efficiency, clarity, actionability), bob's design principles (coaching style, simplicity first) and generic applicability. Flag proposals that fail.
+5. **Validate** against the `new-skill` skill's `references/prompt-engineering.md` (token efficiency, clarity, actionability), bob's design principles (coaching style, simplicity first) and generic applicability. Flag proposals that fail.
 6. **Ask** whether to edit the target now or only write the report. Edit it where it lives; a generic bob skill needs explicit approval.
 
 ## Output

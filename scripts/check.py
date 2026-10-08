@@ -19,13 +19,6 @@ HUB_REF = re.compile(r"`bob:bob`|`bob` skill|`bob` hub")
 PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 # Quick capture: deliberately skips the hub checklists.
 HUB_EXEMPT = PRINCIPLE | {"remember"}
-# Skills not yet converted to the spec format. Each conversion removes its name; empty at 4.0.0.
-NOT_CONVERTED = {
-    "code-graph", "context-protocol", "domain-knowledge", "done-criteria", "knowledge", "project-tracking", "story-context", "work-routing", "writing",
-}
-# Legacy commands: protocol lines, unless the command delegates to the hub.
-PROTOCOL_EXEMPT = {"remember"}
-PROTOCOL_LINES = ("bob:context-protocol", "bob:done-criteria")
 EM_DASH = chr(0x2014)
 SKIP_DIRS = {".git", "node_modules"}
 
@@ -68,11 +61,6 @@ def check_skill(path, problems):
         return
     for key in unquoted_colons(text):
         problems.append(f"{rel}: '{key}' value contains ': ' and must be quoted")
-    if name in NOT_CONVERTED:
-        for key in ("name", "description"):
-            if not fm.get(key):
-                problems.append(f"{rel}: frontmatter lacks '{key}'")
-        return
     extra = set(fm) - SPEC_KEYS
     if extra:
         problems.append(f"{rel}: non-spec frontmatter keys {sorted(extra)}")
@@ -90,20 +78,6 @@ def check_skill(path, problems):
             problems.append(f"{rel}: lacks the closing line '{FINISH_LINE}'")
 
 
-def check_command(path, catalog, problems):
-    rel = path.relative_to(ROOT)
-    text = path.read_text()
-    fm = frontmatter(text) or {}
-    if not fm.get("description"):
-        problems.append(f"{rel}: frontmatter lacks 'description'")
-    if path.stem not in PROTOCOL_EXEMPT and not HUB_REF.search(text):
-        for line in PROTOCOL_LINES:
-            if line not in text:
-                problems.append(f"{rel}: missing {line} invocation")
-    if catalog is not None and f"/bob:{path.stem}`" not in catalog:
-        problems.append(f"{rel}: not in skills/bob/references/commands.md")
-
-
 def iter_text(base):
     for p in base.rglob("*"):
         if p.is_file() and p.suffix in {".md", ".py", ".sh", ".json"} and not SKIP_DIRS & set(p.parts):
@@ -112,16 +86,13 @@ def iter_text(base):
 
 def main(extra):
     problems = []
-    for name in sorted(NOT_CONVERTED):
-        if not (ROOT / "skills" / name / "SKILL.md").exists():
-            problems.append(f"scripts/check.py: NOT_CONVERTED names missing skill '{name}'")
+    if (ROOT / "commands").exists():
+        problems.append("commands/: bob ships skills only")
+    for d in sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir()):
+        if not (d / "SKILL.md").exists():
+            problems.append(f"skills/{d.name}: folder without SKILL.md")
     for s in sorted(ROOT.glob("skills/*/SKILL.md")):
         check_skill(s, problems)
-
-    catalog_file = ROOT / "skills/bob/references/commands.md"
-    catalog = catalog_file.read_text() if catalog_file.exists() else None
-    for c in sorted(ROOT.glob("commands/*.md")):
-        check_command(c, catalog, problems)
 
     for base in [ROOT, *map(Path, extra)]:
         for p in iter_text(base.resolve()):
