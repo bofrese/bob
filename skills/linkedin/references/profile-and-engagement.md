@@ -1,10 +1,10 @@
 # LinkedIn Profile Optimisation & Engagement System
 
+Contents: Profile (headline, banner, about, featured, experience, recommendations), Creator Mode, The Daily Engagement System, Tracking What Actually Matters, Newsletter Feature, Consistency as the Moat.
+
 ## Profile: Your Conversion Page
 
 Profile is where people go after reading a post. If the profile is weak, you lose the conversion. Most people's profiles are CVs. High performers write them as sales pages.
-
----
 
 ## Profile Sections
 
@@ -57,8 +57,6 @@ If you have a consulting business, treat it like a portfolio. Each project/clien
 
 Request specific recommendations from clients and colleagues. A good recommendation is a specific story with a specific outcome - not "great to work with." If someone offers to write one, brief them on what would be most useful to mention.
 
----
-
 ## Creator Mode
 
 Turn on Creator Mode if you post regularly. It:
@@ -66,8 +64,6 @@ Turn on Creator Mode if you post regularly. It:
 - Shows your featured hashtags/topics
 - Unlocks LinkedIn Live and Newsletter features
 - Makes your recent posts more prominent on your profile
-
----
 
 ## The Daily Engagement System
 
@@ -91,8 +87,6 @@ Content is 50% of the job. Engagement is the other 50%. Most people only think a
 
 Turn on notifications for your top 5-10 Tier 1 accounts. Comment within the first hour of their posts - early comments get the most visibility as the post gains momentum.
 
----
-
 ## Tracking What Actually Matters
 
 Most people track likes and follower count. These are vanity metrics.
@@ -106,15 +100,11 @@ Most people track likes and follower count. These are vanity metrics.
 
 A post with 50 likes from your exact target client is worth more than a post with 500 likes from random people.
 
----
-
 ## Newsletter Feature
 
 LinkedIn Newsletter (available in Creator Mode) is underutilised. It sends an email notification to all your subscribers when you publish. Unlike posts, newsletters don't compete for feed attention - they arrive in inboxes.
 
 Use case: monthly deep dive that complements your weekly content cadence. Each newsletter issue becomes a LinkedIn Article and an email simultaneously.
-
----
 
 ## Consistency as the Moat
 

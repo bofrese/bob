@@ -21,7 +21,7 @@ PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 NOT_CONVERTED = {
     "architect", "bdd", "code-graph", "context-protocol",
     "domain-knowledge", "done-criteria",
-    "knowledge", "linkedin-expert", "obsidian",
+    "knowledge", "obsidian",
     "project-tracking", "prompt-engineering", "story-context",
     "ui-design", "vault", "work-routing", "writing",
 }

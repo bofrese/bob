@@ -6,8 +6,6 @@ Comments are **distribution borrowed from other people's audiences**. When you c
 
 Most people treat comments as social courtesy. Treat them as a content channel.
 
----
-
 ## What a Good Comment Does
 
 A comment should do **one** of:
@@ -23,8 +21,6 @@ A comment should **never**:
 - Be a thinly veiled pitch for your services
 - Be longer than the original post
 - Use obviously AI-generated language ("Certainly!", "In today's rapidly evolving landscape")
-
----
 
 ## The Anatomy of a Great Comment
 
@@ -45,8 +41,6 @@ The second comment:
 - Invites a reply
 - Is visible to thousands of people in that author's network
 
----
-
 ## Comment Targeting: Who to Comment On
 
 **Tier 1 - Adjacent thought leaders with large followings (10k+)**
@@ -61,15 +55,11 @@ Builds relationships, mutual amplification, and community signal. The algorithm 
 **Tier 4 - Your own posts**
 Reply to every comment within 2 hours. Not just "Thanks!" - treat each as a mini-conversation. This extends dwell time on your post and signals to the algorithm that the content is active.
 
----
-
 ## Comment Timing
 
 Comment within the **first hour** of a post being published when possible. Early comments are seen by more people as the post gains momentum. Comments left 48 hours later are rarely seen.
 
 Turn on notifications for Tier 1 accounts so you can engage early.
-
----
 
 ## Daily Comment Minimum
 
@@ -77,8 +67,6 @@ Turn on notifications for Tier 1 accounts so you can engage early.
 - 10 substantive comments on posts by target audience or adjacent thought leaders
 - Substantive = adds a perspective, a challenge, or a data point
 - Reply to every comment on your posts within 2 hours of publishing
-
----
 
 ## What to Watch Out For
 
