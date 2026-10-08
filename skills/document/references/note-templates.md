@@ -1,6 +1,6 @@
 # Note Templates
 
-All notes follow `bob:writing`. Headings that do not apply to a concept are left out. Links per the rules in the `bob:document` skill.
+All notes follow the hub's writing rules. Headings that do not apply to a concept are left out. Links per the rules in the `document` skill.
 
 ## Concept note - `docs/architecture/concepts/{concept}.md`
 
@@ -70,7 +70,7 @@ To change it: {where to look first, and what else must change with it.}
 
 ## Index - `docs/architecture/README.md`
 
-The index is how `bob:context-protocol` picks which notes to load. A "Read when" cell names the tasks, symptoms or changes that make the note relevant, not what the note is.
+The index is how the hub's project-knowledge loader picks which notes to load. A "Read when" cell names the tasks, symptoms or changes that make the note relevant, not what the note is.
 
 ```markdown
 # Architecture
@@ -83,7 +83,7 @@ The index is how `bob:context-protocol` picks which notes to load. A "Read when"
 {- the main layers or parts, and the role of each (a table)}
 {- the shape most work shares, e.g. a request lifecycle or a pipeline}
 {- where knowledge or data lives, if it is spread over several stores}
-{At most 1-2 diagrams, only where a diagram is clearer than a table (`bob:writing`, Diagrams). Link to notes for detail.}
+{At most 1-2 diagrams, only where a diagram is clearer than a table (hub writing rules, Diagrams). Link to notes for detail.}
 
 ## Concepts
 | Concept | Read when | Note |

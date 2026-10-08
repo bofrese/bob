@@ -5,8 +5,8 @@ Build the first architecture map of a project. Runs when `docs/architecture/` do
 ## Steps
 
 1. **Read existing docs as input.** If older concept docs exist in `docs/` (outside `product/`, `guidelines/`, `domain/`, `process/`), read them. They are evidence, not truth: check their claims against the code.
-2. **Map concepts from the code.** Use `bob:architect` `references/concepts.md`. Prefer the code graph if one is fresh. List concepts, not modules: one line each, with the main code location.
-3. **Map patterns.** Use `bob:architect` `references/patterns.md`. For each candidate: short local name, 2-3 example locations, proposed status (`established`, `emerging` or `competing`; only the human confirms `established`).
+2. **Map concepts from the code.** Use the `architect` skill, `references/concepts.md`. Prefer the code graph if one is fresh. List concepts, not modules: one line each, with the main code location.
+3. **Map patterns.** Use the `architect` skill, `references/patterns.md`. For each candidate: short local name, 2-3 example locations, proposed status (`established`, `emerging` or `competing`; only the human confirms `established`).
 4. **Propose, do not write.** Present the concept list and the pattern list (with proposed status) as tables. Note design smells found on the way as open questions. The human confirms, renames, merges or drops entries, and decides which patterns are `established`.
 5. **Discuss intent for the confirmed set.** One topic at a time: why a concept exists, non-obvious decisions, what trips up newcomers. These answers are the most valuable content.
 6. **Write** the confirmed notes and `README.md` using `note-templates.md`. Write the "How it fits together" overview last, from the confirmed notes: it shows how they connect, it does not repeat them. Every index row gets a "Read when" trigger.

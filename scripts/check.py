@@ -20,7 +20,7 @@ PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 # Skills not yet converted to the spec format. Each conversion removes its name; empty at 4.0.0.
 NOT_CONVERTED = {
     "architect", "assumption-testing", "bdd", "business-model", "code-graph", "context-protocol",
-    "document", "domain-knowledge", "done-criteria", "go-to-market",
+    "domain-knowledge", "done-criteria", "go-to-market",
     "handover", "knowledge", "learn", "linkedin-expert", "obsidian", "positioning-strategy",
     "problem-validation", "project-tracking", "prompt-engineering", "reflect", "story-context",
     "ui-design", "vault", "work-routing", "writing",

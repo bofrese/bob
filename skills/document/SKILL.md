@@ -1,40 +1,30 @@
 ---
 name: document
-description: Write and maintain a project's canonical architecture knowledge as concept-first atomic notes in docs/architecture/ (concepts, patterns, README index). Modes Discover, Update, Audit. Invoked by /bob:document; uses bob:architect for design judgment; not user-invocable.
-user-invocable: false
+description: Bob's document phase. Writes and maintains a project's canonical architecture notes (concepts, patterns, README index) in docs/architecture/, in Discover, Update or Audit mode. Use when architecture notes must reflect the code, after review or to check drift. Never changes application code.
+license: Apache-2.0
+allowed-tools: Bash(*), Read, Write, Edit
 ---
 
-# Document - Canonical Architecture Notes
+# Document
 
-The framework behind `/bob:document`. The command owns process and file I/O. This skill owns the stance, the modes, the docs layout and the note templates. Design judgment (what a concept is, pattern status, smells, drift) comes from `bob:architect`.
-
-## Fundamental question
-
-How does the system work now, explained concept by concept, so that a developer or an AI can find the right code and change it safely?
-
-## Role
-
-Senior developer and technical writer, and a thinking partner. Map concepts and patterns from the actual code, ask the human about intent, and write what is true today. Never write aspirations.
-
-## Core principles
-
-- **State, not story.** Notes describe the current system. Design Records hold intent; handovers hold the change story. Notes absorb only enduring knowledge.
-- **Concept first.** One atomic note per concept (`bob:architect` `references/concepts.md`). Framework details come second.
-- **Small, linked, canonical.** Notes are the canonical architecture knowledge, organized like an Obsidian second brain: small atomic notes, explicit links, hierarchy and tags only where useful, low duplication, easy for humans to navigate and for AI to retrieve.
-- **After implementation, against the code.** Notes describe the system that exists, never copied from a Design Record.
-- **Local knowledge stays local.** File-local facts belong in names and doc comments, not in notes.
-- **Human promotes.** Only the human sets a pattern to `established`, and confirms new notes before they are written in Discover.
-- **No size budget, one overview.** A note is as long as its concept needs. The index carries one short system overview ("How it fits together"). Larger overview documents are generated views, produced only on request, never the source of truth.
+Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
+Loads: hub story (Update mode only), project-knowledge, code-graph; story implement, review (Update mode)
 
 ## Rules
 
-- One question at a time when discussing intent. Do not rush to writing.
 - Do not refactor or modify application code. Adding or fixing doc comments is fine.
-- Be honest about limitations, debt and rough edges.
-- **Links point to docs only.** Markdown links `[text](path)` target `.md` files. Source paths, directories and scripts use backticks (`src/auth/policy.ts`).
-- **Index first-column names are plain text.** Doc links go in a dedicated column. Never link to a directory.
-- Key Files tables: path and purpose only. No line numbers.
-- Every proposed move, migration or deletion of an existing doc is confirmed per file.
+- Every list of notes to write, migrate, move or delete is confirmed by the user before any file changes; moves, migrations and deletions of existing docs per file. Only the user sets a pattern to `established`.
+- State, not story: notes describe the current system, after implementation, against the code. Never copy a Design Record or write aspirations. Design Records hold intent, handovers hold the change story; notes absorb only enduring knowledge.
+- Concept first: one atomic note per concept (`architect` skill, `references/concepts.md`); framework details second.
+- Small, linked, canonical: small atomic notes, explicit links, hierarchy and tags only where useful, low duplication. A note is as long as its concept needs. The index carries one short system overview ("How it fits together"); larger overviews are generated views, produced only on request.
+- Local knowledge stays local: file-local facts go into names and doc comments, not notes.
+- Links point to docs only: Markdown links target `.md` files. Source paths, directories and scripts use backticks. Index first-column names are plain text, doc links go in their own column, never link a directory. Key Files tables: path and purpose only, no line numbers.
+- Be honest about limitations, debt and rough edges. One question at a time when discussing intent; do not rush to writing.
+- If the user says "save", write what is confirmed so far, whatever the phase.
+
+## Role
+
+Senior developer, technical writer and thinking partner. Map concepts and patterns from the actual code, ask the human about intent, write what is true today. The question: how does the system work now, concept by concept, so a developer or an AI can find the right code and change it safely?
 
 ## Layout
 
@@ -45,14 +35,28 @@ docs/architecture/
   patterns/{pattern}.md
 ```
 
-Guidelines (`docs/guidelines/`) hold technology pitfalls only. Project patterns live in `docs/architecture/patterns/`.
+`docs/guidelines/` holds technology pitfalls only. Project patterns live in `docs/architecture/patterns/`.
 
-## Modes and references
+## Process
 
-| Mode | When | Reference |
-|---|---|---|
-| Discover | No `docs/architecture/` yet (also when older `docs/*.md` concept docs exist) | `references/discover.md` |
-| Update | After Review, for a story: notes change to match what was built | `references/update.md` |
-| Audit | Explicit drift or health check of existing notes and `docs/` | `references/audit.md` |
+1. **Detect the mode** and state it in one line:
 
-Note shapes for every mode: `references/note-templates.md`. Load only the mode reference in use.
+   | Mode | When | Reference |
+   |---|---|---|
+   | Discover | `docs/architecture/` missing (also when older `docs/*.md` concept docs exist) | `references/discover.md` |
+   | Update | A story's Review is done, or the user names a story or change | `references/update.md` |
+   | Audit | The user asks to check, refresh, sync or audit docs | `references/audit.md` |
+
+   Unclear: ask, with a recommendation. Load only that mode's reference plus `references/note-templates.md`.
+2. **Design judgment.** Invoke the `architect` skill and load the references the mode names (concepts, patterns).
+3. **Run the mode** as its reference describes.
+4. **Write** the confirmed notes and `docs/architecture/README.md`. Add or fix doc comments in source files where a fact is file-local.
+5. **Route.** Code problems, drift outside scope and deferred notes are discovered work.
+
+## Output
+
+- Notes in `docs/architecture/concepts/` and `docs/architecture/patterns/`, index in `docs/architecture/README.md`.
+- Update mode: one History row in `{story_path}_index.md`, type Documentation, listing the notes changed.
+- Report: notes created or changed, patterns with status changes, drift found, open design questions.
+
+Finish with the hub's finish checklist.

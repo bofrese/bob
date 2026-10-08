@@ -11,7 +11,7 @@ Bring the notes in line with what a story actually built. Runs after Review, bef
 ## Steps
 
 1. **List affected notes.** For each concept the change touched: unchanged, needs update, or new concept. Describe the implemented system, not the Design Record. Where they differ, the code wins and the difference is worth a line in the handover.
-2. **Check patterns** with `bob:architect` `references/patterns.md`:
+2. **Check patterns** with the `architect` skill, `references/patterns.md`:
    - Did the change follow the `established` pattern for its problem?
    - Did it introduce a new or competing variant? Record it in the pattern note (`competing`, open question) and tell the human.
    - Did it strengthen an `emerging` pattern? Propose promotion; the human decides.
