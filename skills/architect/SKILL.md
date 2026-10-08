@@ -1,12 +1,12 @@
 ---
 name: architect
-description: What good architecture means in bob - whole-system comprehensibility lenses, semantic generalization, domain placement, deep modules and developer-facing interfaces, source readability, concept identification, design smells, codebase patterns and drift. Invoked by /bob:design, /bob:review, bob:document and bob:reflect; not user-invocable.
-user-invocable: false
+description: Bob's architecture judgment - whole-system comprehensibility lenses, domain placement, deep modules, interfaces, source readability, concept identification, design smells, codebase patterns and drift. Use when judging a design, an abstraction, where code belongs, or architectural fit.
+license: Apache-2.0
 ---
 
 # Architect - What Good Design Means
 
-The single source of design judgment in bob. Callers own process and file I/O; this skill owns how to see concepts, patterns and quality. It does not own note templates or where notes live (`bob:document` owns those).
+The single source of design judgment in bob. Callers own process and file I/O; this skill owns how to see concepts, patterns and quality. It does not own note templates or where notes live (the `document` skill owns those).
 
 ## Fundamental question
 

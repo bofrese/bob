@@ -1,14 +1,12 @@
 ---
-name: BDD - Behaviour-Driven Development
-description: Invoke this skill when defining acceptance criteria, testing strategy, or evaluating whether something is done. Used by bob commands during implementation planning and before writing code.
-user-invocable: false
+name: bdd
+description: Bob's behaviour-driven development principles - Given/When/Then acceptance criteria, testing behaviour not implementation, and the golden done check. Use when defining acceptance criteria or a testing strategy, or when judging whether work is done.
+license: Apache-2.0
 ---
 
 # BDD - Behaviour-Driven Development
 
 A thinking framework. Apply when defining tests, acceptance criteria, or evaluating whether something is "done".
-
----
 
 ## The core discipline
 
@@ -32,7 +30,7 @@ If "Then" can't be observed - by a user, a log, an API response, a database stat
 
 ## Acceptance criteria live in the plan
 
-Before `/bob:implement` starts, the plan must contain testable acceptance criteria for every piece of new behaviour. Written in Given/When/Then. Reviewed by `/bob:review-plan`. This is the contract.
+Before `implement` starts, the plan must contain testable acceptance criteria for every piece of new behaviour. Written in Given/When/Then. Reviewed by `review-plan`. This is the contract.
 
 ## The golden check
 

@@ -21,11 +21,7 @@ PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
 HUB_EXEMPT = PRINCIPLE | {"remember"}
 # Skills not yet converted to the spec format. Each conversion removes its name; empty at 4.0.0.
 NOT_CONVERTED = {
-    "architect", "bdd", "code-graph", "context-protocol",
-    "domain-knowledge", "done-criteria",
-    "knowledge", "obsidian",
-    "project-tracking", "story-context",
-    "ui-design", "work-routing", "writing",
+    "code-graph", "context-protocol", "domain-knowledge", "done-criteria", "knowledge", "project-tracking", "story-context", "work-routing", "writing",
 }
 # Legacy commands: protocol lines, unless the command delegates to the hub.
 PROTOCOL_EXEMPT = {"remember"}

@@ -1,7 +1,7 @@
 ---
 name: obsidian
-description: This skill should be used when the user asks to rename or move a markdown file, when Claude is about to execute mv or git mv on any .md file, when searching for notes or content in an Obsidian vault, when the user mentions "obsidian", "wikilinks", "internal links", "vault", or "search vault", or when file operations on .md files need to preserve link integrity.
-version: 0.2.0
+description: Bob's Obsidian vault operations - moves and renames .md files through the Obsidian CLI so links stay intact, and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search.
+license: Apache-2.0
 ---
 
 # Obsidian Vault Operations
@@ -107,7 +107,7 @@ obsidian search query="authentication flow" limit=10
 
 ## Workspace State
 
-Commands for reading what is currently open or recently visited in Obsidian. Used by the `bob:story-context` skill to detect the active story without user input.
+Commands for reading what is currently open or recently visited in Obsidian. The bob hub's story resolution can use them to detect the active story.
 
 ### Active file path
 
