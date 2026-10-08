@@ -144,13 +144,13 @@ Then [observable outcome]
 
 ---
 
-## `bob:handover` - The Change as a Logical Story
+## `bob:handover` - The Change, Narrated for Approval
 
 **File I/O:** `scripts/gather.py` reads git state (read-only); the `/bob:handover` command writes the artifact.
 
 **Invoked by:** `/bob:handover`
 
-**Core discipline:** Help the human verify and own a delivered change: problem, main design ideas, what changed and why, a reading order by concept and dependency (never file or diff order), future impact. The human confirms the change set; files are never staged unasked.
+**Core discipline:** An approval point instead of a pull request: everything the diff contains, narrated in concept and dependency order (never file or diff order) with the code shown and the reasoning at each place. Mechanical changes are grouped into sweeps; `gather.py --check` proves every changed file is covered. The human confirms the change set; files are never staged unasked.
 
 - `references/scope-policy.md` - baseline (commit that added the previous handover), staged files as intent, candidates, when to ask
 - `references/narrative-template.md` - reading-order policy and artifact template
@@ -494,6 +494,25 @@ Receives a mode from the library command and loads only the relevant sub-file:
 - Obsidian 1.12.7+ installed and CLI registered (Settings → General → Command line interface)
 - "Automatically update internal links" enabled (Settings → Files & Links)
 - Obsidian app running (auto-launches on first CLI call)
+
+---
+
+## `bob:project-tracking` - Stories, Tasks and Kanban Boards
+
+**File I/O:**
+- **Reads:** `projects/{subproject}/_kanban.md`, `{story_path}/_kanban.md`, `{story_path}/_index.md`
+- **Writes:** `projects/` structure (bootstrap), story folders (`_index.md`, `_notes.md`, `_kanban.md`, `tasks/`, `sessions/`), task files, kanban cards
+
+**User-invocable:** No - loaded by engineering commands and other protocol skills.
+
+**Invoked by:** `bob:story-context` (new story, bootstrap), `bob:done-criteria` and `bob:work-routing` (kanban and History formats), `pm`.
+
+**What it does:**
+- Defines the file structure, kanban columns (project: INBOX, ToDo, Refining, Ready, In Progress, Verify, Done, ARCHIVE) and task, story index and notes templates
+- Converts an INBOX card into a story: next ID from `last-id`, all story files created in one operation
+- Bootstraps `projects/` when it does not exist
+
+**Key rule:** No dangling links. Create every linked file before or with the document that links to it. Acts only when `bob:story-context` decided `tracking_required` is true.
 
 ---
 

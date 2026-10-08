@@ -14,7 +14,7 @@ import sys
 
 REQUIRED_FIELDS = {"type", "title", "tags", "timestamp"}
 OLD_FIELDS = {"source", "created"}
-TYPED_DIRS = {"decisions", "concepts", "research", "patterns"}
+TYPED_DIRS = {"decisions", "concepts", "research", "practices"}
 
 
 def parse_frontmatter(content):

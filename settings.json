@@ -1,9 +1,4 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(__NEW_LINE_c17930fc32d0e3d9__ echo \"\")"
-    ]
-  },
   "hooks": {
     "PreToolUse": [
       {

@@ -3,6 +3,7 @@
 
 Usage:
     gather.py STORY_PATH STORY_ID [--full]
+    gather.py --check HANDOVER < changed-files.txt
     gather.py --selftest
 
 Prints JSON. One entry per repo (the repo holding the story, its submodules, and any
@@ -15,6 +16,9 @@ other nested git repos under its root). Per repo:
     staged        staged files (staged = "intend to commit, read the handover first")
     candidates    unstaged/untracked files the story artifacts reference (offer to stage)
     unattributed  other dirty files
+
+--check reads changed file paths (one per line, as `git diff --name-only` prints them)
+on stdin and prints those the handover never mentions. Exit 1 when any are missing.
 
 Baseline = the commit that added the newest *-handover-*.md in STORY_PATH/sessions.
 Other repos map it via the submodule pointer when that pointer moved in the baseline
@@ -105,9 +109,11 @@ def story_text(story_path):
     return "\n".join(chunks)
 
 
-def mentioned(path, text):
-    """True if path appears in text on a path boundary (notes.md does not match _notes.md)."""
-    return re.search(r"(?<![\w.-])" + re.escape(path) + r"(?![\w-])", text) is not None
+def mentioned(path, text, strict=False):
+    """True if path appears in text on a path boundary (notes.md does not match _notes.md).
+    strict: a preceding "/" also blocks the match (a.py does not match src/a.py)."""
+    before = r"(?<![\w./-])" if strict else r"(?<![\w.-])"
+    return re.search(before + re.escape(path) + r"(?![\w-])", text) is not None
 
 
 def story_started(story_path):
@@ -147,6 +153,13 @@ def related_commits(repo, story_repo, story_path, text, nested_rel, since, tagge
         elif line and not hit and keep(line):
             hit = story_related(line, repo, story_repo, story_path, text)
     return out
+
+
+def check(handover, files):
+    """Changed files the handover text never mentions."""
+    with open(handover, encoding="utf-8") as fh:
+        text = fh.read()
+    return [f for f in files if not mentioned(f, text, strict=True)]
 
 
 def dirty(repo, story_repo, story_path, text, nested_rel):
@@ -325,6 +338,11 @@ def selftest():
         assert [x.split(" ", 1)[1] for x in far["commits"]] == ["T-1: after"], far
         near = time_mapped("near", 30)
         assert near["note"].startswith("mapped by commit time") and near["reliable"] is False, near
+
+        # --check lists files the handover never mentions
+        h = os.path.join(tmp, "h.md")
+        write(h, "| `src/a.py` | 1 |\n| `skills/x/SKILL.md` | S1 |\n")
+        assert check(h, ["src/a.py", "src/b.py", "skills/x/SKILL.md", "a.py"]) == ["src/b.py", "a.py"]
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     print("selftest ok")
@@ -334,6 +352,10 @@ if __name__ == "__main__":
     argv = sys.argv[1:]
     if argv == ["--selftest"]:
         selftest()
+    elif len(argv) == 2 and argv[0] == "--check":
+        missing = check(argv[1], lines(sys.stdin.read()))
+        print("\n".join(missing))
+        sys.exit(1 if missing else 0)
     elif len(argv) in (2, 3) and (len(argv) == 2 or argv[2] == "--full"):
         print(json.dumps(gather(argv[0], argv[1], full="--full" in argv), indent=2))
     else:

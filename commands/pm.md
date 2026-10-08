@@ -28,7 +28,7 @@ When invoked without a specific request, first invoke `bob:story-context`.
 **If it resolves confidently** (the user is mid-story): skip the generic dashboard below. Read that story's `_index.md` and `_kanban.md`, summarize current step/task state in one or two lines (e.g. "You're mid-BOB-008, Step 3 in progress"), and recommend the next command directly.
 
 **If it resolves nothing** (genuinely new, unscoped work): treat this as new work, not a story to resume.
-- Apply the risk-classification table (source: conceptual novelty, contract impact, scope, reversibility, verification, ownership need) to what the user described, and recommend fast/standard/full.
+- Assess what the user described on conceptual novelty, contract impact, scope, reversibility, verification and ownership need, and recommend fast/standard/full. Name the factors that drive the recommendation.
 - Create a story only if the `tracking_required` decision (`bob:story-context` / `bob:project-tracking`) comes out `true`. Don't create one to satisfy ceremony.
 - Then fall through to the dashboard synthesis below so the user still sees overall project state.
 

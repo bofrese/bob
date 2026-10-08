@@ -23,6 +23,7 @@ Every artifact has two readers. Write for both:
 - **Short and specific.** One idea per paragraph. Concrete names, paths, numbers. Delete sentences that add no fact.
 - **Scannable.** Headings in sentence case, bullets for lists, tables for comparisons and anything with 3+ attributes. No walls of text.
 - **Evidence by reference.** Code paths in backticks (`src/auth/session.ts:42`). Markdown links to docs only.
+- **Diagrams only when they ease comprehension** more than a list or table would. Mermaid fails silently in many renderers: if `mmdc` is installed, validate before saving with `mmdc -q -i <file.md> -o <scratch>/out.md` (non-zero exit = syntax error). `/bob:setup` recommends installing it.
 - **Next step at the end** when the artifact leads somewhere. No summary that repeats the body.
 
 ## Icon Vocabulary

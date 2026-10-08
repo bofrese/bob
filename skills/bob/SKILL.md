@@ -1,6 +1,6 @@
 ---
 name: bob
-description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection): if the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once - state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself - only names one.
+description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection). If the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once - state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself - only names one.
 user-invocable: true
 ---
 
@@ -67,12 +67,12 @@ Bob reads and writes to predictable locations:
 | `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
 | `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
 | `/bob:document` | `docs/architecture/{concepts,patterns}/` + `docs/architecture/README.md` | Canonical, concept-first architecture notes; modes Discover / Update / Audit |
-| `/bob:handover` | `{story_path}/{date}-handover-{slug}.md` | The delivered change as a logical story: problem, design ideas, what changed and why, reading order, future impact |
+| `/bob:handover` | `{story_path}/{date}-handover-{slug}.md` | The delivered change narrated for approval instead of a PR: full diff in reading order, reasoning at each place, sweeps, coverage check |
 | `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation after reading the Handover; closes ownership gaps, identifies candidates for Learn |
 | `/bob:learn` | `{story_path}/{date}-learn-{slug}.md` + `docs/process/learnings.md` | Classify session evidence (corrections, interruptions, repeated findings) into durable harness improvements or none; stages unresolved occurrences for future runs |
 | `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
 | `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
-| `/bob:user-guide` | `docs/user-guide.md` (configurable) + `{story_path}/{date}-user-guide-findings-{slug}.md` | Create/maintain end-user guide; surfaces UX gaps as findings report |
+| `/bob:user-guide` | `docs/user-guide/` (configurable) + `{story_path}/{date}-user-guide-findings-{slug}.md` | Create/maintain end-user guide; surfaces UX gaps as findings report |
 | `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
 | `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |
 | `/bob:ui-review` | `{story_path}/{date}-ui-review-{slug}.md` | 13-lens UI/UX expert review |
@@ -114,7 +114,7 @@ Skills are thinking frameworks invoked by commands. They carry no file I/O of th
 | `bob:writing` | `context-protocol` (every command) | How bob writes artifacts: TL;DR first, scannable, fixed icons, plain English, no AI tells |
 | `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, dialogue questions, Design Record template |
 | `bob:document` | `/bob:document` | Docs layout, Discover / Update / Audit modes, concept and pattern note templates |
-| `bob:handover` | `/bob:handover` | Scope policy, narrative template, `scripts/gather.py` multi-repo change-set gathering |
+| `bob:handover` | `/bob:handover` | Scope policy, narrative template, `scripts/gather.py` multi-repo change set and coverage check |
 | `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
 | `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for ownership recovery after the Handover |
 | `bob:learn` | `/bob:learn`, `/bob:improve-command` (scoped) | Classification policy, `docs/process/learnings.md` cross-session persistence map, and Learning Record template |

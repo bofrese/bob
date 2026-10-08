@@ -1,7 +1,7 @@
 ---
 name: work-routing
 description: Routes discovered work items to the correct kanban column. Invoked mid-session by engineering commands when issues, deferred ideas, or out-of-scope findings surface.
-user-invokable: false
+user-invocable: false
 ---
 
 # Work Routing

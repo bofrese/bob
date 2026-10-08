@@ -14,10 +14,11 @@ This file guides Claude (and human contributors) in creating new commands and ma
 │   ├── context-protocol/      ← what context each command loads
 │   ├── done-criteria/         ← done system protocol + bootstrap template
 │   └── ...                    ← see skills/bob/references/skills.md for the full catalog
+├── scripts/check.py           ← structural rule check, run before committing
 ├── agents/                    ← subagent definitions
 │   └── gemini.md              ← Gemini as a helper agent
 ├── docs/                      ← user guide and documentation
-│   └── user-guide.md
+│   └── user-guide/
 ├── CLAUDE.md                  ← You are here
 ├── README.md                  ← User-facing documentation
 └── LICENSE
@@ -35,6 +36,10 @@ This file guides Claude (and human contributors) in creating new commands and ma
 - `skills/bob/SKILL.md` - the quick-reference tables (commands by layer, skills table)
 - `skills/bob/references/commands.md` - the per-command detail entry
 - `skills/bob/references/skills.md` - the per-skill detail entry (if a skill changed)
+
+**Run `python3 scripts/check.py`** before committing. It checks the deterministic rules in this file (protocol lines, frontmatter, catalog entries, no em dashes) and prints each violation.
+
+**Also sync** `docs/user-guide/` when user-visible behavior changes, and bump `version` in `.claude-plugin/plugin.json` (patch for fixes, minor for new or changed commands, major for workflow changes).
 
 ## The Two Tiers
 

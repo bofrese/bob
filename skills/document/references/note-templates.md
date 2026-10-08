@@ -70,19 +70,28 @@ To change it: {where to look first, and what else must change with it.}
 
 ## Index - `docs/architecture/README.md`
 
+The index is how `bob:context-protocol` picks which notes to load. A "Read when" cell names the tasks, symptoms or changes that make the note relevant, not what the note is.
+
 ```markdown
 # Architecture
 
 ## TL;DR
-{2-3 bullets: what the system does and where to start.}
+{2-4 bullets: what the system does, its main shape, and how to use this index.}
+
+## How it fits together
+{The one system overview. 40 lines or fewer. Only what no single note can show:}
+{- the main layers or parts, and the role of each (a table)}
+{- the shape most work shares, e.g. a request lifecycle or a pipeline}
+{- where knowledge or data lives, if it is spread over several stores}
+{At most 1-2 diagrams, only where a diagram is clearer than a table (`bob:writing`, Diagrams). Link to notes for detail.}
 
 ## Concepts
-| Concept | Summary | Note |
+| Concept | Read when | Note |
 |---|---|---|
-| Authorization policy | Who may do what, checked at the service boundary | [authorization-policy.md](concepts/authorization-policy.md) |
+| Authorization policy | Adding an endpoint, changing roles, or a request is denied unexpectedly | [authorization-policy.md](concepts/authorization-policy.md) |
 
 ## Patterns
-| Pattern | Status | Summary | Note |
+| Pattern | Status | Read when | Note |
 |---|---|---|---|
-| Wrapped integrations | established | External APIs behind one adapter per provider | [wrapped-integrations.md](patterns/wrapped-integrations.md) |
+| Wrapped integrations | established | Calling a new external API, or changing a provider | [wrapped-integrations.md](patterns/wrapped-integrations.md) |
 ```

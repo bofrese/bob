@@ -1,6 +1,6 @@
 ---
 name: project-tracking
-description: This skill should be used when working on any project story or task that involves creating, updating, or referencing project management files. Triggers when: creating or updating a kanban board, adding tasks to a story, moving a task to "in progress" or "done", logging review findings from a plan-review or code-review, creating a new story, or when any other bob skill (brainstorm, plan, implement, review) produces output that should be captured in the project tracking system.
+description: This skill should be used when working on any project story or task that involves creating, updating, or referencing project management files. Triggers when creating or updating a kanban board, adding tasks to a story, moving a task to "in progress" or "done", logging review findings from a plan-review or code-review, creating a new story, or when any other bob skill (brainstorm, plan, implement, review) produces output that should be captured in the project tracking system.
 version: 0.3.0
 ---
 
@@ -10,13 +10,7 @@ Provides the rules for how projects, stories, and tasks are tracked using Obsidi
 
 ## `tracking_required` Decision
 
-Mirrors `bob:story-context`'s decision - consult it there first; this skill only acts once tracking is confirmed required:
-
-- `true` for durable Brainstorm, Design, Plan, Review Plan, Implement, Review, Reflect, or Learn artifacts tied to a story.
-- `false` for read-only analysis, a micro-reflection, or Dev fast-path work, unless the user requests tracking.
-- Ask only when the task is meaningful but no story can be inferred.
-
-Do not create a story merely to satisfy this protocol.
+Owned by `bob:story-context` (`tracking_required` Decision). This skill acts only once that decision is `true`. Never create a story merely to satisfy a protocol.
 
 ## File Structure
 
@@ -197,7 +191,7 @@ The `_index.md` is the story hub and context document. It must be readable stand
 ---
 id: [STORY-ID]
 title: "[STORY-ID] Story: [Story Name]"
-status: [backlog|in progress|done]
+status: [ToDo|Refining|Ready|In Progress|Verify|Done]
 domain: [Area/Feature]
 started: YYYY-MM-DD
 ---
@@ -238,7 +232,7 @@ All session artifacts (brainstorm, design, plan, review, review-plan, implementa
 Rules:
 - `title` frontmatter is required - Obsidian's navigator displays it instead of the filename. Format: `[STORY-ID] Story: [Story Name]`.
 - The tasks/notes navigation line is required in every story index: `##### 📋 [Tasks](_kanban.md)  📘 [Notes](_notes.md)`. Place it immediately after the opening description paragraph, before `## History`.
-- History rows are maintained automatically by done-criteria step 6. Do not add them manually except when bootstrapping a story for existing work.
+- History rows are maintained automatically by done-criteria Responsibility 4. Do not add them manually except when bootstrapping a story for existing work.
 - Type column links to the document; Outcome column summarizes the result, not the content
 - Do NOT add an Open Issues or Open Questions table - those belong in `_kanban.md` Issues column
 - The description blockquote must reflect current state; update it when blockers are resolved
@@ -277,7 +271,7 @@ When the user commits to an INBOX item and it becomes a story:
 5. Create `_notes.md` using the `_notes.md` Template above
 6. Create `_kanban.md` with story-level columns (Issues, todo, Ready, in progress, Verify, done), `title: [STORY-ID] Tasks`, and correct `new-note-folder`
 7. Create `tasks/` directory and `sessions/` directory
-8. Move the INBOX card to the `backlog` column on the project kanban, updating it to link to the new `_index.md`
+8. Move the INBOX card to the `ToDo` column on the project kanban, updating it to link to the new `_index.md`
 
 All eight files/directories are created together, in the same operation as the story directory itself - never deferred to "when the first task/note is needed." A story with a folder but no `_kanban.md`/`_notes.md`/`tasks/`/`sessions/` causes Obsidian to resolve links to the wrong file (see No Dangling Links above).
 
@@ -294,11 +288,11 @@ The story-context skill delegates here when `projects/` is not found.
 
 ## When to Update What
 
-> History rows in `_index.md` are maintained automatically by done-criteria step 6. Do not add them here.
+> History rows in `_index.md` are maintained automatically by done-criteria Responsibility 4. Do not add them here.
 
 | Event | Action |
 |-------|--------|
-| New story created | Create story directory, `_index.md` (with `title`), `_notes.md`, `_kanban.md`, `tasks/`, `sessions/`; add story card to project kanban in `backlog`; increment `last-id` in project `_kanban.md` frontmatter |
+| New story created | Create story directory, `_index.md` (with `title`), `_notes.md`, `_kanban.md`, `tasks/`, `sessions/`; add story card to project kanban in `ToDo`; increment `last-id` in project `_kanban.md` frontmatter |
 | New story for existing work | Find related docs in the story folder or sibling story folders; move into `sessions/`; populate history table manually with `sessions/` links; set status `in progress`; place story card in `in progress` on project kanban |
 | Story moves to in progress | Move story card to `In Progress` on project kanban |
 | Story completed | Move story card to `Done` on project kanban; move story directory to `archive/done/` |
@@ -317,7 +311,7 @@ If a story is being created to track work already underway:
 5. Create `_kanban.md` with story-level columns (Issues, todo, Ready, in progress, Verify, done), `title: [STORY-ID] Tasks`, and correct Obsidian frontmatter and `new-note-folder` setting pointing to `tasks/`
 6. Create `_notes.md` and `tasks/` if missing
 7. Add the tasks/notes navigation line to `_index.md` after the opening description paragraph if not already present: `##### 📋 [Tasks](_kanban.md)  📘 [Notes](_notes.md)`
-8. Place the story card in `In Progress` on the project kanban - not `backlog`
+8. Place the story card in `In Progress` on the project kanban - not `ToDo`
 
 ## Creating Tasks from Any Source
 

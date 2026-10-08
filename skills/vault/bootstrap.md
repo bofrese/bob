@@ -2,7 +2,7 @@
 
 Run when `knowledge/` does not exist. Steps:
 
-1. Create folders: `knowledge/decisions/`, `knowledge/concepts/`, `knowledge/research/`, `knowledge/patterns/`, `knowledge/_INBOX/`, `knowledge/_INBOX/_processed/`, `knowledge/_MOC/`, `knowledge/sources/`
+1. Create folders: `knowledge/decisions/`, `knowledge/concepts/`, `knowledge/research/`, `knowledge/practices/`, `knowledge/_INBOX/`, `knowledge/_INBOX/_processed/`, `knowledge/_MOC/`, `knowledge/sources/`
 
 2. Write `knowledge/_schema.md`:
    ```markdown
@@ -18,7 +18,7 @@ Run when `knowledge/` does not exist. Steps:
    | `decision` | `decisions/` | An architectural, design, or process decision with rationale |
    | `concept` | `concepts/` | A technology, framework, or domain concept worth defining |
    | `research` | `research/` | External findings, benchmarks, tool evaluations |
-   | `pattern` | `patterns/` | A reusable solution pattern or anti-pattern |
+   | `practice` | `practices/` | A reusable way of working, or an anti-practice to avoid |
 
    ## Evidence and Validation Frontmatter
 
@@ -37,7 +37,7 @@ Run when `knowledge/` does not exist. Steps:
    - `last_validated` - the date this note's claim was last confirmed still true. Retrieval prefers notes with a recent `last_validated` over stale ones when several conflict.
    - `supersedes` - relative link to the note this one replaces, when applicable.
 
-   These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `pattern` notes that make a durable claim.
+   These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `practice` notes that make a durable claim.
 
    ## Tag Taxonomy
 
@@ -73,7 +73,7 @@ Run when `knowledge/` does not exist. Steps:
    - One-off sources you will not reference again
    - Duplicate copies (use URLs in notes instead)
 
-   Organisation: file flat initially. Create a topic subfolder when 3+ source files cover the same topic (e.g. `sources/ai-memory/`, `sources/auth-patterns/`). Never use type-based names (decisions/, patterns/, research/) in sources/.
+   Organisation: file flat initially. Create a topic subfolder when 3+ source files cover the same topic (e.g. `sources/ai-memory/`, `sources/auth-patterns/`). Never use type-based names (decisions/, practices/, research/) in sources/.
 
    When you extract atomic notes from a source file, add `resource: sources/{path}` to those notes' frontmatter.
 
@@ -107,7 +107,7 @@ Run when `knowledge/` does not exist. Steps:
    | [decisions/](decisions/_index.md) | The "why" behind choices - architectural, design, and process decisions with rationale |
    | [concepts/](concepts/_index.md) | Shared vocabulary - technology and domain concepts worth defining |
    | [research/](research/_index.md) | What we learned from outside - external findings, benchmarks, tool evaluations |
-   | [patterns/](patterns/_index.md) | How to do it right - reusable solution patterns and anti-patterns |
+   | [practices/](practices/_index.md) | How to do it right - reusable ways of working and anti-practices |
    | [sources/](sources/) | Originals before decomposition - raw articles, papers, specs. Topic subfolders emerge at 3+ files per topic. |
 
    ## Tags
@@ -137,7 +137,7 @@ Run when `knowledge/` does not exist. Steps:
    - `knowledge/decisions/_index.md` (title: Decisions)
    - `knowledge/concepts/_index.md` (title: Concepts)
    - `knowledge/research/_index.md` (title: Research)
-   - `knowledge/patterns/_index.md` (title: Patterns)
+   - `knowledge/practices/_index.md` (title: Practices)
 
 5. Write `knowledge/_suggestions.md`:
    ```markdown

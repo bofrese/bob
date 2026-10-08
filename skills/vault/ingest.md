@@ -34,7 +34,7 @@ For each confirmed concept:
 
 Save the original source material to `sources/`:
 - URL: save as `sources/{topic}/{YYYY-MM-DD}-{short-slug}.md` (or `.html` if not markdown). Create a topic subfolder if 3+ sources already cover the same topic; otherwise file flat.
-- Local file: move to `sources/` using `obsidian move` (vault active) or `mv` (vault offline).
+- Local file: move to `sources/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
 
 Add `resource: sources/{path}` to the frontmatter of all atomic notes created from this source.
 
@@ -52,4 +52,4 @@ Report: source ingested, concepts extracted, actions taken.
 - Always confirm the concept list before running reconcile - user may remove irrelevant items
 - Run reconcile before creating any note - no exceptions
 - Save raw source to `sources/` - do not delete it
-- For all vault moves: use `obsidian move` if vault active, fall back to `mv`
+- For all vault moves: use `obsidian move`. Obsidian is required: a hook blocks `mv` on `.md` files

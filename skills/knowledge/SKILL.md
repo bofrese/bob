@@ -8,7 +8,7 @@ user-invocable: false
 
 Read-only retrieval skill for the project knowledge vault. Invoked silently by context-protocol at the start of every engineering command. Returns a Knowledge Context block with pre-loaded notes relevant to the current work.
 
-**Note:** This skill is distinct from the `/bob:library` command. This skill loads knowledge into context; `/bob:library` manages the vault. **Sources folder:** `sources/` stores raw source materials, organised by topic when volume warrants it. This skill loads only atomic notes from `decisions/`, `patterns/`, `research/`, `concepts/`. Reference sources via the `resource:` field in atomic notes, not by direct retrieval from sources/.
+**Note:** This skill is distinct from the `/bob:library` command. This skill loads knowledge into context; `/bob:library` manages the vault. **Sources folder:** `sources/` stores raw source materials, organised by topic when volume warrants it. This skill loads only atomic notes from `decisions/`, `practices/`, `research/`, `concepts/`. Reference sources via the `resource:` field in atomic notes, not by direct retrieval from sources/.
 
 ## Protocol
 

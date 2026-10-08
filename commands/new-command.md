@@ -66,13 +66,9 @@ Remember to add instrutions on keeping the output efficient and effective. It wi
 
 Ensure consistency with existing commands in tone, formatting, and level of detail.
 
-### Step 5 - Update README.md
+### Step 5 - Update the catalog
 
-After creating the command, update README.md:
-- Add to the appropriate Commands Overview table
-- Update Workflow section if it fits into the chain
-- Update Report Locations table if it writes to a new folder
-- Update any other affected sections
+After creating the command, sync every place listed in CLAUDE.md "When Modifying This Repository": README, the bob skill (`skills/bob/SKILL.md`, `references/commands.md`), the user guide, and the plugin version.
 
 ### Step 6 - Confirm
 
@@ -87,7 +83,7 @@ After everything is created, confirm:
 - Match the style and tone of existing commands.
 - Keep it simple. Don't over-design. A focused command is better than a kitchen-sink command.
 - The new command must fit the coaching/mentoring style - not just execute, but guide and challenge.
-- Always update README.md. The documentation must stay in sync.
+- Always sync the catalog (Step 5). The documentation must stay in sync.
 
 ## Output
 
@@ -99,3 +95,8 @@ No separate report is generated - the command file and README update are the del
 ## Before Finishing
 
 Verify against CLAUDE.md command structure and done-criteria.md requirements.
+
+## Done - Non-Deferrable
+**Invoke `bob:done-criteria` before responding to any new request.** If the user asks to move on or start another command, run done-criteria first, then proceed.
+
+Use the Skill tool to invoke the `bob:done-criteria` skill and follow the protocol.

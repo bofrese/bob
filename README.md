@@ -127,6 +127,12 @@ See more on [finding and installing claude plugins here](https://code.claude.com
 uv tool install graphifyy   # package is "graphifyy" (double-y), not a typo
 ```
 
+**Mermaid CLI** - validates the Mermaid diagrams bob writes in designs, plans and architecture notes. Mermaid fails silently in many renderers, so bob checks each file with `mmdc` before saving when it is installed. `/bob:setup` recommends it.
+
+```bash
+npm install -g @mermaid-js/mermaid-cli   # needs Node.js
+```
+
 ### Developing Bob
 
 To work on bob itself, clone the repo and pass the directory as a plugin when starting Claude:

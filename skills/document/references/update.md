@@ -17,6 +17,6 @@ Bring the notes in line with what a story actually built. Runs after Review, bef
    - Did it strengthen an `emerging` pattern? Propose promotion; the human decides.
 3. **Check drift** in the touched area (architecture, naming, interface, source-organization drift, duplicated concepts). Report with evidence. Do not fix code.
 4. **Propose the change list** (note, change, reason) and get confirmation.
-5. **Write** the notes and update `README.md`. Set `Last verified` on each touched note.
+5. **Write** the notes and update `README.md`. Set `Last verified` on each touched note. Check that each touched note's "Read when" still matches, and update "How it fits together" if the change moved a layer, the shared shape or a store.
 
 Keep it story-scoped. Drift outside the touched area goes to work routing, not into this update.

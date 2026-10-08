@@ -11,7 +11,7 @@ import os
 import re
 import sys
 
-TYPED_DIRS = {"decisions", "concepts", "research", "patterns"}
+TYPED_DIRS = {"decisions", "concepts", "research", "practices"}
 
 
 def collect_notes(vault_root):

@@ -199,8 +199,8 @@ Every command checks applicable items before finishing.
 
 ### Handover (`handover`)
 - [ ] Change set confirmed by the human (scope per repo, staged files)
-- [ ] TL;DR, problem, design ideas, what changed and why, reading order, future impact present
-- [ ] Reading order is conceptual, not file or diff order
+- [ ] Every changed file is narrated or listed in a sweep (`gather.py --check` prints nothing)
+- [ ] Reading order is conceptual, not file or diff order; changed code is shown, not paraphrased
 
 ### Plans (`plan`)
 - [ ] Plan is self-contained (readable without prior context)

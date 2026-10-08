@@ -224,9 +224,9 @@ Auto-detects scope from git (uncommitted changes, branch commits, range). Loads 
 ---
 
 ### `/bob:handover`
-**Explain a delivered change as a logical story.**
+**Narrate a delivered change for approval instead of a pull request.**
 
-Gathers the change set since the last handover (story repo plus submodules), confirms the scope with you, and writes the problem, main design ideas, what changed and why, a conceptual reading order and future impact.
+Gathers the change set since the last handover (story repo plus submodules), confirms the scope with you, and narrates the full diff for approval instead of a pull request: problem, main design ideas, a walkthrough in conceptual order with code excerpts and reasoning, sweeps for mechanical changes, future impact and a coverage table checked by script.
 
 | | |
 |---|---|

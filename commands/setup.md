@@ -60,6 +60,9 @@ else
   echo "graphify: NOT installed"
 fi
 [ -f .graphifyignore ] && echo ".graphifyignore: present" || echo ".graphifyignore: absent"
+
+# Recommended external tool: Mermaid CLI (validates diagrams in bob artifacts before saving)
+command -v mmdc >/dev/null 2>&1 && echo "mermaid-cli: installed $(mmdc --version 2>/dev/null)" || echo "mermaid-cli: NOT installed"
 [ -d website/src ] && echo "b2 website: present" || echo "b2 website: absent"
 
 # Orphan markdown: .md files outside all managed locations (including docs/)
@@ -104,6 +107,7 @@ Present a concise status table. No changes yet.
 | graphify (recommended) | ✓ installed vX.Y.Z / ⚠ below 0.9.11 / ✗ not installed | Recommend install/upgrade |
 | graphify graph + hook | ✓ built + hook / ⚠ built, no hook / ✗ not built | Offer build + hook |
 | .graphifyignore corpus scope | ✓ current / ⚠ stale / ✗ absent | Write/refresh scope |
+| Mermaid CLI (recommended) | ✓ installed vX.Y.Z / ✗ not installed | Recommend install |
 ```
 
 Recommendations only - never install anything automatically.
@@ -113,6 +117,8 @@ Recommendations only - never install anything automatically.
 **If Obsidian Skills is not installed:** authoring skills for Obsidian-flavored markdown, Bases, and Canvas - bob is optimized for Obsidian and produces better-formatted notes when it is present. Install with `/plugin marketplace add kepano/obsidian-skills` then `/plugin install obsidian@obsidian-skills`. Note: bob's own `bob:obsidian` skill remains authoritative for vault mutations (rename/move) - its approval-gated workflow takes precedence over the plugin's generic `obsidian-cli` skill.
 
 **If graphify is not installed (or older than 0.9.11):** graphify builds a persistent code knowledge graph that `bob:code-graph` queries so engineering commands orient from real structure instead of blind exploration. It is a separate third-party tool - recommend, never silent-install. Install with `uv tool install graphifyy` (the PyPI package is `graphifyy`, double-y, not a typo); upgrade a too-old copy with `uv tool upgrade graphifyy`. bob requires **>= 0.9.11**. Everything degrades gracefully when it is absent - bob behaves exactly as today.
+
+**If the Mermaid CLI is not installed:** bob writes Mermaid diagrams in designs, plans and architecture notes, and Mermaid fails silently in many renderers. With `mmdc` installed, commands validate a file before saving: `mmdc -q -i <file.md> -o <scratch>/out.md` renders every Mermaid block and exits non-zero on a syntax error. Install with `npm install -g @mermaid-js/mermaid-cli` (needs Node.js). Without it, diagrams are checked by eye only.
 
 If everything is ✓: say "All bob infrastructure is present and up to date. Nothing to do." and stop.
 
@@ -257,6 +263,7 @@ One compact table:
 | graphify | Installed vX.Y.Z / Recommended (install or upgrade to >= 0.9.11) |
 | graphify graph + hook | Offered build/hook / Already built / N/A (not installed) |
 | .graphifyignore corpus scope | Written / Refreshed / Unchanged / N/A (not installed) |
+| Mermaid CLI | Installed vX.Y.Z / Recommended (not installed) |
 
 List any manual steps remaining (e.g., Obsidian wikilinks setting).
 
@@ -265,7 +272,7 @@ List any manual steps remaining (e.g., Obsidian wikilinks setting).
 - Audit before acting. Never modify without showing the plan first.
 - One confirmation covers all changes - don't prompt per item.
 - Never overwrite or truncate existing files - only create missing files or append to existing ones. The one exception is the `.graphifyignore` managed block, which is regenerated between its markers each run; content outside the markers is always preserved.
-- Never silent-install third-party tools (graphify, plugins). Recommend and, for graphify, offer to run the build/hook only with explicit confirmation.
+- Never silent-install third-party tools (graphify, Mermaid CLI, plugins). Recommend and, for graphify, offer to run the build/hook only with explicit confirmation.
 - Never remove or reorder existing done-criteria sections.
 - If `projects/` exists but has no subdirectories, still offer to create the first subproject.
 - Skip silently any step where the target already exists and is up to date.

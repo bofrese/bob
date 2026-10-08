@@ -1,3 +1,9 @@
+---
+name: vault
+description: Knowledge vault management controller. Routes a mode from /bob:library (bootstrap, process, ingest, organise) to its sub-file. Invoked by /bob:library and /bob:remember; not user-invocable.
+user-invocable: false
+---
+
 # bob:vault
 
 Vault management controller. Receives a mode from the invoking command (`/bob:library`) and loads only the relevant sub-file for that mode.

@@ -181,7 +181,7 @@ The AI auto-detects what changed (git diff), reads the plan to compare intent vs
 
 **Output:** `{story_path}/{date}-review-{slug}.md`
 
-A handoff document: anyone can read this and own the code confidently. For significant agent-implemented changes, Review recommends running `/bob:reflect` next.
+A handoff document: anyone can read this and own the code confidently. For significant agent-implemented changes, Review recommends the rest of the loop: `/bob:document` (Update), then `/bob:handover`, then `/bob:reflect`.
 
 **Your role:** Fix things the review flags. If you disagree with a finding, say so (you're not obligated to fix everything). When the review is approved, you can merge.
 
@@ -212,7 +212,7 @@ On a project without `docs/architecture/`, the first run is **Discover**: it pro
 
 **When:** After Document, when meaningful work was delegated to AI and you must own the result. Skipped on the fast path.
 
-**What you do:** Run `/bob:handover`. It gathers the change set (since the last handover, across the story repo and its submodules), asks you to confirm the scope, offers to stage stray files, and writes the change as a logical story: the problem, the main design ideas, what changed and why, a reading order by concept rather than by file, and the future impact.
+**What you do:** Run `/bob:handover`. It gathers the change set (since the last handover, across the story repo and its submodules), asks you to confirm the scope, offers to stage stray files, and writes the change for you to approve instead of a pull request: the full diff in reading order by concept, with the code shown and the reasoning at each place, small mechanical changes grouped into sweeps, and the future impact. A coverage check makes sure every changed file is in it.
 
 **Output:** `{story_path}/sessions/{date}-handover-{slug}.md`. Commit it: its commit is the baseline for the next handover.
 
@@ -282,7 +282,7 @@ Follow the plan, write code, verify it works.
 Freshly reviewed code with guidelines applied.
 
 **Day 7 - Document and Handover**
-`/bob:document` updates the architecture notes to match what was built; `/bob:handover` tells the change as a story you read before Reflect.
+`/bob:document` updates the architecture notes to match what was built; `/bob:handover` narrates the full change for you to approve instead of a pull request, before Reflect.
 
 **Day 8 - Reflect**
 Short peer conversation, after reading the Handover, to make sure you own the mental model, not just the AI session. Often 10 minutes.

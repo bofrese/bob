@@ -22,6 +22,8 @@ Each entry covers: purpose, inputs read, outputs written, process phases, and sk
 
 Bootstrap (step 3) also handles **graphify provisioning** when graphify is installed: recommends install/upgrade to `>= 0.9.11` if absent or old (`uv tool install graphifyy`, double-y, never silent-installed), offers to build the graph (`/graphify .`) and install the post-commit hook (`graphify hook install`) with a first-build cost warning, and writes/refreshes the plugin-aware `.graphifyignore` corpus scope. Scope tiers: Code + authoritative content (`docs/`, `knowledge/`, `website/src/`) kept; Historical (`projects/`, `ai/`) excluded (~74% of observed semantic cost). `website/dist/` excluded only when the b2 `website/src/` structure is present.
 
+Also recommends the **Mermaid CLI** (`npm install -g @mermaid-js/mermaid-cli`, never silent-installed). With `mmdc` present, commands validate Mermaid diagrams before saving (`bob:writing`).
+
 **Rules:** Never overwrites existing files (the `.graphifyignore` managed block is the one regenerated-in-place exception). Never removes or reorders done-criteria sections. Never silent-installs third-party tools. One confirmation for all changes.
 
 **Skills:** `context-protocol`, `done-criteria`
@@ -453,9 +455,9 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 ---
 
-## `/bob:handover` - Change Narrative
+## `/bob:handover` - Narrated Change for Approval
 
-**Purpose:** Turn a delivered change into a logical story the accountable developer reads before Reflect: problem, main design ideas, what changed and why, a conceptual reading order, future impact.
+**Purpose:** Turn a delivered change into the reviewable change itself: the full diff narrated in conceptual reading order, with the reasoning at each place, mechanical changes grouped into sweeps. The developer approves it instead of a pull request, then reflects.
 
 **Reads:** `scripts/gather.py` output (change set per repo: story repo, submodules, nested repos), Brainstorm Brief, Design Record, Plan, Implementation Note, Review, updated architecture notes, the diffs.
 
@@ -465,7 +467,8 @@ Only the human promotes a pattern to `established`. Large documents are generate
 1. Gather the change set (`gather.py`)
 2. Confirm scope: "since last handover" when reliable, else ask whole story or range; offer to stage candidates
 3. Read artifacts and diffs
-4. Write the narrative
+4. Write the narrative: walkthrough sections with code excerpts, sweeps for mechanical changes
+4.5. Coverage check: `gather.py --check` lists changed files the handover never mentions; fix until empty
 5. Route gaps via `bob:work-routing`; recommend `/bob:reflect`
 
 **Skills:** `context-protocol`, `handover`, `work-routing`, `done-criteria`
@@ -478,7 +481,7 @@ Only the human promotes a pattern to `established`. Large documents are generate
 
 **Reads:** `docs/product/vision.md`, `docs/product/personas.md`, `docs/product/design-brief.md`, project codebase (source files, UI, routes, CLI), existing guide (if updating), `git log` (maintenance mode), CLAUDE.md (for configured guide path).
 
-**Writes:** `docs/user-guide.md` (or CLAUDE.md-configured path), `{story_path}/{date}-user-guide-findings-{slug}.md` (findings report), CLAUDE.md root entry (user-guide path + maintenance reminder, first run only).
+**Writes:** `docs/user-guide/` (or CLAUDE.md-configured path), `{story_path}/{date}-user-guide-findings-{slug}.md` (findings report), CLAUDE.md root entry (user-guide path + maintenance reminder, first run only).
 
 **Modes:**
 - **New:** No guide exists - full discovery and write process

@@ -133,7 +133,7 @@ Reflect deliberately excludes this section - it does not load a generic guidelin
    - Paths involved (e.g., path: `Frontend/` → angular.md)
    - Concepts being touched (e.g., auth changes → authentication.md)
    - Always load `markdown.md` if it exists - all engineering commands produce markdown output.
-   - Load `mermaid.md` if it exists and the command produces diagrams (`plan`, `review-plan`, `brainstorm`).
+   - Load `mermaid.md` if it exists and the command produces diagrams (`brainstorm`, `design`, `plan`, `review-plan`, `document`).
 3. If a loaded guideline recommends a tool that is not installed: offer to install it before proceeding (for `implement` and `review` only).
 
 **If `docs/guidelines/` does not exist:**
@@ -146,14 +146,14 @@ Notify the user: "No project guidelines found - run `/bob:guidelines` to create 
 - Frontmatter YAML: quote strings containing colons or special characters
 - Tables require aligned pipes and a header separator row (`|---|`)
 
-**Mermaid (applies when producing diagrams - `plan`, `review-plan`, `brainstorm`):**
+**Mermaid (applies when producing diagrams - `brainstorm`, `design`, `plan`, `review-plan`, `document`):**
 - Node IDs: alphanumeric and underscores only - no spaces, colons, or parentheses in the ID
 - Labels with spaces or special chars: `A["my label: value"]` - double quotes inside square brackets
 - Arrow labels: `A -->|label| B` with no space before the pipe
 - Subgraph IDs: no spaces - use `subgraph myGroup["My Group"]`
 - Valid diagram types: `flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`, `gantt`, `pie`, `gitGraph`
 - Flowchart direction: `LR`, `TD`, `TB`, `BT`, `RL`
-- Validate Mermaid syntax before saving - it fails silently in many renderers
+- Validate Mermaid syntax before saving (see `bob:writing`, Diagrams)
 
 ---
 

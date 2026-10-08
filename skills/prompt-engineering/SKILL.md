@@ -93,6 +93,8 @@ When creating or reviewing a command/skill, check it defines each of the followi
 
 ## Output Template Philosophy
 
+Every artifact template conforms to `bob:writing`: it starts with a `## TL;DR` section and uses only its icon vocabulary. When a template and `bob:writing` disagree, `bob:writing` wins and the template is fixed.
+
 **Include:**
 - Date and identifier
 - Status/verdict

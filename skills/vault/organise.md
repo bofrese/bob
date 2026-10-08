@@ -31,7 +31,7 @@ Group all field renames into a batch: "Rename N old field names across M notes? 
 
 Always run on scoped files:
 
-a. **Inbox stubs in typed folders** - find `.md` files in `decisions/`, `concepts/`, `research/`, `patterns/` with `type: inbox` in frontmatter. Move each to `_INBOX/_processed/` using `obsidian move` (vault active) or `mv` (vault offline).
+a. **Inbox stubs in typed folders** - find `.md` files in `decisions/`, `concepts/`, `research/`, `practices/` with `type: inbox` in frontmatter. Move each to `_INBOX/_processed/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
 
 b. **Orphaned notes** - compare scoped files on disk against entries in `_index.md`. Files present on disk but absent from the index are orphaned. Present proposed index entries and add after confirmation.
 
@@ -49,7 +49,7 @@ Present audit findings. If all clean, say so and continue.
 
 4. **Active librarian maintenance** (propose each action, confirm before executing):
    a. **Cross-linking** - for scoped notes, scan for related notes sharing tags or overlapping keywords. Propose adding relative markdown links where they would aid discovery. Show candidate pairs before adding.
-   b. **Tag consistency** - run `grep -rh "^tags:" knowledge/decisions/ knowledge/concepts/ knowledge/research/ knowledge/patterns/ 2>/dev/null` to collect all used tags. Read the Tags table from `knowledge/README.md`. For each tag found in notes but absent from the README table: either propose adding it with a description (if it names a genuinely new domain) or propose renaming it to the closest canonical tag (if it overlaps an existing one). Use `obsidian search "query=tag:<old-tag>"` (vault active) or `grep -rl "<old-tag>" knowledge/` to find all affected notes. After any additions or renames, update `knowledge/README.md` Tags table only.
+   b. **Tag consistency** - run `grep -rh "^tags:" knowledge/decisions/ knowledge/concepts/ knowledge/research/ knowledge/practices/ 2>/dev/null` to collect all used tags. Read the Tags table from `knowledge/README.md`. For each tag found in notes but absent from the README table: either propose adding it with a description (if it names a genuinely new domain) or propose renaming it to the closest canonical tag (if it overlaps an existing one). Use `obsidian search "query=tag:<old-tag>"` (vault active) or `grep -rl "<old-tag>" knowledge/` to find all affected notes. After any additions or renames, update `knowledge/README.md` Tags table only.
    c. **Sources hierarchy** - if `sources/` contains 3+ ungrouped files clearly sharing a topic, propose creating a topic subfolder and moving them via `obsidian move`.
    d. **MOC candidates** - if 4+ notes share tags or topic keywords not yet covered by an existing MOC, append to `_suggestions.md`: `MOC candidate: <topic> (N notes)`.
 
@@ -68,6 +68,6 @@ Report changes made.
 ## Rules
 
 - Scope to changed files only (git_scope.py); fall back to all notes if log.md missing
-- For all moves: use `obsidian move` if vault active, fall back to `mv` (warn user: backlinks will not be updated)
+- For all moves: use `obsidian move`. Obsidian is required: a hook blocks `mv` on `.md` files. If the vault is not active, stop and ask the user to open it
 - Never auto-fix dead references - surface them and ask
 - Propose every structural change before executing

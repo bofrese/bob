@@ -9,7 +9,7 @@ Build the first architecture map of a project. Runs when `docs/architecture/` do
 3. **Map patterns.** Use `bob:architect` `references/patterns.md`. For each candidate: short local name, 2-3 example locations, proposed status (`established`, `emerging` or `competing`; only the human confirms `established`).
 4. **Propose, do not write.** Present the concept list and the pattern list (with proposed status) as tables. Note design smells found on the way as open questions. The human confirms, renames, merges or drops entries, and decides which patterns are `established`.
 5. **Discuss intent for the confirmed set.** One topic at a time: why a concept exists, non-obvious decisions, what trips up newcomers. These answers are the most valuable content.
-6. **Write** the confirmed notes and `README.md` using `note-templates.md`.
+6. **Write** the confirmed notes and `README.md` using `note-templates.md`. Write the "How it fits together" overview last, from the confirmed notes: it shows how they connect, it does not repeat them. Every index row gets a "Read when" trigger.
 7. **Migrate older docs.** For each older `docs/*.md` concept doc, propose one of: migrate into atomic notes (then delete the original), keep as is, or delete. Confirm per file.
 
 ## Scope control

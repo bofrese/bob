@@ -24,7 +24,7 @@ Senior developer and technical writer, and a thinking partner. Map concepts and 
 - **After implementation, against the code.** Notes describe the system that exists, never copied from a Design Record.
 - **Local knowledge stays local.** File-local facts belong in names and doc comments, not in notes.
 - **Human promotes.** Only the human sets a pattern to `established`, and confirms new notes before they are written in Discover.
-- **No size budget, no zoom levels.** A note is as long as its concept needs. Large overview documents are generated views, produced only on request, never the source of truth.
+- **No size budget, one overview.** A note is as long as its concept needs. The index carries one short system overview ("How it fits together"). Larger overview documents are generated views, produced only on request, never the source of truth.
 
 ## Rules
 
@@ -40,7 +40,7 @@ Senior developer and technical writer, and a thinking partner. Map concepts and 
 
 ```text
 docs/architecture/
-  README.md          index: one line per note, with link
+  README.md          index: system overview, then one "Read when" line per note
   concepts/{concept}.md
   patterns/{pattern}.md
 ```

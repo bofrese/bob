@@ -25,8 +25,8 @@ Enable: Settings → General → Command line interface → Register CLI
 
 | Command | Required | Optional | Description |
 |---|---|---|---|
-| `obsidian rename` | `name=<name>` | `file=`, `path=` | Rename file; updates wikilinks |
-| `obsidian move` | `to=<path>` | `file=`, `path=`, `name=` | Move to folder; updates wikilinks |
+| `obsidian rename` | `name=<name>` | `file=`, `path=` | Rename file; updates links |
+| `obsidian move` | `to=<path>` | `file=`, `path=`, `name=` | Move to folder; updates links |
 | `obsidian create` | `name=<name>` | `path=`, `content=`, `template=`, `open`, `overwrite` | Create new note |
 | `obsidian read` | - | `file=`, `path=` (defaults to active) | Print note content |
 | `obsidian append` | `content=<text>` | `file=`, `path=`, `inline`, `open` | Append to note |
@@ -134,7 +134,7 @@ obsidian property:set path="projects/X/_index.md" name="status" value="in-progre
 
 ## Link Update Behavior
 
-`rename` and `move` update wikilinks **only if** "Automatically update internal links" is enabled:
+`rename` and `move` update wikilinks and markdown links **only if** "Automatically update internal links" is enabled:
 Settings → Files & Links → Automatically update internal links
 
 If this setting is off, the operation succeeds silently but all links to the file will be broken.

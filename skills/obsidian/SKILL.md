@@ -88,9 +88,9 @@ Every file operation follows this exact sequence:
 
 Link updates only fire if **Settings → Files & Links → Automatically update internal links** is enabled in Obsidian.
 
-Before the first operation in a project, warn the user to verify this setting is on. If it is off, the rename/move will succeed but all wikilinks pointing to the file will break silently.
+Before the first operation in a project, warn the user to verify this setting is on. If it is off, the rename/move will succeed but all links pointing to the file will break silently.
 
-Note: Obsidian's auto-update applies to **wikilinks only** (`[[note-name]]`). Standard markdown links (`[text](path/file.md)`) are not updated by the CLI. If the vault mixes link styles, check for broken standard links manually after rename.
+Obsidian's auto-update rewrites both wikilinks (`[[note-name]]`) and standard markdown links (`[text](path/file.md)`).
 
 ## Search
 

@@ -23,8 +23,8 @@ For each file, in order:
    - **enrich**: add content or links to existing note, confirm before writing
    - **split**: decompose existing note per reconcile's proposal, confirm each piece
 5. Assess the original inbox file:
-   - Authoritative source (article, research paper, major spec): move to `sources/` using `obsidian move "path=<from>" "to=<to>"` if vault is active (`obsidian vault info=path 2>/dev/null` matches `$PWD`), else `mv`. Name it: `{YYYY-MM-DD}-{short-slug}.{ext}`. Choose a topic subfolder if 3+ source files already cover the same topic; otherwise file flat. Never use typed folder names (decisions/, patterns/, research/) in sources/. Add `resource: sources/{path}` to atomic notes derived from it.
-   - Ephemeral capture (rough notes, quick thought): move to `_INBOX/_processed/` using `obsidian move` (vault active) or `mv` (vault offline).
+   - Authoritative source (article, research paper, major spec): move to `sources/` using `obsidian move "path=<from>" "to=<to>"` (Obsidian is required; check `obsidian vault info=path 2>/dev/null` matches `$PWD`, else stop and ask the user to open the vault). Name it: `{YYYY-MM-DD}-{short-slug}.{ext}`. Choose a topic subfolder if 3+ source files already cover the same topic; otherwise file flat. Never use typed folder names (decisions/, practices/, research/) in sources/. Add `resource: sources/{path}` to atomic notes derived from it.
+   - Ephemeral capture (rough notes, quick thought): move to `_INBOX/_processed/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
 6. Append any new patterns noticed to `_suggestions.md` (MOC candidates, tag inconsistencies, schema gaps)
 
 ## Subagent Processing (≥ 20K tokens)
@@ -69,11 +69,11 @@ supersedes: optional-note-link
 **Why it matters:** [one sentence]
 ```
 
-`decision` and `pattern` notes require `evidence` and `status`. A claim with no `evidence` entries is an inference, not an observation - set `status: proposed`, never `validated`, until it has one. `last_validated` should be set to the processing date on creation and bumped whenever the claim is re-confirmed. See `bob/skills/vault/bootstrap.md`'s "Evidence and Validation Frontmatter" section for the full field definitions.
+`decision` and `practice` notes require `evidence` and `status`. A claim with no `evidence` entries is an inference, not an observation - set `status: proposed`, never `validated`, until it has one. `last_validated` should be set to the processing date on creation and bumped whenever the claim is re-confirmed. See `bob/skills/vault/bootstrap.md`'s "Evidence and Validation Frontmatter" section for the full field definitions.
 
 ## Conflict surfacing
 
-Before creating a new `decision` or `pattern` note, check whether an existing note in the same subfolder makes a conflicting claim (reconcile's job already covers exact/near-duplicate detection - this is about a *contradicting*, not duplicate, claim). If a conflict is found:
+Before creating a new `decision` or `practice` note, check whether an existing note in the same subfolder makes a conflicting claim (reconcile's job already covers exact/near-duplicate detection - this is about a *contradicting*, not duplicate, claim). If a conflict is found:
 
 - Do not silently pick a side or overwrite the existing note.
 - Surface both claims to the user: the existing note's claim + `status`/`last_validated`, and the incoming claim + its evidence.
@@ -87,8 +87,8 @@ Retrieval (`bob:knowledge`) prefers `validated` notes over `proposed`/`supersede
 - Run reconcile before creating any new note - no exceptions
 - Tags: read the Tags table in `knowledge/README.md` first. If no existing tag fits, propose a new tag with a description, get confirmation, add to README Tags table before using
 - Never delete files - move to `_INBOX/_processed/` or `sources/` only
-- For all moves: use `obsidian move` if vault active, fall back to `mv` (warn user: backlinks will not be updated)
+- For all moves: use `obsidian move`. Obsidian is required: a hook blocks `mv` on `.md` files. If the vault is not active, stop and ask the user to open it
 - Never add a note to any index without user confirmation
 - Filenames: kebab-case, no date prefix for processed notes; `YYYY-MM-DD-slug.md` for inbox only
-- Never mark a `decision`/`pattern` note `status: validated` without at least one `evidence` entry
+- Never mark a `decision`/`practice` note `status: validated` without at least one `evidence` entry
 - `/bob:learn` may recommend consolidation, supersession, or deletion of stale notes, but must never perform destructive vault cleanup without confirmation - process mode always asks before merging, enriching, splitting, or changing `status` on an existing note
