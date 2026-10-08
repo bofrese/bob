@@ -26,7 +26,7 @@ Propose a list of candidate concepts (title + one-line description). Show the li
 ## Step 3: Run Reconcile on Each Concept
 
 For each confirmed concept:
-1. Read `skills/vault/reconcile.md` and run the full reconcile procedure
+1. Read `references/reconcile.md` and run the full reconcile procedure
 2. Reconcile determines: merge, enrich, split, or create-new
 3. Execute confirmed actions (same as process mode)
 
@@ -42,7 +42,7 @@ Add `resource: sources/{path}` to the frontmatter of all atomic notes created fr
 
 Call `log_append.py`:
 ```bash
-python3 bob/skills/vault/scripts/log_append.py ingest "Source: <url-or-filename>. Extracted N concepts. Merged X, enriched Y, created Z new."
+python3 scripts/log_append.py ingest "Source: <url-or-filename>. Extracted N concepts. Merged X, enriched Y, created Z new."
 ```
 
 Report: source ingested, concepts extracted, actions taken.

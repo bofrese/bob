@@ -25,7 +25,7 @@ Load the product files your phase skill lists. For scope questions without such 
 Read-only. The `library` skill manages the vault.
 1. Read `knowledge/README.md`: folders, the Tags table (the only canonical tag list) and the MOC list.
 2. Find notes. If Obsidian runs (`pgrep -x Obsidian`): `obsidian search "query=tag:<tag>"` for matching tags, and `obsidian search query="<terms>"`. Otherwise read the relevant `_index.md` files or `grep -r "<terms>" knowledge/`.
-3. Load at most 1-2 MOCs, 1-2 `_index.md` files and 3 notes, 5 files at most. Load only notes that bear on what this phase decides. Prefer `decisions` over `concepts` over `research`. Notes from `decisions/`, `practices/`, `research/`, `concepts/` only; `sources/` is reached through a note's `resource:` field.
+3. Prefer tag search when a tag clearly matches the topic. No note clearly relevant: load no index or note, report only the Tags table and MOC list. Otherwise load at most 1-2 MOCs, 1-2 `_index.md` files and 3 notes, 5 files at most. Load only notes that bear on what this phase decides. Prefer `decisions` over `concepts` over `research`. Notes from `decisions/`, `practices/`, `research/`, `concepts/` only; `sources/` is reached through a note's `resource:` field.
 4. Status: prefer `validated` notes. Mark `proposed` notes as proposed. Skip `superseded` notes unless their chain matters. Say when `last_validated` looks old. Two validated notes that disagree: load both and report the conflict, do not choose.
 5. Report one short block: the Tags table, the MOC list, the notes loaded (with status), any conflicts.
 

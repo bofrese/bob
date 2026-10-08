@@ -2,9 +2,7 @@
 
 Shared discovery-classify-confirm procedure. Called by process and ingest before creating or modifying any note.
 
-**Maintenance note:** The discovery algorithm below mirrors `bob:knowledge/SKILL.md` - same traversal, same tools. If either is updated, update the other.
-
----
+Discovery uses the same traversal and tools as the vault step of the hub's `references/project-knowledge.md`. Keep them aligned.
 
 ## Phase 1: Discovery
 
@@ -17,7 +15,6 @@ Goal: find vault notes that might overlap with the incoming content. Collect up 
 5. Follow any index entry links that look related - read the note if the description matches
 6. Collect candidates (max 5). If none found after full traversal: candidate list is empty (proceed to create-new)
 
----
 
 ## Phase 2: Classify
 
@@ -32,7 +29,6 @@ LLM reads candidates against incoming content and assigns one disposition per ca
 
 One incoming item may produce multiple dispositions (e.g. enrich note A and create-new note B).
 
----
 
 ## Phase 3: Batch Confirm
 
@@ -51,7 +47,6 @@ Always individual review - structural risk. Show the proposed decomposition (ori
 **Create-new:**
 Show the proposed note (title, type, tags, content outline). Confirm before writing.
 
----
 
 ## Output
 

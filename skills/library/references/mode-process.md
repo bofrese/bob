@@ -16,7 +16,7 @@ For each file, in order:
 
 1. Read the file
 2. Identify distinct atomic concepts it contains - one inbox file may yield multiple notes
-3. For each candidate note: read `skills/vault/reconcile.md` and run the reconcile procedure
+3. For each candidate note: read `references/reconcile.md` and run the reconcile procedure
 4. After reconcile returns confirmed actions, execute each:
    - **create-new**: write note using the Note Format below; append entry to subfolder `_index.md`; check existing MOCs and add entry if applicable; check `_suggestions.md` for related MOC candidates
    - **merge**: fold incoming content into the existing note (read it, append or rewrite section, confirm before writing)
@@ -42,7 +42,7 @@ For each file, in order:
 1. Update `knowledge/README.md` Tags table if new tags were added during this run
 2. Call `log_append.py` to record the run:
    ```bash
-   python3 bob/skills/vault/scripts/log_append.py process "Inbox: N items. Merged X, enriched Y, created Z new. W deferred."
+   python3 scripts/log_append.py process "Inbox: N items. Merged X, enriched Y, created Z new. W deferred."
    ```
 3. Report: files processed, notes created/merged/enriched, moved to sources, moved to `_processed/`
 
@@ -69,7 +69,7 @@ supersedes: optional-note-link
 **Why it matters:** [one sentence]
 ```
 
-`decision` and `practice` notes require `evidence` and `status`. A claim with no `evidence` entries is an inference, not an observation - set `status: proposed`, never `validated`, until it has one. `last_validated` should be set to the processing date on creation and bumped whenever the claim is re-confirmed. See `bob/skills/vault/bootstrap.md`'s "Evidence and Validation Frontmatter" section for the full field definitions.
+`decision` and `practice` notes require `evidence` and `status`. A claim with no `evidence` entries is an inference, not an observation - set `status: proposed`, never `validated`, until it has one. `last_validated` should be set to the processing date on creation and bumped whenever the claim is re-confirmed. Full field definitions: "Evidence and Validation Frontmatter" in `knowledge/_schema.md` (`assets/_schema.md`).
 
 ## Conflict surfacing
 
@@ -80,7 +80,7 @@ Before creating a new `decision` or `practice` note, check whether an existing n
 - Ask which one is current. If the incoming claim wins, set the old note's `status: superseded` and add `supersedes` on the new note pointing back to it - do not delete the old note.
 - If genuinely uncertain which is current, leave both as `status: proposed` and note the open conflict in `_suggestions.md` for a human to resolve later - this is the one case where an unresolved conflict is an acceptable outcome for this run.
 
-Retrieval (`bob:knowledge`) prefers `validated` notes over `proposed`/`superseded` ones and prefers a more recent `last_validated` when two `validated` notes still disagree; if retrieval itself surfaces a live conflict it should not silently choose either - see `bob:knowledge`'s protocol.
+Retrieval (the hub's `project-knowledge.md`) prefers `validated` notes over `proposed`/`superseded` ones and prefers a more recent `last_validated` when two `validated` notes still disagree; if retrieval itself surfaces a live conflict it should not silently choose either.
 
 ## Rules
 
@@ -91,4 +91,4 @@ Retrieval (`bob:knowledge`) prefers `validated` notes over `proposed`/`supersede
 - Never add a note to any index without user confirmation
 - Filenames: kebab-case, no date prefix for processed notes; `YYYY-MM-DD-slug.md` for inbox only
 - Never mark a `decision`/`practice` note `status: validated` without at least one `evidence` entry
-- `/bob:learn` may recommend consolidation, supersession, or deletion of stale notes, but must never perform destructive vault cleanup without confirmation - process mode always asks before merging, enriching, splitting, or changing `status` on an existing note
+- The `learn` skill may recommend consolidation, supersession, or deletion of stale notes, but must never perform destructive vault cleanup without confirmation - process mode always asks before merging, enriching, splitting, or changing `status` on an existing note

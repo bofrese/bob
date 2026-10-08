@@ -23,7 +23,7 @@ NOT_CONVERTED = {
     "domain-knowledge", "done-criteria",
     "knowledge", "obsidian",
     "project-tracking", "prompt-engineering", "story-context",
-    "ui-design", "vault", "work-routing", "writing",
+    "ui-design", "work-routing", "writing",
 }
 # Legacy commands: protocol lines, unless the command delegates to the hub.
 PROTOCOL_EXEMPT = {"remember"}
