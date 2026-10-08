@@ -2,7 +2,7 @@
 """Check bob's structural rules. Prints one line per problem, exits 1 if any.
 
 Usage: python3 scripts/check.py [extra paths to scan for em dashes, e.g. ../docs]
-Rules: building-bob/docs/guidelines/bob-skill-authoring.md
+Rules: skills/new-skill/references/authoring-rules.md
 """
 import re
 import sys
@@ -24,7 +24,7 @@ NOT_CONVERTED = {
     "architect", "bdd", "code-graph", "context-protocol",
     "domain-knowledge", "done-criteria",
     "knowledge", "obsidian",
-    "project-tracking", "prompt-engineering", "story-context",
+    "project-tracking", "story-context",
     "ui-design", "work-routing", "writing",
 }
 # Legacy commands: protocol lines, unless the command delegates to the hub.

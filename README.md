@@ -188,7 +188,7 @@ If you use bob, feedback is genuinely useful. What works? What doesn't? What's m
 
 👉 [GitHub Discussions](https://github.com/bofrese/bob/discussions)
 
-Skill authoring rules live in the bob development workspace, in `docs/guidelines/bob-skill-authoring.md`.
+Skill authoring rules: [skills/new-skill/references/authoring-rules.md](skills/new-skill/references/authoring-rules.md).
 
 ---
 
