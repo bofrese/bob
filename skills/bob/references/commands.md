@@ -312,7 +312,7 @@ Also recommends the **Mermaid CLI** (`npm install -g @mermaid-js/mermaid-cli`, n
 
 ## `/bob:implement` - Plan Execution
 
-**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: `bob:design-signals` runs continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:handover`.
+**Purpose:** Execute an approved implementation plan with engineering discipline. BDD-driven per step. Implementation doubles as a sensor: the design signals in the `implement` skill's references run continuously and pauses are driven by the signal's escalation tier (evidence the design doesn't fit reality), not by the plan step's difficulty rating. Ends by preparing concise input for `/bob:handover`.
 
 **Reads:** Specified plan from `{story_path}/`, referenced Design Record, review from `{story_path}/`, prior `*-implement-*` files from `{story_path}/`, project codebase, test suite, linter.
 
@@ -322,13 +322,13 @@ Also recommends the **Mermaid CLI** (`npm install -g @mermaid-js/mermaid-cli`, n
 1. Load plan, Design Record, and review; note deviations required
 2. Confirm scope before starting
 3. Per step: implement → verify BDD criteria → commit
-4. Invoke `bob:design-signals` continuously; escalate to human at "pause for human decision" or stop at "stop and return to Design"
+4. Watch for design signals continuously (`implement` `references/escalation-policy.md`); escalate to human at "pause for human decision" or stop at "stop and return to Design"
 5. Kanban update: mark resolved issues/tasks done
 6. **PM step (step 6.5):** For new issues or work discovered during implementation - invoke `bob:work-routing`
 7. Prepare concise input for `/bob:handover`: critical code paths, signals raised and their resolution, notable surprises - not a full walkthrough
 8. Write Implementation Note
 
-**Skills:** `context-protocol`, `bdd` (step 3), `design-signals` (step 4, continuous), `work-routing` (step 6.5), `done-criteria`
+**Skills:** `context-protocol`, `bdd` (step 3), `work-routing` (step 6.5), `done-criteria`
 
 ---
 
