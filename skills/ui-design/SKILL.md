@@ -1,6 +1,6 @@
 ---
 name: UI Design Principles
-description: Invoke this skill when designing, reviewing, or critiquing any user interface. Used by bob:ui-review, bob:art-director, and bob:design-brief commands.
+description: Invoke this skill when designing, reviewing, or critiquing any user interface. Used by the bob ui-review and brand-design skills.
 user-invocable: false
 ---
 
