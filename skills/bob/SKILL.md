@@ -1,158 +1,68 @@
 ---
 name: bob
-description: This skill should be used when the user talks to Bob by name ("what does Bob do", "explain Bob", "how does Bob work", "what commands does Bob have", "what is Bob", "how do I use Bob", "what can Bob do", "Bob's workflow", "show me Bob's commands", "Bob skills", "walk me through Bob", "I don't understand Bob", "what's the difference between these Bob commands"), or when the user asks a general question about the bob plugin, its commands, skills, workflow, or file conventions. Bounded proactive trigger (onboarding aid, not phase selection). If the user describes engineering or product work in plain conversation and no bob command has been invoked yet this session, this may fire once - state the one recommended command in a single line, then continue normally. Never fires a second time in the same session, never blocks or replaces a plain answer, and never runs a command itself - only names one.
-user-invocable: true
+description: Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next step). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named.
+license: Apache-2.0
 ---
 
-# Bob - Plugin Reference
+# bob
 
-Bob is a Claude Code plugin covering the full product development lifecycle - from raw idea to shipped code. It imposes structured thinking at every stage rather than letting AI free-wheel. Bob is organized into three layers:
+Paths to `references/`, `scripts/` and `assets/` are relative to this skill's folder: the base directory shown when it loads (in Claude Code `${CLAUDE_PLUGIN_ROOT}/skills/bob`). Run scripts with `python3` from the project root. Do each step once per conversation; skip what is already done.
 
-- **Discovery** - product strategy, market validation, personas, positioning
-- **Engineering** - planning, implementing, reviewing, documenting code
-- **Knowledge** - guidelines, domain capture, command quality improvement
+## Start checklist
 
-**Proactive nudge (bounded):** At most once per session, when the user describes engineering/product work conversationally with no bob command invoked yet, name the single most relevant command in one line (e.g. "This sounds like `/bob:design` territory - new concept, no existing boundary for it.") and continue answering normally. Do not repeat within the session even if the topic recurs. Do not run the command yourself - the human invokes it explicitly. This is discoverability, not ambient phase-selection.
+1. Date: `python3 scripts/today.py`. Use it in file names and timestamps.
+2. Load what your phase skill's `Loads:` line lists, by the rules in `references/context.md`. No phase skill (the user just describes work): use the defaults there. Hub loads:
+   - `story`: resolve the story with `references/story.md`. No confirmation when the story is certain.
+   - `intent`: original intent and its changes, `references/intent.md`.
+   - `project-knowledge`: domain, architecture, guidelines, product, vault via `references/project-knowledge.md`. Use domain terms as defined there.
+   - `code-graph`: if `references/code-graph.md` finds a usable graph, ask the graph before grep for code relationships.
+3. Writing: every artifact follows `references/writing.md`.
+4. No phase chosen yet: name the one fitting phase in one line (see Phases), then continue. "Where am I, what next" and status requests: `references/mentor.md`.
 
-All commands share two mandatory protocols:
-- `bob:context-protocol` - loads current date and the right project files before starting
-- `bob:done-criteria` - checks `docs/process/done-criteria.md` and logs issues on finish
+## Finish checklist
 
----
+Run before you answer the next user request. It applies after compaction too.
 
-## File Conventions
+1. Register at write time: the moment you write a session artifact, add its History row to `{story_path}/_index.md` and update the story kanban. Format: `references/tracking.md`.
+2. Done criteria: check the items for this phase in `docs/process/done-criteria.md`; create the file if missing. `references/done.md`.
+3. Discovered work (issues, debt, deferred ideas): route it when it surfaces, and here only what is not routed yet. One question to the user per item set. `references/tracking.md`.
+4. Domain terms corrected or clarified this session: `references/domain-capture.md`.
+5. Knowledge candidates and repeated corrections: stage them per `references/done.md`.
+6. Daily note, if `personal/daily/` exists: `references/done.md`.
+7. Name the next phase and why, in one line.
 
-Bob reads and writes to predictable locations:
+Fast-path work without a story skips story History and kanban steps.
 
-| Location | Purpose |
+## Phases
+
+Recommend a phase for the question it answers, never because it is next in a pipeline. Name the risk or uncertainty that justifies it.
+
+| Phase | Use when |
 |---|---|
-| `docs/product/` | Product strategy artifacts (vision, personas, design-brief, etc.) |
-| `docs/guidelines/` | Technology best-practice guides |
-| `docs/domain/` | Project-specific domain knowledge |
-| `docs/process/done-criteria.md` | What "done" means per artifact type |
-| `projects/{name}/stories/{ID}/` | Engineering session artifacts (plans, reviews, implementations, investigations, brainstorms) and story-specific reference materials (specs, external docs, source inputs) while being worked on. |
-| `projects/{name}/_kanban.md` | Project-level kanban (stories as cards) |
-| `knowledge/` | Validated project knowledge: decisions made, confirmed patterns, defined concepts, synthesised research. Not for in-flight specs, drafts, or rough ideas. |
-| `knowledge/_INBOX/` | Staging area for rough captures not yet classified - gitignored. Run `/bob:library process` to file. |
-| `personal/` | Personal daily/weekly notes and scratchpad - gitignored, never committed |
-| `bob/commands/` | Command definitions (slash commands) |
-| `bob/skills/` | Thinking frameworks invoked by commands |
+| brainstorm | Value, outcome or problem framing is open |
+| design | Concepts, boundaries, naming or whole-system fit are open |
+| plan | Design is owned and the execution shape is needed |
+| review-plan | Facts or risk justify an independent check of the plan |
+| implement | Intent and execution path are explicit (only when the user asks) |
+| review | Correctness must be established independently |
+| document | Architecture notes must reflect the change |
+| handover | Delegated work must be owned by the human |
+| reflect | After reading the Handover, or when implementation surprised |
+| learn | The session exposed a reusable harness lesson |
+| investigate | A bug needs a root cause, not a fix |
+| dev | Work is local, reversible, settled and easy to verify |
+| ui-review | A UI needs an expert review |
 
----
+Product, knowledge vault and meta skills describe themselves in the skill listing.
 
-## Commands - Quick Reference
+## Files bob uses
 
-**Discovery layer**
-
-| Command | Writes | Purpose |
-|---|---|---|
-| `/bob:product-vision` | `docs/product/vision.md` | Foundation: what it is, who it's for, what changes |
-| `/bob:problem-space` | `docs/product/problem-space.md` | Validate the problem before building the solution |
-| `/bob:personas` | `docs/product/personas.md` | User archetypes with genuine design implications |
-| `/bob:business-plan` | `docs/product/business-plan.md` | Revenue model, unit economics, GTM |
-| `/bob:positioning` | `docs/product/positioning.md` | Market category, differentiation, messaging |
-| `/bob:validation-plan` | `docs/product/validation-plan.md` | Assumption stack, ranked experiments, kill criteria |
-| `/bob:design-brief` | `docs/product/design-brief.md` | Design principles and constraints (not a UI spec) |
-| `/bob:product-coach` | `docs/product/README.md` + above docs | Orchestrator: gaps, what to do next |
-| `/bob:linkedin` | `docs/product/linkedin-strategy.md` | LinkedIn growth strategy advisor |
-
-**Engineering layer**
-
-| Command | Writes | Purpose |
-|---|---|---|
-| `/bob:brainstorm` | `{story_path}/{date}-brainstorm-{slug}.md` | Feature ideation: diverge → converge → commit; routes to Design |
-| `/bob:design` | `{story_path}/{date}-design-{slug}.md` | Socratic conceptual design: concepts, boundaries, trade-offs, human-owned decisions |
-| `/bob:plan` | `{story_path}/{date}-plan-{slug}.md` | Translate a Design Record into a reviewable implementation plan |
-| `/bob:review-plan` | `{story_path}/{date}-review-plan-{slug}.md` | Skeptical review of a plan against Design and the codebase (recommended for high-risk work) |
-| `/bob:implement` | Project files + `{story_path}/{date}-implement-{slug}.md` (Implementation Note) | Execute an approved plan with engineering discipline; pauses on Design Signal escalation, not step difficulty |
-| `/bob:review` | `{story_path}/{date}-review-{slug}.md` | Code review: is it correct? Findings split bugs/design-conformance/design-concerns |
-| `/bob:document` | `docs/architecture/{concepts,patterns}/` + `docs/architecture/README.md` | Canonical, concept-first architecture notes; modes Discover / Update / Audit |
-| `/bob:handover` | `{story_path}/{date}-handover-{slug}.md` | The delivered change narrated for approval instead of a PR: full diff in reading order, reasoning at each place, sweeps, coverage check |
-| `/bob:reflect` | `{story_path}/{date}-reflect-{slug}.md` | Short, non-quizzy peer conversation after reading the Handover; closes ownership gaps, identifies candidates for Learn |
-| `/bob:learn` | `{story_path}/{date}-learn-{slug}.md` + `docs/process/learnings.md` | Classify session evidence (corrections, interruptions, repeated findings) into durable harness improvements or none; stages unresolved occurrences for future runs |
-| `/bob:investigate` | `{story_path}/{date}-investigate-{slug}.md` | Root-cause analysis (investigation only, no fixes) |
-| `/bob:dev` | Project files (in place) | Quick working session: discuss code, make fixes, no pipeline |
-| `/bob:user-guide` | `docs/user-guide/` (configurable) + `{story_path}/{date}-user-guide-findings-{slug}.md` | Create/maintain end-user guide; surfaces UX gaps as findings report |
-| `/bob:guidelines` | `docs/guidelines/{topic}.md` | Best-practice guidelines, research-first |
-| `/bob:docker-setup` | `Dockerfile`, `Makefile`, `INSTALL.md` | Docker dev environment, standard `make` interface |
-| `/bob:ui-review` | `{story_path}/{date}-ui-review-{slug}.md` | 13-lens UI/UX expert review |
-| `/bob:art-director` | `docs/guidelines/visual-design.md` (opt.) | Brand tone, color, typography direction |
-
-**Knowledge layer**
-
-| Command | Writes | Purpose |
-|---|---|---|
-| `/bob:library` | `knowledge/` notes, indexes, MOCs, `log.md`, `sources/` | Librarian: process inbox, ingest external sources, retrieve, organise vault, status |
-| `/bob:remember` | `knowledge/_INBOX/YYYY-MM-DD-*.md` | Quick mid-session capture to inbox |
-
-**Meta layer**
-
-| Command | Writes | Purpose |
-|---|---|---|
-| `/bob:pm` | Conversational (opt. status doc) | Project mentor: assess state, recommend next step |
-| `/bob:setup` | `projects/`, `knowledge/`, `personal/`, `.gitignore`, `docs/process/done-criteria.md` | Bootstrap and upgrade bob infrastructure; idempotent |
-| `/bob:new-command` | `bob/commands/{name}.md` + README | Create a new bob command |
-| `/bob:improve-command` | `ai/reviews/{date}-improve-{name}.md` | Scoped wrapper over `bob:learn` - extract learnings limited to one command |
-| `/bob:review-command` | `ai/reviews/{date}-command-review-{slug}.md` | Prompt-engineering quality review of a command |
-
-> Note: `{story_path}` is resolved by the `bob:story-context` skill at the start of each engineering command session.
-
----
-
-## Skills - Quick Reference
-
-Skills are thinking frameworks invoked by commands. They carry no file I/O of their own (except `done-criteria`, `domain-knowledge`, `knowledge` retrieval, and `code-graph` detection).
-
-| Skill | Invoked by | Role |
-|---|---|---|
-| `bob:context-protocol` | Every command | Load current date + right project files; kanban sync for engineering commands; wire story-context |
-| `bob:story-context` | Every engineering command (via context-protocol) | Resolve active story via 4-tier chain; establish `{story_path}` for artifact placement |
-| `bob:done-criteria` | Every output command | Check done criteria; delegate issue routing to work-routing; update story history |
-| `bob:work-routing` | All engineering commands (mid-session) + `done-criteria` (Responsibility 3 - Work routing) | Route discovered issues/ideas to story Issues column or project INBOX; single user confirmation |
-| `bob:bdd` | `plan`, `implement`, `review-plan` | Write acceptance criteria before code |
-| `bob:architect` | `/bob:design`, `/bob:review`, `bob:document`, `bob:reflect` | What good design means: design lenses, domain placement, deep modules and readability, concepts and smells, patterns and drift |
-| `bob:writing` | `context-protocol` (every command) | How bob writes artifacts: TL;DR first, scannable, fixed icons, plain English, no AI tells |
-| `bob:design` | `/bob:design` | Socratic, evidence-based conceptual design framework: interaction policy, dialogue questions, Design Record template |
-| `bob:document` | `/bob:document` | Docs layout, Discover / Update / Audit modes, concept and pattern note templates |
-| `bob:handover` | `/bob:handover` | Scope policy, narrative template, `scripts/gather.py` multi-repo change set and coverage check |
-| `bob:design-signals` | `/bob:implement` (step 5) | 12-signal taxonomy + 4-tier escalation policy distinguishing mechanical friction from evidence the design doesn't fit reality |
-| `bob:reflect` | `/bob:reflect` | Question-selection policy, ownership standard, and Reflection Record template for ownership recovery after the Handover |
-| `bob:learn` | `/bob:learn`, `/bob:improve-command` (scoped) | Classification policy, `docs/process/learnings.md` cross-session persistence map, and Learning Record template |
-| `bob:assumption-testing` | `validation-plan`, `product-coach` | Risk matrix, validation hierarchy, MVP scope |
-| `bob:business-model` | `business-plan`, `product-coach` | Unit economics, revenue patterns, pricing |
-| `bob:positioning-strategy` | `positioning`, `product-coach` | Five-component positioning, differentiation |
-| `bob:go-to-market` | `business-plan`, `positioning`, `product-coach` | Channel selection, Bullseye framework, growth loops |
-| `bob:problem-validation` | `problem-space`, `product-coach` | JTBD, severity, evidence hierarchy, Mom Test |
-| `bob:ui-design` | `ui-review`, `art-director` | 13-lens evaluation framework |
-| `bob:prompt-engineering` | `new-command`, `review-command`, `improve-command` | Principles for effective Claude commands |
-| `bob:domain-knowledge` | `brainstorm`, `plan` (on correction) | Capture project-specific domain nuance to `docs/domain/` |
-| `bob:linkedin-expert` | `linkedin` | LinkedIn domain knowledge: algorithm, formats, DMs, comments, profile |
-| `bob:obsidian` | Auto (hook) + any `.md` rename/move | Route `.md` file moves through Obsidian CLI to preserve wikilinks |
-| `bob:knowledge` | `context-protocol` (every engineering command) | Retrieval skill: load relevant vault notes into context silently; distinct from `/bob:library` command |
-| `bob:code-graph` | `context-protocol` (every engineering command) | Detect a graphify code graph, gate freshness, emit query policy silently; delegates all traversal to graphify. Degrades silently if graphify absent |
-| `bob:project-tracking` | Engineering commands, `pm`, `done-criteria` | Story folders, kanban boards, task files, `_index.md` History |
-| `bob:bob` | User questions about bob | This catalog |
-| `bob:vault` | `/bob:library` | Vault management controller: routes to process, ingest, organise, bootstrap sub-files; owns Python scripts |
-
----
-
-## Typical Workflows
-
-**New product idea:**
-`product-vision` → `problem-space` → `personas` → `validation-plan` → `business-plan` → `positioning` → `design-brief`
-
-**New feature:**
-`brainstorm` → `design` → `plan` → [`review-plan`] → `implement` → `review` → `document` → `handover` → `reflect` → `learn`
-
-**Bug:**
-`investigate` → `plan` → `implement` → `review`
-
-**Not sure what to do next:**
-`/bob:pm` or `product-coach`
-
----
-
-## Additional Resources
-
-- **`references/commands.md`** - dense per-command descriptions: inputs, outputs, process phases, skills invoked
-- **`references/skills.md`** - dense per-skill descriptions: what each framework covers and when to use it
+| Path | Holds |
+|---|---|
+| `docs/product/` | Product artifacts, updated in place |
+| `docs/domain/`, `docs/architecture/`, `docs/guidelines/` | Domain terms, architecture notes, guidelines |
+| `docs/process/done-criteria.md` | What done means per artifact type |
+| `projects/{sub}/_kanban.md` | Project kanban: stories and INBOX |
+| `projects/{sub}/stories/{ID}/` | Story: `_index.md`, `_kanban.md`, `input/`, `sessions/`, `tasks/` |
+| `knowledge/` | Validated knowledge vault; `_INBOX/` is staging |
+| `personal/` | Gitignored personal notes and daily log |

@@ -188,7 +188,7 @@ If you use bob, feedback is genuinely useful. What works? What doesn't? What's m
 
 👉 [GitHub Discussions](https://github.com/bofrese/bob/discussions)
 
-For guidance on command structure and conventions, see [CLAUDE.md](CLAUDE.md).
+Skill authoring rules live in the bob development workspace, in `docs/guidelines/bob-skill-authoring.md`.
 
 ---
 
