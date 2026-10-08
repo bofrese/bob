@@ -6,10 +6,10 @@ The Learning Record captures what this session's evidence justifies persisting -
 
 ```
 # Learn: {Scope}
-**Date:** {YYYY-MM-DD} | **Scope:** {full session / scoped command name}
+**Date:** {YYYY-MM-DD} | **Scope:** {full session / scoped skill or command name}
 
 ## TL;DR
-{3-6 bullets per `bob:writing`: what this is, what was decided, what is open.}
+{3-6 bullets : what this is, what was decided, what is open.}
 
 ## Evidence Reviewed
 {Corrections, interruptions, repeated findings, missing tools/context inspected this run.}

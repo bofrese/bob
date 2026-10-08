@@ -4,11 +4,11 @@ Learn runs once per session and has no memory of prior runs on its own. `docs/pr
 
 ## What goes in the staging log
 
-Every candidate that surfaces during Phase 1-2 of `/bob:learn`, whether or not it clears the persistence bar this run:
+Every candidate that surfaces during steps 1-2 of the `learn` skill, whether or not it clears the persistence bar this run:
 
 - **First occurrence, low/medium severity:** log the entry, do not persist elsewhere. This is the common case.
 - **First occurrence, high severity:** log the entry AND proceed to classification immediately (persistence policy allows single-occurrence action for high-severity items).
-- **Second or later occurrence matching an existing entry:** promote to a harness candidate for classification (Phase 3). On promotion, mark the entry `status: promoted` rather than deleting it - the history stays visible.
+- **Second or later occurrence matching an existing entry:** promote to a harness candidate for classification (step 3). On promotion, mark the entry `status: promoted` rather than deleting it - the history stays visible.
 
 ## Bootstrap
 
@@ -20,9 +20,9 @@ title: Harness Learnings
 ---
 # Harness Learnings
 
-Staging log for `/bob:learn`. Entries here are observed once, not yet confirmed as patterns.
+Staging log for the bob `learn` skill. Entries here are observed once, not yet confirmed as patterns.
 A second credible occurrence of the same entry is what turns it into a harness candidate -
-see `bob/skills/learn/references/classification-policy.md` for the persistence policy this
+see the `learn` skill's classification policy for the persistence policy this
 log exists to support.
 
 ## Entries

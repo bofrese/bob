@@ -1,57 +1,46 @@
 ---
 name: learn
-description: Analyze evidence from completed work and recommend small, durable improvements to the AI development harness without instruction accretion. Invoked by /bob:learn and by /bob:improve-command's scoped delegation.
-user-invocable: false
+description: Bob's learn phase. Analyzes evidence from completed work and recommends small, durable improvements to the AI development harness without instruction accretion. Scoped mode improves one skill or command. Use when a session exposed a reusable harness lesson, or to improve a skill after using it.
+license: Apache-2.0
+allowed-tools: Bash(*), Read, Write, Edit
 ---
 
-# Learn - Harness Learning Framework
+# Learn
 
-The thinking framework behind `/bob:learn`. The command owns process and file I/O. This skill owns the stance, the classification policy, the cross-session persistence mechanism and the artifact shape.
-
-## Fundamental question
-
-What should BOB, the repository context, or the engineering harness learn from this session?
-
-## Role
-
-Harness maintainer, not a retrospective facilitator. Look at what actually happened (corrections, interruptions, misunderstandings, repeated findings) and decide, evidence first, whether any of it deserves a durable change: an architecture or pattern note, a guideline, repository instructions, the knowledge vault, or bob itself. Most sessions produce nothing durable. That is success, not a gap to fill.
-
-## Core principles
-
-- **Evidence, not vibes.** Every candidate traces to something that happened. Never invent lessons to fill a report.
-- **Persistence is earned.** One occurrence is evidence. A second credible occurrence is a candidate, not an automatic rule. High-severity single occurrences are the exception.
-- **State the downside.** Every proposed durable change names its cost (prompt bloat, false positives, rigidity) before it is recommended.
-- **Human approval gates generic change.** Never modify a generic bob command or skill, or a repository-wide instruction, without explicit confirmation.
-- **"No persistent lesson" is a valid, common exit.**
+Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
+Loads: hub story (optional), project-knowledge; files docs/process/learnings.md
 
 ## Rules
 
-- Do not persist a lesson from a single low-severity occurrence. Log it and move on.
-- Do not redesign product architecture here. Durable architecture insight routes through Design or `/bob:document`.
-- Do not turn this into a second code review or a second Reflect. Assume both ran.
-- Prefer executable enforcement (test, lint rule, hook) over new prose when the invariant is deterministic.
-- Prefer a concrete example over general prose when behavior is hard to specify abstractly.
+- Evidence, not vibes. Every candidate traces to something that happened. Never invent lessons to fill a report. "No persistent lesson" is a valid, common exit.
+- Persistence is earned. One occurrence is evidence, logged and left there. A second credible occurrence is a candidate, not an automatic rule. High-severity single occurrences are the exception.
+- State the downside: every proposed durable change names its cost (prompt bloat, false positives, rigidity) before it is recommended.
+- Never modify a generic bob skill or a repository-wide instruction without the user's explicit confirmation.
+- Prefer executable enforcement (test, lint rule, hook) over prose when the invariant is deterministic. Prefer a concrete example over general prose when behaviour is hard to specify.
+- Do not redesign product architecture here: durable architecture insight goes through `design` or `document`. Do not run a second code review or a second reflect; assume both ran.
+- Produce a small set of high-confidence recommendations, never an exhaustive list.
+- Update `docs/process/learnings.md` every run, even when nothing durable is proposed: it is Learn's only memory between sessions.
 
-## Evidence
+## Role
 
-Inspect human corrections, unnecessary or missing questions, misunderstood repository/domain facts, implementation interruptions, repeated Review findings, missing tools/context, artifact handoff failures, and prior similar lessons staged in `docs/process/learnings.md`.
+Harness maintainer, not a retrospective facilitator. Look at what actually happened and decide, evidence first, whether any of it deserves a durable change: an architecture or pattern note, a guideline, repository instructions, the knowledge vault, or bob itself. Most sessions produce nothing durable. That is success.
 
-## References
+The question: what should bob, the repository context or the engineering harness learn from this session?
 
-- `references/classification-policy.md` - the 10 lesson-type/destination table and the persistence policy (when one occurrence is enough, when it isn't).
-- `references/persistence-map.md` - how `docs/process/learnings.md` works as Learn's cross-session staging log: what gets logged, when a logged item graduates to a harness candidate, and the bootstrap format.
-- `references/artifact-template.md` - the Learning Record field list and filename convention.
+## Process
 
-Load the reference file relevant to the phase you're in - don't load all three into every turn.
+Scoped mode (the user names one skill or command to improve): follow `references/scoped-mode.md` instead of steps 1 and 4-5.
 
-## Scoped invocation
-
-`/bob:improve-command` delegates here with scope restricted to one command. When scoped, gather evidence only from that command's behavior in the current/recent session - do not widen to the whole session's evidence pool.
-
-## Exit condition
-
-A valid result is "no persistent lesson." Produce a small set of high-confidence recommendations, never an exhaustive suggestion list.
+1. **Gather evidence.** Human corrections in this or recent sessions, unnecessary or missing questions a skill asked, misunderstood repository or domain facts, implementation interruptions (design signals, STOP conditions), repeated Review findings, missing tools or context, artifact handoff failures between phases, prior related entries in `docs/process/learnings.md`.
+2. **Check the staging log** (`docs/process/learnings.md`; bootstrap it per `references/persistence-map.md` if missing). Per evidence item: no match is a first occurrence, log it and stop there unless high-severity. A match is a second or later credible occurrence: classify it.
+3. **Classify** with `references/classification-policy.md`. Per candidate that meets the persistence bar: evidence, root-cause hypothesis, proposed durable change, destination, downside or conflict risk, recurrence or severity basis, behaviour test where applicable, and a recommendation (apply, experiment, defer, reject).
+4. **Confirm and apply.** Present the candidates. Generic bob skill or repository-wide instruction changes need explicit approval before editing. Project-local or story-scoped changes (a guideline, a domain note) can be applied once confirmed. In `learnings.md`, mark promoted entries `status: promoted` (kept as history) and keep unresolved single occurrences.
+5. **Record** the Learning Record with `references/artifact-template.md`.
 
 ## Output
 
-Produce the Learning Record. Update `docs/process/learnings.md` every run - even when the run itself proposes nothing durable - since that log is the only memory Learn has between sessions.
+- `{story_path}sessions/{date}-learn-{slug}.md`; without a story, `docs/process/sessions/{date}-learn-{slug}.md`.
+- `docs/process/learnings.md`, maintained per `references/persistence-map.md`.
+- Scoped mode: the report named in `references/scoped-mode.md`.
+
+Finish with the hub's finish checklist.
