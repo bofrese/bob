@@ -17,6 +17,8 @@ FINISH_LINE = "Finish with the hub's finish checklist."
 HUB_REF = re.compile(r"`bob:bob`|`bob` skill|`bob` hub")
 # Skills that teach a way of thinking and do not run the hub checklists.
 PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
+# Quick capture: deliberately skips the hub checklists.
+HUB_EXEMPT = PRINCIPLE | {"remember"}
 # Skills not yet converted to the spec format. Each conversion removes its name; empty at 4.0.0.
 NOT_CONVERTED = {
     "architect", "bdd", "code-graph", "context-protocol",
@@ -85,7 +87,7 @@ def check_skill(path, problems):
         problems.append(f"{rel}: description must be 1-{MAX_DESC} characters, is {len(desc)}")
     if len(text.split("\n")) > 500:
         problems.append(f"{rel}: over 500 lines")
-    if name != HUB and name not in PRINCIPLE:
+    if name != HUB and name not in HUB_EXEMPT:
         if not HUB_REF.search(text):
             problems.append(f"{rel}: does not invoke the `bob` hub skill")
         if FINISH_LINE not in text:
