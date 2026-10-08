@@ -74,6 +74,12 @@ Skip this entire item if `graphify` is not installed - the status report recomme
 
 3. **Idempotent re-run:** if the graph already exists, do not rebuild. If the hook is missing, offer `graphify hook install`. Always refresh the managed `.graphifyignore` block so the scope stays current as project folders change.
 
+## bob 4 entry points
+
+**AGENTS.md bob block missing or stale, or CLAUDE.md lacks the import:** run `python3 ../bob/scripts/primer.py --agents-md --apply`. It writes the primer between `<!-- bob:start -->` and `<!-- bob:end -->` in `AGENTS.md` (read by Codex and Copilot) and never touches text outside the markers. It adds `@AGENTS.md` to `CLAUDE.md`, or creates a `CLAUDE.md` holding only that import when none exists.
+
+**bob 3.x names found:** run `python3 scripts/rename_scan.py --fix`. It replaces only names with a replacement (for example `/bob:product-coach` to `/bob:product`, `bob:context-protocol` to `bob:bob`). List the hits marked "fix by hand" in the summary. Mode names (personas, design-brief, ...) become their skill; mention the mode in the summary so the user can add it to the text.
+
 ## Learn and personal files
 
 **`docs/process/learnings.md` missing:** Read the Bootstrap section of the `learn` skill's `references/persistence-map.md` (`../learn/references/persistence-map.md`, relative to this skill's folder) and create the file as specified there.

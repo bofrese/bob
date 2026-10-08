@@ -10,13 +10,13 @@ allowed-tools: Bash(*), Read, Write, Edit
 Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
 Loads: nothing beyond the hub's Always rules
 
-Paths to `references/` are relative to this skill's folder (the base directory shown when it loads). Sibling skills are one folder up (`../library/`, `../learn/`).
+Paths to `references/` are relative to this skill's folder (the base directory shown when it loads). Sibling skills are one folder up (`../library/`, `../learn/`, `../bob/`).
 
 ## Rules
 
 - Audit before acting. Never modify anything before showing the plan.
 - One confirmation covers all changes. Do not prompt per item.
-- Never overwrite or truncate existing files: only create missing files or append. The one exception is the `.graphifyignore` managed block, regenerated between its markers on each run; content outside the markers is always kept.
+- Never overwrite or truncate existing files: only create missing files or append. Exceptions: the managed blocks in `.graphifyignore` and `AGENTS.md`, regenerated between their markers on each run (content outside the markers is always kept), and the confirmed bob 3.x name fixes.
 - Never silent-install third-party tools (graphify, Mermaid CLI, plugins). Recommend them; for graphify, offer the build and hook only with explicit confirmation.
 - Never remove or reorder existing done-criteria sections.
 - If `projects/` exists but has no subdirectories, still offer to create the first subproject.

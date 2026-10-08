@@ -22,6 +22,8 @@ Present a concise status table. No changes yet.
 | Story folder structure | ✓ / ⚠ N missing _notes.md/_kanban.md/tasks/sessions | Repair   |
 | Kanban new-line-trigger | ✓ / ⚠ N missing                     | Repair          |
 | Session files at story root | ✓ / ⚠ N found                   | Move to sessions/ |
+| AGENTS.md bob block    | ✓ / ⚠ Stale / ✗ | Write block, add CLAUDE.md import |
+| bob 3.x names          | ✓ / ⚠ N hits (M fixable) | Fix M; list the rest  |
 | Orphan .md files       | N found         | Review manually              |
 | Ponytail plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
 | Obsidian Skills plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
@@ -64,6 +66,8 @@ One compact table:
 | Story folder structure | Repaired N / Already correct |
 | Kanban new-line-trigger | Repaired N / Already correct |
 | Session files at story root | Moved N / None found |
+| AGENTS.md bob block | Written / Updated / Already current |
+| bob 3.x names | Fixed M, N left to fix by hand: {file:line list} / None found |
 | Orphan files | N found (see above) / None |
 | Ponytail plugin | Installed / Recommended (not installed) |
 | Obsidian Skills plugin | Installed / Recommended (not installed) |
