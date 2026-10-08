@@ -31,7 +31,7 @@ The first argument picks the mode. No argument, or one not listed: status.
 | ingest `<url-or-file>` | Turn an external source into notes | `references/mode-ingest.md` |
 | retrieve `<query>` | Search the vault | Retrieve below |
 | organise | Vault health: lint, integrity audit, cross-links, tags, MOCs | `references/mode-organise.md` |
-| bootstrap | `knowledge/` does not exist | `python3 scripts/bootstrap.py` |
+| bootstrap | `knowledge/` does not exist | `python3 <skill-dir>/scripts/bootstrap.py` |
 
 If `knowledge/` does not exist, run bootstrap first, say "Knowledge vault created at `knowledge/`. Continuing...", then run the requested mode. Bootstrap creates the typed folders, `_INBOX/`, `_MOC/`, `sources/`, `_schema.md` (note types, evidence fields, tag and naming rules, from `assets/`), `README.md`, the folder indexes, `_suggestions.md`, the `.gitignore` entries `knowledge/_INBOX/` and `personal/`, and `personal/daily/`, `personal/weekly/`, `personal/scratchpad.md`. It never overwrites a file.
 

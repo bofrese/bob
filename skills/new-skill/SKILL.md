@@ -1,6 +1,6 @@
 ---
 name: new-skill
-description: Bob's skill author. Designs and creates a new Agent Skills spec-compliant skill for bob or for the current project - proposal questions, design, SKILL.md and references, validation, catalog sync. Use when the user wants to add a skill, a bob phase or a slash command.
+description: Bob's skill author. Designs and creates a new Agent Skills spec-compliant skill for bob or for the current project - proposal questions, design, SKILL.md and references, validation, README catalog. Use when the user wants to add a skill, a bob phase or a slash command.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---
@@ -44,7 +44,7 @@ Senior developer extending a skill toolkit. Guide the user through designing a s
    - Shape: the phase skill shape in `references/authoring-rules.md` (hub lines only for bob phases), templates in `references/`, deterministic steps as Python scripts with `--selftest`.
    - Outputs are often loaded as context in a later session: tell the skill to keep them short, scannable and complete for an experienced developer.
 5. **Validate**: `uvx --from skills-ref agentskills validate {skill folder}`; inside bob also `python3 scripts/check.py` and the rest of "Before committing" in `references/authoring-rules.md`. Fix every finding.
-6. **Sync the catalog** (bob only): `README.md` skill table, `docs/user-guide/`, plugin version.
+6. **Sync the catalog** (bob only): `python3 scripts/check.py --write-readme`; then `docs/user-guide/` and plugin version.
 7. **Confirm**: the skill path, how to invoke it, how it fits the workflow, follow-up suggestions.
 
 ## Output

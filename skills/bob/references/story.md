@@ -13,7 +13,7 @@ Never create a story only to satisfy this protocol.
 Pass any file arguments and the user's request text:
 
 ```bash
-python3 scripts/story.py "<file arg>" "<request text>"
+python3 <skill-dir>/scripts/story.py "<file arg>" "<request text>"
 ```
 
 The JSON names a `tier`, whether it is `certain`, and `candidates`.

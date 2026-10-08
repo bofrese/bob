@@ -10,13 +10,15 @@ Check every item in `docs/process/done-criteria.md` that applies to this phase. 
 
 | Phase | Section |
 |---|---|
-| implement | Code changes |
+| implement, dev | Code changes |
 | plan | Plans |
 | review, review-plan | Reviews |
 | design | Design. Uncertainty marked safe to defer is a valid result |
 | reflect | Reflection. A short "no gap" record is valid |
 | learn | Harness learning. "No persistent lesson" is valid |
 | document | Documentation |
+| ui-review | Reviews |
+| investigate, brainstorm | Investigation and ideas |
 | handover | Handover |
 | product, brand-design, linkedin | Output is self-contained and readable without prior context |
 

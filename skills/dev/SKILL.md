@@ -1,6 +1,6 @@
 ---
 name: dev
-description: Bob's dev phase. A peer working session for code discussion, quick fixes and direct changes, without the brainstorm, plan and review cycle. Use when work is local, reversible, settled and easy to verify. Escalates to design when a change outgrows the fast path.
+description: Bob's dev phase. A peer working session for code discussion, quick fixes and direct changes, without the brainstorm, plan and review cycle. Use only when the user asks for a direct change or quick fix. Escalates to design when a change outgrows the fast path.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---

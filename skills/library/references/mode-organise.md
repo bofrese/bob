@@ -7,7 +7,7 @@ Vault health and maintenance. Incremental by default: scopes to notes changed si
 1. Read `knowledge/log.md` if it exists. Find the most recent `## [timestamp] organise` entry. Extract the timestamp.
 2. If timestamp found:
    ```bash
-   python3 scripts/git_scope.py "<last-organise-timestamp>" knowledge
+   python3 <skill-dir>/scripts/git_scope.py "<last-organise-timestamp>" knowledge
    ```
    If the list is empty: "No notes changed since last run." Stop.
 3. If no timestamp (first run or log.md missing): process all notes.
@@ -17,7 +17,7 @@ Vault health and maintenance. Incremental by default: scopes to notes changed si
 
 Run lint on scoped files:
 ```bash
-python3 scripts/lint.py knowledge
+python3 <skill-dir>/scripts/lint.py knowledge
 ```
 
 Filter output to scoped files only. For each issue found:
@@ -33,7 +33,7 @@ Always run on scoped files:
 
 a. **Inbox stubs in typed folders** - find `.md` files in `decisions/`, `concepts/`, `research/`, `practices/` with `type: inbox` in frontmatter. Move each to `_INBOX/_processed/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
 
-b. **Orphaned notes** - compare scoped files on disk against entries in `_index.md`. Files present on disk but absent from the index are orphaned. Present proposed index entries and add after confirmation. Notes with no inbound links from other notes: `python3 scripts/orphan.py knowledge` (JSON list); propose links for them in Phase 3.
+b. **Orphaned notes** - compare scoped files on disk against entries in `_index.md`. Files present on disk but absent from the index are orphaned. Present proposed index entries and add after confirmation. Notes with no inbound links from other notes: `python3 <skill-dir>/scripts/orphan.py knowledge` (JSON list); propose links for them in Phase 3.
 
 c. **README consistency** - verify the Folders table lists all typed subfolders. Verify `_schema.md` tag governance rule points to README (no mirrored tag list). Rebuild README if Folders table is incomplete.
 
@@ -60,7 +60,7 @@ Present audit findings. If all clean, say so and continue.
 
 Call `log_append.py`:
 ```bash
-python3 scripts/log_append.py organise "Changed since last run: N notes. Updated X field names, added Y cross-links."
+python3 <skill-dir>/scripts/log_append.py organise "Changed since last run: N notes. Updated X field names, added Y cross-links."
 ```
 
 Report changes made.

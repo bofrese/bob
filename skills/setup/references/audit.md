@@ -51,9 +51,9 @@ command -v mmdc >/dev/null 2>&1 && echo "mermaid-cli: installed $(mmdc --version
 [ -d website/src ] && echo "b2 website: present" || echo "b2 website: absent"
 
 # Always-on primer for other agents: AGENTS.md bob block and CLAUDE.md import (dry run)
-python3 ../bob/scripts/primer.py --agents-md
+python3 <skill-dir>/../bob/scripts/primer.py --agents-md
 # bob 3.x entry-point names in CLAUDE.md, AGENTS.md, docs/process/*.md, docs/guidelines/ (dry run)
-python3 scripts/rename_scan.py
+python3 <skill-dir>/scripts/rename_scan.py
 
 # Orphan markdown: .md files outside all managed locations (including docs/)
 find . -name "*.md" \

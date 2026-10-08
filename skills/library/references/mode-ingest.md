@@ -42,7 +42,7 @@ Add `resource: sources/{path}` to the frontmatter of all atomic notes created fr
 
 Call `log_append.py`:
 ```bash
-python3 scripts/log_append.py ingest "Source: <url-or-filename>. Extracted N concepts. Merged X, enriched Y, created Z new."
+python3 <skill-dir>/scripts/log_append.py ingest "Source: <url-or-filename>. Extracted N concepts. Merged X, enriched Y, created Z new."
 ```
 
 Report: source ingested, concepts extracted, actions taken.

@@ -12,7 +12,7 @@ Quick mid-session capture. Deliberately skips the `bob` hub: no start checklist,
 ## Process
 
 1. Arguments given: use them as the content. None: ask "What should I remember?", one question only.
-2. `knowledge/` missing: say "Setting up knowledge vault first...", run `python3 ../library/scripts/bootstrap.py` (the `library` skill's bootstrap, relative to this skill's folder) from the project root, then continue.
+2. `knowledge/` missing: say "Setting up knowledge vault first...", run `python3 <skill-dir>/../library/scripts/bootstrap.py` (the `library` skill's bootstrap) from the project root, then continue.
 3. Slug: the first 4-5 significant words, kebab-case, without stop words (the, a, an, is, to, for, we, it, in, of, and, or, that, this).
 4. Write `knowledge/_INBOX/{YYYY-MM-DD}-{slug}.md`:
    ```markdown

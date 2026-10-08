@@ -8,7 +8,7 @@ Processes `knowledge/_INBOX/` items into atomic notes, using reconcile to preven
 2. Count files and estimate total tokens (use file size as proxy: ~250 words/KB ≈ ~330 tokens/KB)
 3. Decide processing mode:
    - Total estimated tokens **< 20K**: process all inline, sequentially (go to Processing Loop below)
-   - Total estimated tokens **≥ 20K**: bundle into batches of ~5K tokens each, dispatch sequentially as subagents (go to Subagent Processing below)
+   - Total estimated tokens **≥ 20K**: bundle into batches of ~5K tokens each, go to Batch Processing below
 
 ## Processing Loop (inline)
 
@@ -27,22 +27,22 @@ For each file, in order:
    - Ephemeral capture (rough notes, quick thought): move to `_INBOX/_processed/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
 6. Append any new patterns noticed to `_suggestions.md` (MOC candidates, tag inconsistencies, schema gaps)
 
-## Subagent Processing (≥ 20K tokens)
+## Batch Processing (≥ 20K tokens)
 
 1. Bundle inbox files into batches of ~5K tokens each
 2. Process batches **sequentially** - items on the same subject must see prior decisions
-3. Each subagent receives:
+3. If the agent can delegate to subagents, give each batch to one; otherwise process the batches inline in sequence. Each batch gets:
    - Its bundle of inbox files
    - A vault state summary (folder counts, recent index entries)
    - A **summary of prior batch results** (type + title + disposition only - not full proposal text, to prevent context growth)
-4. Collect all confirmed actions from each subagent batch before starting the next
+4. Collect all confirmed actions from each batch before starting the next
 
 ## Post-processing
 
 1. Update `knowledge/README.md` Tags table if new tags were added during this run
 2. Call `log_append.py` to record the run:
    ```bash
-   python3 scripts/log_append.py process "Inbox: N items. Merged X, enriched Y, created Z new. W deferred."
+   python3 <skill-dir>/scripts/log_append.py process "Inbox: N items. Merged X, enriched Y, created Z new. W deferred."
    ```
 3. Report: files processed, notes created/merged/enriched, moved to sources, moved to `_processed/`
 

@@ -6,11 +6,11 @@ license: Apache-2.0
 
 # bob
 
-Paths to `references/`, `scripts/` and `assets/` are relative to this skill's folder: the base directory shown when it loads (in Claude Code `${CLAUDE_PLUGIN_ROOT}/skills/bob`). Run scripts with `python3` from the project root. Do each step once per conversation; skip what is already done.
+Paths to `references/`, `scripts/` and `assets/` are relative to this skill's folder. Run scripts from the project root as `python3 <skill-dir>/scripts/NAME.py`, where `<skill-dir>` is the folder this SKILL.md was loaded from (in Claude Code `${CLAUDE_PLUGIN_ROOT}/skills/<name>`). Do each step once per phase; skip what is already done in this phase.
 
 ## Start checklist
 
-1. Date: `python3 scripts/today.py`. Use it in file names and timestamps.
+1. Date: `python3 <skill-dir>/scripts/today.py`. Use it in file names and timestamps.
 2. Load what your phase skill's `Loads:` line lists, by the rules in `references/context.md`. No phase skill (the user just describes work): use the defaults there. Hub loads:
    - `story`: resolve the story with `references/story.md`. No confirmation when the story is certain.
    - `intent`: original intent and its changes, `references/intent.md`.

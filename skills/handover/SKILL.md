@@ -40,13 +40,13 @@ The question: what does an experienced developer need to read, and in which orde
 
 ## Process
 
-1. **Gather the change set.** `python3 scripts/gather.py "{story_path}" "{STORY-ID}"` prints the change set as JSON per repo (`--full` for the whole story).
+1. **Gather the change set.** `python3 <skill-dir>/scripts/gather.py "{story_path}" "{STORY-ID}"` prints the change set as JSON per repo (`--full` for the whole story).
 2. **Confirm scope** per `references/scope-policy.md`: present scope per repo (baseline, commit count, staged files). Default "since last handover" when every relevant repo is reliable; otherwise ask: whole story (`--full`) or a range. Offer to stage candidates; stage only what the user confirms. Ask whenever anything is unreliable or ambiguous, and wait for confirmation before reading further.
 3. **Read** the story artifacts: Brainstorm Brief, Design Record, Plan, Implementation Note, Review, Reflection or Learning Records from earlier handovers of this story, and the architecture notes changed by `document`. Then the full diffs for the confirmed scope, per repo (`git -C {repo} diff {baseline}..HEAD`, plus `git diff --cached` for staged files). Read every hunk.
 4. **Write** with `references/narrative-template.md`: walkthrough sections for the hunks that carry the change, sweeps for mechanical ones. If the user says "save", write with what is confirmed so far.
 5. **Check coverage** per repo:
    ```bash
-   { git -C {repo} diff --name-only {baseline}..HEAD; git -C {repo} diff --cached --name-only; } | python3 scripts/gather.py --check {handover}
+   { git -C {repo} diff --name-only {baseline}..HEAD; git -C {repo} diff --cached --name-only; } | python3 <skill-dir>/scripts/gather.py --check {handover}
    ```
    Every printed path is missing from the handover. Add it to a walkthrough section or a sweep and rerun until nothing prints.
 6. **Close.** Gaps found while reading (missing tests, doc drift, follow-ups) are discovered work. Tell the user the handover is ready to approve in place of the pull request; recommend `reflect` once they have read it.

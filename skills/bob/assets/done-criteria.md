@@ -20,7 +20,7 @@ These must be true before `implement` (or any execution phase) begins:
 
 Every phase checks applicable items before finishing.
 
-### Code changes (`implement`)
+### Code changes (`implement`, `dev`)
 - [ ] All tests pass (existing and new)
 - [ ] Linter/formatter clean on modified files
 - [ ] No hardcoded secrets or debug code
@@ -40,9 +40,14 @@ Every phase checks applicable items before finishing.
 - [ ] Testing strategy defined
 - [ ] Questions & Decisions table populated
 
-### Reviews (`review`, `review-plan`)
+### Reviews (`review`, `review-plan`, `ui-review`)
 - [ ] Findings categorised by severity
 - [ ] Action items are actionable and prioritised
+
+### Investigation and ideas (`investigate`, `brainstorm`)
+- [ ] Findings or options are written to the story, not left in chat
+- [ ] Root cause or chosen direction is stated with its evidence
+- [ ] Open questions are listed
 
 ### Design (`design`)
 - [ ] Material concepts and human-owned decisions are explicit
