@@ -8,7 +8,7 @@ allowed-tools: Bash(*), Read, Write, Edit
 # Implement
 
 Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
-Loads: hub story, intent, project-knowledge, code-graph; files docs/product/vision.md. Explore build tools, test infrastructure and linting setup.
+Loads: hub story, intent, project-knowledge, code-graph; story plan, design, review-plan; files docs/product/vision.md. Explore build tools, test infrastructure and linting setup.
 
 ## Rules
 

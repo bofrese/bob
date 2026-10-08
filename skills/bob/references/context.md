@@ -12,6 +12,7 @@ Loads: hub story, intent, project-knowledge, code-graph; files docs/product/visi
 
 - `hub <name>`: read `references/<name>.md` in this skill's folder and follow it.
 - `files <path>`: read the project file if it exists. Skip it silently if it does not.
+- `story <type>`: read the newest `{story_path}sessions/{date}-{type}-{slug}.md`, for example `story brainstorm`, `story design`, `story plan`, `story review-plan`, `story implement`, `story handover`. `story review` skips `review-plan` files. Skip silently if there is none. A path the user gives wins.
 - A phase skill may narrow a loader, for example "architecture notes linked from the Handover only". Its words win over the defaults here.
 - Read each file once per conversation.
 

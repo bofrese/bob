@@ -13,6 +13,7 @@ HUB = "bob"
 SPEC_KEYS = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 NAME_RE = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 MAX_DESC = 300
+FINISH_LINE = "Finish with the hub's finish checklist."
 HUB_REF = re.compile(r"`bob:bob`|`bob` skill|`bob` hub")
 # Skills that teach a way of thinking and do not run the hub checklists.
 PRINCIPLE = {"architect", "bdd", "ui-design", "obsidian"}
@@ -84,8 +85,11 @@ def check_skill(path, problems):
         problems.append(f"{rel}: description must be 1-{MAX_DESC} characters, is {len(desc)}")
     if len(text.split("\n")) > 500:
         problems.append(f"{rel}: over 500 lines")
-    if name != HUB and name not in PRINCIPLE and not HUB_REF.search(text):
-        problems.append(f"{rel}: does not invoke the `bob` hub skill")
+    if name != HUB and name not in PRINCIPLE:
+        if not HUB_REF.search(text):
+            problems.append(f"{rel}: does not invoke the `bob` hub skill")
+        if FINISH_LINE not in text:
+            problems.append(f"{rel}: lacks the closing line '{FINISH_LINE}'")
 
 
 def check_command(path, catalog, problems):

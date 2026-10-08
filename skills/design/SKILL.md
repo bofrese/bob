@@ -8,7 +8,7 @@ allowed-tools: Bash(*), Read, Write, Edit
 # Design
 
 Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
-Loads: hub story, intent, project-knowledge, code-graph; the story's Brainstorm Brief or accepted requirement, not the full prior conversation.
+Loads: hub story, intent, project-knowledge, code-graph; story brainstorm (or the accepted requirement), not the full prior conversation.
 
 Fundamental question: what is the simplest coherent model that solves this capability in this system?
 

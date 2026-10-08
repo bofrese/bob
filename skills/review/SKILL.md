@@ -8,7 +8,7 @@ allowed-tools: Bash(*), Read, Write, Edit
 # Review
 
 Invoke the `bob` hub skill (`bob:bob`) and run its start checklist.
-Loads: hub story, intent, project-knowledge (guidelines matched to the files in scope), code-graph; files docs/product/vision.md
+Loads: hub story, intent, project-knowledge (guidelines matched to the files in scope), code-graph; story plan, design, implement; files docs/product/vision.md
 
 Fundamental question: is the change correct? Lens: correctness, design conformance, system health, simplicity.
 
