@@ -6,7 +6,7 @@ version: 0.2.0
 
 # Obsidian Vault Operations
 
-Manages markdown file operations (rename, move) and vault search through the official Obsidian CLI. Direct filesystem moves (`mv`, `git mv`) on `.md` files are never used - they break internal links silently. All operations route through the Obsidian app's internal API.
+Manages markdown file operations (rename, move) and vault search through the official Obsidian CLI. In an Obsidian vault with the CLI installed, direct filesystem moves (`mv`, `git mv`) on `.md` files are never used - they break internal links silently; operations route through the Obsidian app's internal API. Without a vault or CLI, plain `mv`/`git mv` is fine.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ Compare `vault_path` to `$PWD`:
 
 - **`vault_path` = `$PWD`**: Correct vault confirmed. Continue.
 
-This single check validates that the CLI is available, Obsidian is reachable, and the active vault matches the project root. Do not fall back to plain `mv` on failure.
+This single check validates that the CLI is available, Obsidian is reachable, and the active vault matches the project root. In a vault with the CLI installed, do not fall back to plain `mv` on failure.
 
 ### 2. File Path is Valid
 
@@ -143,7 +143,7 @@ Returns recently opened files as vault-relative paths, most recent first. Histor
 
 ## Hook Integration
 
-A PreToolUse hook in the bob plugin's `settings.json` intercepts any `mv` or `git mv` command on `.md` files and blocks it, forcing the operation through this skill instead. This is automatic - no per-project configuration needed.
+A PreToolUse hook (`hooks/hooks.json`, script `scripts/md_move_guard.py`) intercepts any `mv` or `git mv` command on `.md` files and blocks it only when `.obsidian/` exists in the project and the `obsidian` CLI is on PATH, forcing the operation through this skill instead. This is automatic - no per-project configuration needed.
 
 If the hook fires: acknowledge the block, invoke the vault/CLI checks above, then proceed through the approval workflow before running the obsidian command.
 

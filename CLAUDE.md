@@ -15,8 +15,6 @@ This file guides Claude (and human contributors) in creating new commands and ma
 │   ├── done-criteria/         ← done system protocol + bootstrap template
 │   └── ...                    ← see skills/bob/references/skills.md for the full catalog
 ├── scripts/check.py           ← structural rule check, run before committing
-├── agents/                    ← subagent definitions
-│   └── gemini.md              ← Gemini as a helper agent
 ├── docs/                      ← user guide and documentation
 │   └── user-guide/
 ├── CLAUDE.md                  ← You are here

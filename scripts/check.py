@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 # Commands that skip the protocol by design (fast capture, standalone prompt tool).
-PROTOCOL_EXEMPT = {"remember", "create-prompt"}
+PROTOCOL_EXEMPT = {"remember"}
 PROTOCOL_LINES = ("bob:context-protocol", "bob:done-criteria")
 EM_DASH = "—"
 SKIP_DIRS = {".git", "node_modules", "ai"}  # ai/: legacy dated artifacts
