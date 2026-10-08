@@ -103,7 +103,7 @@ S1. {Sweep}
 
 ## Architecture notes updated
 - [{note}]({path}) - {what changed}
-- Notes that still look stale after this change: {list, or "none"; route to `/bob:document`}
+- Notes that still look stale after this change: {list, or "none"; route to `document`}
 
 ## Coverage
 | File | Covered in |

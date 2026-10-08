@@ -38,6 +38,6 @@ File: `{story_path}sessions/{date}-implement-{slug}.md`.
 
 ## Blockers / Next Steps
 
-## Input for /bob:handover
+## Input for handover
 {Critical code paths carrying the architectural meaning, signals and how they resolved, anything surprising worth a closer look together. Concise, not a walkthrough.}
 ```
