@@ -16,7 +16,7 @@ Paths to `references/`, `scripts/` and `assets/` are relative to this skill's fo
 
 - Never create or change a note without running `references/reconcile.md` first and getting the user's confirmation.
 - Never delete files. Move them to `knowledge/_INBOX/_processed/` or `knowledge/sources/`.
-- Move `.md` files through the `obsidian` skill (`bob:obsidian`): `obsidian move` when this project is the active vault, else its `scripts/md_move.py`, which keeps links intact without Obsidian. Never plain `mv`; a hook blocks it on `.md` files.
+- Move `.md` files through the `obsidian` skill (`bob:obsidian`): `obsidian move` when this project is the active vault, else its `scripts/md_move.py`, which keeps links intact without Obsidian. Never plain `mv`: it breaks links. In an Obsidian vault with the CLI installed, a hook also blocks it.
 - Tags come from the Tags table in `knowledge/README.md`, the only canonical list. Propose a new tag with a description and add it to the table before using it.
 - Never add a note to an index without the user's confirmation.
 

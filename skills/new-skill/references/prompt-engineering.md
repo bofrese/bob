@@ -4,8 +4,8 @@ Principles for writing effective, token-efficient skills. Apply when creating, r
 
 ## Core principles
 
-- **Be explicit.** "Write 5 bullets, each under 15 words" beats "be concise". Specify exact success criteria.
-- **Structure clearly.** Separate rules, role, process and output. Do not mix them in prose.
+- **Be explicit about the outcome.** Say what success looks like and who reads the result ("a reviewer decides from the TL;DR alone"). Use a number only where the format truly needs one (a template slot, a field limit), never as a length cap.
+- **Structure clearly.** Separate rules, role, process and output. Keep each rule's reason next to it: a rule with its "because" is applied with judgment, a bare rule is applied literally.
 - **Minimize tokens.** Every token costs money and latency. High-signal only. Cut filler, redundancy, verbose examples.
 - **Load just-in-time.** Do not dump context upfront. Load principles and guidelines when they apply.
 - **Allow uncertainty.** Permission to say "I don't know" reduces hallucinations.
@@ -37,7 +37,7 @@ When creating or reviewing a skill, check that it defines each of these. Token e
 
 - **Unstructured instructions:** context, constraints and format mixed in prose.
 - **Aggressive triggers:** "CRITICAL!", "MUST!", "NEVER!" cause over-triggering.
-- **Vague constraints:** "be concise" instead of "3-5 sentences, under 100 words".
+- **Vague outcomes:** "be good" instead of what the reader must be able to do with the output.
 - **Poor examples:** incomplete, inconsistent or unrealistic.
 - **Context dumping:** loading everything upfront instead of just-in-time.
 - **Multi-question barrages:** asking 5 things at once instead of one at a time.

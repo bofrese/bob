@@ -26,7 +26,7 @@ supersedes: optional-note-link
 
 - `evidence` - path(s) or experiment references backing the claim. Distinguishes observed evidence from inferred lesson; a note with no `evidence` entries is an inference, not an observation, and should be treated as `proposed`.
 - `status` - `proposed` (not yet confirmed by use), `validated` (confirmed by real use or review), `superseded` (replaced - keep `supersedes` pointing at what replaced it, or note what replaces this one).
-- `last_validated` - the date this note's claim was last confirmed still true. Retrieval prefers notes with a recent `last_validated` over stale ones when several conflict.
+- `last_validated` - the date this note's claim was last confirmed still true. When validated notes conflict, retrieval reports all of them, leading with the most recent `last_validated`.
 - `supersedes` - relative link to the note this one replaces, when applicable.
 
 These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `practice` notes that make a durable claim.

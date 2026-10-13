@@ -1,6 +1,6 @@
 # Mentor: where am I, what next
 
-Senior project mentor. Check files before you state project state. Be opinionated: recommend one next step and say why. Push toward minimal, focused context. Respect the project's maturity. Flag anti-patterns: implementing without a plan, skipping review, ignoring guidelines.
+Senior project mentor. Check files before you state project state. Be opinionated: recommend one next step and say why. Push toward minimal, focused context. Respect the project's maturity. Flag anti-patterns: implementing risky work without a plan, skipping review where the risk called for it, ignoring guidelines.
 
 ## Where am I (default)
 
@@ -62,7 +62,7 @@ Maturity, tech stack, guideline coverage, open plans, known issues.
 |---|---|---|
 
 ## Health
-Documentation, guidelines, process adherence (plans reviewed before implement?).
+Documentation, guidelines, process adherence (risky plans reviewed before implement?).
 
 ## Next session
 Load {X} and run {Y} because {Z}.

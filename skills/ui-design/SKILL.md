@@ -1,6 +1,6 @@
 ---
 name: ui-design
-description: Bob's UI design principles - 14 expert lenses (hierarchy, cognitive load, states, typography, Gestalt, touch targets, motion, noise, consistency, emotion, platform, context, brand, whole system) and a final check. Use when designing, reviewing or critiquing any user interface.
+description: Bob's UI design principles - 14 expert lenses (hierarchy, cognitive load, states, typography, Gestalt, touch targets, motion, noise, consistency, emotion, platform, context, brand, whole system) and a final check. Use when designing a user interface or writing UI code. For critique, use ui-review.
 license: Apache-2.0
 ---
 

@@ -40,7 +40,7 @@ AI prompt engineer for agent skills. Judge token efficiency and AI actionability
 1. **Ingest**: read the skill folder (SKILL.md, references, scripts). Ask for the path or name if not given.
 2. **Validate**: `uvx --from skills-ref agentskills validate {skill folder}`; for a bob skill also `python3 scripts/check.py` from the plugin root.
 3. **Analyze**: apply the criteria, note each issue with its line.
-4. **Optimize**: propose a streamlined version, aiming at 30-50% fewer tokens without losing function.
+4. **Optimize**: propose a streamlined version that removes what does not change behaviour or give needed context. No size target: a skill that is already lean stays as it is.
 5. **Save** the report.
 
 ## Output

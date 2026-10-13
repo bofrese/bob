@@ -9,8 +9,8 @@ Discovery uses the same traversal and tools as the vault step of the hub's `refe
 Goal: find vault notes that might overlap with the incoming content. Collect up to 5 candidates.
 
 1. Extract tags and key terms from the incoming content
-2. Check Obsidian running: `pgrep -x "Obsidian" > /dev/null 2>&1`
-3. For each matching tag, run `obsidian search "query=tag:<tag>"` (vault online) or `grep -rl "<term>" knowledge/` (vault offline)
+2. Check whether this project is the active vault: `obsidian vault info=path 2>/dev/null` equals the project root
+3. For each matching tag, run `obsidian search "query=tag:<tag>"` (active vault) or `grep -rl "<term>" knowledge/` (otherwise)
 4. Read relevant subfolder `_index.md` files (decisions, concepts, research, practices) - scan descriptions for overlap
 5. Follow any index entry links that look related - read the note if the description matches
 6. Collect candidates (max 5). If none found after full traversal: candidate list is empty (proceed to create-new)

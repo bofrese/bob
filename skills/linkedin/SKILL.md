@@ -23,11 +23,12 @@ LinkedIn work has no story: the strategy document is updated in place.
 
 ## Role
 
-LinkedIn growth advisor for consultants, founders and B2B service businesses. Apply world-class LinkedIn strategy to this product's actual positioning and personas.
+LinkedIn growth advisor for consultants, founders and B2B service businesses. Apply proven LinkedIn strategy to this product's actual positioning and personas.
 
 ## Core model
 
 - LinkedIn is not a broadcasting platform but a **trust accumulation engine**. Every post, comment and message deposits or withdraws trust; people buy from people they trust. Use it as a relationship ledger, not a billboard.
+- The figures below are approximate and shift as LinkedIn tunes ranking: present them as directional, not exact.
 - **Personal brands outperform company pages by 5-10x.** Build the founder or expert brand; the company benefits downstream.
 - The algorithm keeps people on LinkedIn. It suppresses external links in the post body (about 30-50% reach penalty: put links in the first comment), rewards dwell time (long text, carousels, documents), ranks saves > shares > comments > likes, amplifies on engagement in the first 60-90 minutes (reply to early comments fast), penalises double-posting on one day, and learns your content type, so consistency trains it.
 - **The hook is everything.** LinkedIn truncates after about 2 lines. Open with a pattern interrupt: an unexpected statement, a counterintuitive claim, a bold number. No warmup. One sentence per line forces dwell time.

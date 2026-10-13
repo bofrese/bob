@@ -51,7 +51,7 @@ For each file, in order:
 ```markdown
 ---
 title: <title>
-type: <decision|concept|research|pattern>
+type: <decision|concept|research|practice>
 tags: [tag1, tag2]
 timestamp: YYYY-MM-DDThh:mm:ssZ
 story: <STORY-ID>  # if captured in story context
@@ -80,7 +80,7 @@ Before creating a new `decision` or `practice` note, check whether an existing n
 - Ask which one is current. If the incoming claim wins, set the old note's `status: superseded` and add `supersedes` on the new note pointing back to it - do not delete the old note.
 - If genuinely uncertain which is current, leave both as `status: proposed` and note the open conflict in `_suggestions.md` for a human to resolve later - this is the one case where an unresolved conflict is an acceptable outcome for this run.
 
-Retrieval (the hub's `project-knowledge.md`) prefers `validated` notes over `proposed`/`superseded` ones and prefers a more recent `last_validated` when two `validated` notes still disagree; if retrieval itself surfaces a live conflict it should not silently choose either.
+Retrieval (the hub's `project-knowledge.md`) prefers `validated` notes over `proposed`/`superseded` ones and when two `validated` notes still disagree, reports both, leading with the more recent `last_validated`. It never drops either silently.
 
 ## Rules
 

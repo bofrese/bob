@@ -30,7 +30,7 @@ If "Then" can't be observed - by a user, a log, an API response, a database stat
 
 ## Acceptance criteria live in the plan
 
-Before `implement` starts, the plan must contain testable acceptance criteria for every piece of new behaviour. Written in Given/When/Then. Reviewed by `review-plan`. This is the contract.
+Before `implement` starts, the plan must contain testable acceptance criteria for every piece of new behaviour. Written in Given/When/Then. Checked by `review-plan` when the plan gets one. This is the contract.
 
 ## The golden check
 

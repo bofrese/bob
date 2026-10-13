@@ -12,7 +12,7 @@ Loads: files docs/guidelines/README.md
 
 ## Rules
 
-- Guidelines are loaded as AI context in every engineering session: at most 60 lines per file.
+- A guideline is loaded as AI context whenever its "Applies When" matches the work, often alongside others: keep each under about 60 lines. When one outgrows that, split it by trigger rather than compress it.
 - Research first, codebase second.
 - Tools over rules: if a tool enforces it, list the tool instead of writing a principle.
 - Specific over generic: every principle names the technology.
@@ -41,7 +41,7 @@ Litmus test per principle: specific to this technology? Would a developer with 1
 3. **Codebase check**, brief: tools already in use, intentional deviations worth noting.
 4. **Confirm before writing**: present the key principles and the tooling recommendation, one question at a time. Wait for confirmation.
 5. **Write** per `references/guideline-template.md` (relative to this skill's folder).
-6. **Update the index**: in `docs/guidelines/README.md` set the status to `✓ {date}`. Make the "Applies When" trigger precise and machine-matchable (`ext: .ts`, `cmd: plan, review-plan`, `path: docs/`).
+6. **Update the index**: in `docs/guidelines/README.md` set the status to `✓ {date}`. Make the "Applies When" trigger precise and machine-matchable (`ext: .ts`, `phase: plan, review-plan`, `path: docs/`).
 
 ## When a guideline is used
 

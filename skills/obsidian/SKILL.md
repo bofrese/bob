@@ -94,44 +94,6 @@ obsidian search query="authentication flow" limit=10
 - Use to locate relevant notes before loading them into context
 - Combine with `obsidian read path="..."` to load the content of specific results
 
-## Workspace State
-
-Commands for reading what is currently open or recently visited in Obsidian. The bob hub's story resolution can use them to detect the active story.
-
-### Active file path
-
-```bash
-obsidian file | awk -F'\t' '/^path/{print $2}'
-```
-
-Returns the vault-relative path of the currently active file.
-
-### All open markdown tab paths
-
-```bash
-obsidian eval code="app.workspace.getLeavesOfType('markdown').map(l => l.view?.file?.path).filter(Boolean).join('\n')" | sed 's/^=> //'
-```
-
-Returns one vault-relative path per line for every open markdown tab. Use this in preference to `obsidian tabs`, which returns filenames only and cannot disambiguate files that share a name (e.g. multiple `_index.md` files).
-
-### Recently opened files
-
-```bash
-obsidian recents
-```
-
-Returns recently opened files as vault-relative paths, most recent first. History-based - reflects past visits, not current open tabs.
-
-## Setup Instructions (for users with no vault)
-
-`/bob:setup` offers to bootstrap `.obsidian/` from the bob vault config. Otherwise:
-
-1. Open Obsidian
-2. Click "Open folder as vault" and select the project root
-3. This creates `.obsidian/` at the project root
-4. Enable CLI: Settings → General → Command line interface → Register CLI
-5. Enable link updates: Settings → Files & Links → Automatically update internal links
-
 ## Hook Integration
 
 A PreToolUse hook (`hooks/hooks.json`, script `scripts/md_move_guard.py`) intercepts any `mv` or `git mv` command on `.md` files and blocks it only when `.obsidian/` exists in the project and the `obsidian` CLI is on PATH, forcing the operation through this skill instead. It does not block `md_move.py`. This is automatic - no per-project configuration needed.
@@ -140,5 +102,5 @@ If the hook fires: acknowledge the block, pick the mover above, then proceed thr
 
 ## Additional Resources
 
-- **`references/cli-reference.md`** - Full Obsidian CLI command reference with all parameters
+- **`references/cli-reference.md`** - Full Obsidian CLI command reference with all parameters, workspace state (active file, open tabs, recents) and vault setup for users with no vault
 - **`references/obsidian-markdown.md`** - Obsidian-flavored markdown conventions: link formats, properties, callouts, tags

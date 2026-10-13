@@ -1,6 +1,6 @@
 ---
 name: review
-description: Bob's code review phase. Reviews code changes critically against the plan, Design Record, guidelines and done criteria (bugs, design conformance, design concerns, system health). Detects scope from git. Use when correctness of a change must be established independently. Reports only, never fixes.
+description: Bob's code review phase. Reviews code changes from git against the plan, Design Record, guidelines and done criteria (bugs, design conformance, design concerns, system health). Use for a code review of changes, a branch or a PR, or when correctness must be checked independently. Reports only.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---

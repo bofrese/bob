@@ -12,6 +12,16 @@ Official CLI shipped with Obsidian 1.12.7+. Requires the Obsidian desktop app (a
 
 Enable: Settings → General → Command line interface → Register CLI
 
+### New vault
+
+`/bob:setup` offers to bootstrap `.obsidian/` from the bob vault config. Otherwise:
+
+1. Open Obsidian
+2. Click "Open folder as vault" and select the project root
+3. This creates `.obsidian/` at the project root
+4. Enable CLI: Settings → General → Command line interface → Register CLI
+5. Enable link updates: Settings → Files & Links → Automatically update internal links
+
 ## Syntax Rules
 
 - Parameters: `key=value` format; quote values containing spaces: `file="My Note"`

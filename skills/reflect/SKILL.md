@@ -1,6 +1,6 @@
 ---
 name: reflect
-description: Bob's reflect phase. A short, peer-to-peer reflection after the developer reads the Handover, recovering implementation insight and closing ownership gaps in a Reflection Record. Use after reading the Handover, or when implementation surprised. Assumes review settled correctness.
+description: Bob's reflect phase. A short, peer-to-peer reflection after the developer reads the Handover, recovering implementation insight and closing ownership gaps in a Reflection Record. Use after reading the Handover, or when the implementation surprised the developer.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---

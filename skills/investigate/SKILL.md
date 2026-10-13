@@ -1,6 +1,6 @@
 ---
 name: investigate
-description: Bob's investigate phase. Systematic bug and issue investigation (hypotheses, code tracing, 5 Whys, impact, fix options) that finds the root cause and writes an investigation report. Use when a bug needs a root cause, not a quick fix. Investigates only, never implements fixes.
+description: Bob's investigate phase. Systematic bug investigation (hypotheses, code tracing, 5 Whys, impact, fix options) that finds the root cause and writes a report. Use when a bug, error or failing test needs a root cause rather than a quick fix, or the user asks why something fails. Never implements fixes.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---
