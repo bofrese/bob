@@ -8,5 +8,15 @@
   },
   "homepage": "https://github.com/bofrese/bob",
   "license": "Apache-2.0",
-  "keywords": ["product-development", "ai-framework", "bdd", "ddd", "discovery", "engineering"]
+  "keywords": [
+    "product-development",
+    "ai-framework",
+    "bdd",
+    "ddd",
+    "discovery",
+    "engineering"
+  ],
+  "dependencies": [
+    "plain-writing"
+  ]
 }

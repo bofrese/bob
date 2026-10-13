@@ -13,6 +13,7 @@ Skills only. Every bob phase is one Agent Skills spec-compliant skill. The listi
 - Selftests for the vault scripts, `story.py`, `gather.py` and others.
 
 ### Changed
+- Text style moved to the separate `plain-writing` plugin, now a dependency. `skills/bob/references/writing.md` keeps only the artifact shape (TL;DR, icons, evidence).
 - `commands/` removed. Slash commands are now the skills themselves (`/bob:plan` still works).
 - Merged skills: product modes in `product`, design modes in `brand-design`, `library` (vault plus library).
 - Story resolution asks no confirmation when the story is named or already active.

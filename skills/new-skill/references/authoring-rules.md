@@ -30,7 +30,7 @@ The `bob` hub (`skills/bob/`) holds the start and finish checklists, story resol
 - No urgency wording ("exactly", "non-deferrable", ALL CAPS). State the behaviour once.
 - No history: describe current behaviour only. Git holds the history.
 - No back-compat: when an artifact shape changes, the old shape is no longer accepted.
-- No em dashes anywhere. Plain international English. Artifacts follow the hub's `references/writing.md`.
+- No em dashes anywhere. Text style: the `plain-writing` skill. Artifacts follow the hub's `references/writing.md`.
 - Reports and artifacts go into the user's project (story `sessions/`, else `docs/process/sessions/`), never into the plugin folder.
 
 ## Phase skill shape
