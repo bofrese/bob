@@ -1,18 +1,16 @@
 ---
 name: obsidian
-description: Bob's Obsidian vault operations - moves and renames .md files through the Obsidian CLI so links stay intact, and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search.
+description: Bob's Obsidian vault operations - moves and renames .md files so links stay intact (Obsidian CLI, or a link-rewriting script without it), and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search.
 license: Apache-2.0
 ---
 
 # Obsidian Vault Operations
 
-Manages markdown file operations (rename, move) and vault search through the official Obsidian CLI. In an Obsidian vault with the CLI installed, direct filesystem moves (`mv`, `git mv`) on `.md` files are never used - they break internal links silently; operations route through the Obsidian app's internal API. Without a vault or CLI, plain `mv`/`git mv` is fine.
+Manages markdown file operations (rename, move) and vault search through the official Obsidian CLI. Direct filesystem moves (`mv`, `git mv`) on `.md` files are never used - they break internal links silently. Moves go through the Obsidian app when it runs this project as the active vault, otherwise through `scripts/md_move.py`, which moves the file and rewrites the relative markdown links to and from it.
 
 ## Prerequisites
 
-Verify both conditions before any operation. Stop immediately if either fails.
-
-### 1. Correct Vault is Active
+### 1. Pick the mover
 
 ```bash
 vault_path=$(obsidian vault info=path 2>/dev/null)
@@ -20,15 +18,12 @@ vault_path=$(obsidian vault info=path 2>/dev/null)
 
 Compare `vault_path` to `$PWD`:
 
-- **Empty result**: CLI is not in PATH. **Stop:**
-  > "The `obsidian` CLI is not available. Enable it in Obsidian: Settings → General → Command line interface → Register CLI. Requires Obsidian 1.12.7+."
-
-- **`vault_path` ≠ `$PWD`**: Wrong vault is active. **Stop:**
-  > "Active Obsidian vault is `<vault_path>` but current project is `<PWD>`. Open this project folder as a vault in Obsidian first."
-
-- **`vault_path` = `$PWD`**: Correct vault confirmed. Continue.
-
-This single check validates that the CLI is available, Obsidian is reachable, and the active vault matches the project root. In a vault with the CLI installed, do not fall back to plain `mv` on failure.
+- **`vault_path` = `$PWD`**: use the `obsidian` commands under Operations.
+- **Anything else** (CLI missing, Obsidian closed, another vault active): use the script fallback, without asking the user to open Obsidian. It covers markdown links, not `[[wikilinks]]`; if the project uses wikilinks, say so and offer to wait while the user opens the vault instead.
+  ```bash
+  python3 <skill-dir>/scripts/md_move.py "<from.md>" "<to-folder/ or to.md>" --dry-run   # plan: files whose links change
+  python3 <skill-dir>/scripts/md_move.py "<from.md>" "<to-folder/ or to.md>"             # execute (git mv when tracked)
+  ```
 
 ### 2. File Path is Valid
 
@@ -69,13 +64,10 @@ obsidian move path="old-folder/old-name.md" name="new-name" to="new-folder"
 
 ## Workflow
 
-1. **Run prerequisite checks** - vault detection, CLI check, file path valid; stop if any fails
-2. **Check backlinks** - show what currently links to the file:
-   ```bash
-   obsidian backlinks path="folder/file.md"
-   ```
+1. **Run prerequisite checks** - pick the mover, file path valid; stop if the file is missing
+2. **Check backlinks** - show what currently links to the file: `obsidian backlinks path="folder/file.md"`, or the script's `--dry-run` output.
    Report the count and list to the user. Zero backlinks means a safe rename; many backlinks means more will be updated.
-3. **Show the plan** - the exact `obsidian` command, the backlink count, what will change
+3. **Show the plan** - the exact command, the backlink count, what will change
 4. **Wait for explicit approval** - never execute without the user confirming
 5. **Execute** the command
 6. **Verify** - confirm the file exists at its new path with `ls`
@@ -132,6 +124,8 @@ Returns recently opened files as vault-relative paths, most recent first. Histor
 
 ## Setup Instructions (for users with no vault)
 
+`/bob:setup` offers to bootstrap `.obsidian/` from the bob vault config. Otherwise:
+
 1. Open Obsidian
 2. Click "Open folder as vault" and select the project root
 3. This creates `.obsidian/` at the project root
@@ -140,9 +134,9 @@ Returns recently opened files as vault-relative paths, most recent first. Histor
 
 ## Hook Integration
 
-A PreToolUse hook (`hooks/hooks.json`, script `scripts/md_move_guard.py`) intercepts any `mv` or `git mv` command on `.md` files and blocks it only when `.obsidian/` exists in the project and the `obsidian` CLI is on PATH, forcing the operation through this skill instead. This is automatic - no per-project configuration needed.
+A PreToolUse hook (`hooks/hooks.json`, script `scripts/md_move_guard.py`) intercepts any `mv` or `git mv` command on `.md` files and blocks it only when `.obsidian/` exists in the project and the `obsidian` CLI is on PATH, forcing the operation through this skill instead. It does not block `md_move.py`. This is automatic - no per-project configuration needed.
 
-If the hook fires: acknowledge the block, invoke the vault/CLI checks above, then proceed through the approval workflow before running the obsidian command.
+If the hook fires: acknowledge the block, pick the mover above, then proceed through the approval workflow before running the obsidian command.
 
 ## Additional Resources
 

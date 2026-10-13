@@ -38,5 +38,6 @@ Drift appears across many locally reasonable changes, each made from incomplete 
 - **Interface drift:** a public surface that grows leaks of framework or implementation detail.
 - **Source-organization drift:** new files that break the established layout or reading order.
 - **Duplicated concepts:** two notes, modules or rules that describe the same thing.
+- **Guideline drift:** a guideline or project instruction prescribes an approach the code does not follow, or describes it in two ways that disagree (for example prose against code sample). This is drift, not `competing`, which compares code with code.
 
 Report drift with evidence (paths, notes). Do not fix it silently. Architecture and pattern notes are the context that keeps each new session from acting as if the codebase were new.

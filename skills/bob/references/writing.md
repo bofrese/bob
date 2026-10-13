@@ -10,6 +10,7 @@ Two readers: the next phase's agent (facts, decisions, paths, open questions) an
 - One idea per paragraph. Concrete names, paths, numbers. Delete sentences that add no fact.
 - Headings in sentence case, bullets for lists, tables for comparisons and anything with 3+ attributes.
 - Evidence by reference: code paths in backticks (`src/auth/session.ts:42`), markdown links to docs.
+- Verified claims only. A claim about behavior, or a bug, cites the line that makes the decision, read in the file itself, not inferred from which function calls which. A reason nobody recorded is written as "not recorded", never guessed.
 - Diagrams only when they explain more than a list or table. If `mmdc` is installed, validate Mermaid before saving: `mmdc -q -i <file.md> -o <scratch>/out.md` (non-zero exit = syntax error).
 - End with the next step when there is one. No closing summary.
 

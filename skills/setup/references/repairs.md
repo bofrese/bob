@@ -45,6 +45,15 @@ title: Scratchpad
 
 For each of `knowledge/_INBOX/` and `personal/` not already present in `.gitignore`: append to `.gitignore`.
 
+**.obsidian/ missing:**
+
+Offer once: "Bootstrap an Obsidian vault config for bob from https://github.com/bofrese/obsidian-for-bob? (Fork it first if you want your own settings.)" Only on yes:
+1. Append `.obsidian/` to `.gitignore` if not already present.
+2. `git clone https://github.com/bofrese/obsidian-for-bob .obsidian` (or the user's fork URL).
+3. Manual step for the summary: open the project folder as a vault in Obsidian.
+
+If the clone fails, report the error and continue. Declined: skip; bob works without Obsidian (moves fall back to the `obsidian` skill's `md_move.py`).
+
 **graphify corpus scope and provisioning (only when graphify is installed):**
 
 Skip this entire item if `graphify` is not installed - the status report recommendation already covers that case, and there is nothing to consume a scope file yet. If the installed version is below `0.9.11`, print the upgrade recommendation (`uv tool upgrade graphifyy`) and skip the build/hook offers, but still write the scope file below.

@@ -19,6 +19,7 @@ Loads: hub story (Update mode only), project-knowledge, code-graph; story implem
 - Small, linked, canonical: small atomic notes, explicit links, hierarchy and tags only where useful, low duplication. A note is as long as its concept needs. The index carries one short system overview ("How it fits together"); larger overviews are generated views, produced only on request.
 - Local knowledge stays local: file-local facts go into names and doc comments, not notes.
 - Links point to docs only: Markdown links target `.md` files. Source paths, directories and scripts use backticks. Index first-column names are plain text, doc links go in their own column, never link a directory. Key Files tables: path and purpose only, no line numbers.
+- Inconsistent is documented, not hidden. A concept or pattern the system uses goes into the notes even when its implementation is scattered or inconsistent; the note says where and how it differs, so the next change can converge it.
 - Be honest about limitations, debt and rough edges. One question at a time when discussing intent; do not rush to writing.
 - If the user says "save", write what is confirmed so far, whatever the phase.
 

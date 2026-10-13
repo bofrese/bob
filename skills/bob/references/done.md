@@ -31,7 +31,7 @@ New artifact type not in the file: add a DONE subsection for it. Criteria are ge
 List what emerged this session and is not yet in your artifact:
 - Terminology, architecture decisions and codebase patterns: name each, say why it matters, recommend `document` (decisions, terms, patterns) or `guidelines` (technology pitfalls).
 - Decisions and insights not in `knowledge/`: if `knowledge/` exists, write each to `knowledge/_INBOX/{date}-{slug}.md` (frontmatter `title`, `type: inbox`, `timestamp`; body = the insight). Then say "N item(s) captured to `knowledge/_INBOX/`. Run `library process` to file them."
-- Repeated corrections or interruptions: append to `docs/process/learnings.md` per the `learn` skill's `references/persistence-map.md`. Stage only; `learn` classifies.
+- Repeated corrections or interruptions: append to `docs/process/learnings.md` per the `learn` skill's `references/persistence-map.md`. Stage only; `learn` classifies. A lesson about how bob itself should work goes there too, never into agent memory.
 
 Persist nothing durable without the user's confirmation. Nothing found: say nothing.
 

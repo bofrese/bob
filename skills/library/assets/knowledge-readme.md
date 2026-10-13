@@ -23,15 +23,7 @@ Tags are the cross-cutting discovery layer. Click any tag to see all notes with 
 
 | Tag | Covers |
 |-----|--------|
-| #ai | AI/LLM concepts, tools, and patterns |
-| #architecture | System design decisions and structural choices |
-| #process | Workflow patterns and process design |
-| #tooling | Developer tools, configuration, CLI |
-| #knowledge-management | Knowledge systems, PKM, memory architecture, vault design |
-| #naming | Naming conventions and disambiguation |
-| #writing | Documentation and prose guidelines |
-| #context-loading | AI context management and loading strategies |
-| #obsidian | Obsidian-specific tooling and integration |
+| (none yet) | |
 
 ## Maps of Content
 

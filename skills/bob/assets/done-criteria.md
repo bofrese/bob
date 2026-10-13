@@ -66,5 +66,5 @@ Every phase checks applicable items before finishing.
 
 ---
 
-*Last updated: {date}*
+*Last updated: YYYY-MM-DD*
 *Maintained by: bob and humans*

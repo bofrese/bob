@@ -17,7 +17,7 @@ Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Do
 
 Brainstorm decides whether the idea is worth building. Design decides the concept - boundaries, vocabulary, trade-offs - before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
 
-Each step is a separate session (usually separate days). Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
+Each step is a separate session. Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
 
 ## Proportional Paths - Small Work Stays Small
 

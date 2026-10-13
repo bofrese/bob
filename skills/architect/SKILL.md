@@ -30,6 +30,7 @@ Expose these for every change. The human answers them; the AI raises them with e
 - Can the system become simpler through generalization?
 - Should refactoring happen before the feature?
 - Do the implementation choices preserve or weaken the architecture?
+- Does it touch an area documented as inconsistent (a ⚠️ concept note, a `competing` pattern)? Converge it now, or add one more variant?
 
 ## References
 

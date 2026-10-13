@@ -31,6 +31,8 @@ ls docs/process/learnings.md 2>/dev/null
 ls personal/interaction-profile.md 2>/dev/null
 # Recommended external tool: Ponytail plugin (used by the review skill for a lean/over-engineering pass)
 grep -q '"ponytail@ponytail"' "$HOME/.claude/plugins/installed_plugins.json" 2>/dev/null && echo "ponytail: installed" || echo "ponytail: NOT installed"
+# Obsidian vault config (bootstrappable from bofrese/obsidian-for-bob)
+[ -d .obsidian ] && echo ".obsidian: present" || echo ".obsidian: absent"
 # Recommended external tool: Obsidian Skills plugin (authoring skills for Obsidian-flavored markdown/bases/canvas)
 grep -q '"obsidian@obsidian-skills"' "$HOME/.claude/plugins/installed_plugins.json" 2>/dev/null && echo "obsidian-skills: installed" || echo "obsidian-skills: NOT installed"
 

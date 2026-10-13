@@ -23,8 +23,8 @@ For each file, in order:
    - **enrich**: add content or links to existing note, confirm before writing
    - **split**: decompose existing note per reconcile's proposal, confirm each piece
 5. Assess the original inbox file:
-   - Authoritative source (article, research paper, major spec): move to `sources/` using `obsidian move "path=<from>" "to=<to>"` (Obsidian is required; check `obsidian vault info=path 2>/dev/null` matches `$PWD`, else stop and ask the user to open the vault). Name it: `{YYYY-MM-DD}-{short-slug}.{ext}`. Choose a topic subfolder if 3+ source files already cover the same topic; otherwise file flat. Never use typed folder names (decisions/, practices/, research/) in sources/. Add `resource: sources/{path}` to atomic notes derived from it.
-   - Ephemeral capture (rough notes, quick thought): move to `_INBOX/_processed/` using `obsidian move` (Obsidian is required; if the vault is not active, stop and ask the user to open it).
+   - Authoritative source (article, research paper, major spec): move to `sources/` (move per the Rules in `SKILL.md`). Name it: `{YYYY-MM-DD}-{short-slug}.{ext}`. Choose a topic subfolder if 3+ source files already cover the same topic; otherwise file flat. Never use typed folder names (decisions/, practices/, research/) in sources/. Add `resource: sources/{path}` to atomic notes derived from it.
+   - Ephemeral capture (rough notes, quick thought): move to `_INBOX/_processed/` (move per the Rules in `SKILL.md`).
 6. Append any new patterns noticed to `_suggestions.md` (MOC candidates, tag inconsistencies, schema gaps)
 
 ## Batch Processing (≥ 20K tokens)
@@ -87,7 +87,7 @@ Retrieval (the hub's `project-knowledge.md`) prefers `validated` notes over `pro
 - Run reconcile before creating any new note - no exceptions
 - Tags: read the Tags table in `knowledge/README.md` first. If no existing tag fits, propose a new tag with a description, get confirmation, add to README Tags table before using
 - Never delete files - move to `_INBOX/_processed/` or `sources/` only
-- For all moves: use `obsidian move`. Obsidian is required: a hook blocks `mv` on `.md` files. If the vault is not active, stop and ask the user to open it
+- For all moves: follow the move rule in `SKILL.md`.
 - Never add a note to any index without user confirmation
 - Filenames: kebab-case, no date prefix for processed notes; `YYYY-MM-DD-slug.md` for inbox only
 - Never mark a `decision`/`practice` note `status: validated` without at least one `evidence` entry

@@ -17,6 +17,7 @@ Loads: hub story (optional), project-knowledge; files docs/process/learnings.md
 - State the downside: every proposed durable change names its cost (prompt bloat, false positives, rigidity) before it is recommended.
 - Never modify a generic bob skill or a repository-wide instruction without the user's explicit confirmation.
 - Prefer executable enforcement (test, lint rule, hook) over prose when the invariant is deterministic. Prefer a concrete example over general prose when behaviour is hard to specify.
+- Generic, not project-specific: before persisting into a bob skill, ask whether the instruction makes sense in a different project with a different stack. Project specifics appear only as examples.
 - Do not redesign product architecture here: durable architecture insight goes through `design` or `document`. Do not run a second code review or a second reflect; assume both ran.
 - Produce a small set of high-confidence recommendations, never an exhaustive list.
 - Update `docs/process/learnings.md` every run, even when nothing durable is proposed: it is Learn's only memory between sessions.

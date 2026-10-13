@@ -31,16 +31,9 @@ supersedes: optional-note-link
 
 These fields are optional for concept notes with no claim to go stale (pure definitions), required for `decision` and `practice` notes that make a durable claim.
 
-## Tag Taxonomy
+## Tags
 
-Tags are free-form but should be drawn from this list first. Add new tags here as they emerge.
-
-- `ai` - AI/LLM-related
-- `obsidian` - Obsidian tooling
-- `architecture` - system design decisions
-- `tooling` - developer tools and configuration
-- `process` - workflow and process patterns
-- `cli-tooling` - command-line interfaces and tooling
+The Tags table in `README.md` is the only tag list. Use tags from it; propose a new tag there before using it.
 
 ## Naming Conventions
 

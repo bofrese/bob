@@ -46,4 +46,4 @@ Raise a design question when a concept is:
 - mixed heavily with framework or infrastructure details;
 - hidden behind incidental structure instead of an intentional abstraction.
 
-Name the possible reading: architectural smell, refactoring candidate, missing abstraction, competing pattern, accidental complexity, design inconsistency. Never fix it silently. The human decides whether the situation is acceptable.
+Name the possible reading: architectural smell, refactoring candidate, missing abstraction, competing pattern, accidental complexity, design inconsistency. Never fix it silently. The human decides whether the situation is acceptable. An inconsistency that matters to future changes belongs in the concept's documentation, not only in a question.

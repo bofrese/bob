@@ -6,7 +6,7 @@ All notes follow the hub's writing rules. Headings that do not apply to a concep
 
 ```markdown
 # {Concept name}
-*Last verified: {YYYY-MM-DD}*
+*Last verified: {YYYY-MM-DD}* · *Consistency: ⚠️ inconsistent* {only when the note has an Inconsistencies section}
 
 ## TL;DR
 {2-4 bullets: what it is, why it exists, where to start reading.}
@@ -34,7 +34,10 @@ To change it: {where to look first, and what else must change with it.}
 ## Gotchas
 {What trips up a developer or AI working here the first time.}
 
-**Verified by:** {optional: tests, BDD scenarios or executable specs, as backticked paths}
+## Inconsistencies
+{Only when the concept is implemented in several ways without a stated reason. Per item: what differs, where (paths), the risk. Close with one ❓ open question: converge on what?}
+
+**Verified by:** {tests, BDD scenarios or executable specs, as backticked paths; "none" when nothing tests it}
 ```
 
 ## Pattern note - `docs/architecture/patterns/{pattern}.md`
@@ -76,7 +79,7 @@ The index is how the hub's project-knowledge loader picks which notes to load. A
 # Architecture
 
 ## TL;DR
-{2-4 bullets: what the system does, its main shape, and how to use this index.}
+{2-4 bullets: what the system does, its main shape, and how to use this index. If any note is marked ⚠️: one bullet saying that ⚠️ marks an area implemented in several ways, and a change there is the moment to converge, not to add another variant.}
 
 ## How it fits together
 {The one system overview. 40 lines or fewer. Only what no single note can show:}
@@ -88,7 +91,7 @@ The index is how the hub's project-knowledge loader picks which notes to load. A
 ## Concepts
 | Concept | Read when | Note |
 |---|---|---|
-| Authorization policy | Adding an endpoint, changing roles, or a request is denied unexpectedly | [authorization-policy.md](concepts/authorization-policy.md) |
+| Authorization policy ⚠️ | Adding an endpoint, changing roles, or a request is denied unexpectedly | [authorization-policy.md](concepts/authorization-policy.md) |
 
 ## Patterns
 | Pattern | Status | Read when | Note |

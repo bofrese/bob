@@ -15,8 +15,9 @@ Bring the notes in line with what a story actually built. Runs after Review, bef
    - Did the change follow the `established` pattern for its problem?
    - Did it introduce a new or competing variant? Record it in the pattern note (`competing`, open question) and tell the human.
    - Did it strengthen an `emerging` pattern? Propose promotion; the human decides.
-3. **Check drift** in the touched area (architecture, naming, interface, source-organization drift, duplicated concepts). Report with evidence. Do not fix code.
-4. **Propose the change list** (note, change, reason) and get confirmation.
-5. **Write** the notes and update `README.md`. Set `Last verified` on each touched note. Check that each touched note's "Read when" still matches, and update "How it fits together" if the change moved a layer, the shared shape or a store.
+3. **Check inconsistent areas.** If the change touched a ⚠️ concept or a `competing` pattern, record in that note whether it converged, kept or worsened the inconsistency. Update or remove the `## Inconsistencies` items it resolved.
+4. **Check drift** in the touched area (architecture, naming, interface, source-organization drift, duplicated concepts). Report with evidence. Do not fix code.
+5. **Propose the change list** (note, change, reason) and get confirmation.
+6. **Write** the notes and update `README.md`. Set `Last verified` on each touched note. Check that each touched note's "Read when" still matches, and update "How it fits together" if the change moved a layer, the shared shape or a store.
 
 Keep it story-scoped. Drift outside the touched area goes to work routing, not into this update.

@@ -26,6 +26,7 @@ Present a concise status table. No changes yet.
 | bob 3.x names          | ✓ / ⚠ N hits (M fixable) | Fix M; list the rest  |
 | Orphan .md files       | N found         | Review manually              |
 | Ponytail plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
+| Obsidian vault (.obsidian/) | ✓ present / ✗ absent | Offer bootstrap from obsidian-for-bob |
 | Obsidian Skills plugin (recommended) | ✓ installed / ✗ not installed | Recommend install |
 | graphify (recommended) | ✓ installed vX.Y.Z / ⚠ below 0.9.11 / ✗ not installed | Recommend install/upgrade |
 | graphify graph + hook | ✓ built + hook / ⚠ built, no hook / ✗ not built | Offer build + hook |
@@ -70,6 +71,7 @@ One compact table:
 | bob 3.x names | Fixed M, N left to fix by hand: {file:line list} / None found |
 | Orphan files | N found (see above) / None |
 | Ponytail plugin | Installed / Recommended (not installed) |
+| Obsidian vault | Bootstrapped / Declined / Already present |
 | Obsidian Skills plugin | Installed / Recommended (not installed) |
 | graphify | Installed vX.Y.Z / Recommended (install or upgrade to >= 0.9.11) |
 | graphify graph + hook | Offered build/hook / Already built / N/A (not installed) |

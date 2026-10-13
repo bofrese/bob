@@ -49,8 +49,8 @@ def agents_block(root):
 
 def sync_agents_md(root, apply):
     """Bring the AGENTS.md block and the CLAUDE.md import up to date. Returns a list of changes."""
-    if not uses_bob(root):
-        return []
+    if not uses_bob(root):  # no primer to write yet; never report "up to date" here
+        return ["AGENTS.md and CLAUDE.md: pending, written once projects/ or docs/process/done-criteria.md exists"]
     changes = []
     agents, claude = root / "AGENTS.md", root / "CLAUDE.md"
     block = agents_block(root)
@@ -80,7 +80,7 @@ def selftest():
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
-        assert primer(root) == "" and sync_agents_md(root, True) == [] and not (root / "AGENTS.md").exists()
+        assert primer(root) == "" and sync_agents_md(root, True)[0].endswith("exists") and not (root / "AGENTS.md").exists()
         (root / "projects/app").mkdir(parents=True)
         (root / "projects/app/_kanban.md").write_text("x")
         (root / "docs/domain").mkdir(parents=True)

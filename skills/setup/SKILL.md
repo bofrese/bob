@@ -32,7 +32,7 @@ Project infrastructure specialist. Make every bob feature work: create what is m
 2. **Report and confirm**: present the status table and tool recommendations from `references/report.md`. Everything present and current: say "All bob infrastructure is present and up to date. Nothing to do." and stop. Otherwise list what will change and ask "Ready to apply?".
 3. **Repair and bootstrap**: execute only the missing or partial items, per `references/repairs.md`.
 4. **Upgrade done criteria**:
-   - Missing: create `docs/process/` if needed, copy the hub's `assets/done-criteria.md` to `docs/process/done-criteria.md` and set today's date.
+   - Missing: create `docs/process/` if needed, copy the hub's `assets/done-criteria.md` to `docs/process/done-criteria.md` and replace `YYYY-MM-DD` with today's date.
    - Exists: read it and the hub's `assets/done-criteria.md`. From the template's `## DONE` block, collect every `### ` section (heading plus all lines up to the next `### ` or `---`). Insert each section not found verbatim in the project file before its `*Last updated:*` line. Update that line to today. Report the added sections, or "already up to date".
 5. **Unmanaged files**: setup does not judge or rearrange `docs/`; the `document` skill's Audit mode owns that. Orphan `.md` files found by the audit: list them and say "These files are outside bob's managed locations. To migrate: move them to `knowledge/_INBOX/` manually, then run `library process` to classify and file them." None: skip silently.
 6. **Summary**: the summary table in `references/report.md`, then any manual steps left (for example the Obsidian wikilinks setting).

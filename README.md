@@ -131,7 +131,7 @@ Generated from the skill frontmatter by `python3 scripts/check.py --write-readme
 |---|---|
 | `architect` | Bob's architecture judgment - whole-system comprehensibility lenses, domain placement, deep modules, interfaces, source readability, concept identification, design smells, codebase patterns and drift. Use when judging a design, an abstraction, where code belongs, or architectural fit. |
 | `bdd` | Bob's behaviour-driven development principles - Given/When/Then acceptance criteria, testing behaviour not implementation, and the golden done check. Use when defining acceptance criteria or a testing strategy, or when judging whether work is done. |
-| `obsidian` | Bob's Obsidian vault operations - moves and renames .md files through the Obsidian CLI so links stay intact, and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search. |
+| `obsidian` | Bob's Obsidian vault operations - moves and renames .md files so links stay intact (Obsidian CLI, or a link-rewriting script without it), and searches the vault. Use before any mv or git mv of a markdown file, or when the user mentions Obsidian, wikilinks, internal links or vault search. |
 | `ui-design` | Bob's UI design principles - 14 expert lenses (hierarchy, cognitive load, states, typography, Gestalt, touch targets, motion, noise, consistency, emotion, platform, context, brand, whole system) and a final check. Use when designing, reviewing or critiquing any user interface. |
 
 <!-- skills:end -->

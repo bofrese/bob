@@ -27,6 +27,19 @@ Every design challenge should eventually answer:
 - Where will a developer start reading?
 - What likely future change will stress the model?
 
+## Complexity red flags (Ousterhout)
+
+Symptoms that complexity is growing. Each needs evidence (paths), and each is a question, not a verdict.
+
+- **Change amplification:** one simple change needs edits in many places.
+- **Cognitive load:** a developer must know many things to make a change safely.
+- **Unknown unknowns:** it is not obvious which code a change must touch.
+- **Information leakage:** one design decision (a format, a rule, an order) is known in several modules.
+- **Temporal decomposition:** code is split by when things happen, not by what knowledge it hides.
+- **Errors handled after the fact:** callers must check special cases that the design could define out of existence.
+
+Shallow modules, pass-through methods and generic names are in `interfaces-and-readability.md` and below.
+
 ## Generalization policy: semantic, not syntactic
 
 Seek semantic generalization, not syntactic deduplication.
