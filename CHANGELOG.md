@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- `document` note templates: "Depends on" and "Used by" are separate `##` sections with one link per bullet. New "Layout for scanning" rules: icon matrices for dense tables, diagrams for state machines and pipelines, grouped index tables, ⚠️ vs 🔴 in notes.
+- Hub `writing.md`: `mmdc` fallback when puppeteer's headless Chrome is missing.
+- `guidelines`: skills over guidelines (never repeat an installed skill; keep only project-specific rules) and verified API names only. An audit proposes removing guidelines that a skill now covers.
+
 ## 4.0.0
 
 Skills only. Every bob phase is one Agent Skills spec-compliant skill. The listing drops from 58 entries to 29.

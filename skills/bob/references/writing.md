@@ -13,7 +13,7 @@ Two readers: the next phase's agent (facts, decisions, paths, open questions) an
 - Bullets for lists, tables for comparisons and anything with 3+ attributes.
 - Evidence by reference: code paths in backticks (`src/auth/session.ts:42`), markdown links to docs.
 - Verified claims only. A claim about behavior, or a bug, cites the line that makes the decision, read in the file itself, not inferred from which function calls which. A reason nobody recorded is written as "not recorded", never guessed.
-- Diagrams only when they explain more than a list or table. If `mmdc` is installed, validate Mermaid before saving: `mmdc -q -i <file.md> -o <scratch>/out.md` (non-zero exit = syntax error).
+- Diagrams only when they explain more than a list or table. If `mmdc` is installed, validate Mermaid before saving: `mmdc -q -i <file.md> -o <scratch>/out.md` (non-zero exit = syntax error). If it fails with "Could not find chrome-headless-shell", that is the setup, not your diagram: pass `-p <scratch>/pp.json` containing `{"executablePath": "<path to installed Chrome>"}`.
 - End with the next step when there is one. No closing summary.
 
 ## Icons

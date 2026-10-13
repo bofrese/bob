@@ -15,6 +15,8 @@ Loads: files docs/guidelines/README.md
 - A guideline is loaded as AI context whenever its "Applies When" matches the work, often alongside others: keep each under about 60 lines. When one outgrows that, split it by trigger rather than compress it.
 - Research first, codebase second.
 - Tools over rules: if a tool enforces it, list the tool instead of writing a principle.
+- Skills over guidelines: check the installed skills (`.claude/skills/` and the plugin skills in the listing) for the technology first. If a skill covers general practice, the guideline holds only what is specific to this project, or what the AI still gets wrong with the skill loaded. Never repeat a skill.
+- Verified APIs only: check every API, type and modifier name in the official documentation before writing it. An invented API in a guideline is copied into code.
 - Specific over generic: every principle names the technology.
 - Do not modify application code.
 
@@ -32,7 +34,7 @@ Litmus test per principle: specific to this technology? Would a developer with 1
 
 - **Bootstrap**, `docs/guidelines/` missing: scan for languages (by extension), frameworks and key concepts. Propose a list with one-line descriptions and confirm it. Create `docs/guidelines/README.md` with the confirmed list, all marked NOT WRITTEN. Ask which to write first.
 - **Single**, the user names a guideline: go to Writing a guideline.
-- **Maintenance**, guidelines exist: read the README and ask what to do (write, update, add, audit).
+- **Maintenance**, guidelines exist: read the README and ask what to do (write, update, add, audit). An audit also proposes removing guidelines that an installed skill now covers, and checks their API names against the official documentation.
 
 ## Writing a guideline
 

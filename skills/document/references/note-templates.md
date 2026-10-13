@@ -2,6 +2,19 @@
 
 All notes follow the hub's writing rules. Headings that do not apply to a concept are left out. Links per the rules in the `document` skill.
 
+## Layout for scanning
+
+Readers scan for the one fact they need. Prefer more lines over denser lines.
+
+- Lists of links or names: one item per bullet, never a comma-separated line. "Depends on" and "Used by" are separate `##` sections; leave out an empty one.
+- A table whose cells hold clauses: make it an icon matrix (✅ ⚠️ ❌, `-` for not needed) with numbered notes below.
+- A section with more than about 8 bold-labelled bullets: split it into `###` subsections.
+- A family of similar items (types, formats, launch arguments): a table, one row per item.
+- A procedure: a numbered list, one action per step, never one long sentence.
+- A Mermaid diagram where the code has a state machine, a branching decision or a pipeline with more than 3 steps. Not where a table already says it.
+- Index tables with more than about 10 rows: group them under `###` headings (for example by context), not in one long table.
+- ⚠️ in the index means "inconsistent"; inside a note it means a risk (hub icon table). Say which in the index legend.
+
 ## Concept note - `docs/architecture/concepts/{concept}.md`
 
 ```markdown
@@ -24,9 +37,11 @@ All notes follow the hub's writing rules. Headings that do not apply to a concep
 
 To change it: {where to look first, and what else must change with it.}
 
-## Depends on / used by
-- Depends on: [Other concept](other-concept.md)
-- Used by: [Other concept](other-concept.md)
+## Depends on
+- [Other concept](other-concept.md) {optional short reason in parentheses}
+
+## Used by
+- [Other concept](other-concept.md)
 
 ## Patterns
 - [Pattern name](../patterns/pattern-name.md)
@@ -35,7 +50,7 @@ To change it: {where to look first, and what else must change with it.}
 {What trips up a developer or AI working here the first time.}
 
 ## Inconsistencies
-{Only when the concept is implemented in several ways without a stated reason. Per item: what differs, where (paths), the risk. Close with one ❓ open question: converge on what?}
+{Only when the concept is implemented in several ways without a stated reason. Per item: what differs, where (paths), the risk. No ⚠️ per item (the section already says it); 🔴 only where users can lose data or see wrong values without knowing. Close with one ❓ open question: converge on what?}
 
 **Verified by:** {tests, BDD scenarios or executable specs, as backticked paths; "none" when nothing tests it}
 ```
