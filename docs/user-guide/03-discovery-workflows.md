@@ -1,249 +1,67 @@
-# Discovery Workflows
-*Last updated: 2026-06-16*
-
-Optional but powerful: figure out what to build and why before you build it. You can use Discovery standalone (pure product strategy), or alongside Engineering (grounded in a real vision).
-
-## When to Use Discovery
-
-**Use Discovery if:**
-- You're building a new product from scratch
-- The market or customers are changing and your strategy needs revisiting
-- You're unsure whether a problem is worth solving
-- You want to validate business assumptions before committing resources to development
-- You want to understand personas deeply before designing
-
-**Skip Discovery if:**
-- You already have a clear vision and know what to build
-- You're just fixing bugs or building one-off features
-- Discovery was done already and nothing has changed
-
-## The Discovery Pipeline
-
-```
-Product Vision → Personas → Design Brief
-     ↓
-Problem Space → Business Model → Positioning → Validation Plan
-     ↓
-Engineering: Brainstorm → Design → Plan → ...
-```
-
-Not strictly linear - you can loop back. And not all necessary - pick what matters.
-
-**Quick path (most projects):** Vision → Personas → Business Model
-
-**Deep path (new product launch):** Vision → Personas → Design Brief → Problem Space → Business Model → Positioning → Validation Plan
-
----
-
-## Phase 1: Product Vision
-
-**What:** Establish what you're building, who it's for, why it matters.
-
-**When:** At the start of a new project, or when direction needs revisiting.
-
-**Run:** `/bob:product` (vision mode)
-
-The AI asks:
-- What problem are you solving?
-- Who has this problem?
-- What does success look like?
-- Why now? Why you?
-
-**Output:** `docs/product/vision.md`
-
-This is the single source of truth. Everything downstream (personas, plans, brainstorms) references this.
-
-**Output structure:**
-- Problem statement
-- Market opportunity
-- Target persona (rough)
-- Solution approach (high level)
-- Success metrics
-- Why now, why you
-
-**Time:** 45 minutes to 2 hours.
-
----
-
-## Phase 2: Personas
-
-**What:** Detailed characters representing your users. Not demographics on a slide - real people with goals, behaviors, frustrations.
-
-**When:** After vision is clear. Before design or detailed planning.
-
-**Run:** `/bob:product` (personas mode)
-
-The AI grounded in your vision, creates 2-4 detailed personas. Each includes:
-- Name, role, context
-- Goals (what are they trying to accomplish?)
-- Behaviors (how do they currently solve this?)
-- Frustrations (what's broken about current solutions?)
-- How your product helps
-
-**Output:** `docs/product/personas.md`
-
-**Why this matters:** Personas are a shared language. Instead of "users want X", you say "Maya, our busy PM, needs X because she has to juggle 5 projects." This specificity prevents feature bloat and keeps design decisions grounded.
-
-**Time:** 30-60 minutes.
-
----
-
-## Phase 3: Design Brief
-
-**What:** The visual and interactive direction. How should this product feel and look?
-
-**When:** After vision and personas. Before UI design or high-fidelity mockups.
-
-**Run:** `/bob:brand-design` (design-brief mode)
-
-The AI creates a design brief grounded in who your personas are and what they need:
-- Visual style (modern, minimal, playful, etc.)
-- Interaction patterns (wizard vs freeform, modal vs in-place editing, etc.)
-- Brand tone (voice, personality)
-- Key UI principles
-
-**Output:** `docs/product/design-brief.md`
-
-**Why this matters:** A design brief prevents "let me just decide as I go." It's a north star for UI decisions, keeping visual coherence across the product.
-
-**Time:** 20-45 minutes.
-
----
-
-## Phase 4: Problem Space
-
-**What:** Validate that the problem is real and worth solving before you invest in solutions.
-
-**When:** After vision. Before major development commitment.
-
-**Run:** `/bob:product` (problem-space mode)
-
-The AI challenges your assumptions:
-- Is this actually a problem people face?
-- How painful is it? Painful enough to pay for a solution?
-- Why hasn't it been solved already?
-- Are you solving for real users or imagined ones?
-
-You explore evidence (user research, competitor analysis, market signals).
-
-**Output:** `docs/product/problem-space.md`
-
-**Why this matters:** It's easy to build solutions looking for problems. This phase forces you to validate the assumption before sink-costs drive you forward.
-
-**Time:** 30-60 minutes depending on research depth.
-
----
-
-## Phase 5: Business Model
-
-**What:** How do you create and capture value? Pricing, revenue model, unit economics.
-
-**When:** After vision and personas. When strategy is solidifying.
-
-**Run:** `/bob:product` (business-plan mode)
-
-The AI explores:
-- How does the customer get value from this?
-- How do you capture value (subscription, one-time, freemium, etc.)?
-- What are unit economics? How much does it cost to serve one customer?
-- What's your pricing strategy?
-
-**Output:** `docs/product/business-plan.md`
-
-**Why this matters:** You can build the perfect product and still fail if the business model doesn't work. Thinking this through early prevents surprises.
-
-**Time:** 45 minutes to 1.5 hours.
-
----
-
-## Phase 6: Positioning
-
-**What:** How you win in the market. Competitive strategy, differentiation, go-to-market.
-
-**When:** After business model. When you're ready to think about launch or market fit.
-
-**Run:** `/bob:product` (positioning mode)
-
-The AI explores:
-- Who are your competitors?
-- How are you different?
-- Who do you win against?
-- How do you reach customers?
-- What's your launch strategy?
-
-**Output:** `docs/product/positioning.md`
-
-**Why this matters:** The best product doesn't win if no one knows about it or understands why it's better. Positioning forces clarity on this.
-
-**Time:** 1-2 hours.
-
----
-
-## Phase 7: Validation Plan
-
-**What:** A test plan for your biggest assumptions. What are you betting on? How will you test those bets?
-
-**When:** After strategy is defined. Before development or major resource commitment.
-
-**Run:** `/bob:product` (validation mode)
-
-The AI identifies your riskiest assumptions (market size, customer willingness to pay, technical feasibility, etc.) and designs small experiments to test them:
-- Fake landing page signup to validate demand
-- Concierge MVP to validate workflow
-- Price sensitivity interviews
-- Competitive testing
-
-**Output:** `docs/product/validation-plan.md`
-
-**Why this matters:** You can't eliminate risk, but you can reduce it by testing assumptions cheaply before development. This prevents building features no one wants.
-
-**Time:** 30-75 minutes depending on complexity.
-
----
-
-## Discovery Feeding Engineering
-
-Once Discovery is done, it feeds into Engineering automatically:
-
-- `/bob:brainstorm` reads your vision to ground the conversation
-- `/bob:plan` checks against personas and design principles
-- `/bob:review` verifies UI changes fit the design brief
-- Everything is grounded in validated business assumptions
-
-You don't have to re-introduce your strategy every session. It's in the files. Skills read it automatically.
-
----
-
-## Product Coach: The Shortcut
-
-If you don't know which skills to run or want guidance through the whole discovery process, start with:
-
-```
-/bob:product
+# Discovery workflows
+*Last updated: 2026-10-14*
+
+Decide what to build and why, before you build it. Discovery is optional. Use it alone for product strategy, or as the base for engineering work.
+
+## When to use discovery
+
+| ✅ Use it when | ❌ Skip it when |
+|---|---|
+| You start a new product | The vision is clear and nothing has changed |
+| You are not sure the problem is worth solving | You fix bugs or build small features |
+| You want to test business assumptions before you build | Discovery was done and is still current |
+| The market or your customers have changed | |
+
+## One skill, many modes
+
+`/bob:product` is the product coach. Name a mode in your request ("write the vision", "define the personas"), or leave it open: the default coach mode checks what exists, finds gaps and moves to the right mode. Product documents have no story. They are updated in place in `docs/product/`.
+
+| Mode | Answers | Writes |
+|---|---|---|
+| coach (default) | What is missing? What next? | `README.md` (the index of product docs) |
+| vision | What is it, who is it for, why does it matter? | `vision.md` |
+| personas | Who are the users? | `personas.md` |
+| problem-space | Is the problem real and painful enough? Kill or proceed? | `problem-space.md` |
+| business-plan | How do we make money? Pricing, unit economics | `business-plan.md` |
+| positioning | How do we win? Competitors, differentiation, go-to-market | `positioning.md` |
+| validation | Which assumptions are riskiest, and how do we test them cheaply? | `validation-plan.md` |
+
+Two more skills sit next to it:
+
+| Skill | Use for | Writes |
+|---|---|---|
+| `/bob:brand-design` | The design brief (goals, principles, tone, voice), and art direction for UI, brand and web | `docs/product/design-brief.md`, optionally `docs/guidelines/visual-design.md` |
+| `/bob:linkedin` | LinkedIn strategy for consultants, founders and B2B services | - |
+
+## Suggested order
+
+```mermaid
+flowchart LR
+    V[Vision] --> PS[Problem space] --> PE[Personas] --> BP[Business plan] --> PO[Positioning] --> VA[Validation plan]
+    PE --> DB["Design brief<br/>(brand-design)"]
+    VA -.-> ENG["Engineering<br/>brainstorm, design, plan"]
 ```
 
-It's a conversational guide that helps you figure out what you need, guides you through each phase, and maintains the navigation file (`docs/product/README.md`) so you always know what exists and what's missing.
+The order is a suggestion. You can go back at any time, and most projects need only part of it.
 
----
+- **Short path:** vision, personas, business plan.
+- **New product launch:** all of it.
 
-## Solo Discovery or Paired with Engineering?
+## How discovery feeds engineering
 
-**Solo discovery:** You're validating an idea before building. Run discovery, document findings, iterate on strategy. Great for founders, product managers, anyone thinking through strategy.
+You do not repeat your strategy in every session. The skills read it from the files:
 
-**Paired with engineering:** You have a vision and are building features. Start with discovery to establish the foundation (vision, personas, business model). Then switch to engineering skills for brainstorm → plan → implement cycles. Each feature is grounded in the strategy. Strategy can be revisited if market changes.
+| Product file | Read by |
+|---|---|
+| `vision.md` | `brainstorm`, `plan`, `review-plan`, `implement`, `review`, `ui-review` |
+| `personas.md`, `design-brief.md` | `ui-review`, `brand-design`, `user-guide` |
+| `positioning.md`, `personas.md` | `linkedin` |
 
----
+## When you change your mind
 
-## What If You Change Your Mind?
+Run the mode again, for example "update the personas". The product documents describe what you believe today. When you learn something new, update them. Engineering skills read the new version in their next session.
 
-Revise the artifacts. Run `/bob:product` (vision mode) to update vision. Run `/bob:product` (personas mode) to refine personas. Engineering skills pick up the changes automatically.
+## Next steps
 
-The "change your mind" part is the point: these are working documents, not holy scripture. They're statements of what you believe today. When you learn something new, update them and keep moving.
-
----
-
-## Next Steps
-
-- If you have a vision already, read [Engineering Workflows](02-engineering-workflows.md) to move to building.
-- If you need product strategy guidance, run `/bob:product`.
-- If you're solo on discovery without engineering yet, that's fine - discovery stands alone.
+- [Engineering workflows](02-engineering-workflows.md): build what you decided.
+- Not sure where to begin? Run `/bob:product` with no mode.

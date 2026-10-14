@@ -1,219 +1,124 @@
-# Project Management
-*Last updated: 2026-06-23*
+# Project management
+*Last updated: 2026-10-14*
 
-How Bob tracks work across the full lifecycle of a feature - from idea to shipped code.
+Bob tracks work in stories and kanban boards, all as markdown files in `projects/`. The boards render as interactive boards in Obsidian with the Kanban plugin. Without Obsidian they are plain, readable markdown.
 
----
+## Sub-projects
 
-## The Big Picture
-
-Bob uses **stories** to organize work and **Obsidian kanban boards** to track progress. Everything is designed to be used inside Obsidian with the Kanban plugin, which renders `_kanban.md` files as interactive boards you can drag cards across.
-
-> A template Obsidian vault with the right settings and plugins pre-configured will be available in a future release.
-
----
-
-## Sub-Projects
-
-The `projects/` folder doesn't represent one big backlog. It represents **a single product split into concerns**:
+`projects/` holds one product, split into concerns. Each sub-project has its own board and its own story numbers:
 
 ```
 projects/
-├── _index.md        ← lists all sub-projects
-├── APP/             ← main app development
-├── WEB/             ← promotional website
-└── BUS/             ← business/marketing
+├── _index.md     lists all sub-projects
+├── APP/          app development    → APP-001, APP-002 ...
+├── WEB/          website            → WEB-001 ...
+└── BUS/          business           → BUS-001 ...
 ```
 
-One product, multiple sub-projects. Each sub-project is a separate backlog with its own kanban board and story sequence. This keeps concerns clean - you don't want app engineering stories mixed with marketing tasks.
+One sub-project is enough for a simple product. Keep prefixes short (2-4 letters) and stable. A renamed prefix breaks links.
 
-Story IDs are prefixed per sub-project: `APP-001`, `WEB-002`, `BUS-001`. You don't have to use this model - a single `projects/[NAME]/` folder works fine for simpler products.
-
----
-
-## Folder Structure
+## Inside a story
 
 ```
-projects/
-├── _index.md                              # Lists all sub-projects
-└── [SUB-PROJECT]/
-    ├── _kanban.md                         # Sub-project board (stories as cards)
-    └── stories/
-        └── [STORY-ID]/
-            ├── _index.md                  # Story hub - description + history
-            ├── _notes.md                  # Developer notes (grows organically)
-            ├── _kanban.md                 # Task board for this story
-            └── tasks/
-                └── [task-name].md         # One file per task
+projects/{SUB}/stories/{ID}/
+├── _index.md      the story hub: what, why, current state, intent sources, history
+├── _notes.md      your free-form notes
+├── _kanban.md     the task board for this story
+├── input/         original requirements and request recaps
+├── sessions/      dated artifacts: {date}-{type}-{slug}.md
+└── tasks/         one file per task
 ```
 
-Session artifacts (brainstorm reports, plans, reviews) live directly in the story folder:
+Bob creates all of this in one go when you say "new story", or when a phase needs a story and none exists. Do not create story folders by hand.
+
+When a requirement exists only in the conversation, bob writes a complete recap to `input/{date}-request.md`. It shows you the recap first and saves it after you confirm. Later phases read these originals, not summaries of them.
+
+## The boards
+
+### Project board: stories
+
+```mermaid
+flowchart LR
+    IN[INBOX] --> TD[ToDo] --> RF[Refining] --> RD[Ready] --> IP[In Progress] --> VE[Verify] --> DN[Done]
+    IN -.-> AR[ARCHIVE]
 ```
-            ├── 2026-06-15-brainstorm-auth.md
-            ├── 2026-06-16-plan-auth.md
-            └── 2026-06-17-review-auth.md
-```
-
----
-
-## Getting Started
-
-### Bootstrap infrastructure first
-
-Before your first story, run `/bob:setup` once:
-
-```
-/bob:setup
-```
-
-This creates the `projects/` folder with your first subproject and kanban board, plus the `knowledge/` vault and `personal/` notes. One skill, one confirmation, everything in place. Safe to run on any project.
-
-### Starting your first story
-
-Run any engineering skill (`/bob:brainstorm`, `/bob:plan`, etc.) and Bob will:
-
-1. Look for an open story (from Obsidian tabs, recent files, or explicit mention)
-2. If none found, offer to create a new story
-3. Ask for the sub-project name and generate the next story ID automatically
-4. Create the folder, `_index.md`, `_notes.md`, `_kanban.md`, and `tasks/`
-
-**You don't create folder structures manually.** Once set up, you move cards in Obsidian and Bob populates the story folder with artifacts as you work.
-
----
-
-## The Kanban Boards
-
-### Sub-Project Board (`_kanban.md` at sub-project root)
-
-Stories flow left to right through these columns:
 
 | Column | Meaning |
-|--------|---------|
-| **INBOX** | Unreviewed ideas. Candidates, not commitments. |
-| **ToDo** | Committed - decided but not started. |
-| **Refining** | Being brainstormed or planned. |
-| **Ready** | Has a reviewed plan. Ready to implement. |
-| **In Progress** | Implementation underway. |
-| **Verify** | Done, awaiting final sign-off. |
-| **Done** | Shipped and verified. |
-| **ARCHIVE** | Dismissed or deferred. |
+|---|---|
+| INBOX | Ideas that nobody has committed to |
+| ToDo | Committed, not started |
+| Refining | Being brainstormed, designed or planned |
+| Ready | Has a reviewed plan |
+| In Progress | Being built |
+| Verify | Built, waiting for sign-off |
+| Done | Shipped and verified |
+| ARCHIVE | Dismissed or deferred |
 
-### Story Board (`_kanban.md` inside each story folder)
+### Story board: tasks and issues
 
-Tasks and issues within a story:
-
-| Column | Meaning |
-|--------|---------|
-| **Issues** | Bugs and problems found. Prefix: 🔴 critical, 🟡 important, 🟢 suggestion. |
-| **todo** | Planned tasks, not started. |
-| **Ready** | Tasks ready to start (dependencies resolved). |
-| **in progress** | Active work. |
-| **Verify** | Done, awaiting review. |
-| **done** | Completed. |
-
-Task cards link to files in `tasks/`. The card is just a title and link - all detail stays in the task file.
-
----
-
-## How a Story Progresses
-
-Bob drives the content, you drive the board.
-
-| Bob skill | What Bob does automatically | What you do in Obsidian |
-|-------------|----------------------------|------------------------|
-| `/bob:brainstorm` | Creates story folder + files; writes brainstorm report; adds history entry to `_index.md` | Move story card → **Refining** |
-| `/bob:plan` | Writes plan; adds history entry | - |
-| `/bob:review-plan` | Writes review; adds history entry | Move card → **Ready** |
-| `/bob:implement` | Writes code + implementation report; updates task kanban | Move card → **In Progress**, then **Verify** |
-| `/bob:review` | Writes code review; adds history entry | Move card → **Done** once merged |
-
-The history table in `_index.md` is maintained automatically by Bob's done-criteria step - don't edit it by hand.
-
----
-
-## Working in Obsidian
-
-Once a story exists, your day-to-day workflow is in Obsidian:
-
-- **Move story cards** across the sub-project kanban as work progresses
-- **Move task cards** within the story kanban as tasks are picked up and completed
-- **Add issues** to the Issues column as you discover them during implementation or review
-- **Write in `_notes.md`** freely - gotchas, decisions, rabbit holes, code references
-- **Open session artifacts** (plans, brainstorms) directly from the history table in `_index.md`
-
-The Kanban plugin renders `_kanban.md` boards interactively. New task cards created in Obsidian automatically land in the story's `tasks/` folder via the `new-note-folder` setting.
-
----
-
-## Discovered Issues
-
-When you find a problem during implementation or review, add it to the story's **Issues** column with a severity prefix:
+Columns: Issues, todo, Ready, in progress, Verify, done. Task cards link to files in `tasks/`. Issues are plain checkboxes with a severity icon:
 
 ```markdown
 ## Issues
 - [ ] 🔴 Auth token not cleared on logout
-- [ ] 🟡 Replace hardcoded role strings with enum
+- [ ] 🟡 Replace hardcoded role strings with an enum
 - [ ] 🟢 Extract magic numbers to constants
 ```
 
-Issues can be dealt with inline or converted to separate stories.
+## Who updates what
 
----
+| Event | Bob does | You do |
+|---|---|---|
+| A phase writes an artifact | Adds a row to the story's History table, at once | Read it |
+| A phase starts on a task | Moves the task card to `in progress` | Confirm the task if bob asks |
+| A task is finished | Moves the card to `done` | - |
+| Work is discovered (bugs, debt, ideas) | Proposes where to file it and asks once | Say yes, no, or which items |
+| The story is in progress | Moves the story card, sets `status` in `_index.md` | - |
+| The story is done or dismissed | Moves the card and the folder to `archive/done/` or `archive/dismissed/` | Decide that it is done |
 
-## Archive, Don't Delete
+You can always move cards by hand in Obsidian. Do not edit the History table by hand: bob keeps it.
 
-When a story is dismissed or deferred, move its folder to `archive/dismissed/`. When it ships, Bob may move it to `archive/done/`. On the sub-project kanban, move the card to **ARCHIVE**.
+## Where discovered work goes
 
-Why keep it? "Why didn't we do X?" - the archive has the answer.
+Bob routes each finding by type when it shows up:
 
----
+| Finding | Goes to |
+|---|---|
+| The design does not fit reality | Back to the Design Record, or to `/bob:design` |
+| An issue in this story's scope | The story board, `Issues` column |
+| Anything else | The project board, `INBOX`. A likely new story is marked `[Story candidate]` |
+| A lesson about how the AI should work | `docs/process/learnings.md`, for `/bob:learn` |
 
-## Cross-Story Dependencies
+## The `bob` hub as project mentor
 
-Document dependencies in `_index.md`:
+Ask "where are we, what next?" or run `/bob:bob`:
+
+| Ask for | You get |
+|---|---|
+| Where am I (default) | The state of the active story and the next phase. Without a story: what is in flight, ready or blocked, and one recommendation |
+| Which phase | The skill that fits your work, and why that one |
+| Start a new session | Which files to load, and which to leave out |
+| A status report | A written report: foundation, recent activity, gaps, next session |
+
+It can also append a short status to `personal/daily/{date}.md`.
+
+## Dependencies between stories
+
+Write them in the story's `_index.md`:
 
 ```markdown
 ## Blocked By
-- [APP-001](../APP-001/_index.md) - needs auth system first
+- [APP-001](../APP-001/_index.md) - needs the auth system first
 ```
 
-Tracking: keep blocked stories in **ToDo** on the sub-project kanban until the dependency ships. Move them to **Ready** only when the plan is reviewed and dependencies are clear.
-
----
-
-## Using the `bob` hub
-
-The hub skill doubles as project mentor and gives your overview of project state. It has four modes:
-
-**Default - project overview**
-Run `/bob:bob` with no arguments. It reads all sub-project kanbans and in-progress story kanbans, then tells you what's in flight, what's ready to start, what's blocked, and recommends what to work on next. Optionally appends a summary to `personal/daily/YYYY-MM-DD.md`.
-
-**Context optimization**
-Say "help me start a new session on [feature]" and the hub recommends exactly which files to load and which skill to use - keeps context tight.
-
-**Skill recommendation**
-Describe what you want to do ("I want to fix a UI bug") and the hub identifies which bob skill fits and explains the sequence.
-
-**Status report**
-Ask for a status report and the hub writes a structured status report (in the story's `sessions/` folder, else `docs/process/`) covering discovery foundation, recent activity, guidelines coverage, open plans, and gaps.
-
-For a new project with no kanbans yet, the hub detects the absence and recommends starting with `/bob:product` (vision mode, if you want product strategy) or `/bob:brainstorm` (if you want to start building).
-
----
+Keep a blocked story in ToDo until the dependency ships.
 
 ## Tips
 
-**Let Bob build the structure.** The first skill on a new story creates everything correctly. Don't create folders or templates by hand.
+- `_notes.md` is yours. Write gotchas, code pointers and loose decisions there.
+- After weeks away, open the story's `_index.md`. The History table links to everything.
+- Archive, do not delete. The archive answers "why didn't we do X?".
 
-**`_notes.md` is yours.** It's free-form, personal, and not polished. Write in it liberally as you work. It's the place for gotchas, code pointers, and decisions that don't fit a formal artifact.
+## Next steps
 
-**The story folder is persistent context.** When you return to a story after weeks away, the `_index.md` history table is your entry point. Everything links from there.
-
-**Sub-project prefixes clarify scope.** `APP-001` and `WEB-001` are different stories. Keep prefixes short (2-4 chars) and stable - renaming a prefix mid-project breaks links.
-
----
-
-## Next Steps
-
-- Read [Engineering Workflows](02-engineering-workflows.md) to understand how stories flow through phases.
-- Ready to start? Run `/bob:brainstorm` - Bob will create the story structure and start the first session.
+- [Engineering workflows](02-engineering-workflows.md): the phases that fill a story.

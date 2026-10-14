@@ -1,161 +1,77 @@
-# Getting Started with Bob
-*Last updated: 2026-06-23*
+# Getting started
+*Last updated: 2026-10-14*
 
-This guide covers installation and your first session - from "what is this?" to "I just finished my first brainstorm."
+This chapter takes you from installation to your first finished session.
 
-## What is Bob?
+## Install
 
-Bob is a Claude Code plugin that structures AI-assisted development into phases:
-- **Discovery:** Figure out what to build and why (optional, standalone)
-- **Engineering:** Build it disciplined (brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn), proportional to risk - trivial work stays on the `/bob:dev` fast path
-- **Knowledge:** Capture guidelines and documentation so every future session is better
-
-Each phase is a separate session with a clear skill. You can call a skill with `/bob:<name>` or just describe your work: in a bob project the `bob` hub and a session primer pick the phase. Each session writes its output to files. The next session reads those files. You decide at every step - the AI explores options and surfaces trade-offs.
-
-## Installation
-
-```claude
+```
 /plugin marketplace add bofrese/claude-plugins
 /plugin install bob@bofrese-plugins
 ```
 
-Update later with `/plugin update`, then run `/bob:setup` in each project (it also fixes old 3.x names; see the README upgrade note).
+Bob depends on the `plain-writing` plugin from the same marketplace. It holds the writing rules for every file bob writes.
 
-To work on bob itself, clone the repo and start Claude with `claude --plugin-dir <path>`.
+To update later, run `/plugin update`, then run `/bob:setup` in each project. Setup also finds and fixes skill names from bob 3.x.
 
-## Your First Session
+Optional companions that `/bob:setup` recommends: Ponytail (an over-engineering pass in code review), Obsidian Skills, graphify (a code knowledge graph) and the Mermaid CLI (diagram validation). The [README](../../README.md#installation) has the install commands.
 
-Here's what a typical first session looks like:
+## Your first session
 
-### 1. Open Claude Code in your project
-```bash
-cd /path/to/your/project
-claude
+1. Open Claude Code in your project:
+   ```bash
+   cd /path/to/your/project
+   claude
+   ```
+2. Run `/bob:setup`. It audits the project, shows what is missing and creates it after one confirmation. It is safe to run again at any time.
+3. Ask "Bob, where are we and what next?" or run `/bob:bob`. The hub reads your boards and recommends one next step.
+4. Start the work that fits:
+
+   | Your situation | Start with |
+   |---|---|
+   | New product, strategy is open | `/bob:product` |
+   | A feature idea | `/bob:brainstorm` |
+   | A small, clear change | `/bob:dev` |
+   | A bug with an unknown cause | `/bob:investigate` |
+   | A codebase with no architecture docs | `/bob:document` |
+   | Not sure | Describe it in plain words |
+
+5. Read the result and push back. The AI made assumptions. Ask questions, disagree, and let it revise before it writes the final file.
+6. Close the session when the artifact is written. The next session reads it from disk.
+
+## What setup creates
+
+| Path | Holds | In git? |
+|---|---|---|
+| `projects/` | Stories, kanban boards and session artifacts | ✅ |
+| `knowledge/` | The knowledge vault | ✅ (except `_INBOX/`) |
+| `docs/process/done-criteria.md` | What "done" means in this project | ✅ |
+| `AGENTS.md` block, `CLAUDE.md` import | The bob primer for Claude Code and other agents | ✅ |
+| `personal/daily/`, `personal/weekly/` | Your private daily notes | ❌ gitignored |
+
+Other skills create the rest when they first need it: `docs/product/`, `docs/architecture/`, `docs/guidelines/` and `docs/domain/`.
+
+## How sessions connect
+
+Each phase is a separate session that reads the files the earlier phases wrote:
+
+```mermaid
+flowchart LR
+    S1["Session 1<br/>/bob:brainstorm"] -->|brainstorm brief| S2["Session 2<br/>/bob:design"]
+    S2 -->|design record| S3["Session 3<br/>/bob:plan"]
+    S3 -->|plan| S4["..."]
 ```
 
-### 2. Run `/bob:setup` on a new project
-If this is a brand-new project (or you've just installed bob on an existing one), run:
+All artifacts of one feature live in its story folder, `projects/{sub}/stories/{ID}/sessions/`. When you start a phase, bob finds the story from your request, from files you name, or from the story files open in Obsidian. If it is not sure, it asks.
 
-```
-/bob:setup
-```
+## What not to do
 
-It audits what's present, shows you a summary, and with one confirmation creates everything missing:
-- `projects/` folder with your first subproject and kanban board
-- `knowledge/` vault for capturing learnings
-- `personal/daily/` for daily notes (where the `bob` hub can append status summaries)
-- `.gitignore` entries to keep private folders local
-- `docs/process/done-criteria.md`
+- ❌ **Brainstorm, plan and implement in one session.** A fresh session sees what a long one no longer can.
+- ❌ **Skip reading the output.** Your job is to check the assumptions before they become code.
+- ❌ **Keep decisions only in the chat.** If it is not in a file, the next session does not know it.
+- ❌ **Run the full loop for a one-line fix.** Use `/bob:dev`. Small work stays small.
 
-Idempotent - safe to run on any project, new or existing. Skip this if you're returning to an established project.
+## Next steps
 
-### 3. Run `/bob:bob` to see where you are
-The project mentor reads your kanban boards and tells you what's in flight, what's ready, and what to work on next.
-
-### 4. Pick your starting point
-
-**Brand new product?**
-Run `/bob:product`. It guides you through vision, validation, business model, and positioning.
-
-**Have a feature idea?**
-Run `/bob:brainstorm`. The AI asks structured questions to help you think it through. You leave with a clear direction documented.
-
-**Not sure where to start?**
-Just say "Hi Bob, where should I begin?" - Bob reads what exists and tells you exactly what to do first.
-
-**Inherited a codebase with no docs?**
-Run `/bob:document`. On a project without architecture notes it proposes a map of concepts and patterns for you to confirm, then writes the notes.
-
-**Want better development workflows but not product stuff?**
-Skip Discovery. Start with `/bob:brainstorm` for your next feature.
-
-### 4. Engage with the output
-
-Every skill produces a report - a brainstorm, plan, review, or implementation report. **Read it carefully.** The AI has done the groundwork (read the codebase, thought through options, made assumptions). Now you engage with it.
-
-- Does the plan make sense? Push back on parts that don't.
-- Are there questions you want to explore deeper? Ask them.
-- Should we do it differently? Say so. The AI can revise.
-
-When you're ready, ask the AI to write the final report to a file.
-
-### 5. You're done for this phase
-
-Close Claude. Files are saved. You can come back tomorrow, or hand off to a colleague. Everything they need is in the files - no chat history required.
-
-## File Locations
-
-Bob creates files in four places. Understanding this prevents confusion:
-
-| Folder | What lives here | Lifespan |
-|--------|-----------------|----------|
-| `docs/product/` | Vision, personas, design briefs, business model | Permanent - read and updated in place |
-| `docs/guidelines/` | Best-practice guides for your tech stack | Permanent - reference and maintain |
-| `projects/` | Stories, plans, brainstorms, implementation notes | Working memory - organized by story |
-| `personal/` | Daily notes, weekly notes, scratchpad | Local only (gitignored) |
-
-**Key insight:** `projects/` is where decisions live. `docs/` is what you ship and maintain. They work together - engineering skills read vision from `docs/`, write plans to `projects/`.
-
-`personal/` and `knowledge/_INBOX/` are gitignored by default - they're for you, not the team.
-
-## Your Second Session
-
-New day, new idea. You open Claude again:
-
-```bash
-/bob:brainstorm
-```
-
-Bob asks which story you're working on (it tries to detect it from Obsidian tabs or recent files). You confirm or specify. Then you brainstorm, and it writes to `projects/[subproject]/stories/[ID]/`.
-
-The next day:
-
-```bash
-/bob:plan projects/[subproject]/stories/[ID]/2026-06-16-brainstorm-notifications.md
-```
-
-Bob reads your brainstorm, examines the codebase, and walks you through a detailed plan.
-
-This is the flow: each skill reads the previous skill's output. Files are the memory. Each session is focused and independent.
-
-## What Not to Do
-
-- **Don't try to brainstorm, plan, and implement in one session.** Session boundaries exist for a reason - they keep context clean and force you to make decisions explicit. One skill, one session, one artifact.
-
-- **Don't skip reading the output.** The AI made assumptions. Your job is to verify they're right before they become code.
-
-- **Don't expect perfection on first draft.** Plans will need refinement. Code will need review. This is normal. The process surfaces and corrects problems - that's the whole point.
-
-- **Don't work in chat history.** If you change files directly in code, run the appropriate skill (`/bob:review`, `/bob:implement`) so the artifact matches reality.
-
-## Key Skills for Getting Started
-
-| Skill | When to use | Output |
-|---------|------------|--------|
-| `/bob:bob` | "What should I do next?" - project status and recommendations | Status report (optional) |
-| `/bob:brainstorm` | "I have an idea for a feature" | `{story_path}/{date}-brainstorm-{slug}.md` |
-| `/bob:plan` | "Turn this brainstorm into a plan" | `{story_path}/{date}-plan-{slug}.md` |
-| `/bob:implement` | "Execute this approved plan" | Modified code + implementation report |
-| `/bob:review` | "Is this code ready to ship?" | Code review report |
-
-See [Skills Reference](06-skills-reference.md) for the full list.
-
-## Next Steps
-
-- Read [Project Management](04-project-management.md) to understand how stories and tasks work.
-- Read [Engineering Workflows](02-engineering-workflows.md) to see the full brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn cycle, and the proportional fast/standard/full paths.
-- Read [Knowledge Management](05-knowledge-management.md) when you've shipped your first feature and need to document it.
-
-## Troubleshooting
-
-**Bob asks for a story context and I don't have one yet**
-
-If you're starting completely fresh, say "new story" and Bob will set one up. If you want to understand story structure first, read [Project Management](04-project-management.md).
-
-**I closed Claude and can't remember what I was working on**
-
-That's fine. Run `/bob:bob` to see recent activity and pick up where you left off.
-
-**I want to work on just one small file without all the ceremony**
-
-You can use Claude for that without Bob at all. Bob is best for features, refactors, and any work where planning matters. For a quick fix, just use Claude normally.
+- [Engineering workflows](02-engineering-workflows.md): the phases and when to use each.
+- [Project management](04-project-management.md): stories, tasks and boards.

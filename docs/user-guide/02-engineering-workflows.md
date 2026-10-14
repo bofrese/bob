@@ -1,325 +1,155 @@
-# Engineering Workflows
-*Last updated: 2026-08-23*
+# Engineering workflows
+*Last updated: 2026-10-14*
 
-The core pipeline: turn ideas into shipped, tested, documented code. This is where you'll spend most of your time.
+How a change travels from idea to shipped, owned code. Each phase is a separate skill and usually a separate session. Each phase answers one question, and you answer it with the AI's help.
 
-## The Pipeline at a Glance
+## Choose the depth first
 
-```
-Brainstorm (idea) → Design (concept) → Plan (how to build) → [Review Plan] → Implement (write code) → Review (quality check) → Document (update architecture notes) → Handover (the change as a story) → Reflect (recover ownership) → Learn
-```
+Not every change needs every phase. Bob scales the process to the risk of the change.
 
-But there's a critical step you might miss: **Review the plan before implementing.** A fresh set of eyes catches problems that the planning session missed.
+| Depth | Use when | Phases |
+|---|---|---|
+| 🟢 Fast | The change is local, reversible, settled and easy to verify | `/bob:dev` only |
+| 🟡 Standard | The intent is clear, but the change needs a design or a plan | Start where the open question is, usually Design or Plan |
+| 🔴 Full | New domain concepts, public contracts, migrations, changes across boundaries | The whole loop |
 
-```
-Brainstorm → Design → Plan → [Review Plan] → Implement → Review → Document → Handover → Reflect → Learn
-```
+If you are not sure, describe the work. The `bob` hub rates it and recommends a depth.
 
-Brainstorm decides whether the idea is worth building. Design decides the concept - boundaries, vocabulary, trade-offs - before any file gets planned. Skip Design when the requirement is already stable and simple; go straight from Brainstorm (or from a known requirement) to Plan.
+`/bob:dev` checks four questions before every change. Does it add a domain concept? Does it change a contract? Does it cross a module or service boundary? Is it hard to reverse? If any answer is yes, it stops and recommends `/bob:design`.
 
-Each step is a separate session. Each session reads the previous output, produces a new output, and you make a go/no-go decision before moving forward.
+## The loop
 
-## Proportional Paths - Small Work Stays Small
-
-Not every change earns the full pipeline. Bob classifies work qualitatively (new concept? contract change? boundary crossing? hard to reverse?) and scales accordingly:
-
-- **Fast** - `/bob:dev`. No brainstorm/design/plan/review cycle at all - a working session for local, reversible, conceptually settled changes. If a "quick fix" turns out to cross one of the four questions above, `/bob:dev` says so and recommends `/bob:design` instead of quietly proceeding.
-- **Standard** - Design → Plan → Implement → Review → Document → Handover → a short Reflect. Brainstorm is skippable when intent is already clear.
-- **Full** - the whole loop above, for new domain concepts, public contracts, migrations, or broad cross-boundary changes.
-
-The `bob` hub applies this classification when you're not sure which path fits - describe the work and it recommends fast/standard/full rather than defaulting to the full pipeline "because it exists."
-
-## Learn - Closing the Loop
-
-After Reflect (or after any session that surfaced a real friction point), `/bob:learn` looks for durable harness lessons - a repeated correction, a missing tool, a prompt gap - and either proposes a concrete improvement to bob itself or produces nothing (a valid, common outcome). It stages "seen once" occurrences in `docs/process/learnings.md` so a second occurrence across sessions isn't lost. Name one skill and `/bob:learn` runs in scoped mode, limited to improving that skill.
-
-## Phase 1: Brainstorm
-
-**When:** You have an idea you want to think through properly.
-
-**What you do:** Say `/bob:brainstorm` and describe the idea. The AI asks structured questions to help you explore it.
-
-**The AI guides you through:**
-1. **Diverge** - What are different ways to solve this? What alternatives exist?
-2. **Converge** - Which approach is best given what matters (effort, impact, user value, technical fit)?
-3. **Detail** - Flesh out the chosen approach. What's the user experience? What are the limitations?
-4. **Commit** - Summarize what we're doing, open questions, and confirm you're ready to move forward.
-
-Brainstorm challenges the idea for value. It does not decide architecture - that's Design's job next.
-
-**Output:** `{story_path}/{date}-brainstorm-{slug}.md` (a Brainstorm Brief)
-
-A complete record of what you discussed, what you considered, what you decided, and why. This becomes input to Design (or straight to Plan, if the requirement is already stable and simple).
-
-**Time:** 30 minutes to 1.5 hours depending on complexity.
-
----
-
-## Phase 2: Design
-
-**When:** After brainstorm, for conceptually meaningful work. Skip straight to Plan when the requirement is already stable and simple.
-
-**What you do:** Run `/bob:design`. The AI reads your Brainstorm Brief (or accepted requirement), inspects the repository for existing concepts and boundaries, and runs a Socratic conversation - one question or tightly-related batch at a time.
-
-**The AI works through:**
-- What existing concept in the codebase might already express this?
-- What genuine new concept, if any, is needed?
-- What complexity does this remove, introduce, or move?
-- Where would another developer start reading this?
-- What future change would put pressure on this design?
-
-You're treated as an experienced developer: concise, specific answers are accepted as-is. The AI only pushes back when a material term is ambiguous, a trade-off is left unowned, or the answer conflicts with what it found in the repository.
-
-**Output:** `{story_path}/{date}-design-{slug}.md` (a Design Record)
-
-The authoritative conceptual intent that Plan, Review Plan, Implement, Review, and Reflect all read from. A valid outcome can also be "return to Brainstorm," "investigate first," or "do not build" - Design isn't required to end in a green light.
-
-**Time:** 20 minutes to 1 hour depending on conceptual weight.
-
----
-
-## Phase 3: Plan
-
-**When:** After Design (or after Brainstorm/a known requirement, for simple work), before any code is written.
-
-**What you do:** Run `/bob:plan` and point it at your brainstorm report (or just the story context if bob detects it):
-
-```
-/bob:plan projects/myapp/stories/APP-001/2026-06-16-brainstorm-auth.md
+```mermaid
+flowchart LR
+    B[Brainstorm] --> D[Design] --> P[Plan] --> RP["Review plan<br/>(optional)"] --> I[Implement] --> R[Review]
+    R --> DOC[Document] --> H[Handover] --> RF[Reflect] --> L[Learn]
+    P -.->|design feedback| D
+    RP -.->|return to design| D
+    I -.->|design signal| D
+    R -.->|design concern| D
 ```
 
-The AI reads the brainstorm, examines the codebase, and walks you through implementation step by step.
+The dotted lines matter. When a later phase finds a conceptual problem, it goes back to Design. It is not patched locally.
 
-**The plan includes:**
-- **Approach** - How the change will be made. Where code will live. What patterns will be used.
-- **Test strategy** - What needs to be tested *before* implementation. Using BDD (Given/When/Then) thinking.
-- **Implementation steps** - Concrete numbered steps, one per code change or feature.
-- **Questions & decisions** - Flags things the plan is unsure about. Your job is to answer or override.
-- **Risks** - What could go wrong? What assumptions are we making?
+At the end of each phase, bob names the next phase and why. It only recommends: you start each phase.
 
-**Output:** `{story_path}/{date}-plan-{slug}.md`
+## Phases at a glance
 
-The plan is self-contained: someone who wasn't in the brainstorm conversation could pick this up and implement it.
+| Phase | Question it answers | Output in `{story}/sessions/` |
+|---|---|---|
+| `/bob:brainstorm` | Is this worth building, and what outcome do we want? | `{date}-brainstorm-{slug}.md` (Brainstorm Brief) |
+| `/bob:design` | What is the simplest coherent concept for this system? | `{date}-design-{slug}.md` (Design Record) |
+| `/bob:plan` | What sequence of changes builds it safely? | `{date}-plan-{slug}.md` |
+| `/bob:review-plan` | Does the plan hold up against the real code? | `{date}-review-plan-{slug}.md` |
+| `/bob:implement` | How do we build it without losing the intent? | Code + `{date}-implement-{slug}.md` |
+| `/bob:review` | Is the change correct? | `{date}-review-{slug}.md` |
+| `/bob:document` | Do the architecture notes match the code? | Notes in `docs/architecture/` |
+| `/bob:handover` | Can you approve the change and own it? | `{date}-handover-{slug}.md` |
+| `/bob:reflect` | Do you understand what was built? | `{date}-reflect-{slug}.md` (Reflection Record) |
+| `/bob:learn` | What should the AI harness learn from this? | `{date}-learn-{slug}.md` |
 
-**Critical:** Read the Questions & Decisions table. These are things the AI flagged as needing your judgment. Answer them. If you disagree with the approach, change it. The plan must be something *you* are genuinely happy with before moving forward.
+## Brainstorm
 
-**Time:** 30 minutes to 1 hour.
+**Use when** the value, the outcome or the framing of an idea is open.
 
----
+The AI coaches you through five steps: seed, diverge, converge, detail and commit. It challenges the idea for value. It does not decide architecture or code.
 
-## Phase 4: Review the Plan (Don't Skip This)
+**Your job:** pick the direction and say what is out of scope.
 
-**When:** Plan is written but before implementation starts.
+## Design
 
-**What you do:** Run `/bob:review-plan` and point it at your plan:
+**Use when** concepts, boundaries, naming or the fit with the rest of the system are open. Skip it when the requirement is stable and simple.
 
-```
-/bob:review-plan projects/myapp/stories/APP-001/2026-06-16-plan-auth.md
-```
+The AI reads the Brainstorm Brief, looks for concepts the codebase already has, then asks questions one at a time:
 
-This skill does something critical: it ignores the planning session. Fresh context. No memory of the conversation that produced the plan. It re-reads the codebase independently and checks:
-- Does the plan's description of the current codebase match reality?
-- Are there simpler approaches the plan missed?
-- Are there security issues or edge cases not covered?
-- Is the plan overengineered?
+- Does an existing concept already express this?
+- What new concept, if any, is needed?
+- What complexity does this remove, add or move?
+- Where would another developer start reading?
 
-**Why this matters:** The longer a conversation goes, the less likely the AI pushes back. You expect a thinking partner. You get an enthusiastic yes-person. Session boundaries kill that. A plan reviewed fresh gets genuine critique, not polite agreement.
+Short, specific answers are accepted. The AI pushes back only when a term is ambiguous, a trade-off has no owner, or your answer conflicts with the code. "Do not build" or "investigate first" are valid results.
 
-**Output:** `{story_path}/{date}-review-plan-{slug}.md`
+**Your job:** own the concept. The Design Record is the intent that every later phase reads.
 
-If the review flags problems: update the plan and re-review it if needed. If the review approves it: move forward with confidence.
+## Plan
 
-**Time:** 20-40 minutes depending on plan complexity.
+**Use when** the design is owned and you need the execution shape.
 
----
+The plan describes the current system, any refactoring to do first, numbered implementation steps, a testing strategy with Given/When/Then acceptance criteria, risks, and a Questions & Decisions table. An Intent Coverage table maps every requirement to a step. The plan is self-contained: someone who was not in the earlier sessions can execute it.
 
-## Phase 5: Implement
+**Your job:** answer every row in the Questions and Decisions table. Do not continue until you agree with the plan.
 
-**When:** Plan is reviewed and approved.
+## Review plan
 
-**What you do:** Run `/bob:implement` and point it at your approved plan:
+**Use when** the risk or uncertain facts justify an independent check.
 
-```
-/bob:implement projects/myapp/stories/APP-001/2026-06-16-plan-auth.md
-```
+A fresh session reads the plan as someone else's work and checks it against the real codebase: wrong assumptions about the code, simpler solutions, security gaps, missing intent. It only reviews. It never edits the plan.
 
-The AI reads the plan and executes it step by step. For each step:
-1. Run the test suite first to establish a green baseline
-2. Implement the step as described in the plan
-3. Run tests after each change to verify it works
-4. If it hits something the plan didn't anticipate: stop and ask you
-5. If it spots a small improvement: make it and note it in the report
+**Your job:** decide which findings change the plan.
 
-**Output:** Modified code + `{story_path}/{date}-implement-{slug}.md`
+## Implement
 
-The implementation report documents what was built, any deviations from the plan, discoveries made along the way, and verification that tests pass.
+**Use when** the plan is approved and you ask for it to be built.
 
-**Your role:** Watch for surprises. The AI might ask you a question mid-implementation (unexpected complexity, decision needed). Answer it. Otherwise, trust the plan.
+The AI runs the tests first to get a green baseline, then works through the steps with tests at each one. It continues alone on mechanical friction. It pauses when the code shows that the design does not fit reality, for example a new concept the design did not have, a contract change, or a test that disproves an assumption. Each pause states what it saw, where, and what decision it needs.
 
-**Time:** Varies wildly (30 minutes for a small change, several hours for a complex feature). The AI does the heavy lifting.
+**Your job:** answer the pauses. The Implementation Note records every deviation and design signal.
 
----
+## Review
 
-## Phase 6: Code Review
+**Use when** the change must be checked independently.
 
-**When:** Implementation is complete and tests pass.
+The AI finds the scope from git and checks the change against the plan, the Design Record, the guidelines and the done criteria. It looks for bugs, design drift and system health. If Ponytail is installed, it also runs an over-engineering pass. It reports, it does not fix.
 
-**What you do:** Run `/bob:review`:
+**Your job:** decide what to fix. You do not have to accept every finding.
 
-```
-/bob:review
-```
+## Document
 
-The AI auto-detects what changed (git diff), reads the plan to compare intent vs reality, reads your project guidelines, and walks you through findings one at a time.
+**Use when** the change touched concepts or patterns that the architecture notes describe.
 
-**What it checks:**
-- Does the code do what the plan said it would?
-- Is the code clean? Are there refactoring opportunities?
-- Do the tests verify behavior (not just implementation)?
-- Does the code follow project guidelines?
-- Is the codebase still healthy after this change?
+`/bob:document` updates `docs/architecture/` to match the code that was built, not the design. It reports drift as questions and never fixes it silently. Only you can mark a pattern as `established`.
 
-**Output:** `{story_path}/{date}-review-{slug}.md`
+## Handover
 
-A handoff document: anyone can read this and own the code confidently. For significant agent-implemented changes, Review recommends the rest of the loop: `/bob:document` (Update), then `/bob:handover`, then `/bob:reflect`.
+**Use when** the AI wrote much of the change and you must own the result.
 
-**Your role:** Fix things the review flags. If you disagree with a finding, say so (you're not obligated to fix everything). When the review is approved, you can merge.
+The Handover replaces the pull request. It tells the change in reading order, concept by concept, with the code and the reasoning at each place. Small mechanical changes are grouped into sweeps. A script checks that every changed file is in it.
 
-**Time:** 20-60 minutes depending on change size and review depth.
+**Your job:** read it, then commit it. Its commit is the starting point for the next handover.
 
----
+## Reflect
 
-## Phase 7: Document
+**Use when** you have read the Handover, or the implementation surprised you.
 
-**When:** After Review, when the change touched concepts or patterns the architecture notes describe. Skipped on the fast path.
+A short peer conversation with two to five questions taken from evidence: parts of the change that are hard to explain, design signals that fired, smells. You answer first. The AI looks at the code with you only where an answer is vague. "No gap, ownership is clear" is a valid and common result.
 
-**What you do:** Run `/bob:document`. It updates the canonical architecture notes in `docs/architecture/` to match the code that was actually built, not the Design Record.
+## Learn
 
-**The AI works through:**
-- Which concept notes change, and which new concepts appeared.
-- Patterns: did the change follow an `established` pattern, introduce a competing one, or strengthen an `emerging` one? Only you promote a pattern to `established`.
-- Drift in the touched area (naming, interfaces, source organization), reported as questions, never silently fixed.
+**Use when** a session showed a lesson about how the AI should work.
 
-On a project without `docs/architecture/`, the first run is **Discover**: it proposes a list of concepts and patterns for you to confirm before writing anything. **Audit** checks existing notes against the code on request.
+Learn looks at corrections, interruptions and repeated review findings. A lesson seen once is only logged in `docs/process/learnings.md`. A second occurrence makes it a candidate for a change to a skill, the repository instructions, a guideline or a script. "No lesson this time" is a common and valid result.
 
-**Output:** small, linked notes in `docs/architecture/concepts/` and `docs/architecture/patterns/`, indexed by `docs/architecture/README.md`.
+Name one skill ("improve plan from this session") and Learn runs in scoped mode for that skill only.
 
-**Time:** 10-40 minutes.
+## Beside the loop
 
----
+| Skill | Use when | Output |
+|---|---|---|
+| `/bob:investigate` | A bug needs a root cause, not a quick fix | Investigation report with fix options. It never fixes. |
+| `/bob:ui-review` | A screen, flow or app needs an expert UI/UX review | Ranked findings. It implements only if you ask. |
+| `/bob:dev` | A quick fix or a direct change | Code. No session artifact. |
 
-## Phase 8: Handover
+## What if...
 
-**When:** After Document, when meaningful work was delegated to AI and you must own the result. Skipped on the fast path.
+| Situation | What to do |
+|---|---|
+| The plan review found a problem | Update the plan. Run the review again if the change was large. |
+| You disagree with a review finding | Say why. You decide what ships. |
+| Implementation paused on a design signal | Answer it, or return to `/bob:design` if the concept is wrong. |
+| A "quick fix" in `/bob:dev` turned into a design question | Follow its recommendation and run `/bob:design`. |
+| You changed code by hand between phases | Run `/bob:review` so the artifacts match the code again. |
 
-**What you do:** Run `/bob:handover`. It gathers the change set (since the last handover, across the story repo and its submodules), asks you to confirm the scope, offers to stage stray files, and writes the change for you to approve instead of a pull request: the full diff in reading order by concept, with the code shown and the reasoning at each place, small mechanical changes grouped into sweeps, and the future impact. A coverage check makes sure every changed file is in it.
+## Next steps
 
-**Output:** `{story_path}/sessions/{date}-handover-{slug}.md`. Commit it: its commit is the baseline for the next handover.
-
-**Time:** 5-15 minutes to generate; read it before Reflect.
-
----
-
-## Phase 9: Reflect
-
-**When:** After you have read the Handover, for significant agent-implemented changes. Optional for small, mechanical work.
-
-**What you do:** Run `/bob:reflect`. Correctness is settled and the Handover gave you the map. This is a short, peer-to-peer conversation that probes the territory beyond it.
-
-**The AI works through:**
-- Two to five questions from actual evidence: parts of the Handover you cannot yet explain, deviations Review noted, design smells, drift or missed simplifications visible in the change.
-- You answer first; it only digs in together with you where the answer is vague.
-- What future pressure or fragile assumption this design now carries.
-
-You're never asked to recall code line by line. A short "no gap, ownership is clear" record is a valid and common outcome.
-
-**Output:** `{story_path}/sessions/{date}-reflect-{slug}.md` (a Reflection Record), with candidates for `/bob:learn`, `/bob:document` and the backlog.
-
-**Time:** 5-20 minutes; often much shorter when ownership is already clear.
-
----
-
-## What If?
-
-### "The plan has a problem that the review just caught"
-
-Update the plan and re-run review. The review should approve the revised plan. Then proceed to implementation.
-
-### "I disagree with something in the code review"
-
-That's fine. Code review is a conversation. Discuss it with the AI. The review might be wrong. You might change your mind. Either way, you decide what ships.
-
-### "Something went wrong during implementation"
-
-The AI should catch it and ask you. If it doesn't, run `/bob:review` on the partial implementation. Fix what it flags. Then continue or resume from a known good state.
-
-### "The plan was incomplete and I had to improvise"
-
-That's okay. Document what you did in the implementation report and mention it. The review will check it. If it's good, great. If it needs adjustment, fix it.
-
----
-
-## The Rhythm
-
-Once you've done this a few times, it becomes a rhythm:
-
-**Day 1 - Brainstorm**
-Morning coffee, 1 session, 1 artifact, clear direction.
-
-**Day 2 - Design**
-Concept locked down: boundaries, vocabulary, trade-offs. Skip this day for simple, stable work.
-
-**Day 3 - Plan**
-New session, fresh thinking, complete plan written.
-
-**Day 4 - Review Plan**
-Catch problems the planning session missed.
-
-**Day 5 - Implement**
-Follow the plan, write code, verify it works.
-
-**Day 6 - Review**
-Freshly reviewed code with guidelines applied.
-
-**Day 7 - Document and Handover**
-`/bob:document` updates the architecture notes to match what was built; `/bob:handover` narrates the full change for you to approve instead of a pull request, before Reflect.
-
-**Day 8 - Reflect**
-Short peer conversation, after reading the Handover, to make sure you own the mental model, not just the AI session. Often 10 minutes.
-
-Do it again next week with a different feature. By the tenth feature, you'll notice the quality is consistent, decisions are recorded, and context doesn't disappear between sessions.
-
----
-
-## Guidelines and Patterns
-
-As you build more features, you'll notice patterns. Good things to capture:
-
-- How this codebase solves recurring problems (validation, integrations, errors): `/bob:document` records them as pattern notes in `docs/architecture/patterns/`, with status `emerging`, `competing` or (on your word) `established`.
-- Technology pitfalls for your stack: `/bob:guidelines` captures them in `docs/guidelines/`.
-
-Both These guidelines load automatically in future brainstorms and reviews. They elevate code quality over time without you having to repeat yourself.
-
-See [Knowledge Management](05-knowledge-management.md) for details.
-
----
-
-## The Discipline
-
-The reason this works is session boundaries. Each session is:
-- Focused on one phase
-- Starting fresh with no memory of previous conversations
-- Producing a clear artifact
-- Requiring human sign-off before moving forward
-
-You avoid the trap of "we've been talking about this for 3 hours, I guess we should implement it." Each phase has its own decision point. Each decision is recorded. Each artifact is read again before the next phase.
-
-This discipline is what maintains quality over time. It's also what makes it possible for someone else to pick up mid-project and understand everything that's happened.
-
----
-
-## Next Steps
-
-- Read [Project Management](04-project-management.md) to understand how to organize stories and tasks.
-- Read [Skills Reference](06-skills-reference.md) for details on each skill.
-- Ready to start? Run `/bob:brainstorm` on your first feature.
+- [Skills reference](06-skills-reference.md): every skill on one page.
+- [Project management](04-project-management.md): where these artifacts live.
