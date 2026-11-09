@@ -55,6 +55,13 @@ Every phase checks applicable items before finishing.
 - [ ] Complexity removed, introduced, or moved is addressed
 - [ ] Blocking uncertainty is resolved or clearly marked
 
+### UI mockups (`ui-mockup`)
+- [ ] The working copy is in the repository and matches the remote tool
+- [ ] Every decision from the session is in the spec, marked Decided, Proposed or Open
+- [ ] Screenshots match the current mockups
+- [ ] The README has the read order and an artboard-to-code map; the repository instructions point to it
+- [ ] The local preview renders when opened plainly
+
 ### Reflection (`reflect`)
 - [ ] Critical mental model and code paths were examined proportionally
 - [ ] Ownership gaps, if any, are explicit

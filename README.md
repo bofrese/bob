@@ -2,7 +2,7 @@
 
 AI knows how to write good code. The problem is it rarely does - unless you give it a reason to.
 
-Bob is a set of 29 [Agent Skills](https://agentskills.io) that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each skill loads the right principles, reads the right context, follows the right process. Reliably, every time.
+Bob is a set of 30 [Agent Skills](https://agentskills.io) that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each skill loads the right principles, reads the right context, follows the right process. Reliably, every time.
 
 **Two independent layers:** Product strategy skills (vision, validation, business model, positioning) and engineering skills (brainstorm, plan, implement, review). Use one, use both, or start where it matters most to you.
 
@@ -60,7 +60,7 @@ The full story - how the skills connect, how memory works, how a feature travels
 ```mermaid
 graph TD
     D["Product<br/>product · brand-design · linkedin"]
-    E["Engineering<br/>brainstorm → design → plan → review-plan → implement<br/>→ review → document → handover → reflect → learn<br/>(also: dev, investigate, ui-review)"]
+    E["Engineering<br/>brainstorm → design → plan → review-plan → implement<br/>→ review → document → handover → reflect → learn<br/>(also: dev, investigate, ui-mockup, ui-review)"]
     K["Knowledge<br/>document · user-guide · guidelines · library · remember"]
 
     D -->|grounds| E
@@ -70,7 +70,7 @@ graph TD
 
 **Product** - `product` coaches discovery and keeps `docs/product/` current: vision, problem space, personas, validation plan, business model, positioning, go-to-market. `brand-design` and `linkedin` cover design direction and LinkedIn growth.
 
-**Engineering** - the pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. `dev` is the short path for small, settled changes; `investigate` finds root causes; `ui-review` critiques interfaces.
+**Engineering** - the pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. `dev` is the short path for small, settled changes; `investigate` finds root causes; `ui-mockup` designs screens and pages as visual mockups with a spec beside them; `ui-review` critiques interfaces.
 
 **Knowledge** - notes that accumulate and make future sessions better: `document` for architecture notes, `user-guide` for end-user guides, `guidelines` for best practices, `library` for the knowledge vault, `remember` for quick capture.
 
@@ -123,6 +123,7 @@ Generated from the skill frontmatter by `python3 scripts/check.py --write-readme
 | `remember` | Bob's quick capture. Writes a thought, decision or insight straight to the knowledge inbox (knowledge/_INBOX/) without loading context or running a phase. Use when the user says "remember this", "note that" or wants to capture something mid-session for later filing. |
 | `review-skill` | Bob's skill reviewer. Reviews an Agent Skill for spec compliance, description triggering, progressive disclosure, token efficiency and clarity, and proposes a leaner version. Use when the user wants a skill, prompt or slash command checked or optimised. Reviews only, never edits the skill. |
 | `setup` | Bob's project setup. Bootstraps and upgrades bob infrastructure in a project - projects/, knowledge vault, done criteria, story structure repairs, recommended tools. Idempotent and non-destructive. Use only when the user asks to set up, install or upgrade bob in a project. |
+| `ui-mockup` | Bob's UI mockup phase. Designs app screens, web pages or flows as visual mockups (Claude Design canvas, local HTML, Figma exports) with a living spec beside them, then hands them to builders with screenshots and a code map. Use when a UI must be designed visually before it is built. |
 | `user-guide` | Bob's user guide writer. Creates or maintains an end-user guide for the current project from what the code really does, and reports UX gaps and missing features as separate findings. Use when the user wants end-user documentation written, updated or checked for drift. |
 
 **Principles**

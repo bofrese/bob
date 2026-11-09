@@ -10,7 +10,7 @@ Every session artifact gets exactly one row in `{story_path}_index.md` `## Histo
 | {date} | [{Type}](sessions/{file}.md) | {one-line summary} | {outcome} |
 ```
 
-- Type: Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Documentation, Handover, Reflection, Harness Learning, Investigation, UI Review.
+- Type: Brainstorm, Design, Plan, Plan Review, Implementation, Code Review, Documentation, Handover, Reflection, Harness Learning, Investigation, UI Review, UI Mockup.
 - Outcome: the result (Draft, Ready, Approve with changes, Completed, Root cause identified).
 - At finish, check the row exists. A missing row is a defect: add it and tell the user it was late. Never add a second row for the same file.
 - Then update the story kanban: tasks done move to `## done` as `- [x]`, the task in work sits in `## in progress`.

@@ -52,6 +52,7 @@ Recommend a phase for the question it answers, never because it is next in a pip
 | investigate | A bug needs a root cause, not a fix |
 | dev | Work is local, reversible, settled and easy to verify |
 | ui-review | A UI needs an expert review |
+| ui-mockup | A UI must be designed visually before it is built |
 
 Product, knowledge vault and meta skills describe themselves in the skill listing.
 
@@ -61,6 +62,7 @@ Product, knowledge vault and meta skills describe themselves in the skill listin
 |---|---|
 | `docs/product/` | Product artifacts, updated in place |
 | `docs/domain/`, `docs/architecture/`, `docs/guidelines/` | Domain terms, architecture notes, guidelines |
+| `docs/design/{name}/` | UI mockups: working copy, screenshots, handoff README |
 | `docs/process/done-criteria.md` | What done means per artifact type |
 | `projects/{sub}/_kanban.md` | Project kanban: stories and INBOX |
 | `projects/{sub}/stories/{ID}/` | Story: `_index.md`, `_kanban.md`, `input/`, `sessions/`, `tasks/` |

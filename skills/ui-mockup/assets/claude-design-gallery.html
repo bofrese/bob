@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Canvas gallery</title>
+<style>
+body{margin:0;background:#888;display:flex;flex-wrap:wrap;gap:16px;padding:16px;font:13px -apple-system,system-ui,sans-serif}
+figure{margin:0;display:flex;flex-direction:column;gap:6px}
+figcaption{color:#fff;max-width:390px}
+iframe{border:0;background:#fff}
+</style></head>
+<body>
+<script>
+// Without ?f= it shows every artboard in canvas order; ?f=Diary,Search:390 picks some (name[:width]).
+(async () => {
+  const canvas = await (await fetch('canvas.json', { cache: 'no-store' })).json();
+  const f = new URLSearchParams(location.search).get('f');
+  const picks = f
+    ? f.split(',').map((x) => { const [name, w] = x.split(':'); return { file: name + '.dc.html', w: Number(w) || 0 }; })
+    : canvas.order.map((file) => ({ file, w: 0 }));
+  for (const { file, w } of picks) {
+    const b = canvas.boards[file] || { w: 390, h: 844, title: file };
+    const fig = document.createElement('figure');
+    const cap = document.createElement('figcaption');
+    cap.textContent = file.replace('.dc.html', '') + ': ' + b.title;
+    const i = document.createElement('iframe');
+    i.src = file + '?t=' + Date.now();
+    i.width = w || b.w; i.height = b.h;
+    i.loading = 'lazy';
+    fig.append(cap, i);
+    document.body.appendChild(fig);
+  }
+})();
+</script>
+</body></html>

@@ -12,6 +12,8 @@ A thinking framework for expert UI and UX evaluation, on any platform, at any st
 
 **Does this interface reduce friction between a user and their goal?** Every lens serves this question. When in doubt, return to it.
 
+These lenses judge a design; they hold no process. To make mockups with them, use the `ui-mockup` skill; to critique a built UI, use `ui-review`.
+
 ## Lenses
 
 Each lens states what separates expert from average work and its red flags. A red flag is a prompt to look closer, not an automatic fail. Read the reference for the lenses at hand; a full UI review reads both. Paths are relative to this skill's folder.

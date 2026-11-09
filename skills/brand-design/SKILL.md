@@ -18,7 +18,7 @@ These hold in both modes.
 
 - One question at a time. Challenge vague answers.
 - Ground everything in the vision and personas. Flag clearly when they are missing; do not guess.
-- Do not design screens or implement anything. This is direction.
+- Do not design screens or implement anything. This is direction. Mockups of screens and pages belong to the `ui-mockup` skill.
 - Documents are drafts until the user agrees. Do not save early.
 - Save with today's date from the hub, creating the folder if needed. If `docs/product/README.md` exists, update the design brief's status and date in it.
 
