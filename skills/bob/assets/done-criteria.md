@@ -44,6 +44,12 @@ Every phase checks applicable items before finishing.
 - [ ] Findings categorised by severity
 - [ ] Action items are actionable and prioritised
 
+### Explainers (`explain`)
+- [ ] `explainer.py check` passes: outline block with commit and sources, "not a source of truth" banner, self-contained
+- [ ] Viewed in a desktop browser; every interaction works, console clean
+- [ ] Every element serves a core idea of the approved outline
+- [ ] Card in `docs/explainers/index.html`
+
 ### Investigation and ideas (`investigate`, `brainstorm`)
 - [ ] Findings or options are written to the story, not left in chat
 - [ ] Root cause or chosen direction is stated with its evidence

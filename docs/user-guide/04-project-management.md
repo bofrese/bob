@@ -47,10 +47,10 @@ flowchart LR
 |---|---|
 | INBOX | Ideas that nobody has committed to |
 | ToDo | Committed, not started |
-| Refining | Being brainstormed, designed or planned |
-| Ready | Has a reviewed plan |
-| In Progress | Being built |
-| Verify | Built, waiting for sign-off |
+| Refining | Being brainstormed or designed |
+| Ready | Design settled, ready to plan and build (`/bob:autopilot` picks stories from here) |
+| In Progress | Being planned and built |
+| Verify | Built and handed over, waiting for your sign-off |
 | Done | Shipped and verified |
 | ARCHIVE | Dismissed or deferred |
 
@@ -80,9 +80,9 @@ You can always move cards by hand in Obsidian. Do not edit the History table by 
 
 ## Where discovered work goes
 
-Bob routes each finding by type when it shows up:
+Bob routes each item of discovered work by type when it shows up:
 
-| Finding | Goes to |
+| Discovered work | Goes to |
 |---|---|
 | The design does not fit reality | Back to the Design Record, or to `/bob:design` |
 | An issue in this story's scope | The story board, `Issues` column |

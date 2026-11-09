@@ -1,4 +1,7 @@
 {
+  "modules": [
+    "./status.tsx"
+  ],
   "hooks": {
     "SessionStart": [
       {

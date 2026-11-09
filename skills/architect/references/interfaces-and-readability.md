@@ -12,7 +12,7 @@ A good interface:
 - makes misuse difficult;
 - does not leak framework mechanics.
 
-Design the interface before narrowing into the implementation plan.
+Design the interface before narrowing into the Plan.
 
 **Smell:** a shallow module, where the interface is almost as complex as the implementation (pass-through methods, configuration the caller must understand, many small classes each doing one step).
 

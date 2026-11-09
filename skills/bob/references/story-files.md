@@ -107,7 +107,7 @@ title: {ID} Tasks
 
 Same format as the story kanban, with:
 - frontmatter `title: {Project}`, `prefix: {PREFIX}`, `last-id: "000"`; `new-note-folder` = `projects/{sub}/stories`.
-- columns INBOX (uncommitted), ToDo (committed), Refining, Ready (reviewed plan), In Progress, Verify, Done, ARCHIVE.
+- columns INBOX (uncommitted), ToDo (committed), Refining (brainstorm or design in progress), Ready (design settled), In Progress, Verify (handover written, waiting for the developer), Done, ARCHIVE. Boards may add columns; bob uses only these.
 - story cards as wiki links: `- [ ] [[stories/{ID}/_index|{ID} Title]]`.
 
 ## Task file (`tasks/{name}.md`)

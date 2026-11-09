@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Bob's implement phase. Executes an approved implementation plan autonomously with tests at every step, and pauses when evidence shows the design does not fit reality. Use only when the user asks to implement a plan or to start building from one.
+description: Bob's implement phase. Executes an approved Plan autonomously with tests at every step, and pauses when evidence shows the design does not fit reality. Use only when the user asks to implement a plan or to start building from one.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---

@@ -10,7 +10,9 @@ skills/{name}/
   references/*.md   loaded on demand, one level deep
   scripts/*.py      deterministic steps, Python 3 stdlib only
   assets/           templates copied into projects
-hooks/hooks.json    Claude Code adapter (SessionStart, md-move guard)
+hooks/hooks.json    Claude Code adapter (SessionStart, md-move guard, status module)
+hooks/status.tsx    status line and /bob-knowledge pane (hooks module)
+types/index.d.ts    $.state contract of status.tsx
 .claude-plugin/     Claude Code adapter
 scripts/check.py    structural validator
 ```
@@ -38,7 +40,7 @@ The `bob` hub (`skills/bob/`) holds the start and finish checklists, story resol
 ```markdown
 ---
 name: plan
-description: Bob's plan phase. Turns a Design Record into an implementation plan ...
+description: Bob's plan phase. Turns a Design Record into a Plan ...
 license: Apache-2.0
 ---
 

@@ -24,7 +24,7 @@ HUB_EXEMPT = PRINCIPLE | {"remember"}
 GROUPS = [
     ("Hub", {HUB}),
     ("Engineering phases", {"brainstorm", "design", "plan", "review-plan", "implement", "review", "document",
-                            "handover", "reflect", "learn", "investigate", "dev", "ui-review"}),
+                            "handover", "reflect", "learn", "investigate", "dev", "ui-review", "explain", "autopilot"}),
     ("Product", {"product", "brand-design", "linkedin"}),
     ("Principles", PRINCIPLE),
 ]

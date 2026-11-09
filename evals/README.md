@@ -6,9 +6,9 @@ Every case has one free `tool_used: Skill` grader (a regex over the skill name, 
 
 | Group | Cases | Checks |
 |---|---|---|
-| `positive-*` | 29 | One per skill in `skills/`. The named skill is invoked. For the 13 phase skills, the `bob` hub alone is also accepted (the hub routes) |
+| `positive-*` | 31 | One per skill in `skills/`. The named skill is invoked. For the 14 phase skills, the `bob` hub alone is also accepted (the hub routes) |
 | `forgot-bob-*` | 3 | Plain work request (plan, fix bug, write vision) in a project that uses bob: the `bob` hub is invoked |
-| `no-trigger-*` | 4 | Casual chat must NOT invoke `implement`, `setup`, `docker-setup` or `dev` (`min: 0`, `max: 0`) |
+| `no-trigger-*` | 6 | Casual chat must NOT invoke `implement`, `setup`, `docker-setup` or `dev`; a short "explain X" question must NOT invoke `explain`; "implement this plan" must NOT invoke `autopilot` (`min: 0`, `max: 0`) |
 
 Fixture: `_fixtures/bob-project.sh` builds a tiny bob project (`docs/process/done-criteria.md`, `projects/x/_kanban.md`, `docs/domain/README.md`, one source file). Only the `forgot-bob-*` cases use it, through a symlinked `scaffold.sh`, so they need `--scaffold`.
 
@@ -18,7 +18,7 @@ Always use `--ablation none`: Skill graders are with-only indicators, so the no-
 
 ```bash
 cd bob
-# full suite (36 cases x 3 runs)
+# full suite (38 cases x 3 runs)
 claude plugin eval . --ablation none --scaffold --no-publish -j 4 --max-cost-usd 20
 # one group or one case
 claude plugin eval . --ablation none --scaffold --case 'forgot-bob-*'

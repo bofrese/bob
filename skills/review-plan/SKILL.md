@@ -1,6 +1,6 @@
 ---
 name: review-plan
-description: Bob's plan review phase. Critically and independently reviews an implementation plan against the codebase and Design Record (gaps, simpler solutions, security, misalignment) and writes a verdict. Use when facts or risk justify an independent check of a plan. Reviews only, never edits the plan.
+description: Bob's plan review phase. Critically and independently reviews a Plan against the codebase and Design Record (gaps, simpler solutions, security, misalignment) and writes a verdict. Use when facts or risk justify an independent check of a plan. Reviews only, never edits the plan.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---
@@ -32,7 +32,7 @@ Senior architect doing an independent review of someone else's plan. Constructiv
 3. **Review.** Work through `references/review-checklist.md` and classify every finding (plan defect, design concern, requirement gap, optional simplification). Walk the user through the findings one topic at a time.
 4. **Alternatives.** If a simpler or better approach exists, present it: what it is, why it is better, its trade-offs, and what would change in the plan. If the whole plan should be rethought, say so.
 5. **Save.** Save when the review is complete. Flag concerns that might invalidate the plan before saving, so the user can decide whether the review recommends a rethink.
-6. **Recommend.** Name the next step by verdict:
+6. **Recommend.** Name the next phase by verdict:
    - **Approve:** proceed to `implement`.
    - **Approve with changes:** update the plan for the findings (offer to make the edits), then `implement`.
    - **Needs rework:** work through the findings and rewrite the affected sections.

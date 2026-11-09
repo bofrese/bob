@@ -36,6 +36,8 @@ In loop order. Details: [Engineering workflows](02-engineering-workflows.md).
 | `/bob:investigate` | A bug needs a root cause. It never fixes. | `{story}/sessions/{date}-investigate-{slug}.md` |
 | `/bob:ui-review` | A screen, flow or app needs an expert UI/UX review | `{story}/sessions/{date}-ui-review-{slug}.md` |
 | `/bob:ui-mockup` | Screens, pages or flows must be designed visually before they are built | `docs/design/{name}/`, `{story}/spec.md`, `{story}/input/{date}-mockup-requests.md` |
+| `/bob:explain` | You need an interactive explainer of a topic or a part of your system | `docs/explainers/{concept}.html` |
+| `/bob:autopilot` | You ask to run settled stories end to end without you: plan to handover, each phase in a subagent | Phase artifacts, commits, `docs/process/sessions/{date}-autopilot-{slug}.md` |
 
 ## Product
 

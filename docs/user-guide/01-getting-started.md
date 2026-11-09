@@ -1,5 +1,5 @@
 # Getting started
-*Last updated: 2026-10-14*
+*Last updated: 2026-11-02*
 
 This chapter takes you from installation to your first finished session.
 
@@ -24,7 +24,7 @@ Optional companions that `/bob:setup` recommends: Ponytail (an over-engineering 
    claude
    ```
 2. Run `/bob:setup`. It audits the project, shows what is missing and creates it after one confirmation. It is safe to run again at any time.
-3. Ask "Bob, where are we and what next?" or run `/bob:bob`. The hub reads your boards and recommends one next step.
+3. Ask "Bob, where are we and what next?" or run `/bob:bob`. The hub reads your boards and recommends one next phase.
 4. Start the work that fits:
 
    | Your situation | Start with |
@@ -36,8 +36,9 @@ Optional companions that `/bob:setup` recommends: Ponytail (an over-engineering 
    | A codebase with no architecture docs | `/bob:document` |
    | Not sure | Describe it in plain words |
 
-5. Read the result and push back. The AI made assumptions. Ask questions, disagree, and let it revise before it writes the final file.
-6. Close the session when the artifact is written. The next session reads it from disk.
+5. Watch the status line. It shows the active bob phase, the story you work on and how many files bob loaded, for example `bob: plan · BOB-12 (7 loaded, /bob-knowledge)`. The story is the one bob resolved for the session. Work that bob files in other stories does not change it. Run `/bob-knowledge` to see the list: skills, bob references and project docs. Run it again or press Escape to close it.
+6. Read the result and push back. The AI made assumptions. Ask questions, disagree, and let it revise before it writes the final file.
+7. Close the session when the artifact is written. The next session reads it from disk.
 
 ## What setup creates
 

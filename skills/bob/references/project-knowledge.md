@@ -2,6 +2,8 @@
 
 One loader for what the project already knows. Run it once the scope is clear. For each source: read the index first, then load only the files that match the scope (files, paths, concepts and terms the work touches). Never load a whole folder. Skip a missing source silently unless noted.
 
+Never load `docs/explainers/`. Explainer pages are for humans, can be out of date and are never a source of truth.
+
 ## Domain: `docs/domain/`
 
 Read `docs/domain/README.md`. Load the concept files for terms the work uses. Use the terms as defined there, in artifacts and in code names. A term that seems to conflict with the code is a question for the user.

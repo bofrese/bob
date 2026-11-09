@@ -100,7 +100,7 @@ Every knowledge folder has a small index (`README.md`), and the loader reads the
 
 I also keep two kinds of context apart. Skills describe how to do a kind of work, and they are the same in every project. Project knowledge (domain terms, architecture notes, guidelines, product docs) describes this project, and it lives in the project's own repository, owned by the team.
 
-### 4. Intent survives the pipeline
+### 4. Intent survives the engineering loop
 
 This one I learned the hard way. When the design summarised the brainstorm, and the plan summarised the design, requirements got lost a little at each step, like a game of telephone.
 

@@ -55,7 +55,7 @@ The full story - how the skills connect, how memory works, how a feature travels
 
 **Or call a phase directly** with a slash command: `/bob:plan`, `/bob:review`, `/bob:product`. Skills are the only entry point; there are no separate commands.
 
-**Not sure?** Ask "Bob, where are we and what next?" - the `bob` hub skill gives a status and the next step.
+**Not sure?** Ask "Bob, where are we and what next?" - the `bob` hub skill gives a status and the next phase.
 
 ```mermaid
 graph TD
@@ -70,7 +70,7 @@ graph TD
 
 **Product** - `product` coaches discovery and keeps `docs/product/` current: vision, problem space, personas, validation plan, business model, positioning, go-to-market. `brand-design` and `linkedin` cover design direction and LinkedIn growth.
 
-**Engineering** - the pipeline: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. `dev` is the short path for small, settled changes; `investigate` finds root causes; `ui-mockup` designs screens and pages as visual mockups with a spec beside them; `ui-review` critiques interfaces.
+**Engineering** - the engineering loop: brainstorm → design → plan → [review-plan] → implement → review → document → handover → reflect → learn. `dev` is the short path for small, settled changes; `investigate` finds root causes; `ui-mockup` designs screens and pages as visual mockups with a spec beside them; `ui-review` critiques interfaces.
 
 **Knowledge** - notes that accumulate and make future sessions better: `document` for architecture notes, `user-guide` for end-user guides, `guidelines` for best practices, `library` for the knowledge vault, `remember` for quick capture.
 
@@ -84,24 +84,26 @@ Generated from the skill frontmatter by `python3 scripts/check.py --write-readme
 
 | Skill | Description |
 |---|---|
-| `bob` | Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next step). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named. |
+| `bob` | Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next phase). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named. |
 
 **Engineering phases**
 
 | Skill | Description |
 |---|---|
+| `autopilot` | Bob's autopilot. Runs stories whose design is settled end to end without the developer: plan, review-plan, implement, review, document, commit, handover, each phase in its own subagent. Use only when the user asks to autopilot, auto-run or resume an autopilot run. |
 | `brainstorm` | Bob's brainstorm phase. Coaches a guided feature brainstorm (seed, diverge, converge, detail, commit) and writes a Brainstorm Brief. Use when value, outcome or problem framing of an idea is open. Explores outcomes only, never architecture or code. |
 | `design` | Bob's design phase. Forms and defends the simplest coherent conceptual design for a capability, grounded in repository evidence, and writes a Design Record. Socratic and human-owned. Use when concepts, boundaries, naming or whole-system fit are open, before planning. |
 | `dev` | Bob's dev phase. A peer working session for code discussion, quick fixes and direct changes, without the brainstorm, plan and review cycle. Use only when the user asks for a direct change or quick fix. Escalates to design when a change outgrows the fast path. |
 | `document` | Bob's document phase. Writes and maintains a project's canonical architecture notes (concepts, patterns, README index) in docs/architecture/, in Discover, Update or Audit mode. Use when architecture notes must reflect the code, after review or to check drift. Never changes application code. |
+| `explain` | Bob's explain phase. Builds a self-contained interactive HTML explainer so an experienced developer understands a software topic or part of their own system: predict, see, try. Outline gate first. Use when the user asks for an explainer, interactive explanation or visual tutorial. |
 | `handover` | Bob's handover phase. Narrates a delivered change for approval instead of a pull request (the full diff in reading order, with the reasoning at each place) so the accountable developer can own it. Coverage-checked. Use when delegated work must be owned by the human, after document, before reflect. |
-| `implement` | Bob's implement phase. Executes an approved implementation plan autonomously with tests at every step, and pauses when evidence shows the design does not fit reality. Use only when the user asks to implement a plan or to start building from one. |
+| `implement` | Bob's implement phase. Executes an approved Plan autonomously with tests at every step, and pauses when evidence shows the design does not fit reality. Use only when the user asks to implement a plan or to start building from one. |
 | `investigate` | Bob's investigate phase. Systematic bug investigation (hypotheses, code tracing, 5 Whys, impact, fix options) that finds the root cause and writes a report. Use when a bug, error or failing test needs a root cause rather than a quick fix, or the user asks why something fails. Never implements fixes. |
 | `learn` | Bob's learn phase. Analyzes evidence from completed work and recommends small, durable improvements to the AI development harness without instruction accretion. Scoped mode improves one skill or command. Use when a session exposed a reusable harness lesson, or to improve a skill after using it. |
-| `plan` | Bob's plan phase. Translates a Design Record into a reviewable implementation plan - step order, refactoring, files, tests, risks - ready for a developer or AI handoff. Use when the user asks how to build something already designed, or wants a plan before coding. Plans only, never implements. |
+| `plan` | Bob's plan phase. Translates a Design Record into a reviewable Plan - step order, refactoring, files, tests, risks - ready for a developer or AI handoff. Use when the user asks how to build something already designed, or wants a plan before coding. Plans only, never implements. |
 | `reflect` | Bob's reflect phase. A short, peer-to-peer reflection after the developer reads the Handover, recovering implementation insight and closing ownership gaps in a Reflection Record. Use after reading the Handover, or when the implementation surprised the developer. |
 | `review` | Bob's code review phase. Reviews code changes from git against the plan, Design Record, guidelines and done criteria (bugs, design conformance, design concerns, system health). Use for a code review of changes, a branch or a PR, or when correctness must be checked independently. Reports only. |
-| `review-plan` | Bob's plan review phase. Critically and independently reviews an implementation plan against the codebase and Design Record (gaps, simpler solutions, security, misalignment) and writes a verdict. Use when facts or risk justify an independent check of a plan. Reviews only, never edits the plan. |
+| `review-plan` | Bob's plan review phase. Critically and independently reviews a Plan against the codebase and Design Record (gaps, simpler solutions, security, misalignment) and writes a verdict. Use when facts or risk justify an independent check of a plan. Reviews only, never edits the plan. |
 | `ui-review` | Bob's UI review phase. Expert UI/UX critique of a screen, flow, component or app (from screenshots or code) against design principles and product artifacts, with ranked fix options and optional implementation. Use when a UI needs an expert review. Implements only on explicit request. |
 
 **Product**
@@ -142,7 +144,8 @@ Generated from the skill frontmatter by `python3 scripts/check.py --write-readme
 ## What is new in 4.0.0
 
 - **Skills only.** `commands/` is gone. The 58 listing entries (commands plus skills) are now 29 skills. Every skill follows the Agent Skills spec.
-- **The `bob` hub.** One skill holds the start and finish checklists that every phase shares (story, project knowledge, done criteria, next step). It replaces the eight protocol skills and `pm`.
+- **The `bob` hub.** One skill holds the start and finish checklists that every phase shares (story, project knowledge, done criteria, next phase). It replaces the eight protocol skills and `pm`.
+- **Status line and knowledge pane** (Unreleased). The status line shows the last bob phase and the active story, for example `bob: plan · BOB-12 (7 loaded, /bob-knowledge)`. `/bob-knowledge` lists the skills, bob references and project docs loaded this session.
 - **Primer hook.** A SessionStart hook tells the agent that a bob project starts with the hub, so you do not have to remember to call it. `setup` also writes a short bob block into `AGENTS.md` for Codex and Copilot.
 - **Fewer, bigger skills.** Seven product commands became modes of `product`; two design commands became modes of `brand-design`.
 - **Bug fixes** (from 3.1.1): the markdown-move guard only blocks when Obsidian and its CLI are present; `ai/reviews/` no longer ships inside the plugin.
@@ -256,9 +259,9 @@ Hi Bob, what can you help with? How do we get started?
 - **First time on a project?** `/bob:setup` bootstraps bob infrastructure (idempotent - safe to run again after updates)
 - **Product strategy work?** `/bob:product`
 - **New feature?** `/bob:brainstorm` → `/bob:design` → `/bob:plan` → `/bob:implement` → `/bob:review`
-- **Quick fix or code discussion?** `/bob:dev` - direct working session, no pipeline
+- **Quick fix or code discussion?** `/bob:dev` - direct working session, no full loop
 - **Inherited codebase?** `/bob:document` (Discover) to map its concepts and patterns
-- **Not sure?** Ask "Bob" - the `bob` hub names the next step
+- **Not sure?** Ask "Bob" - the `bob` hub names the next phase
 
 ---
 

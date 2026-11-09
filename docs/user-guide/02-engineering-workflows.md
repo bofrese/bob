@@ -138,6 +138,18 @@ Name one skill ("improve plan from this session") and Learn runs in scoped mode 
 | `/bob:investigate` | A bug needs a root cause, not a quick fix | Investigation report with fix options. It never fixes. |
 | `/bob:ui-review` | A screen, flow or app needs an expert UI/UX review | Ranked findings. It implements only if you ask. |
 | `/bob:dev` | A quick fix or a direct change | Code. No session artifact. |
+| `/bob:explain` | You need to understand a topic, or a part of the system AI built, the way you would if you had built it | An interactive HTML page in `docs/explainers/`. Outline approved first. For humans only, never a source of truth. |
+
+## Autopilot
+
+`/bob:autopilot` is the exception to human-paced phases. Use it for stories whose big questions were settled in brainstorm and design, or that are small and simple. It takes the story IDs you name, or the stories in the project kanban's Ready column, and checks that each has a settled Design Record. Nothing runs until you confirm the list.
+
+Then it runs, per story and one story at a time: plan, review-plan, plan integration, implement, review, fixes, document, commit, handover, commit. Each phase is the normal bob skill in its own subagent. Subagents answer questions only when the Design Record, intent or plan settle them, and log each answer in their artifact. A pause, a return to design or a failure stops the whole run without committing, so no later story builds on half-done work. Finished stories land in Verify: read the handover, then run `/bob:reflect`.
+
+Progress is in `docs/process/sessions/{date}-autopilot-{slug}.md`. Say "resume autopilot" to continue an interrupted or stopped run. To continue automatically after a usage limit resets:
+
+- Desktop: check "Auto-continue when limits reset" on the limit card. The weekly-limit card does not offer it.
+- CLI: check the auto-continue setting in `/config`. For unattended runs, `CLAUDE_CODE_RETRY_WATCHDOG=1` retries rate-limited requests, and `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` checks when the limit lifts.
 
 ## What if...
 
@@ -147,6 +159,7 @@ Name one skill ("improve plan from this session") and Learn runs in scoped mode 
 | You disagree with a review finding | Say why. You decide what ships. |
 | Implementation paused on a design signal | Answer it, or return to `/bob:design` if the concept is wrong. |
 | A "quick fix" in `/bob:dev` turned into a design question | Follow its recommendation and run `/bob:design`. |
+| Autopilot stopped | Read the stop reason in the run file, make the decision, then say "resume autopilot". |
 | You changed code by hand between phases | Run `/bob:review` so the artifacts match the code again. |
 
 ## Next steps

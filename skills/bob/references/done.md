@@ -18,6 +18,7 @@ Check every item in `docs/process/done-criteria.md` that applies to this phase. 
 | learn | Harness learning. "No persistent lesson" is valid |
 | document | Documentation |
 | ui-review | Reviews |
+| explain | Explainers |
 | investigate, brainstorm | Investigation and ideas |
 | handover | Handover |
 | product, brand-design, linkedin | Output is self-contained and readable without prior context |

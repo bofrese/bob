@@ -27,6 +27,8 @@ The JSON names a `tier`, whether it is `certain`, and `candidates`.
 | `none` | Nothing found | Ask for a path or story ID, or offer "new story" |
 
 - "New story": create it per `references/story-files.md`, then resolve again.
+- The user confirms a candidate, names a story, or switches to another story during the phase: run `story.py "<ID>"` again. The status line shows only a story that `story.py` resolved as certain.
+- Work routed to another story does not change the story of the session. Do not resolve for it.
 - No `projects/` folder: bootstrap it per `references/story-files.md`.
 - Resolve fresh in each phase. Do not reuse a story from an earlier phase without checking.
 

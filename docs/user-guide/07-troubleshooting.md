@@ -1,5 +1,5 @@
 # Troubleshooting
-*Last updated: 2026-10-14*
+*Last updated: 2026-11-02*
 
 Known problems and how to fix them.
 
@@ -9,6 +9,9 @@ Known problems and how to fix them.
 |---|---|
 | The skills do not show up | Restart Claude Code after installing. Then run `/plugin` and check that `bob` is installed. |
 | Old names like `/bob:pm` or `/bob:product-coach` do not work | They were renamed in bob 4.0. Run `/bob:setup`: it finds old names in your project files and offers to fix them. |
+| No `bob:` entry in the status line, or `/bob-knowledge` is missing | The status line appears after the first bob skill loads. The command needs a Claude Code version with hooks modules. Run `/reload-plugins` after updating bob. |
+| The status line shows no story or the wrong one | It shows the story bob resolved with certainty. If bob guessed and you confirmed, or you switched story in the chat, ask bob to resolve the story again. |
+| `/bob-knowledge` does not list a file you expected | It lists markdown read with the Read tool and the skills loaded. `CLAUDE.md`, the session primer and files read through shell commands are not listed. |
 | Bob ignores the project when you do not name a skill | The primer runs only in projects that use bob. Run `/bob:setup` so that `projects/` and `docs/process/done-criteria.md` exist. |
 | Artifacts ignore the writing rules | Check that the `plain-writing` plugin is installed. Bob depends on it. |
 

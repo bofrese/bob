@@ -1,6 +1,6 @@
 {
   "name": "bob",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "AI-powered product development framework. Agent Skills, principles, and protocols for the full product development lifecycle - from discovery through shipped, tested, documented code.",
   "author": {
     "name": "Bo Frese",
@@ -18,5 +18,6 @@
   ],
   "dependencies": [
     "plain-writing"
-  ]
+  ],
+  "types": "./types/index.d.ts"
 }

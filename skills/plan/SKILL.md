@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Bob's plan phase. Translates a Design Record into a reviewable implementation plan - step order, refactoring, files, tests, risks - ready for a developer or AI handoff. Use when the user asks how to build something already designed, or wants a plan before coding. Plans only, never implements.
+description: Bob's plan phase. Translates a Design Record into a reviewable Plan - step order, refactoring, files, tests, risks - ready for a developer or AI handoff. Use when the user asks how to build something already designed, or wants a plan before coding. Plans only, never implements.
 license: Apache-2.0
 allowed-tools: Bash(*), Read, Write, Edit
 ---

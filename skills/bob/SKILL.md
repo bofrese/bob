@@ -1,6 +1,6 @@
 ---
 name: bob
-description: Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next step). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named.
+description: Hub of bob, the product development workflow. Start and finish checklists for every bob phase (story tracking, project knowledge, done criteria, next phase). Use when a bob skill says so, when the user asks about bob, or for engineering or product work in a repo using bob, even if bob is not named.
 license: Apache-2.0
 ---
 
@@ -35,7 +35,7 @@ Fast-path work without a story skips story History and kanban steps.
 
 ## Phases
 
-Recommend a phase for the question it answers, never because it is next in a pipeline. Name the risk or uncertainty that justifies it.
+Recommend a phase for the question it answers, never because it comes next in a fixed order. Name the risk or uncertainty that justifies it.
 
 | Phase | Use when |
 |---|---|
@@ -53,6 +53,7 @@ Recommend a phase for the question it answers, never because it is next in a pip
 | dev | Work is local, reversible, settled and easy to verify |
 | ui-review | A UI needs an expert review |
 | ui-mockup | A UI must be designed visually before it is built |
+| explain | A developer must understand a topic or what AI built, beyond what notes give |
 
 Product, knowledge vault and meta skills describe themselves in the skill listing.
 

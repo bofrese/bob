@@ -4,6 +4,7 @@
 
 ### Added
 - `ui-mockup` phase skill: designs app screens, web pages or flows as visual mockups (Claude Design canvas, local HTML, Figma exports). Keeps the working copy in the repository (`docs/design/{name}/`), a living spec and a verbatim requests log in the story, and hands off with screenshots, an artboard-to-code map and a local preview. Holds no design principles; loads `ui-design`. Ships a local preview stub for Claude Design files. Hub Phases and Files rows, and pointers in `brand-design` and `ui-design`.
+- Status line and knowledge pane (`hooks/status.tsx`, a Claude Code hooks module). The status line shows the last bob phase skill, the main story (the last one `story.py` resolved as certain; `story.md` resolves again after a confirmation or a switch, so routed work in other stories does not move it) and how many skills and markdown files bob loaded this session. `/bob-knowledge` opens or closes a pane that lists them by group: skills, bob references, project docs, other markdown. On by default wherever bob is installed.
 
 ### Changed
 - `document` note templates: "Depends on" and "Used by" are separate `##` sections with one link per bullet. New "Layout for scanning" rules: icon matrices for dense tables, diagrams for state machines and pipelines, grouped index tables, ⚠️ vs 🔴 in notes.

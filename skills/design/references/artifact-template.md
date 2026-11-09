@@ -66,4 +66,4 @@ The Design Record is the authoritative intent handed to Plan, Review Plan, Imple
 
 The Design Record describes intent. It does not update canonical architecture notes in `docs/architecture/`: the `document` skill updates those after implementation, against the code that exists.
 
-Exclude from this record: implementation plans, file-by-file steps, and repeated product rationale already captured in the Brainstorm Brief: those belong to the `plan` skill.
+Exclude from this record: Plan content, file-by-file steps, and repeated product rationale already captured in the Brainstorm Brief: those belong to the `plan` skill.
