@@ -2,7 +2,7 @@
 
 AI knows how to write good code. The problem is it rarely does - unless you give it a reason to.
 
-Bob is a set of 30 [Agent Skills](https://agentskills.io) that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each skill loads the right principles, reads the right context, follows the right process. Reliably, every time.
+Bob is a set of [Agent Skills](https://agentskills.io) that bring discipline to AI-assisted product development - from strategic discovery through shipped, tested, documented code. Each skill loads the right principles, reads the right context, follows the right process. Reliably, every time.
 
 **Two independent layers:** Product strategy skills (vision, validation, business model, positioning) and engineering skills (brainstorm, plan, implement, review). Use one, use both, or start where it matters most to you.
 
